@@ -3,73 +3,57 @@
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 
-const tiers = [
-  {
-    name: 'Bronze',
-    price: 'from $350',
-    candidates: '6–8',
-    sla: '5–7 business days',
-    color: 'bronze',
-    includes: [
-      'Pre-screening',
-      'Short call',
-      'Quick English verification',
-      'Basic scorecard',
-    ],
-    guarantee: null,
-    popular: false,
-  },
-  {
-    name: 'Silver',
-    price: 'from $650',
-    candidates: '5–7',
-    sla: '5 business days',
-    color: 'slate',
-    includes: [
-      'Structured screening',
-      'Recorded B2+/C1 validation',
-      'Simplified practical exercise',
-      'Scorecards + onboarding notes',
-    ],
-    guarantee: '30-day replacement',
-    popular: true,
-  },
-  {
-    name: 'Gold',
-    price: 'from $1,200',
-    candidates: '3–5',
-    sla: '5 business days',
-    color: 'blue',
-    includes: [
-      'Deep screening',
-      'Recorded C1+ English with rubric',
-      'Role-specific practical test',
-      'Scorecards with evidence',
-      'Top 2–3 final recommendation',
-    ],
-    guarantee: '60-day replacement',
-    popular: false,
-  },
-];
-
-const roles = [
-  { title: 'Customer Support Rep (C1+)', desc: 'Multichannel support with measurable quality standards.', kpis: 'FRT, CSAT, Resolution Rate' },
-  { title: 'Executive Assistant (VA)', desc: 'Operations, calendar management, and executive reporting.', kpis: 'SLA Response, Task Completion' },
-  { title: 'QA Tester (Manual)', desc: 'Functional testing and bug reporting before deployment.', kpis: 'Critical Bugs, Test Coverage' },
-  { title: 'Bookkeeper (US-focused)', desc: 'Clean books and timely month-end closures.', kpis: 'Accuracy, Reconciliation Gaps' },
-  { title: 'Graphic Designer', desc: 'Marketing assets and brand visual iteration.', kpis: 'First-Iter Approval Rate' },
-  { title: 'English Content Writer', desc: 'High-quality SEO and thought leadership content.', kpis: 'Editorial Grade, SEO Performance' },
-];
-
 export default function CompaniesPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+
+  const tiers = [
+    {
+      name: t.companies.bronzeTitle,
+      price: t.companies.bronzePrice,
+      candidates: t.companies.bronzeCandidates,
+      sla: t.companies.bronzeSla,
+      color: 'bronze',
+      includes: t.companies.bronzeIncludes,
+      guarantee: t.companies.noReplacement,
+      popular: false,
+    },
+    {
+      name: t.companies.silverTitle,
+      price: t.companies.silverPrice,
+      candidates: t.companies.silverCandidates,
+      sla: t.companies.silverSla,
+      color: 'slate',
+      includes: t.companies.silverIncludes,
+      guarantee: t.companies.replacementGuarantee,
+      popular: true,
+    },
+    {
+      name: t.companies.goldTitle,
+      price: t.companies.goldPrice,
+      candidates: t.companies.goldCandidates,
+      sla: t.companies.goldSla,
+      color: 'blue',
+      includes: t.companies.goldIncludes,
+      guarantee: t.companies.replacementGuarantee,
+      popular: false,
+    },
+  ];
+
+  const roles = [
+    { title: 'Customer Support Rep (C1+)', desc: 'Multichannel support with measurable quality standards.', kpis: 'FRT, CSAT, Resolution Rate' },
+    { title: 'Executive Assistant (VA)', desc: 'Operations, calendar management, and executive reporting.', kpis: 'SLA Response, Task Completion' },
+    { title: 'QA Tester (Manual)', desc: 'Functional testing and bug reporting before deployment.', kpis: 'Critical Bugs, Test Coverage' },
+    { title: 'Bookkeeper (US-focused)', desc: 'Clean books and timely month-end closures.', kpis: 'Accuracy, Reconciliation Gaps' },
+    { title: 'Graphic Designer', desc: 'Marketing assets and brand visual iteration.', kpis: 'First-Iter Approval Rate' },
+    { title: 'English Content Writer', desc: 'High-quality SEO and thought leadership content.', kpis: 'Editorial Grade, SEO Performance' },
+  ];
 
   return (
     <div className="flex flex-col">
       <section className="bg-slate-950 pt-20 pb-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
             <span className="text-blue-500 font-medium mb-4 block uppercase tracking-widest text-sm">{t.companies.badge}</span>
-            <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 mb-6 tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 mb-6 tracking-tight leading-[1.15]">
                 {t.companies.title.split('.')[0]}.<br className="hidden md:block" /> {t.companies.title.split('.')[1]?.trim()}.
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
@@ -98,10 +82,10 @@ export default function CompaniesPage() {
                         <div className="text-center mb-6">
                           <h3 className={`text-xl font-bold mb-2 ${tier.color === 'blue' ? 'text-blue-400' : tier.color === 'slate' ? 'text-slate-300' : 'text-amber-400'}`}>{tier.name}</h3>
                           <div className="flex items-center justify-center gap-1 mb-1">
-                            <span className="text-sm text-slate-500 font-medium">from</span>
-                            <span className="text-4xl font-bold text-white">{tier.price.replace('from ', '')}</span>
+                            <span className="text-sm text-slate-500 font-medium">{lang === 'en' ? 'from' : 'desde'}</span>
+                            <span className="text-4xl font-bold text-white">{tier.price.replace('from ', '').replace('desde ', '')}</span>
                           </div>
-                          <div className="text-sm text-slate-500">{tier.candidates} candidates · {tier.sla}</div>
+                          <div className="text-sm text-slate-500">{tier.candidates} · {tier.sla}</div>
                         </div>
                         <ul className="space-y-3 mb-6">
                           {tier.includes.map((item) => (
@@ -112,11 +96,7 @@ export default function CompaniesPage() {
                           ))}
                         </ul>
                         <div className="pt-4 border-t border-slate-800">
-                          {tier.guarantee ? (
-                            <p className="text-xs text-slate-500">Includes: <span className="text-slate-300">{tier.guarantee}</span></p>
-                          ) : (
-                            <p className="text-xs text-slate-600">No replacement guarantee</p>
-                          )}
+                           <p className="text-xs text-slate-500">{tier.guarantee}</p>
                         </div>
                     </div>
                 ))}

@@ -26,9 +26,8 @@ export default function Home() {
             </span>
           </div>
 
-          <h1 className="text-hero font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white via-slate-100 to-slate-400 mb-12 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
-            {t.home.heroTitle.split('.')[0]}.<br />
-            <span className="text-blue-500 drop-shadow-[0_0_30px_rgba(37,99,235,0.3)]">{t.home.heroTitle.split('.')[1]?.trim()}.</span>
+          <h1 className="text-hero font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white via-slate-100 to-slate-400 mb-12 opacity-0 animate-fade-in-up leading-[1.1]" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
+            {t.home.heroTitle}
           </h1>
 
           <p className="text-xl sm:text-2xl text-slate-400 mb-20 max-w-2xl mx-auto leading-relaxed font-light opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>

@@ -66,6 +66,23 @@ interface Translations {
     ctaMethodology: string;
     tiersTitle: string;
     tiersSubtitle: string;
+    bronzeTitle: string;
+    bronzePrice: string;
+    bronzeCandidates: string;
+    bronzeSla: string;
+    bronzeIncludes: string[];
+    silverTitle: string;
+    silverPrice: string;
+    silverCandidates: string;
+    silverSla: string;
+    silverIncludes: string[];
+    goldTitle: string;
+    goldPrice: string;
+    goldCandidates: string;
+    goldSla: string;
+    goldIncludes: string[];
+    replacementGuarantee: string;
+    noReplacement: string;
     rolesTitle: string;
     rolesSubtitle: string;
     ctaTitle: string;
@@ -251,6 +268,39 @@ const translations: Record<Language, Translations> = {
       ctaMethodology: 'See Our Standard',
       tiersTitle: 'Choose Your Shortlist Tier',
       tiersSubtitle: 'Every tier includes human screening and evidence-backed evaluation. Pick the depth that matches your hiring confidence needs.',
+      bronzeTitle: 'Bronze',
+      bronzePrice: 'from $350',
+      bronzeCandidates: '6–8 candidates',
+      bronzeSla: '5–7 business days',
+      bronzeIncludes: [
+        'Technical Pre-screening',
+        'Initial Interview',
+        'Quick English Verification',
+        'Basic Scorecard',
+      ],
+      silverTitle: 'Silver',
+      silverPrice: 'from $650',
+      silverCandidates: '5–7 candidates',
+      silverSla: '5 business days',
+      silverIncludes: [
+        'Structured Screening',
+        'Recorded B2+/C1 Validation',
+        'Simplified Practical Exercise',
+        'Scorecards + Onboarding Notes',
+      ],
+      goldTitle: 'Gold',
+      goldPrice: 'from $1,200',
+      goldCandidates: '3–5 candidates',
+      goldSla: '5 business days',
+      goldIncludes: [
+        'Deep Deep Screening',
+        'Recorded C1+ with Rubric',
+        'Role-Specific Practical Test',
+        'Scorecards with Evidence',
+        'Top 2–3 Final Recommendation',
+      ],
+      replacementGuarantee: 'Replacement guarantee included',
+      noReplacement: 'No replacement guarantee',
       rolesTitle: 'Core Nearshore Roles We Cover',
       rolesSubtitle: 'Low-friction roles pre-validated for immediate integration.',
       ctaTitle: 'Ready to scale your team?',
@@ -396,48 +446,81 @@ const translations: Record<Language, Translations> = {
     },
     home: {
       heroBadge: 'Talento LATAM Validado. No es Bolsa de Trabajo.',
-      heroTitle: 'Contrata LATAM. Con Criterio.',
-      heroSubtitle: 'Te enviamos 3-5 candidatos validados. Vos decis. Sin pilas de CVs.',
+      heroTitle: 'Contratá Talento Validado B2B en días, no semanas.',
+      heroSubtitle: 'Te enviamos 3-5 candidatos validados. Vos decidís. Sin pilas de CVs.',
       ctaShortlist: 'Solicitar Shortlist',
-      ctaGoldList: 'Mira Como Funciona',
-      pipelineTitle: 'Como Funciona TalentSync360',
+      ctaGoldList: 'Mira Cómo Funciona',
+      pipelineTitle: 'Cómo Funciona TalentSync360',
       pipelineTagline: 'Criterio real. Tres pasos hasta candidatos validados.',
-      pipelineSub: 'Sin pilas de CVs. Sin especulacion. Solo candidatos validados.',
+      pipelineSub: 'Sin pilas de CVs. Sin especulación. Solo candidatos validados.',
       step1Label: 'Paso 1',
       step1Title: 'Vos Nos Das el Brief. Nosotros Validamos Viabilidad.',
       step1Desc: 'Contanos rol, KPIs, rango salarial y requisitos. Confirmamos viabilidad en 24h.',
       step2Label: 'Paso 2',
       step2Title: 'Nosotros Validamos y Testeamos',
-      step2Desc: 'Test de ingles + tarea practica. Candidatos evaluados en habilidades reales. Sin especulacion.',
+      step2Desc: 'Test de inglés + tarea práctica. Candidatos evaluados en habilidades reales. Sin especulación.',
       step3Label: 'Paso 3',
       step3Title: 'Shortlist en Tu Inbox. Lista para Entrevistar.',
-      step3Desc: '3-5 candidatos pre-screenados con scorecards. Vos entrevistas, vos decis.',
-      trustTitle: 'Que Realmente Entregamos',
+      step3Desc: '3-5 candidatos pre-screenados con scorecards. Vos entrevistas, vos decidís.',
+      trustTitle: 'Qué Realmente Entregamos',
       trust1Value: '3–5',
       trust1Label: 'Shortlist Curada. No Pila de CVs.',
       trust1Desc: 'Nosotros filtramos. Vos entrevistas. Sin pila de CVs para ordenar.',
       trust2Value: '100%',
-      trust2Label: 'Ingles Verificado. No Autodeclarado.',
-      trust2Desc: 'Cada candidato validado en ingles real. Sin especulacion.',
+      trust2Label: 'Inglés Verificado. No Autodeclarado.',
+      trust2Desc: 'Cada candidato validado en inglés real. Sin especulación.',
       trust3Value: '48h',
       trust3Label: 'Candidatos en 48h',
-      trust3Desc: 'Viabilidad confirmada. Shortlist enviada. Vos decis el siguiente paso.',
-      ctaTitle: 'Listo para Empezar?',
+      trust3Desc: 'Viabilidad confirmada. Shortlist enviada. Vos decidís el siguiente paso.',
+      ctaTitle: '¿Listo para Empezar?',
       ctaDesc: 'Envianos tu brief. Confirmamos viabilidad y entregamos tu shortlist en 48 horas.',
       ctaButton: 'Solicita Tu Shortlist',
     },
     companies: {
       badge: 'Para Empresas',
-      title: 'Staffing LATAM. Demostra Cada Contratacion.',
-      subtitle: 'Shortlists curadas con screening humano, pruebas practicas y scorecards basados en evidencia. Menos rotacion, menos riesgo, mas velocidad.',
+      title: 'Staffing LATAM. Demostrá Cada Contratación.',
+      subtitle: 'Shortlists curadas con screening humano, pruebas prácticas y scorecards basados en evidencia. Menos rotación, menos riesgo, más velocidad.',
       ctaShortlist: 'Solicitar Shortlist',
-      ctaMethodology: 'Ver Nuestro Estandar',
-      tiersTitle: 'Elegi Tu Tier de Shortlist',
-      tiersSubtitle: 'Cada tier incluye screening humano y evaluacion basada en evidencia. Elegi la profundidad que se adapte a tus necesidades de confianza.',
+      ctaMethodology: 'Ver Nuestro Estándar',
+      tiersTitle: 'Elegí Tu Tier de Shortlist',
+      tiersSubtitle: 'Cada tier incluye screening humano y evaluación basada en evidencia. Elegí la profundidad que se adapte a tus necesidades de confianza.',
+      bronzeTitle: 'Bronce',
+      bronzePrice: 'desde $350',
+      bronzeCandidates: '6–8 candidatos',
+      bronzeSla: '5–7 días hábiles',
+      bronzeIncludes: [
+        'Pre-screening técnico',
+        'Entrevista inicial',
+        'Verificación de inglés (Quick Check)',
+        'Scorecard básico',
+      ],
+      silverTitle: 'Plata',
+      silverPrice: 'desde $650',
+      silverCandidates: '5–7 candidatos',
+      silverSla: '5 días hábiles',
+      silverIncludes: [
+        'Screening estructurado',
+        'Validación B2+/C1 grabada',
+        'Ejercicio práctico simplificado',
+        'Scorecards + notas de onboarding',
+      ],
+      goldTitle: 'Oro',
+      goldPrice: 'desde $1,200',
+      goldCandidates: '3–5 candidatos',
+      goldSla: '5 días hábiles',
+      goldIncludes: [
+        'Deep Screening profundo',
+        'Validación C1+ grabada con rúbrica',
+        'Prueba técnica específica del rol',
+        'Scorecards con evidencia de trabajo',
+        'Recomendación final Top 2–3',
+      ],
+      replacementGuarantee: 'Garantía de reemplazo',
+      noReplacement: 'Sin garantía de reemplazo',
       rolesTitle: 'Roles Nearshore Principales que Cubrimos',
-      rolesSubtitle: 'Roles de baja friccion pre-validados para integracion inmediata.',
-      ctaTitle: 'Listo para escalar tu equipo?',
-      ctaDesc: 'Reserva una llamada de alineacion de 15 minutos para entender tus necesidades y confirmar disponibilidad de talento.',
+      rolesSubtitle: 'Roles de baja fricción pre-validados para integración inmediata.',
+      ctaTitle: '¿Listo para escalar tu equipo?',
+      ctaDesc: 'Reservá una llamada de alineación de 15 minutos para entender tus necesidades y confirmar disponibilidad de talento.',
       ctaButton: 'Reservar Llamada',
     },
     talents: {

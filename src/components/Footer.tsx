@@ -16,8 +16,8 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-32">
                     <div className="col-span-1 md:col-span-1">
                         <Link href="/" className="group inline-flex items-center gap-3 mb-8">
-                            <img src="/logo.png" alt="" className="h-6 w-auto opacity-50 group-hover:opacity-100 transition-opacity brightness-0 invert" />
-                            <span className="text-base tracking-[0.12em] text-slate-100 font-bold">TalentSync<span className="font-light text-slate-500 italic">360</span></span>
+                            <img src="/logo_oficial.png" alt="TalentSync360" className="h-6 w-auto opacity-50 group-hover:opacity-100 transition-opacity grayscale brightness-200" />
+                            <span className="text-base tracking-[0.15em] text-slate-100 font-bold uppercase">TalentSync<span className="font-light text-slate-500">360</span></span>
                         </Link>
                         <p className="text-slate-500 font-light text-sm leading-relaxed max-w-xs">
                           {t.footer.tagline}
