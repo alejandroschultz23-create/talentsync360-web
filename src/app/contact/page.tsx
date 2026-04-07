@@ -38,23 +38,32 @@ function ContactForm() {
     setIsSubmitting(true);
     setError(null);
 
-    // TODO: Connect to Resend / API Route
-    // const formData = new FormData(e.target as HTMLFormElement);
-    // const data = Object.fromEntries(formData);
+    // Extracting form data
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData);
     
     try {
-      // Simulate API call - Replace with actual fetch in production
-      // console.log('Payload:', data);
+      console.log('Enviando payload al servidor...', data);
       
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          // Simulate a random failure for QA testing if needed
-          // Math.random() > 0.8 ? reject(new Error('Network loss')) : resolve(true);
-          resolve(true);
-        }, 1500);
+      const res = await fetch('/api/send?t=' + Date.now(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          ...data,
+          contactType,
+          pageOrigin: window.location.pathname
+        }),
       });
+
+      // Clone and log server response
+      const result = await res.clone().json();
+      console.log('Respuesta del servidor:', result);
+
+      if (!res.ok) {
+        throw new Error(`Server returned ${res.status}`);
+      }
       
-      console.log('Envío exitoso');
+      console.log('Envío exitoso confirmado por servidor');
       setIsSuccess(true);
     } catch (err: any) {
       console.error('Fatal: Error at handleSubmit', err);
