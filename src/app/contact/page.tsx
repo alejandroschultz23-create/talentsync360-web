@@ -33,6 +33,7 @@ function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('--- EXECUTING LIVE API CALL ---');
     console.log('Iniciando envío...');
     setIsSubmitting(true);
     setError(null);
@@ -57,7 +58,7 @@ function ContactForm() {
       setIsSuccess(true);
     } catch (err: any) {
       console.error('Fatal: Error at handleSubmit', err);
-      setError('Error de conexión o validación. Por favor, reintente o contacte a soporte.');
+      setError('FALLA TÉCNICA DETECTADA');
     } finally {
       setIsSubmitting(false);
     }
@@ -170,7 +171,7 @@ function ContactForm() {
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className={`w-full bg-blue-600 hover:bg-blue-700 text-white px-8 py-5 rounded-lg font-bold text-xl transition-all shadow-xl shadow-blue-600/20 active:scale-[0.98] flex items-center justify-center ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  className={`w-full bg-red-600 hover:bg-red-700 text-white px-8 py-5 rounded-lg font-bold text-xl transition-all shadow-xl shadow-red-600/20 active:scale-[0.98] flex items-center justify-center ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
                   {isSubmitting ? (
                     <>
@@ -181,7 +182,7 @@ function ContactForm() {
                       Sending...
                     </>
                   ) : (
-                    isTalent ? t.contact.buttonSubmitTalent : t.contact.buttonSubmit
+                    'PROBAR CONEXIÓN AHORA'
                   )}
                 </button>
                 <div className="text-center">
