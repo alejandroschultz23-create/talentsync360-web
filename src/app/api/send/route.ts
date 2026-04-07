@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY || '');
+export const dynamic = 'force-dynamic';
 
 interface ContactBody {
   name?: string;
@@ -18,6 +18,14 @@ interface ContactBody {
 export async function POST(req: Request) {
   console.log('>>> LLEGÓ PETICIÓN AL SERVIDOR: ' + new Date().toISOString());
   
+  if (!process.env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY IS MISSING AT RUNTIME');
+    return NextResponse.json({ error: 'Configuración del servidor incompleta (API KEY)' }, { status: 500 });
+  }
+
+  // Initialize inside the function to avoid issues during build time
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   try {
     const body = (await req.json()) as ContactBody;
     
@@ -26,11 +34,6 @@ export async function POST(req: Request) {
     }
 
     const { name, email, message, contactType, role, currentRole, experience, englishLevel, pageOrigin } = body;
-
-    if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY IS MISSING');
-      return NextResponse.json({ error: 'Configuración del servidor incompleta (API KEY)' }, { status: 500 });
-    }
 
     const { data, error } = await resend.emails.send({
       from: 'TalentSync360 <onboarding@resend.dev>',
