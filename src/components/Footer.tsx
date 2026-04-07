@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import Image from 'next/image';
 
 const Footer = () => {
     const { t } = useLanguage();
@@ -16,7 +17,13 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-32">
                     <div className="col-span-1 md:col-span-1">
                         <Link href="/" className="group inline-flex items-center gap-3 mb-8">
-                            <img src="/logo_oficial.png" alt="TalentSync360" className="h-6 w-auto opacity-50 group-hover:opacity-100 transition-opacity grayscale brightness-200" />
+                            <Image 
+                                src="/logo_oficial.png" 
+                                alt="TalentSync360" 
+                                width={100} 
+                                height={24} 
+                                className="h-6 w-auto opacity-50 group-hover:opacity-100 transition-opacity grayscale brightness-200" 
+                            />
                             <span className="text-base tracking-[0.15em] text-slate-100 font-bold uppercase">TalentSync<span className="font-light text-slate-500">360</span></span>
                         </Link>
                         <p className="text-slate-500 font-light text-sm leading-relaxed max-w-xs">

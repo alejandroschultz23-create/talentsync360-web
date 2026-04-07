@@ -1,16 +1,36 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || '');
+
+interface ContactBody {
+  name?: string;
+  email?: string;
+  message?: string;
+  contactType?: string;
+  role?: string;
+  currentRole?: string;
+  experience?: string;
+  englishLevel?: string;
+  pageOrigin?: string;
+}
 
 export async function POST(req: Request) {
   console.log('>>> LLEGÓ PETICIÓN AL SERVIDOR: ' + new Date().toISOString());
   
   try {
-    const body = await req.json();
-    console.log('--- SERVER SIDE PAYLOAD ---', body);
+    const body = (await req.json()) as ContactBody;
+    
+    if (!body || typeof body !== 'object') {
+      return NextResponse.json({ error: 'Respuesta inválida o vacía' }, { status: 400 });
+    }
 
     const { name, email, message, contactType, role, currentRole, experience, englishLevel, pageOrigin } = body;
+
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY IS MISSING');
+      return NextResponse.json({ error: 'Configuración del servidor incompleta (API KEY)' }, { status: 500 });
+    }
 
     const { data, error } = await resend.emails.send({
       from: 'TalentSync360 <onboarding@resend.dev>',
@@ -49,8 +69,9 @@ export async function POST(req: Request) {
       message: 'Email enviado con éxito via Resend.',
       id: data?.id 
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : 'Error desconocido en el servidor';
     console.error('FATAL SERVER ERROR:', err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

@@ -3,6 +3,7 @@
 import { useLanguage } from '@/context/LanguageContext';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, Suspense } from 'react';
+import Image from 'next/image';
 
 function ContactForm() {
   const { t } = useLanguage();
@@ -56,6 +57,7 @@ function ContactForm() {
       });
 
       // Clone and log server response
+      // Clone and log server response
       const result = await res.clone().json();
       console.log('Respuesta del servidor:', result);
 
@@ -65,7 +67,7 @@ function ContactForm() {
       
       console.log('Envío exitoso confirmado por servidor');
       setIsSuccess(true);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Fatal: Error at handleSubmit', err);
       setError('FALLA TÉCNICA DETECTADA');
     } finally {
@@ -101,7 +103,7 @@ function ContactForm() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-white">Message Sent!</h3>
-              <p className="text-slate-400 max-w-sm mx-auto">We've received your inquiry and will get back to you within 24 hours.</p>
+              <p className="text-slate-400 max-w-sm mx-auto">We&apos;ve received your inquiry and will get back to you within 24 hours.</p>
               <button 
                 onClick={() => setIsSuccess(false)}
                 className="text-blue-500 font-semibold hover:text-blue-400 transition-colors"

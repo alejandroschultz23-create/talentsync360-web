@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/context/LanguageContext';
+import Image from 'next/image';
 
 const Navbar = () => {
   const { t } = useLanguage();
@@ -14,7 +15,14 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
               <div className="flex items-center gap-3 flex-shrink-0 group">
-                <img src="/logo_oficial.png" alt="TalentSync360" className="h-9 w-auto object-contain transition-opacity" aria-hidden="true" />
+                <Image 
+                  src="/logo_oficial.png" 
+                  alt="TalentSync360" 
+                  width={150} 
+                  height={36} 
+                  className="h-9 w-auto object-contain transition-opacity" 
+                  aria-hidden="true" 
+                />
                 <span className="text-lg tracking-[0.15em] text-slate-50 [font-feature-settings:'cv02','cv03','cv04'] uppercase">
                   <span className="font-bold">TalentSync</span>
                   <span className="font-light text-slate-400">360</span>

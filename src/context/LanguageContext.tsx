@@ -699,16 +699,17 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Language>('en');
+  const [lang, setLangState] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('ts360-lang') as Language | null;
+      if (stored === 'en' || stored === 'es') return stored;
+    }
+    return 'en';
+  });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem('ts360-lang') as Language | null;
-    if (stored === 'en' || stored === 'es') {
-      setLangState(stored);
-    } else {
-      setLangState('en');
-    }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
