@@ -16,8 +16,6 @@ interface ContactBody {
 }
 
 export async function POST(req: Request) {
-  console.log('>>> LLEGÓ PETICIÓN AL SERVIDOR: ' + new Date().toISOString());
-  
   if (!process.env.RESEND_API_KEY) {
     console.error('RESEND_API_KEY IS MISSING AT RUNTIME');
     return NextResponse.json({ error: 'Configuración del servidor incompleta (API KEY)' }, { status: 500 });

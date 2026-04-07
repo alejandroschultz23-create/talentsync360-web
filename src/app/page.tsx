@@ -39,7 +39,7 @@ export default function Home() {
             {/* The Focal Point CTA: Punto de Fuga */}
             <Link 
               href="/contact" 
-              className="group relative w-full sm:w-auto active:scale-95 transition-transform"
+              className="group relative w-full sm:w-auto max-w-sm sm:max-w-none active:scale-95 transition-transform"
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-50 transition duration-500 animate-luminous"></div>
               <div className="relative flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white px-12 py-5 rounded-2xl font-bold text-xl transition-all duration-300 animate-shimmer shadow-2xl shadow-blue-600/20">
@@ -52,7 +52,7 @@ export default function Home() {
 
             <Link 
               href="/talents" 
-              className="w-full sm:w-auto text-slate-400 hover:text-slate-100 px-10 py-5 rounded-2xl font-bold text-lg transition-all border border-white/5 hover:border-white/10 bg-slate-900/40 backdrop-blur-md hover:bg-slate-900/60 active:scale-95"
+              className="w-full sm:w-auto max-w-sm sm:max-w-none text-slate-400 hover:text-slate-100 px-10 py-5 rounded-2xl font-bold text-lg transition-all border border-white/5 hover:border-white/10 bg-slate-900/40 backdrop-blur-md hover:bg-slate-900/60 active:scale-95"
             >
               {t.home.ctaGoldList}
             </Link>

@@ -20,12 +20,12 @@ const Navbar = () => {
                   alt="TalentSync360" 
                   width={150} 
                   height={36} 
-                  className="h-9 w-auto object-contain transition-opacity" 
+                  className="h-5 md:h-9 w-auto object-contain transition-opacity" 
                   aria-hidden="true" 
                 />
-                <span className="text-lg tracking-[0.15em] text-slate-50 [font-feature-settings:'cv02','cv03','cv04'] uppercase">
+                <span className="text-[10px] sm:text-xs md:text-lg tracking-[0.1em] md:tracking-[0.15em] text-slate-50 [font-feature-settings:'cv02','cv03','cv04'] uppercase">
                   <span className="font-bold">TalentSync</span>
-                  <span className="font-light text-slate-400">360</span>
+                  <span className="font-light text-slate-500 hidden md:inline ml-1">360</span>
                 </span>
               </div>
             </Link>
@@ -40,7 +40,7 @@ const Navbar = () => {
             <LanguageSwitcher />
           </div>
           <div className="md:hidden flex items-center gap-3">
-            <Link href="/contact" className="bg-blue-600 hover:bg-blue-700 text-slate-50 px-4 py-2 rounded-md text-sm font-medium transition-colors">{t.nav.contactShort}</Link>
+            <Link href="/contact" className="bg-blue-600 hover:bg-blue-700 text-slate-50 px-3 py-1.5 rounded-md text-xs font-medium transition-colors">{t.nav.contactShort}</Link>
             <LanguageSwitcher />
           </div>
         </div>

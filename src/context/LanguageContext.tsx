@@ -520,8 +520,8 @@ const translations: Record<Language, Translations> = {
     },
     companies: {
       badge: 'Para Empresas',
-      title: 'Staffing LATAM. Demostrá Cada Contratación.',
-      subtitle: 'Shortlists curadas con screening humano, pruebas prácticas y scorecards basados en evidencia. Menos rotación, menos riesgo, más velocidad.',
+      title: 'Talento LATAM validado con inglés C1+ y screening humano.',
+      subtitle: 'Liberación operativa en tu zona horaria.',
       ctaShortlist: 'Solicitar Shortlist',
       ctaMethodology: 'Ver Nuestro Estándar',
       tiersTitle: 'Elegí Tu Tier de Shortlist',
