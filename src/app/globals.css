@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+:root {
+  --background: #020617; /* slate-950 */
+  --foreground: #f8fafc; /* slate-50 */
+  --card: #0f172a;       /* slate-900 */
+  --primary: #2563eb;    /* blue-600 */
+  --primary-hover: #1d4ed8; /* blue-700 */
+  --muted: #94a3b8;      /* slate-400 */
+  --border: #1e293b;     /* slate-800 */
+  --accent: #10b981;     /* emerald-500 */
+  
+  --radius-button: 8px; /* rounded-md */
+  --radius-card: 12px;  /* rounded-lg */
+
+  /* Harmonic Typography Scale (φ ≈ 1.618) */
+  --text-xs: clamp(0.7rem, 0.8vw, 0.8rem);
+  --text-sm: clamp(0.875rem, 1vw, 1rem);
+  --text-base: 1rem;
+  --text-lg: clamp(1.2rem, 2vw, 1.618rem);
+  --text-xl: clamp(1.8rem, 4vw, 2.618rem);
+  --text-2xl: clamp(2.5rem, 6vw, 4.236rem);
+  --text-hero: clamp(4rem, 10vw, 7rem);     /* Hero / 7xl+ */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  
+  --radius-md: var(--radius-button);
+  --radius-lg: var(--radius-card);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --font-size-xs: var(--text-xs);
+  --font-size-sm: var(--text-sm);
+  --font-size-base: var(--text-base);
+  --font-size-lg: var(--text-lg);
+  --font-size-xl: var(--text-xl);
+  --font-size-2xl: var(--text-2xl);
+  --font-size-hero: var(--text-hero);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--foreground);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: var(--text-2xl);
+  letter-spacing: -0.05em;
+}
+
+h2 {
+  font-size: var(--text-xl);
+  letter-spacing: -0.035em;
+}
+
+h3 {
+  font-size: var(--text-lg);
+  letter-spacing: -0.025em;
+}
+
+p {
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+b, strong {
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.max-w-base {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* GPU Optimized Pulse (Stitch Audit) */
+@keyframes pulse-gpu {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.05;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.08;
+  }
+}
+
+.animate-pulse-gpu {
+  animation: pulse-gpu 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  will-change: transform, opacity;
+}
+
+/* Premium Shimmer Effect for CTAs */
+@keyframes shimmer {
+  0% { transform: translateX(-150%) skewX(-25deg); }
+  100% { transform: translateX(150%) skewX(-25deg); }
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 3.5s infinite;
+}
+
+/* Luminous Glow for Conversions */
+@keyframes luminous-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(37, 99, 235, 0.5); }
+}
+
+.animate-luminous {
+  animation: luminous-glow 4s ease-in-out infinite;
+}
+
+/* Mobile Performance Optimization */
+@media (max-width: 768px) {
+  .backdrop-blur-xl {
+    backdrop-filter: blur(12px); /* Downgrade from 24px (xl) to md+ for jank-free scroll */
+  }
+}
+
+/* Golden Ratio Design Tokens (φ)
+   Used for: spacing, font-scales, and vertical rhythm.
+*/
