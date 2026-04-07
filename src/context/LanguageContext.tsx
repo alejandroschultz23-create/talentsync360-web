@@ -446,7 +446,7 @@ const translations: Record<Language, Translations> = {
     },
     home: {
       heroBadge: 'Talento LATAM Validado. No es Bolsa de Trabajo.',
-      heroTitle: 'Contratá Talento Validado B2B en días, no semanas.',
+      heroTitle: 'Te enviamos de 3 a 5 candidatos validados. Vos elegís. Solo perfiles listos para avanzar.',
       heroSubtitle: 'Te enviamos 3-5 candidatos validados. Vos decidís. Sin pilas de CVs.',
       ctaShortlist: 'Solicitar Shortlist',
       ctaGoldList: 'Mira Cómo Funciona',
