@@ -39,14 +39,7 @@ export default function CompaniesPage() {
     },
   ];
 
-  const roles = [
-    { title: 'Customer Support Rep (C1+)', desc: 'Multichannel support with measurable quality standards.', kpis: 'FRT, CSAT, Resolution Rate' },
-    { title: 'Executive Assistant (VA)', desc: 'Operations, calendar management, and executive reporting.', kpis: 'SLA Response, Task Completion' },
-    { title: 'QA Tester (Manual)', desc: 'Functional testing and bug reporting before deployment.', kpis: 'Critical Bugs, Test Coverage' },
-    { title: 'Bookkeeper (US-focused)', desc: 'Clean books and timely month-end closures.', kpis: 'Accuracy, Reconciliation Gaps' },
-    { title: 'Graphic Designer', desc: 'Marketing assets and brand visual iteration.', kpis: 'First-Iter Approval Rate' },
-    { title: 'English Content Writer', desc: 'High-quality SEO and thought leadership content.', kpis: 'Editorial Grade, SEO Performance' },
-  ];
+  const roles = t.companies.professionalRoles;
 
   return (
     <div className="flex flex-col">

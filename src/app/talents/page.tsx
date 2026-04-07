@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import FAQAccordion from '@/components/FAQAccordion';
 
 export default function TalentsPage() {
   const { t } = useLanguage();
@@ -115,6 +116,9 @@ export default function TalentsPage() {
               </div>
           </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQAccordion title={t.home.faqTitle} items={t.home.faqTalents} />
     </div>
   );
 }

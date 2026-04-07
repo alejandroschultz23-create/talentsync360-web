@@ -26,69 +26,73 @@ interface Translations {
     terms: string;
     privacy: string;
   };
-  home: {
-    heroBadge: string;
-    heroTitle: string;
-    heroSubtitle: string;
-    ctaShortlist: string;
-    ctaGoldList: string;
-    pipelineTitle: string;
-    pipelineTagline: string;
-    pipelineSub: string;
-    step1Label: string;
-    step1Title: string;
-    step1Desc: string;
-    step2Label: string;
-    step2Title: string;
-    step2Desc: string;
-    step3Label: string;
-    step3Title: string;
-    step3Desc: string;
-    trustTitle: string;
-    trust1Value: string;
-    trust1Label: string;
-    trust1Desc: string;
-    trust2Value: string;
-    trust2Label: string;
-    trust2Desc: string;
-    trust3Value: string;
-    trust3Label: string;
-    trust3Desc: string;
-    ctaTitle: string;
-    ctaDesc: string;
-    ctaButton: string;
-  };
-  companies: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    ctaShortlist: string;
-    ctaMethodology: string;
-    tiersTitle: string;
-    tiersSubtitle: string;
-    bronzeTitle: string;
-    bronzePrice: string;
-    bronzeCandidates: string;
-    bronzeSla: string;
-    bronzeIncludes: string[];
-    silverTitle: string;
-    silverPrice: string;
-    silverCandidates: string;
-    silverSla: string;
-    silverIncludes: string[];
-    goldTitle: string;
-    goldPrice: string;
-    goldCandidates: string;
-    goldSla: string;
-    goldIncludes: string[];
-    replacementGuarantee: string;
-    noReplacement: string;
-    rolesTitle: string;
-    rolesSubtitle: string;
-    ctaTitle: string;
-    ctaDesc: string;
-    ctaButton: string;
-  };
+    home: {
+      heroBadge: string;
+      heroTitle: string;
+      heroSubtitle: string;
+      ctaShortlist: string;
+      ctaGoldList: string;
+      pipelineTitle: string;
+      pipelineTagline: string;
+      pipelineSub: string;
+      step1Label: string;
+      step1Title: string;
+      step1Desc: string;
+      step2Label: string;
+      step2Title: string;
+      step2Desc: string;
+      step3Label: string;
+      step3Title: string;
+      step3Desc: string;
+      trustTitle: string;
+      trust1Value: string;
+      trust1Label: string;
+      trust1Desc: string;
+      trust2Value: string;
+      trust2Label: string;
+      trust2Desc: string;
+      trust3Value: string;
+      trust3Label: string;
+      trust3Desc: string;
+      ctaTitle: string;
+      ctaDesc: string;
+      ctaButton: string;
+      faqTitle: string;
+      faqClients: { q: string; a: string }[];
+      faqTalents: { q: string; a: string }[];
+    };
+    companies: {
+      badge: string;
+      title: string;
+      subtitle: string;
+      ctaShortlist: string;
+      ctaMethodology: string;
+      tiersTitle: string;
+      tiersSubtitle: string;
+      bronzeTitle: string;
+      bronzePrice: string;
+      bronzeCandidates: string;
+      bronzeSla: string;
+      bronzeIncludes: string[];
+      silverTitle: string;
+      silverPrice: string;
+      silverCandidates: string;
+      silverSla: string;
+      silverIncludes: string[];
+      goldTitle: string;
+      goldPrice: string;
+      goldCandidates: string;
+      goldSla: string;
+      goldIncludes: string[];
+      replacementGuarantee: string;
+      noReplacement: string;
+      rolesTitle: string;
+      rolesSubtitle: string;
+      professionalRoles: { title: string; desc: string; kpis: string }[];
+      ctaTitle: string;
+      ctaDesc: string;
+      ctaButton: string;
+    };
   talents: {
     badge: string;
     title: string;
@@ -230,8 +234,8 @@ const translations: Record<Language, Translations> = {
     },
     home: {
       heroBadge: 'Not a Job Board. A Shortlist Engine.',
-      heroTitle: 'Hire LATAM. Skip the Resume Noise.',
-      heroSubtitle: "We send 3-5 candidates who've passed our screening. You decide. No resume stack.",
+      heroTitle: 'Validated LATAM Talent.',
+      heroSubtitle: 'Get 3 to 5 candidates ready for deployment. Skip the hiring noise.',
       ctaShortlist: 'Request Shortlist',
       ctaGoldList: 'See How It Works',
       pipelineTitle: 'How TalentSync360 Works',
@@ -259,6 +263,21 @@ const translations: Record<Language, Translations> = {
       ctaTitle: 'Ready to Get Started?',
       ctaDesc: 'Send us your brief. We confirm feasibility and deliver your shortlist within 48 hours.',
       ctaButton: 'Request Your Shortlist',
+      faqTitle: 'Frequently Asked Questions',
+      faqClients: [
+        { q: "How much does the service cost?", a: "We offer performance-based pricing starting at $350. We only win when you hire." },
+        { q: "How long to receive a shortlist?", a: "Usually within 2 to 5 business days, depending on the role complexity." },
+        { q: "What's the replacement guarantee?", a: "Silver and Gold tiers include a 90-day replacement guarantee at no extra cost." },
+        { q: "How do you verify English levels?", a: "Every candidate undergoes a recorded C1+ Voice Check and a business writing assessment." },
+        { q: "Can I hire more than one person?", a: "Yes. You can scale your team by requesting multiple shortlists or hiring several finalists." }
+      ],
+      faqTalents: [
+        { q: "How do I get paid?", a: "Clients pay you directly. We help set up the initial contract and payment terms in USD/EUR." },
+        { q: "What types of roles are available?", a: "Operations, Customer Support, Executive Assistants, QA, Design, and Content Writing." },
+        { q: "Is there a cost for the talent?", a: "No. Our validation and placement services are 100% free for professionals." },
+        { q: "What's the selection process?", a: "Voice Note (English), Business Writing Test, and a Practical Role-Specific Task." },
+        { q: "What English level is required?", a: "We exclusively work with C1+ (Professional Fluent) candidates for international roles." }
+      ]
     },
     companies: {
       badge: 'For Companies',
@@ -303,6 +322,14 @@ const translations: Record<Language, Translations> = {
       noReplacement: 'No replacement guarantee',
       rolesTitle: 'Core Nearshore Roles We Cover',
       rolesSubtitle: 'Low-friction roles pre-validated for immediate integration.',
+      professionalRoles: [
+        { title: 'Customer Support Rep (C1+)', desc: 'Multichannel support with measurable quality standards.', kpis: 'FRT, CSAT, Resolution Rate' },
+        { title: 'Executive Assistant (VA)', desc: 'Operations, calendar management, and executive reporting.', kpis: 'SLA Response, Task Completion' },
+        { title: 'QA Tester (Manual)', desc: 'Functional testing and bug reporting before deployment.', kpis: 'Critical Bugs, Test Coverage' },
+        { title: 'Bookkeeper (US-focused)', desc: 'Clean books and timely month-end closures.', kpis: 'Accuracy, Reconciliation Gaps' },
+        { title: 'Graphic Designer', desc: 'Marketing assets and brand visual iteration.', kpis: 'First-Iter Approval Rate' },
+        { title: 'English Content Writer', desc: 'High-quality SEO and thought leadership content.', kpis: 'Editorial Grade, SEO Performance' },
+      ],
       ctaTitle: 'Ready to scale your team?',
       ctaDesc: 'Book a brief 15-minute alignment call to understand your needs and confirm our current talent pool availability.',
       ctaButton: 'Book Discovery Call',
@@ -446,8 +473,8 @@ const translations: Record<Language, Translations> = {
     },
     home: {
       heroBadge: 'Talento LATAM Validado. No es Bolsa de Trabajo.',
-      heroTitle: 'Te enviamos de 3 a 5 candidatos validados. Vos elegís. Solo perfiles listos para avanzar.',
-      heroSubtitle: 'Te enviamos 3-5 candidatos validados. Vos decidís. Sin pilas de CVs.',
+      heroTitle: 'Talento LATAM Validado.',
+      heroSubtitle: 'Recibí de 3 a 5 candidatos listos para avanzar. Sin procesos interminables.',
       ctaShortlist: 'Solicitar Shortlist',
       ctaGoldList: 'Mira Cómo Funciona',
       pipelineTitle: 'Cómo Funciona TalentSync360',
@@ -475,6 +502,21 @@ const translations: Record<Language, Translations> = {
       ctaTitle: '¿Listo para Empezar?',
       ctaDesc: 'Envianos tu brief. Confirmamos viabilidad y entregamos tu shortlist en 48 horas.',
       ctaButton: 'Solicita Tu Shortlist',
+      faqTitle: 'Preguntas Frecuentes',
+      faqClients: [
+        { q: "¿Cuál es el costo del servicio?", a: "Ofrecemos precios basados en resultados desde $350. Solo ganamos cuando vos contratás." },
+        { q: "¿Cuánto tiempo toma recibir la shortlist?", a: "Normalmente entre 2 y 5 días hábiles, según la complejidad del rol." },
+        { q: "¿Qué pasa si no me gusta ningún candidato?", a: "Los tiers Plata y Oro incluyen una garantía de reemplazo de 90 días sin costo extra." },
+        { q: "¿Cómo verifican el nivel de inglés?", a: "Cada candidato pasa por un Voice Check C1+ grabado y una evaluación de escritura empresarial." },
+        { q: "¿Puedo contratar a más de un candidato?", a: "Sí. Podés escalar tu equipo solicitando múltiples shortlists o contratando varios finalistas." }
+      ],
+      faqTalents: [
+        { q: "¿Cómo me pagan?", a: "Los clientes te pagan directamente. Ayudamos a configurar el contrato inicial y términos en USD/EUR." },
+        { q: "¿Qué tipo de roles están buscando?", a: "Operaciones, Soporte, Asistentes Ejecutivos, QA, Diseño y Redacción de Contenido." },
+        { q: "¿Tiene algún costo para el talento?", a: "No. Nuestros servicios de validación y colocación son 100% gratuitos para profesionales." },
+        { q: "¿Cómo es el proceso de selección?", a: "Nota de Voz (Inglés), Test de Escritura y una Tarea Práctica específica del rol." },
+        { q: "¿Qué nivel de inglés necesito?", a: "Trabajamos exclusivamente con candidatos C1+ (Fluido Profesional) para roles internacionales." }
+      ]
     },
     companies: {
       badge: 'Para Empresas',
@@ -519,6 +561,14 @@ const translations: Record<Language, Translations> = {
       noReplacement: 'Sin garantía de reemplazo',
       rolesTitle: 'Roles Nearshore Principales que Cubrimos',
       rolesSubtitle: 'Roles de baja fricción pre-validados para integración inmediata.',
+      professionalRoles: [
+        { title: 'Soporte al Cliente (C1+)', desc: 'Soporte multicanal con estándares de calidad medibles.', kpis: 'FRT, CSAT, Resolution Rate' },
+        { title: 'Asistente Ejecutivo (VA)', desc: 'Operaciones, gestión de agenda y reportes ejecutivos.', kpis: 'SLA Response, Task Completion' },
+        { title: 'QA Tester (Manual)', desc: 'Pruebas funcionales y reporte de bugs antes del despliegue.', kpis: 'Bugs Críticos, Cobertura de Tests' },
+        { title: 'Contable / Bookkeeper (US)', desc: 'Libros limpios y cierres mensuales a tiempo.', kpis: 'Precisión, Brechas de Conciliación' },
+        { title: 'Diseñador Gráfico', desc: 'Activos de marketing e iteración visual de marca.', kpis: 'Tasa de aprobación primera iteración' },
+        { title: 'Redactor de Contenidos (EN)', desc: 'Contenido de SEO y liderazgo intelectual de alta calidad.', kpis: 'Grado Editorial, Rendimiento SEO' },
+      ],
       ctaTitle: '¿Listo para escalar tu equipo?',
       ctaDesc: 'Reservá una llamada de alineación de 15 minutos para entender tus necesidades y confirmar disponibilidad de talento.',
       ctaButton: 'Reservar Llamada',

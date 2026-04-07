@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import FAQAccordion from '@/components/FAQAccordion';
 
 export default function Home() {
   const { t } = useLanguage();
@@ -26,9 +27,13 @@ export default function Home() {
             </span>
           </div>
 
-          <h1 className="text-hero font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white via-slate-100 to-slate-400 mb-20 opacity-0 animate-fade-in-up leading-[1.0]" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
+          <h1 className="text-hero font-bold tracking-tight text-white mb-6 opacity-0 animate-fade-in-up leading-[1.05] max-w-4xl text-center [text-wrap:balance]" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
             {t.home.heroTitle}
           </h1>
+
+          <p className="text-lg sm:text-xl md:text-2xl text-slate-400 mb-14 opacity-0 animate-fade-in-up leading-relaxed max-w-2xl text-center font-normal tracking-wide" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+            {t.home.heroSubtitle}
+          </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
             {/* The Focal Point CTA: Punto de Fuga */}
@@ -177,6 +182,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQAccordion title={t.home.faqTitle} items={t.home.faqClients} />
     </div>
   );
 }
