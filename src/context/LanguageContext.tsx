@@ -94,7 +94,10 @@ interface Translations {
         formEmail: string;
         formMessage: string;
         formSubmit: string;
+        formSubmitWhiteLabel: string;
+        formSubmitRunway: string;
         formSuccess: string;
+        formError: string;
         msgPreloadWhiteLabel: string;
         msgPreloadRunway: string;
       };
@@ -350,7 +353,10 @@ const translations: Record<Language, Translations> = {
         formEmail: 'Business Email',
         formMessage: 'Message',
         formSubmit: 'Send Request',
+        formSubmitWhiteLabel: 'Send White-Label Request',
+        formSubmitRunway: 'Send for Analysis',
         formSuccess: 'Request Received. The synchronization will begin shortly.',
+        formError: 'Error sending request. Please try again.',
         msgPreloadWhiteLabel: 'Interested in White-Label terms for consultancy operations.',
         msgPreloadRunway: 'Requesting a Runway Analysis and nearshore cost projection.',
       }
@@ -627,7 +633,10 @@ const translations: Record<Language, Translations> = {
         formEmail: 'Email Corporativo',
         formMessage: 'Mensaje',
         formSubmit: 'Enviar Solicitud',
+        formSubmitWhiteLabel: 'Enviar Solicitud de Marca Blanca',
+        formSubmitRunway: 'Enviar para Análisis',
         formSuccess: 'Solicitud Recibida. La sincronización comenzará pronto.',
+        formError: 'Error al enviar la solicitud. Por favor reintentá.',
         msgPreloadWhiteLabel: 'Interés en términos de Marca Blanca para operaciones de consultoría.',
         msgPreloadRunway: 'Solicitud de Análisis de Runway y proyección de costos nearshore.',
       }
