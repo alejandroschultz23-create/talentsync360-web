@@ -3,7 +3,6 @@
 import { useLanguage } from '@/context/LanguageContext';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, Suspense } from 'react';
-import Image from 'next/image';
 
 function ContactForm() {
   const { t } = useLanguage();

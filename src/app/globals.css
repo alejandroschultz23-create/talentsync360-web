@@ -3,15 +3,15 @@
 :root {
   --background: #020617; /* slate-950 */
   --foreground: #f8fafc; /* slate-50 */
-  --card: #0f172a;       /* slate-900 */
-  --primary: #2563eb;    /* blue-600 */
-  --primary-hover: #1d4ed8; /* blue-700 */
+  --card: #0c1324;       /* slate-900/950 mix */
+  --primary: #4f46e5;    /* indigo-600 */
+  --primary-hover: #4338ca; /* indigo-700 */
   --muted: #94a3b8;      /* slate-400 */
   --border: #1e293b;     /* slate-800 */
   --accent: #10b981;     /* emerald-500 */
   
-  --radius-button: 8px; /* rounded-md */
-  --radius-card: 12px;  /* rounded-lg */
+  --radius-button: 12px; /* rounded-xl */
+  --radius-card: 16px;  /* rounded-2xl */
 
   /* Harmonic Typography Scale (φ ≈ 1.618) */
   --text-xs: clamp(0.7rem, 0.8vw, 0.8rem);
@@ -187,8 +187,8 @@ section {
 
 /* Luminous Glow for Conversions */
 @keyframes luminous-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(37, 99, 235, 0.5); }
+  0%, 100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(79, 70, 229, 0.5); }
 }
 
 .animate-luminous {
