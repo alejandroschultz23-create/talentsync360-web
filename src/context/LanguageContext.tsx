@@ -78,6 +78,26 @@ interface Translations {
       faqTitle: string;
       faqClients: { q: string; a: string }[];
       faqTalents: { q: string; a: string }[];
+      solutionModals: {
+        whiteLabelTitle: string;
+        whiteLabelBody: string;
+        whiteLabelBullet1: string;
+        whiteLabelBullet2: string;
+        whiteLabelBullet3: string;
+        runwayTitle: string;
+        runwayBody: string;
+        runwayBullet1: string;
+        runwayBullet2: string;
+        runwayBullet3: string;
+        runwayBullet4: string;
+        formName: string;
+        formEmail: string;
+        formMessage: string;
+        formSubmit: string;
+        formSuccess: string;
+        msgPreloadWhiteLabel: string;
+        msgPreloadRunway: string;
+      };
     };
     companies: {
       badge: string;
@@ -313,7 +333,27 @@ const translations: Record<Language, Translations> = {
         { q: "Is there a cost for the talent?", a: "No. Our validation and placement services are 100% free for professionals." },
         { q: "What's the selection process?", a: "Voice Note (English), Business Writing Test, and a Practical Role-Specific Task." },
         { q: "What English level is required?", a: "We exclusively work with C1+ (Professional Fluent) candidates for international roles." }
-      ]
+      ],
+      solutionModals: {
+        whiteLabelTitle: 'White-Label Partnership Terms',
+        whiteLabelBody: 'TalentSync360 Engine operates as an invisible sourcing motor for consultancies. This model eliminates recruitment overhead and accelerates technical delivery cycles.',
+        whiteLabelBullet1: '72-hour curated shortlist delivery to maintain competitive speed',
+        whiteLabelBullet2: 'White-label model: present profiles as your own internal talent',
+        whiteLabelBullet3: '90-day replacement guarantee included at no extra cost',
+        runwayTitle: 'Financial Runway Optimization Analysis',
+        runwayBody: 'TalentSync360 Engine projects direct financial optimizations in engineering budgets through high-speed nearshore pipeline integration.',
+        runwayBullet1: '40% to 60% proven savings vs local hiring markets',
+        runwayBullet2: 'Full timezone synchronicity (EST/CST | GMT/CET) for real-time collaboration',
+        runwayBullet3: 'Top 3% LATAM engineering talent with verified C1/C2 English',
+        runwayBullet4: 'Flexible scaling: scale team capacity up or down in 30-day cycles',
+        formName: 'Full Name',
+        formEmail: 'Business Email',
+        formMessage: 'Message',
+        formSubmit: 'Send Request',
+        formSuccess: 'Request Received. The synchronization will begin shortly.',
+        msgPreloadWhiteLabel: 'Interested in White-Label terms for consultancy operations.',
+        msgPreloadRunway: 'Requesting a Runway Analysis and nearshore cost projection.',
+      }
     },
     companies: {
       badge: 'For Companies',
@@ -570,7 +610,27 @@ const translations: Record<Language, Translations> = {
         { q: "¿Tiene algún costo para el talento?", a: "No. Nuestros servicios de validación y colocación son 100% gratuitos para profesionales." },
         { q: "¿Cómo es el proceso de selección?", a: "Nota de Voz (Inglés), Test de Escritura y una Tarea Práctica específica del rol." },
         { q: "¿Qué nivel de inglés necesito?", a: "Trabajamos exclusivamente con candidatos C1+ (Fluido Profesional) para roles internacionales." }
-      ]
+      ],
+      solutionModals: {
+        whiteLabelTitle: 'Términos de Partner Marca Blanca',
+        whiteLabelBody: 'El Motor de TalentSync360 opera como un motor de sourcing invisible para consultoras. Este modelo elimina los costos fijos de reclutamiento y acelera los ciclos de entrega técnica.',
+        whiteLabelBullet1: 'Entrega de shortlists curadas en 72 horas para mantener competitividad',
+        whiteLabelBullet2: 'Modelo marca blanca: presentación de perfiles como talento propio',
+        whiteLabelBullet3: 'Garantía de reemplazo de 90 días incluida sin costo adicional',
+        runwayTitle: 'Análisis de Optimización de Runway',
+        runwayBody: 'El Motor de TalentSync360 proyecta optimizaciones financieras directas en presupuestos de ingeniería mediante integración de pipelines nearshore.',
+        runwayBullet1: 'Ahorro comprobado de entre el 40% y 60% vs contratación local',
+        runwayBullet2: 'Sincronía horaria completa (GMT+1/CET | EST/CST) para trabajo en tiempo real',
+        runwayBullet3: 'Talento Top 3% de ingeniería LATAM con inglés C1/C2 verificado',
+        runwayBullet4: 'Escalamiento flexible: ajuste de capacidad de equipo en ciclos de 30 días',
+        formName: 'Nombre Completo',
+        formEmail: 'Email Corporativo',
+        formMessage: 'Mensaje',
+        formSubmit: 'Enviar Solicitud',
+        formSuccess: 'Solicitud Recibida. La sincronización comenzará pronto.',
+        msgPreloadWhiteLabel: 'Interés en términos de Marca Blanca para operaciones de consultoría.',
+        msgPreloadRunway: 'Solicitud de Análisis de Runway y proyección de costos nearshore.',
+      }
     },
     companies: {
       badge: 'Para Empresas',

@@ -1,11 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Building2, Rocket, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { SolutionModal } from "./SolutionModals";
 
 const SolutionSplit = () => {
   const { t } = useLanguage();
+  const [activeModal, setActiveModal] = useState<"white-label" | "runway" | null>(null);
 
   return (
     <section className="bg-slate-950 border-y border-slate-900 py-24">
@@ -41,9 +43,12 @@ const SolutionSplit = () => {
                 </li>
               </ul>
               
-              <button className="text-indigo-400 font-medium flex items-center gap-2 group-hover:text-indigo-300 transition-colors">
+              <button 
+                onClick={() => setActiveModal("white-label")}
+                className="text-indigo-400 font-medium flex items-center gap-2 group-hover:text-indigo-300 transition-colors cursor-pointer"
+              >
                 {t.home.solutionSplit.consultancyCta}
-                <Rocket className="w-4 h-4" />
+                <Rocket className="w-4 h-4 text-indigo-500/50" />
               </button>
             </div>
           </div>
@@ -77,14 +82,29 @@ const SolutionSplit = () => {
                 </li>
               </ul>
               
-              <button className="text-emerald-400 font-medium flex items-center gap-2 group-hover:text-emerald-300 transition-colors">
+              <button 
+                onClick={() => setActiveModal("runway")}
+                className="text-emerald-400 font-medium flex items-center gap-2 group-hover:text-emerald-300 transition-colors cursor-pointer"
+              >
                 {t.home.solutionSplit.startupCta}
-                <Rocket className="w-4 h-4" />
+                <Rocket className="w-4 h-4 text-emerald-500/50" />
               </button>
             </div>
           </div>
 
         </div>
+
+        {/* Modals */}
+        <SolutionModal 
+          type="white-label"
+          isOpen={activeModal === "white-label"}
+          onClose={() => setActiveModal(null)}
+        />
+        <SolutionModal 
+          type="runway"
+          isOpen={activeModal === "runway"}
+          onClose={() => setActiveModal(null)}
+        />
       </div>
     </section>
   );
