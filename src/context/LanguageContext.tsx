@@ -61,6 +61,20 @@ interface Translations {
       talentPoolSub: string;
       engineLoadLabel: string;
       availableEngineTimeLabel: string;
+      solutionSplit: {
+        consultancyTitle: string;
+        consultancyDesc: string;
+        consultancyBullet1: string;
+        consultancyBullet2: string;
+        consultancyBullet3: string;
+        consultancyCta: string;
+        startupTitle: string;
+        startupDesc: string;
+        startupBullet1: string;
+        startupBullet2: string;
+        startupBullet3: string;
+        startupCta: string;
+      };
       faqTitle: string;
       faqClients: { q: string; a: string }[];
       faqTalents: { q: string; a: string }[];
@@ -271,6 +285,20 @@ const translations: Record<Language, Translations> = {
       talentPoolSub: 'The Engine eliminates fixed verticals. Infrastructure maps talent across 250+ technical parameters, ensuring precision matching based on real engineering contributions.',
       engineLoadLabel: 'ENGINE LOAD',
       availableEngineTimeLabel: 'AVAILABLE ENGINE TIME',
+      solutionSplit: {
+        consultancyTitle: 'For Spanish IT Consultancies',
+        consultancyDesc: 'TalentSync360 Engine provides white-label nearshore talent. Combat the 80% talent gap in the Spanish market with speed. Shortlists arrive in 72 hours, vetted for agility and technical precision.',
+        consultancyBullet1: 'White-label integration with existing teams',
+        consultancyBullet2: 'Immediate capacity for project overflows',
+        consultancyBullet3: 'Timezone alignment with EEA operations',
+        consultancyCta: 'View White-Label Terms',
+        startupTitle: 'For US/EU Startups',
+        startupDesc: 'TalentSync360 Engine extends runway. Startups achieve 60% savings compared to local hiring without quality trade-offs. Top 3% LATAM engineers, C1 English verified, ready for high-octane contribution.',
+        startupBullet1: '60% Average reduction in burn rate',
+        startupBullet2: 'Technical vetting via Senior CTO network',
+        startupBullet3: 'Flexible contract scaling (Up/Down in 30 days)',
+        startupCta: 'Request Runway Analysis',
+      },
       faqTitle: 'Frequently Asked Questions',
       faqClients: [
         { q: "How much does the service cost?", a: "We offer performance-based pricing starting at $350. We only win when you hire." },
@@ -514,6 +542,20 @@ const translations: Record<Language, Translations> = {
       talentPoolSub: 'El Motor de TalentSync360 elimina las verticales fijas. La infraestructura mapea talento mediante más de 250 parámetros técnicos, garantizando un emparejamiento de precisión basado en contribuciones reales de ingeniería.',
       engineLoadLabel: 'CARGA DEL MOTOR',
       availableEngineTimeLabel: 'TIEMPO DE MOTOR DISPONIBLE',
+      solutionSplit: {
+        consultancyTitle: 'Para Consultoras IT Españolas',
+        consultancyDesc: 'El Motor de TalentSync360 provee talento nearshore marca blanca. El sistema combate la brecha del 80% en el mercado español con velocidad. Shortlists en 72 horas, evaluadas por agilidad y precisión técnica.',
+        consultancyBullet1: 'Integración marca blanca con equipos actuales',
+        consultancyBullet2: 'Capacidad inmediata para overflow de proyectos',
+        consultancyBullet3: 'Alineación horaria perfecta (GMT+1/CET)',
+        consultancyCta: 'Ver Términos de Marca Blanca',
+        startupTitle: 'Para Startups de EE.UU./UE',
+        startupDesc: 'El Motor de TalentSync360 extiende el runway. El sistema logra un ahorro del 60% comparado con la contratación local sin comprometer la calidad. Ingenieros del top 3% de LATAM, inglés C1 verificado, listos para contribución inmediata.',
+        startupBullet1: '60% de reducción promedio en burn rate',
+        startupBullet2: 'Vetting técnico mediante red de CTOs Senior',
+        startupBullet3: 'Escalamiento flexible de contratos (30 días)',
+        startupCta: 'Solicitar Análisis de Runway',
+      },
       faqTitle: 'Preguntas Frecuentes',
       faqClients: [
         { q: "¿Cuál es el costo del servicio?", a: "Ofrecemos precios basados en resultados desde $350. Solo ganamos cuando vos contratás." },
