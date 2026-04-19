@@ -111,7 +111,7 @@ export default function TalentsPage() {
                         <span className="group-hover:text-slate-200 transition-colors">{t.talents.checklist3}</span>
                       </li>
                     </ul>
-                    <Link href="/contact" className="block w-full text-center py-5 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 active:scale-95">{t.talents.ctaButton}</Link>
+                    <Link href="/contact?tipo=talent" className="block w-full text-center py-5 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 active:scale-95">{t.talents.ctaButton}</Link>
                   </div>
               </div>
           </div>

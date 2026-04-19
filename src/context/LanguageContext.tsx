@@ -57,6 +57,10 @@ interface Translations {
       ctaTitle: string;
       ctaDesc: string;
       ctaButton: string;
+      talentPoolTitle: string;
+      talentPoolSub: string;
+      engineLoadLabel: string;
+      availableEngineTimeLabel: string;
       faqTitle: string;
       faqClients: { q: string; a: string }[];
       faqTalents: { q: string; a: string }[];
@@ -263,6 +267,10 @@ const translations: Record<Language, Translations> = {
       ctaTitle: 'Activate the Engine',
       ctaDesc: 'Enter requirements. Receive curated shortlists. Extend runway.',
       ctaButton: 'Request Shortlist',
+      talentPoolTitle: 'Real-time Talent Pool Velocity',
+      talentPoolSub: 'The Engine eliminates fixed verticals. Infrastructure maps talent across 250+ technical parameters, ensuring precision matching based on real engineering contributions.',
+      engineLoadLabel: 'ENGINE LOAD',
+      availableEngineTimeLabel: 'AVAILABLE ENGINE TIME',
       faqTitle: 'Frequently Asked Questions',
       faqClients: [
         { q: "How much does the service cost?", a: "We offer performance-based pricing starting at $350. We only win when you hire." },
@@ -502,6 +510,10 @@ const translations: Record<Language, Translations> = {
       ctaTitle: 'Activar el Motor',
       ctaDesc: 'Ingresar requerimientos. Recibir shortlists curadas. Extender runway.',
       ctaButton: 'Solicitar Shortlist',
+      talentPoolTitle: 'Velocidad del Pool de Talento en Tiempo Real',
+      talentPoolSub: 'El Motor de TalentSync360 elimina las verticales fijas. La infraestructura mapea talento mediante más de 250 parámetros técnicos, garantizando un emparejamiento de precisión basado en contribuciones reales de ingeniería.',
+      engineLoadLabel: 'CARGA DEL MOTOR',
+      availableEngineTimeLabel: 'TIEMPO DE MOTOR DISPONIBLE',
       faqTitle: 'Preguntas Frecuentes',
       faqClients: [
         { q: "¿Cuál es el costo del servicio?", a: "Ofrecemos precios basados en resultados desde $350. Solo ganamos cuando vos contratás." },
@@ -512,7 +524,7 @@ const translations: Record<Language, Translations> = {
       ],
       faqTalents: [
         { q: "¿Cómo me pagan?", a: "Los clientes te pagan directamente. Ayudamos a configurar el contrato inicial y términos en USD/EUR." },
-        { q: "¿Qué tipo de roles están buscando?", a: "El motor de búsqueda se enfoca en Operaciones, Soporte, Asistentes Ejecutivos, QA, Diseño, Redacción de Contenido y talento IT de alto nivel con 5 años de experiencia o más." },
+        { q: "¿Qué tipo de roles están buscando?", a: "El motor de búsqueda se enfoca en Operaciones, Soporte, Asistentes Ejecutivos, QA, Diseño, Redacción de Contenido y talento IT senior con más de 5 años de experiencia comprobable." },
         { q: "¿Tiene algún costo para el talento?", a: "No. Nuestros servicios de validación y colocación son 100% gratuitos para profesionales." },
         { q: "¿Cómo es el proceso de selección?", a: "Nota de Voz (Inglés), Test de Escritura y una Tarea Práctica específica del rol." },
         { q: "¿Qué nivel de inglés necesito?", a: "Trabajamos exclusivamente con candidatos C1+ (Fluido Profesional) para roles internacionales." }

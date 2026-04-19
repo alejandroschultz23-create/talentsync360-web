@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Cpu, Globe, Database, Code2, Sparkles, Activity } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const SKILLS = [
   { name: "React / Next.js", level: "Senior", count: 124, icon: <Globe className="w-4 h-4" color="#61dbfb" /> },
@@ -13,6 +14,7 @@ const SKILLS = [
 ];
 
 const TalentGrid = () => {
+  const { t } = useLanguage();
   const [engineLoad, setEngineLoad] = useState(82);
 
   useEffect(() => {
@@ -31,16 +33,15 @@ const TalentGrid = () => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-bold text-white mb-4">
-              Real-time Talent Pool Velocity
+              {t.home.talentPoolTitle}
             </h2>
             <p className="text-slate-400">
-              The Engine eliminates fixed verticals. Our infrastructure maps talent across 250+ technical parameters, 
-              ensuring precision matching based on real engineering contributions.
+              {t.home.talentPoolSub}
             </p>
           </div>
           <div className="bg-slate-900/50 border border-slate-800 p-4 rounded-xl backdrop-blur-md min-w-[200px]">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-xs uppercase tracking-wider text-slate-500 font-mono">Engine Load</span>
+              <span className="text-xs uppercase tracking-wider text-slate-500 font-mono">{t.home.engineLoadLabel}</span>
               <span className="text-xs font-mono text-emerald-500">{engineLoad}%</span>
             </div>
             <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
@@ -60,7 +61,7 @@ const TalentGrid = () => {
                   {skill.icon}
                 </div>
                 <div className="flex flex-col items-end">
-                  <span className="text-[10px] font-mono text-slate-500 uppercase">Available Engine Time</span>
+                  <span className="text-[10px] font-mono text-slate-500 uppercase">{t.home.availableEngineTimeLabel}</span>
                   <span className="text-sm font-bold text-indigo-400">{skill.count} Profiles</span>
                 </div>
               </div>
