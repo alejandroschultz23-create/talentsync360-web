@@ -235,7 +235,7 @@ const translations: Record<Language, Translations> = {
     home: {
       heroBadge: 'TalentSync360 Engine: High-Velocity Intake Active',
       heroTitle: 'Curated Nearshore Shortlists in 72 Hours.',
-      heroSubtitle: 'The high-speed talent curation engine for Spanish IT Consultancies and US Startups.',
+      heroSubtitle: 'The TalentSync360 engine accelerates technical hiring. Direct access to vetted LATAM engineers. Technical validation, C1 English verification, and cultural alignment delivered in under 3 days.',
       ctaShortlist: 'Start Sourcing',
       ctaGoldList: 'View Engine Stats',
       pipelineTitle: 'TalentSync360 Operational Pipeline',
@@ -273,7 +273,7 @@ const translations: Record<Language, Translations> = {
       ],
       faqTalents: [
         { q: "How do I get paid?", a: "Clients pay you directly. We help set up the initial contract and payment terms in USD/EUR." },
-        { q: "What types of roles are available?", a: "Operations, Customer Support, Executive Assistants, QA, Design, and Content Writing." },
+        { q: "What types of roles are available?", a: "The engine focuses on Operations, Support, Executive Assistants, QA, Design, Content Writing, and senior IT talent with 5+ years of experience." },
         { q: "Is there a cost for the talent?", a: "No. Our validation and placement services are 100% free for professionals." },
         { q: "What's the selection process?", a: "Voice Note (English), Business Writing Test, and a Practical Role-Specific Task." },
         { q: "What English level is required?", a: "We exclusively work with C1+ (Professional Fluent) candidates for international roles." }
@@ -473,8 +473,8 @@ const translations: Record<Language, Translations> = {
     },
     home: {
       heroBadge: 'TalentSync360 Engine: Intake de Alta Velocidad Activo',
-      heroTitle: 'Shortlists Nearshore Curadas en 72 Horas.',
-      heroSubtitle: 'El motor de curación de talento de alta velocidad para Consultoras IT Españolas y Startups de EE.UU.',
+      heroTitle: 'Shortlists de Talento Nearshore Curadas en 72 Horas',
+      heroSubtitle: 'El motor de TalentSync360 acelera la contratación técnica. El sistema provee acceso directo a ingenieros de LATAM evaluados. La validación técnica, verificación de inglés C1 y alineación cultural se entregan en menos de 3 días.',
       ctaShortlist: 'Iniciar Sourcing',
       ctaGoldList: 'Ver Estadísticas del Motor',
       pipelineTitle: 'Pipeline Operacional TalentSync360',
@@ -512,7 +512,7 @@ const translations: Record<Language, Translations> = {
       ],
       faqTalents: [
         { q: "¿Cómo me pagan?", a: "Los clientes te pagan directamente. Ayudamos a configurar el contrato inicial y términos en USD/EUR." },
-        { q: "¿Qué tipo de roles están buscando?", a: "Operaciones, Soporte, Asistentes Ejecutivos, QA, Diseño y Redacción de Contenido." },
+        { q: "¿Qué tipo de roles están buscando?", a: "El motor de búsqueda se enfoca en Operaciones, Soporte, Asistentes Ejecutivos, QA, Diseño, Redacción de Contenido y talento IT de alto nivel con 5 años de experiencia o más." },
         { q: "¿Tiene algún costo para el talento?", a: "No. Nuestros servicios de validación y colocación son 100% gratuitos para profesionales." },
         { q: "¿Cómo es el proceso de selección?", a: "Nota de Voz (Inglés), Test de Escritura y una Tarea Práctica específica del rol." },
         { q: "¿Qué nivel de inglés necesito?", a: "Trabajamos exclusivamente con candidatos C1+ (Fluido Profesional) para roles internacionales." }
