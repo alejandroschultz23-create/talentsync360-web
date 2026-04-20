@@ -13,7 +13,7 @@ interface SolutionModalProps {
 }
 
 export const SolutionModal: React.FC<SolutionModalProps> = ({ type, isOpen, onClose }) => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -33,6 +33,7 @@ export const SolutionModal: React.FC<SolutionModalProps> = ({ type, isOpen, onCl
       email: formData.get("email"),
       message: formData.get("message"),
       contactType: type,
+      lang: lang,
     };
 
     try {

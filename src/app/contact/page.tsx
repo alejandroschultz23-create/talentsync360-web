@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, Suspense } from 'react';
 
 function ContactForm() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const searchParams = useSearchParams();
   const [contactType, setContactType] = useState<'b2b' | 'talent' | 'general'>('b2b');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,7 +41,7 @@ function ContactForm() {
         body: JSON.stringify({ 
           ...data,
           contactType,
-          lang: t.contact.title.includes('Touch') || t.contact.title.includes('Get') ? 'en' : 'es',
+          lang: lang,
           pageOrigin: typeof window !== 'undefined' ? window.location.pathname : ''
         }),
       });

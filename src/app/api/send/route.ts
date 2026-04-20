@@ -73,10 +73,10 @@ export async function POST(req: Request) {
     try {
       if (email) {
         const isEn = lang === 'en';
-        const subject = isEn ? 'Confirmation of receipt - TalentSync360' : 'Confirmación de recepción - TalentSync360';
+        const subject = isEn ? 'Technical Receipt: TalentSync360 Engine' : 'Confirmación de recepción - TalentSync360';
         const greeting = isEn ? `Hello ${firstName || 'there'}!` : `¡Hola ${firstName || 'hola'}!`;
         const autoMessage = isEn 
-          ? "Confirmation of receipt: The TalentSync360 engine has received the data correctly. The technical team will validate the information and will contact you shortly for the next steps. Thank you for the contact."
+          ? "Confirmation of receipt: The TalentSync360 engine has processed your data. The technical team will validate the information and contact you shortly for the next steps. Thank you for your contact."
           : "Confirmación de recepción: El motor de TalentSync360 ha recibido los datos correctamente. El equipo técnico validará la información y contactará en breve para los siguientes pasos. Gracias por el contacto.";
         const footer = isEn
           ? "This is an automated message from the TalentSync360 Engine system."
