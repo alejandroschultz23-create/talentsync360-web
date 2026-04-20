@@ -28,7 +28,8 @@ export const SolutionModal: React.FC<SolutionModalProps> = ({ type, isOpen, onCl
     const formData = new FormData(form);
     
     const payload = {
-      name: formData.get("name"),
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
       email: formData.get("email"),
       message: formData.get("message"),
       contactType: type,
@@ -125,25 +126,35 @@ export const SolutionModal: React.FC<SolutionModalProps> = ({ type, isOpen, onCl
                         <form onSubmit={handleSubmit} className="space-y-6">
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                              <label className="text-[10px] uppercase tracking-widest text-slate-500 font-mono pl-1">{data.formName}</label>
+                              <label className="text-[10px] uppercase tracking-widest text-slate-500 font-mono pl-1">{data.formFirstName}</label>
                               <input 
                                 required
-                                name="name"
+                                name="firstName"
                                 type="text" 
-                                placeholder="John Doe"
+                                placeholder="John"
                                 className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder:text-slate-700"
                               />
                             </div>
                             <div className="space-y-2">
-                              <label className="text-[10px] uppercase tracking-widest text-slate-500 font-mono pl-1">{data.formEmail}</label>
+                              <label className="text-[10px] uppercase tracking-widest text-slate-500 font-mono pl-1">{data.formLastName}</label>
                               <input 
                                 required
-                                name="email"
-                                type="email" 
-                                placeholder="john@company.com"
+                                name="lastName"
+                                type="text" 
+                                placeholder="Doe"
                                 className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder:text-slate-700"
                               />
                             </div>
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-[10px] uppercase tracking-widest text-slate-500 font-mono pl-1">{data.formEmail}</label>
+                            <input 
+                              required
+                              name="email"
+                              type="email" 
+                              placeholder="john@company.com"
+                              className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder:text-slate-700"
+                            />
                           </div>
                           <div className="space-y-2">
                             <label className="text-[10px] uppercase tracking-widest text-slate-500 font-mono pl-1">{data.formMessage}</label>

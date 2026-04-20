@@ -41,7 +41,8 @@ function ContactForm() {
         body: JSON.stringify({ 
           ...data,
           contactType,
-          pageOrigin: window.location.pathname
+          lang: t.contact.title.includes('Touch') || t.contact.title.includes('Get') ? 'en' : 'es',
+          pageOrigin: typeof window !== 'undefined' ? window.location.pathname : ''
         }),
       });
 
@@ -99,13 +100,17 @@ function ContactForm() {
             <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-2">
-                        <label htmlFor="name" className="text-sm font-semibold text-slate-300">{t.contact.labelName}</label>
-                        <input name="name" type="text" id="name" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none" placeholder={t.contact.placeholderName} />
+                        <label htmlFor="firstName" className="text-sm font-semibold text-slate-300">{t.contact.labelFirstName}</label>
+                        <input name="firstName" type="text" id="firstName" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none" placeholder={t.contact.placeholderFirstName} />
                     </div>
                     <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-semibold text-slate-300">{t.contact.labelEmail}</label>
-                        <input name="email" type="email" id="email" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none" placeholder={t.contact.placeholderEmail} />
+                        <label htmlFor="lastName" className="text-sm font-semibold text-slate-300">{t.contact.labelLastName}</label>
+                        <input name="lastName" type="text" id="lastName" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none" placeholder={t.contact.placeholderLastName} />
                     </div>
+                </div>
+                <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-semibold text-slate-300">{t.contact.labelEmail}</label>
+                    <input name="email" type="email" id="email" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none" placeholder={t.contact.placeholderEmail} />
                 </div>
 
                 {isTalent && (
@@ -122,26 +127,26 @@ function ContactForm() {
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="englishLevel" className="text-sm font-semibold text-slate-300">{t.contact.labelEnglishLevel}</label>
-                      <select name="englishLevel" id="englishLevel" className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none appearance-none cursor-pointer">
-                        <option>C1+ (Advanced/Fluent)</option>
-                        <option>C1 (Professional Working)</option>
-                        <option>B2 (Upper Intermediate)</option>
-                        <option>B1 (Intermediate)</option>
+                      <select name="englishLevel" id="englishLevel" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none appearance-none cursor-pointer">
+                        <option value="">{t.contact.labelEnglishLevel}</option>
+                        <option value="C1+">C1+ (Advanced/Fluent)</option>
+                        <option value="C1">C1 (Professional Working)</option>
+                        <option value="B2">B2 (Upper Intermediate)</option>
+                        <option value="B1">B1 (Intermediate)</option>
                       </select>
                     </div>
                   </>
                 )}
 
-                {!isTalent && !isGeneral && (
                   <div className="space-y-2">
                       <label htmlFor="role" className="text-sm font-semibold text-slate-300">{t.contact.labelRole}</label>
-                      <select name="role" id="role" className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none appearance-none cursor-pointer">
+                      <select name="role" id="role" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none appearance-none cursor-pointer">
+                          <option value="">{t.contact.labelRole}</option>
                           <option>{t.contact.optionB2B}</option>
                           <option>{t.contact.optionB2C}</option>
                           <option>{t.contact.optionGeneral}</option>
                       </select>
                   </div>
-                )}
 
                 <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-semibold text-slate-300">
@@ -191,7 +196,7 @@ function ContactForm() {
         <div className="text-center mb-32 group">
             <p className="text-slate-500 mb-6 font-bold uppercase tracking-[0.2em] text-xs">{t.contact.directLabel}</p>
               <a 
-                href="https://calendly.com/talentsync360" 
+                href="https://calendly.com/alejandroschultz23/ts360-discovery-con-empresas-30-min" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="inline-flex items-center px-10 py-6 bg-slate-950 border border-slate-800 rounded-2xl text-slate-50 font-bold text-xl hover:border-blue-600/50 hover:bg-slate-900 transition-all shadow-xl"

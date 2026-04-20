@@ -4,7 +4,9 @@ import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 
 interface ContactBody {
-  name?: string;
+  firstName?: string;
+  lastName?: string;
+  name?: string; // fallback
   email?: string;
   message?: string;
   contactType?: string;
@@ -13,6 +15,7 @@ interface ContactBody {
   experience?: string;
   englishLevel?: string;
   pageOrigin?: string;
+  lang?: 'en' | 'es';
 }
 
 export async function POST(req: Request) {
@@ -31,17 +34,18 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Respuesta inválida o vacía' }, { status: 400 });
     }
 
-    const { name, email, message, contactType, role, currentRole, experience, englishLevel, pageOrigin } = body;
+    const { firstName, lastName, name, email, message, contactType, role, currentRole, experience, englishLevel, pageOrigin, lang } = body;
+    const fullName = firstName ? `${firstName} ${lastName}`.trim() : name || 'Usuario';
 
     const { data, error } = await resend.emails.send({
       from: 'TalentSync360 <onboarding@resend.dev>',
       to: 'alejandroschultz23@gmail.com',
-      subject: `Nuevo Lead: ${name} (${contactType?.toUpperCase()})`,
+      subject: `Nuevo Lead: ${fullName} (${contactType?.toUpperCase()})`,
       html: `
         <div style="font-family: sans-serif; padding: 20px; color: #333;">
           <h2 style="color: #2563eb;">Nuevo contacto desde TalentSync360</h2>
           <hr />
-          <p><strong>Nombre:</strong> ${name}</p>
+          <p><strong>Nombre:</strong> ${fullName}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Tipo de Contacto:</strong> ${contactType}</p>
           ${role ? `<p><strong>Interés (B2B):</strong> ${role}</p>` : ''}
@@ -68,17 +72,27 @@ export async function POST(req: Request) {
     // Auto-responder logic
     try {
       if (email) {
+        const isEn = lang === 'en';
+        const subject = isEn ? 'Confirmation of receipt - TalentSync360' : 'Confirmación de recepción - TalentSync360';
+        const greeting = isEn ? `Hello ${firstName || 'there'}!` : `¡Hola ${firstName || 'hola'}!`;
+        const autoMessage = isEn 
+          ? "Confirmation of receipt: The TalentSync360 engine has received the data correctly. The technical team will validate the information and will contact you shortly for the next steps. Thank you for the contact."
+          : "Confirmación de recepción: El motor de TalentSync360 ha recibido los datos correctamente. El equipo técnico validará la información y contactará en breve para los siguientes pasos. Gracias por el contacto.";
+        const footer = isEn
+          ? "This is an automated message from the TalentSync360 Engine system."
+          : "Este es un mensaje automático del sistema TalentSync360 Engine.";
+
         await resend.emails.send({
           from: 'TalentSync360 <onboarding@resend.dev>',
           to: email,
-          subject: 'Confirmación de recepción - TalentSync360',
+          subject: subject,
           html: `
             <div style="font-family: sans-serif; padding: 20px; color: #333;">
-              <h2 style="color: #2563eb;">¡Hola ${name}!</h2>
-              <p>Confirmación de recepción: El motor de TalentSync360 ha recibido los datos correctamente. El equipo técnico validará la información y contactará en breve para los siguientes pasos. Gracias por el contacto.</p>
+              <h2 style="color: #2563eb;">${greeting}</h2>
+              <p>${autoMessage}</p>
               <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
               <p style="font-size: 12px; color: #94a3b8;">
-                Este es un mensaje automático del sistema TalentSync360 Engine.
+                ${footer}
               </p>
             </div>
           `,

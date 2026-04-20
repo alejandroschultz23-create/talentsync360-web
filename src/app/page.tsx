@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import Hero from '@/components/Hero';
 import SolutionSplit from '@/components/SolutionSplit';
@@ -88,9 +89,12 @@ export default function Home() {
           <p className="text-lg text-slate-400 mb-12 max-w-2xl mx-auto">
             {t.home.ctaDesc}
           </p>
-          <button className="px-12 py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-bold text-xl transition-all shadow-2xl shadow-indigo-600/20 active:scale-95">
+          <Link 
+            href="/contact" 
+            className="inline-block px-12 py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-bold text-xl transition-all shadow-2xl shadow-indigo-600/20 active:scale-95"
+          >
             {t.home.ctaButton}
-          </button>
+          </Link>
         </div>
       </section>
     </div>

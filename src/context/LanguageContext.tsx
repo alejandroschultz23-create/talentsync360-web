@@ -90,7 +90,8 @@ interface Translations {
         runwayBullet2: string;
         runwayBullet3: string;
         runwayBullet4: string;
-        formName: string;
+        formFirstName: string;
+        formLastName: string;
         formEmail: string;
         formMessage: string;
         formSubmit: string;
@@ -196,7 +197,8 @@ interface Translations {
     subtitle: string;
     subtitleTalent: string;
     subtitleGeneral: string;
-    labelName: string;
+    labelFirstName: string;
+    labelLastName: string;
     labelEmail: string;
     labelRole: string;
     optionB2B: string;
@@ -207,7 +209,8 @@ interface Translations {
     labelCurrentRole: string;
     labelExperience: string;
     labelEnglishLevel: string;
-    placeholderName: string;
+    placeholderFirstName: string;
+    placeholderLastName: string;
     placeholderEmail: string;
     placeholderCurrentRole: string;
     placeholderExperience: string;
@@ -349,7 +352,8 @@ const translations: Record<Language, Translations> = {
         runwayBullet2: 'Full timezone synchronicity (EST/CST | GMT/CET) for real-time collaboration',
         runwayBullet3: 'Top 3% LATAM engineering talent with verified C1/C2 English',
         runwayBullet4: 'Flexible scaling: scale team capacity up or down in 30-day cycles',
-        formName: 'Full Name',
+        formFirstName: 'First Name',
+        formLastName: 'Last Name',
         formEmail: 'Business Email',
         formMessage: 'Message',
         formSubmit: 'Send Request',
@@ -478,7 +482,8 @@ const translations: Record<Language, Translations> = {
       subtitle: 'Tell us about the role you need to fill. We typically confirm feasibility and initial candidate signal within 24 hours.',
       subtitleTalent: 'Ready to join the top 1% of LATAM talent? Tell us about yourself and start your validation process.',
       subtitleGeneral: 'Have a question or need more information? We are here to help.',
-      labelName: 'Full Name *',
+      labelFirstName: 'First Name *',
+      labelLastName: 'Last Name *',
       labelEmail: 'Work Email *',
       labelRole: 'I am looking for...',
       optionB2B: 'Hiring nearshore talent (B2B)',
@@ -489,7 +494,8 @@ const translations: Record<Language, Translations> = {
       labelCurrentRole: 'Current Role *',
       labelExperience: 'Years of Experience *',
       labelEnglishLevel: 'English Level',
-      placeholderName: 'Your full name',
+      placeholderFirstName: 'Your first name',
+      placeholderLastName: 'Your last name',
       placeholderEmail: 'email@company.com',
       placeholderCurrentRole: 'e.g. Customer Support Rep',
       placeholderExperience: 'e.g. 5 years',
@@ -629,7 +635,8 @@ const translations: Record<Language, Translations> = {
         runwayBullet2: 'Sincronía horaria completa (GMT+1/CET | EST/CST) para trabajo en tiempo real',
         runwayBullet3: 'Talento Top 3% de ingeniería LATAM con inglés C1/C2 verificado',
         runwayBullet4: 'Escalamiento flexible: ajuste de capacidad de equipo en ciclos de 30 días',
-        formName: 'Nombre Completo',
+        formFirstName: 'Nombre',
+        formLastName: 'Apellido',
         formEmail: 'Email Corporativo',
         formMessage: 'Mensaje',
         formSubmit: 'Enviar Solicitud',
@@ -758,7 +765,8 @@ const translations: Record<Language, Translations> = {
       subtitle: 'Contanos sobre el rol que necesitas cubrir. Tipicamente confirmamos viabilidad y senal inicial de candidato en 24 horas.',
       subtitleTalent: 'Listo para unirte al top 1% del talento LATAM? Cuentanos sobre vos y comienza tu proceso de validacion.',
       subtitleGeneral: 'Tenes alguna pregunta o necesitás mas informacion? Estamos aca para ayudarte.',
-      labelName: 'Nombre Completo *',
+      labelFirstName: 'Nombre *',
+      labelLastName: 'Apellido *',
       labelEmail: 'Email de Trabajo *',
       labelRole: 'Estoy buscando...',
       optionB2B: 'Contratar talento nearshore (B2B)',
@@ -769,7 +777,8 @@ const translations: Record<Language, Translations> = {
       labelCurrentRole: 'Rol Actual *',
       labelExperience: 'Anos de Experiencia *',
       labelEnglishLevel: 'Nivel de Ingles',
-      placeholderName: 'Tu nombre completo',
+      placeholderFirstName: 'Tu nombre',
+      placeholderLastName: 'Tu apellido',
       placeholderEmail: 'email@tuempresa.com',
       placeholderCurrentRole: 'ej. Soporte al Cliente',
       placeholderExperience: 'ej. 5 anos',
