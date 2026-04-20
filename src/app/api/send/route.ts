@@ -65,6 +65,30 @@ export async function POST(req: Request) {
       return NextResponse.json({ error }, { status: 500 });
     }
 
+    // Auto-responder logic
+    try {
+      if (email) {
+        await resend.emails.send({
+          from: 'TalentSync360 <onboarding@resend.dev>',
+          to: email,
+          subject: 'Confirmación de recepción - TalentSync360',
+          html: `
+            <div style="font-family: sans-serif; padding: 20px; color: #333;">
+              <h2 style="color: #2563eb;">¡Hola ${name}!</h2>
+              <p>Confirmación de recepción: El motor de TalentSync360 ha recibido los datos correctamente. El equipo técnico validará la información y contactará en breve para los siguientes pasos. Gracias por el contacto.</p>
+              <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+              <p style="font-size: 12px; color: #94a3b8;">
+                Este es un mensaje automático del sistema TalentSync360 Engine.
+              </p>
+            </div>
+          `,
+        });
+      }
+    } catch (autoErr) {
+      // We don't want to fail the whole request if the auto-responder fails
+      console.error('AUTO-RESPONDER ERROR:', autoErr);
+    }
+
     return NextResponse.json({ 
       success: true, 
       message: 'Email enviado con éxito via Resend.',

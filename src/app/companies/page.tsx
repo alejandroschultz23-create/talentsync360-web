@@ -1,10 +1,11 @@
-'use client';
-
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import { SolutionModal } from '@/components/SolutionModals';
 
 export default function CompaniesPage() {
   const { t, lang } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const tiers = [
     {
@@ -53,7 +54,12 @@ export default function CompaniesPage() {
                 {t.companies.subtitle}
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <Link href="/contact" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-slate-50 px-8 py-3 rounded-md font-bold text-lg transition-colors shadow-lg shadow-blue-600/20">{t.companies.ctaShortlist}</Link>
+                <button 
+                  onClick={() => setIsModalOpen(true)}
+                  className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-slate-50 px-8 py-3 rounded-md font-bold text-lg transition-colors shadow-lg shadow-blue-600/20"
+                >
+                  {t.companies.ctaShortlist}
+                </button>
                 <Link href="/methodology" className="w-full sm:w-auto bg-slate-900 border border-slate-800 text-slate-50 px-8 py-3 rounded-md font-medium text-lg transition-colors">{t.companies.ctaMethodology}</Link>
             </div>
         </div>
@@ -126,10 +132,22 @@ export default function CompaniesPage() {
                 
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 relative z-10">{t.companies.ctaTitle}</h2>
                 <p className="text-white/80 max-w-xl mb-10 relative z-10 text-lg">{t.companies.ctaDesc}</p>
-                <Link href="/contact" className="relative z-10 bg-white text-blue-600 px-10 py-5 rounded-md font-bold text-xl hover:bg-slate-100 transition-all hover:scale-105 active:scale-95 shadow-xl">{t.companies.ctaButton}</Link>
+                <Link 
+                  href="https://calendly.com/alejandroschultz23/ts360-discovery-con-empresas-30-min" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative z-10 bg-white text-blue-600 px-10 py-5 rounded-md font-bold text-xl hover:bg-slate-100 transition-all hover:scale-105 active:scale-95 shadow-xl"
+                >
+                  {t.companies.ctaButton}
+                </Link>
             </div>
         </div>
       </section>
+      <SolutionModal 
+        type="runway"
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }

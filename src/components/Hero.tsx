@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { ArrowRight, Zap, ShieldCheck } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -34,13 +35,19 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-all flex items-center justify-center gap-2 group animate-luminous animate-shimmer">
+            <Link 
+              href="/companies"
+              className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-all flex items-center justify-center gap-2 group animate-luminous animate-shimmer"
+            >
               {t.home.ctaShortlist}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-8 py-4 bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 rounded-xl font-medium transition-all flex items-center justify-center gap-2">
+            </Link>
+            <Link 
+              href="/talents"
+              className="px-8 py-4 bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 rounded-xl font-medium transition-all flex items-center justify-center gap-2"
+            >
               {t.home.ctaGoldList}
-            </button>
+            </Link>
           </div>
         </div>
 
