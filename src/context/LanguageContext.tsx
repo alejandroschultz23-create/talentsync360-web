@@ -269,8 +269,8 @@ const translations: Record<Language, Translations> = {
     home: {
       heroBadge: 'AI SIGNAL OVER NOISE',
       heroTitle: 'Curated Nearshore Shortlists in 72 Hours.',
-      heroSubtitle: 'Strategic Nearshore Capacity Partner. We operate from LATAM\'s #1 tech hub (Argentina) to ensure quality and cultural fit. Validated engineering solutions delivered fast.',
-      ctaShortlist: 'For Companies',
+      heroSubtitle: 'Curated Technical Shortlists delivered in under 72 hours.',
+      ctaShortlist: 'Launch your 72h Sprint',
       ctaGoldList: 'For Talents',
       pipelineTitle: 'TalentSync360 Operational Pipeline',
       pipelineTagline: 'AI Signal. Engineering precision. Factual validation.',
@@ -531,8 +531,8 @@ const translations: Record<Language, Translations> = {
     home: {
       heroBadge: 'IA CON CRITERIO, NO AL AZAR',
       heroTitle: 'Entrega de Capacidad Técnica en 72h',
-      heroSubtitle: 'Partner Estratégico de Capacidad Nearshore. Operamos desde el hub técnico #1 de LATAM (Argentina) para asegurar calidad y fit cultural. Soluciones de ingeniería validadas entregadas rápido.',
-      ctaShortlist: 'Para Empresas',
+      heroSubtitle: 'Recibí tu shortlist de ingenieros veteados técnicamente en menos de 72 horas.',
+      ctaShortlist: 'Lanzar Sprint de 72h',
       ctaGoldList: 'Para Talento',
       pipelineTitle: 'Pipeline Operacional TalentSync360',
       pipelineTagline: 'IA con Criterio. Precisión de ingeniería. Validación factual.',
