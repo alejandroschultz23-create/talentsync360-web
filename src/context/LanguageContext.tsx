@@ -267,13 +267,13 @@ const translations: Record<Language, Translations> = {
       privacy: 'Privacy Policy',
     },
     home: {
-      heroBadge: 'TalentSync360 Engine: High-Velocity Intake Active',
+      heroBadge: 'TalentSync360 Engine (AI Signal): High-Velocity Intake Active',
       heroTitle: 'Curated Nearshore Shortlists in 72 Hours.',
       heroSubtitle: 'Strategic Nearshore Capacity Partner. We operate from LATAM\'s #1 tech hub (Argentina) to ensure quality and cultural fit. Validated engineering solutions delivered fast.',
       ctaShortlist: 'For Companies',
       ctaGoldList: 'For Talents',
       pipelineTitle: 'TalentSync360 Operational Pipeline',
-      pipelineTagline: 'Engineering precision. Factual validation.',
+      pipelineTagline: 'AI Signal. Engineering precision. Factual validation.',
       pipelineSub: 'Decisions based on engineering evidence. Zero resume noise.',
       step1Label: '01 Intake',
       step1Title: 'Requirement Mapping',
@@ -317,7 +317,7 @@ const translations: Record<Language, Translations> = {
       },
       faqTitle: 'Frequently Asked Questions',
       faqClients: [
-        { q: "How much does the service cost?", a: "We offer performance-based pricing starting at $350. We only win when you hire." },
+        { q: "How much does the service cost?", a: "Our model is based on the Shortlist Sprint of 1,250 EUR/USD (100% creditable to the final hire), guaranteeing technical quality with no hidden entry costs." },
         { q: "How long to receive a shortlist?", a: "Usually within 2 to 5 business days, depending on the role complexity." },
         { q: "What's the replacement guarantee?", a: "Silver and Gold tiers include a 90-day replacement guarantee at no extra cost." },
         { q: "How do you verify English levels?", a: "Every candidate undergoes a recorded C1+ Voice Check and a business writing assessment." },
@@ -328,7 +328,7 @@ const translations: Record<Language, Translations> = {
         { q: "What types of roles are available?", a: "The engine focuses on Operations, Support, Executive Assistants, QA, Design, Content Writing, and senior IT talent with 5+ years of experience." },
         { q: "Is there a cost for the talent?", a: "No. Our validation and placement services are 100% free for professionals." },
         { q: "What's the selection process?", a: "Voice Note (English), Business Writing Test, and a Practical Role-Specific Task." },
-        { q: "What English level is required?", a: "We exclusively work with C1+ (Professional Fluent) candidates for international roles." }
+        { q: "What English level is required?", a: "While we prioritize profiles with C1 fluency for international markets, the English level is not 100% exclusive. We validate each talent's technical communication capacity to ensure the team fit is productive from day 1." }
       ],
       solutionModals: {
         whiteLabelTitle: 'White-Label Partnership Terms',
@@ -440,8 +440,8 @@ const translations: Record<Language, Translations> = {
       deliverable3: 'Technical test results + raw work evidence',
       deliverable4: 'Detailed soft-skills behavioral evaluation',
       deliverable5: 'Expert recommendation + potential risk factors',
-      signalBadge: 'Signal Over Noise',
-      signalTitle: 'Signal Over Noise',
+      signalBadge: 'AI Signal Over Noise',
+      signalTitle: 'AI Signal Over Noise',
       signalDesc: 'Matching is oriented strictly towards verified skills and output performance, not demographic data. Our results are based on objective evidence (tests + human scorecards), minimizing intuition-based bias.',
       signalResult: 'You hire faster. You decide with evidence. You reduce churn.',
     },
@@ -529,13 +529,13 @@ const translations: Record<Language, Translations> = {
       privacy: 'Politica de Privacidad',
     },
     home: {
-      heroBadge: 'TalentSync360 Engine: Intake de Alta Velocidad Activo',
+      heroBadge: 'TalentSync360 Engine (IA con Criterio): Intake de Alta Velocidad Activo',
       heroTitle: 'Entrega de Capacidad Técnica en 72h',
       heroSubtitle: 'Partner Estratégico de Capacidad Nearshore. Operamos desde el hub técnico #1 de LATAM (Argentina) para asegurar calidad y fit cultural. Soluciones de ingeniería validadas entregadas rápido.',
       ctaShortlist: 'Para Empresas',
       ctaGoldList: 'Para Talento',
       pipelineTitle: 'Pipeline Operacional TalentSync360',
-      pipelineTagline: 'Precisión de ingeniería. Validación factual.',
+      pipelineTagline: 'IA con Criterio. Precisión de ingeniería. Validación factual.',
       pipelineSub: 'Decisiones basadas en evidencia de ingeniería. Ruido de CV cero.',
       step1Label: '01 Intake',
       step1Title: 'Mapeo de Requerimientos',
@@ -579,7 +579,7 @@ const translations: Record<Language, Translations> = {
       },
       faqTitle: 'Preguntas Frecuentes',
       faqClients: [
-        { q: "¿Cuál es el costo del servicio?", a: "Ofrecemos precios basados en resultados desde $350. Solo ganamos cuando vos contratás." },
+        { q: "¿Cuál es el costo del servicio?", a: "Nuestro modelo se basa en el Shortlist Sprint de 1.250 EUR/USD (100% acreditable a la contratación final), garantizando calidad técnica sin costos ocultos de entrada." },
         { q: "¿Cuánto tiempo toma recibir la shortlist?", a: "Normalmente entre 2 y 5 días hábiles, según la complejidad del rol." },
         { q: "¿Qué pasa si no me gusta ningún candidato?", a: "Los tiers Plata y Oro incluyen una garantía de reemplazo de 90 días sin costo extra." },
         { q: "¿Cómo verifican el nivel de inglés?", a: "Cada candidato pasa por un Voice Check C1+ grabado y una evaluación de escritura empresarial." },
@@ -590,7 +590,7 @@ const translations: Record<Language, Translations> = {
         { q: "¿Qué tipo de roles están buscando?", a: "El motor de búsqueda se enfoca en Operaciones, Soporte, Asistentes Ejecutivos, QA, Diseño, Redacción de Contenido y talento IT senior con más de 5 años de experiencia comprobable." },
         { q: "¿Tiene algún costo para el talento?", a: "No. Nuestros servicios de validación y colocación son 100% gratuitos para profesionales." },
         { q: "¿Cómo es el proceso de selección?", a: "Nota de Voz (Inglés), Test de Escritura y una Tarea Práctica específica del rol." },
-        { q: "¿Qué nivel de inglés necesito?", a: "Trabajamos exclusivamente con candidatos C1+ (Fluido Profesional) para roles internacionales." }
+        { q: "¿Qué nivel de inglés necesito?", a: "Aunque priorizamos perfiles con fluidez C1 para mercados internacionales, el nivel de inglés no es excluyente al 100%. Validamos la capacidad de comunicación técnica de cada talento para asegurar que el fit con el equipo sea productivo desde el día 1." }
       ],
       solutionModals: {
         whiteLabelTitle: 'Términos de Partner Marca Blanca',
@@ -702,8 +702,8 @@ const translations: Record<Language, Translations> = {
       deliverable3: 'Resultados de test tecnico + evidencia cruda del trabajo',
       deliverable4: 'Evaluacion comportamental detallada de soft skills',
       deliverable5: 'Recomendacion de experto + factores de riesgo potenciales',
-      signalBadge: 'Con Criterio, No Al Azar',
-      signalTitle: 'Con Criterio, No Al Azar',
+      signalBadge: 'IA Con Criterio, No Al Azar',
+      signalTitle: 'IA Con Criterio, No Al Azar',
       signalDesc: 'El matching se orienta estrictamente hacia habilidades y rendimiento verificados, no datos demograficos. Nuestros resultados se basan en evidencia objetiva (tests + scorecards humanos), minimizando el bias basado en intuicion.',
       signalResult: 'Contratas mas rapido. Decidis con evidencia. Reducis la rotacion.',
     },
