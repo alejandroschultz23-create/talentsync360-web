@@ -19,18 +19,14 @@ const Hero = () => {
       <div className="max-w-base relative z-10">
         <div className="max-w-4xl animate-fade-in-up">
           {/* Engine Status Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/50 border border-slate-800 backdrop-blur-md mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-md mb-12">
             <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+            <span className="text-sm font-bold uppercase tracking-widest text-emerald-400">
               {t.home.heroBadge}
             </span>
           </div>
 
-          <h1 className="text-hero leading-[1.1] mb-8 text-premium-gradient">
-            {t.home.heroTitle}
-          </h1>
-
-          <p className="text-lg text-slate-400 mb-12 max-w-2xl leading-relaxed">
+          <p className="text-xl text-slate-300 mb-16 max-w-2xl leading-relaxed">
             {t.home.heroSubtitle}
           </p>
 

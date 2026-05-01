@@ -267,7 +267,7 @@ const translations: Record<Language, Translations> = {
       privacy: 'Privacy Policy',
     },
     home: {
-      heroBadge: 'TalentSync360 Engine (AI Signal): High-Velocity Intake Active',
+      heroBadge: 'AI SIGNAL OVER NOISE',
       heroTitle: 'Curated Nearshore Shortlists in 72 Hours.',
       heroSubtitle: 'Strategic Nearshore Capacity Partner. We operate from LATAM\'s #1 tech hub (Argentina) to ensure quality and cultural fit. Validated engineering solutions delivered fast.',
       ctaShortlist: 'For Companies',
@@ -319,13 +319,13 @@ const translations: Record<Language, Translations> = {
       faqClients: [
         { q: "How much does the service cost?", a: "Our model is based on the Shortlist Sprint of 1,250 EUR/USD (100% creditable to the final hire), guaranteeing technical quality with no hidden entry costs." },
         { q: "How long to receive a shortlist?", a: "Usually within 2 to 5 business days, depending on the role complexity." },
-        { q: "What's the replacement guarantee?", a: "Silver and Gold tiers include a 90-day replacement guarantee at no extra cost." },
+        { q: "What's the replacement guarantee?", a: "Our processes include a 90-day replacement guarantee at no additional cost. At TalentSync360, we are committed to the long-term success of the hire, ensuring a match that transcends technical skills and aligns with your company's culture." },
         { q: "How do you verify English levels?", a: "Every candidate undergoes a recorded C1+ Voice Check and a business writing assessment." },
         { q: "Can I hire more than one person?", a: "Yes. You can scale your team by requesting multiple shortlists or hiring several finalists." }
       ],
       faqTalents: [
         { q: "How do I get paid?", a: "Clients pay you directly. We help set up the initial contract and payment terms in USD/EUR." },
-        { q: "What types of roles are available?", a: "The engine focuses on Operations, Support, Executive Assistants, QA, Design, Content Writing, and senior IT talent with 5+ years of experience." },
+        { q: "What types of roles are available?", a: "The engine highlights our specialization in Commercial and Strategic Consulting, Talent Leaders and Senior Recruiters, and Technological Profiles with Business Vision. We maintain an emphasis on verifiable experience focused on 360° Profiles (reputation, results, and impact)." },
         { q: "Is there a cost for the talent?", a: "No. Our validation and placement services are 100% free for professionals." },
         { q: "What's the selection process?", a: "Voice Note (English), Business Writing Test, and a Practical Role-Specific Task." },
         { q: "What English level is required?", a: "While we prioritize profiles with C1 fluency for international markets, the English level is not 100% exclusive. We validate each talent's technical communication capacity to ensure the team fit is productive from day 1." }
@@ -529,7 +529,7 @@ const translations: Record<Language, Translations> = {
       privacy: 'Politica de Privacidad',
     },
     home: {
-      heroBadge: 'TalentSync360 Engine (IA con Criterio): Intake de Alta Velocidad Activo',
+      heroBadge: 'IA CON CRITERIO, NO AL AZAR',
       heroTitle: 'Entrega de Capacidad Técnica en 72h',
       heroSubtitle: 'Partner Estratégico de Capacidad Nearshore. Operamos desde el hub técnico #1 de LATAM (Argentina) para asegurar calidad y fit cultural. Soluciones de ingeniería validadas entregadas rápido.',
       ctaShortlist: 'Para Empresas',
@@ -581,13 +581,13 @@ const translations: Record<Language, Translations> = {
       faqClients: [
         { q: "¿Cuál es el costo del servicio?", a: "Nuestro modelo se basa en el Shortlist Sprint de 1.250 EUR/USD (100% acreditable a la contratación final), garantizando calidad técnica sin costos ocultos de entrada." },
         { q: "¿Cuánto tiempo toma recibir la shortlist?", a: "Normalmente entre 2 y 5 días hábiles, según la complejidad del rol." },
-        { q: "¿Qué pasa si no me gusta ningún candidato?", a: "Los tiers Plata y Oro incluyen una garantía de reemplazo de 90 días sin costo extra." },
+        { q: "¿Qué pasa si no me gusta ningún candidato?", a: "Nuestros procesos cuentan con una garantía de reemplazo de 90 días sin costo adicional. En TalentSync360 nos comprometemos con el éxito a largo plazo de la contratación, asegurando un match que trascienda lo técnico y se alinee con la cultura de tu empresa." },
         { q: "¿Cómo verifican el nivel de inglés?", a: "Cada candidato pasa por un Voice Check C1+ grabado y una evaluación de escritura empresarial." },
         { q: "¿Puedo contratar a más de un candidato?", a: "Sí. Podés escalar tu equipo solicitando múltiples shortlists o contratando varios finalistas." }
       ],
       faqTalents: [
         { q: "¿Cómo me pagan?", a: "Los clientes te pagan directamente. Ayudamos a configurar el contrato inicial y términos en USD/EUR." },
-        { q: "¿Qué tipo de roles están buscando?", a: "El motor de búsqueda se enfoca en Operaciones, Soporte, Asistentes Ejecutivos, QA, Diseño, Redacción de Contenido y talento IT senior con más de 5 años de experiencia comprobable." },
+        { q: "¿Qué tipo de roles están buscando?", a: "El motor de búsqueda destaca nuestra especialización en Consultoría Comercial y Estratégica, Líderes de Talento y Recruiters Senior, y Perfiles Tecnológicos con Visión de Negocio. Mantenemos el énfasis en experiencia comprobable enfocada en Perfiles 360° (reputación, resultados e impacto)." },
         { q: "¿Tiene algún costo para el talento?", a: "No. Nuestros servicios de validación y colocación son 100% gratuitos para profesionales." },
         { q: "¿Cómo es el proceso de selección?", a: "Nota de Voz (Inglés), Test de Escritura y una Tarea Práctica específica del rol." },
         { q: "¿Qué nivel de inglés necesito?", a: "Aunque priorizamos perfiles con fluidez C1 para mercados internacionales, el nivel de inglés no es excluyente al 100%. Validamos la capacidad de comunicación técnica de cada talento para asegurar que el fit con el equipo sea productivo desde el día 1." }
