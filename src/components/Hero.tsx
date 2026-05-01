@@ -26,23 +26,17 @@ const Hero = () => {
             </span>
           </div>
 
-          <p className="text-xl text-slate-300 mb-16 max-w-2xl leading-relaxed">
-            {t.home.heroSubtitle}
-          </p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-12 leading-tight tracking-tight">
+            Curated Nearshore Shortlists in 72 Hours.
+          </h1>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex">
             <Link 
               href="/companies"
-              className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-all flex items-center justify-center gap-2 group animate-luminous animate-shimmer"
+              className="px-8 py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 group animate-luminous animate-shimmer"
             >
               {t.home.ctaShortlist}
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link 
-              href="/talents"
-              className="px-8 py-4 bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 rounded-xl font-medium transition-all flex items-center justify-center gap-2"
-            >
-              {t.home.ctaGoldList}
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
