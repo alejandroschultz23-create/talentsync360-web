@@ -268,7 +268,7 @@ const translations: Record<Language, Translations> = {
     },
     home: {
       heroBadge: 'TalentSync360 Engine: High-Velocity Intake Active',
-      heroTitle: 'Technical Capacity Delivery in 72 Hours.',
+      heroTitle: 'Curated Nearshore Shortlists in 72 Hours.',
       heroSubtitle: 'Strategic Nearshore Capacity Partner. We operate from LATAM\'s #1 tech hub (Argentina) to ensure quality and cultural fit. Validated engineering solutions delivered fast.',
       ctaShortlist: 'For Companies',
       ctaGoldList: 'For Talents',
