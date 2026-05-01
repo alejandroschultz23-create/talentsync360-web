@@ -111,21 +111,11 @@ interface Translations {
       ctaMethodology: string;
       tiersTitle: string;
       tiersSubtitle: string;
-      bronzeTitle: string;
-      bronzePrice: string;
-      bronzeCandidates: string;
-      bronzeSla: string;
-      bronzeIncludes: string[];
-      silverTitle: string;
-      silverPrice: string;
-      silverCandidates: string;
-      silverSla: string;
-      silverIncludes: string[];
-      goldTitle: string;
-      goldPrice: string;
-      goldCandidates: string;
-      goldSla: string;
-      goldIncludes: string[];
+      sprintTitle: string;
+      sprintPrice: string;
+      sprintCandidates: string;
+      sprintSla: string;
+      sprintIncludes: string[];
       replacementGuarantee: string;
       noReplacement: string;
       rolesTitle: string;
@@ -278,8 +268,8 @@ const translations: Record<Language, Translations> = {
     },
     home: {
       heroBadge: 'TalentSync360 Engine: High-Velocity Intake Active',
-      heroTitle: 'Curated Nearshore Shortlists in 72 Hours.',
-      heroSubtitle: 'The TalentSync360 engine accelerates technical hiring. Direct access to vetted LATAM engineers. Technical validation, C1 English verification, and cultural alignment delivered in under 3 days.',
+      heroTitle: 'Technical Capacity Delivery in 72 Hours.',
+      heroSubtitle: 'Strategic Nearshore Capacity Partner. We operate from LATAM\'s #1 tech hub (Argentina) to ensure quality and cultural fit. Validated engineering solutions delivered fast.',
       ctaShortlist: 'For Companies',
       ctaGoldList: 'For Talents',
       pipelineTitle: 'TalentSync360 Operational Pipeline',
@@ -313,13 +303,13 @@ const translations: Record<Language, Translations> = {
       availableEngineTimeLabel: 'AVAILABLE ENGINE TIME',
       solutionSplit: {
         consultancyTitle: 'For Spanish IT Consultancies',
-        consultancyDesc: 'TalentSync360 Engine provides white-label nearshore talent. Combat the 80% talent gap in the Spanish market with speed. Shortlists arrive in 72 hours, vetted for agility and technical precision.',
+        consultancyDesc: 'Your white-label engine to win projects without worrying about delivery.',
         consultancyBullet1: 'White-label integration with existing teams',
         consultancyBullet2: 'Immediate capacity for project overflows',
         consultancyBullet3: 'Timezone alignment with EEA operations',
         consultancyCta: 'View White-Label Terms',
         startupTitle: 'For US/EU Startups',
-        startupDesc: 'TalentSync360 Engine extends runway. Startups achieve 60% savings compared to local hiring without quality trade-offs. Top 3% LATAM engineers, C1 English verified, ready for high-octane contribution.',
+        startupDesc: 'Extend your runway by 60% with the best talent from Argentina in your timezone.',
         startupBullet1: '60% Average reduction in burn rate',
         startupBullet2: 'Technical vetting via Senior CTO network',
         startupBullet3: 'Flexible contract scaling (Up/Down in 30 days)',
@@ -371,50 +361,29 @@ const translations: Record<Language, Translations> = {
       subtitle: 'Curated shortlists with human screening, practical testing, and evidence-backed scorecards. Less churn, less risk, more speed.',
       ctaShortlist: 'Request Shortlist',
       ctaMethodology: 'See Our Standard',
-      tiersTitle: 'Choose Your Shortlist Tier',
-      tiersSubtitle: 'Every tier includes human screening and evidence-backed evaluation. Pick the depth that matches your hiring confidence needs.',
-      bronzeTitle: 'Bronze',
-      bronzePrice: 'from $350',
-      bronzeCandidates: '6–8 candidates',
-      bronzeSla: '5–7 business days',
-      bronzeIncludes: [
-        'Technical Pre-screening',
-        'Initial Interview',
-        'Quick English Verification',
-        'Basic Scorecard',
-      ],
-      silverTitle: 'Silver',
-      silverPrice: 'from $650',
-      silverCandidates: '5–7 candidates',
-      silverSla: '5 business days',
-      silverIncludes: [
-        'Structured Screening',
-        'Recorded B2+/C1 Validation',
-        'Simplified Practical Exercise',
-        'Scorecards + Onboarding Notes',
-      ],
-      goldTitle: 'Gold',
-      goldPrice: 'from $1,200',
-      goldCandidates: '3–5 candidates',
-      goldSla: '5 business days',
-      goldIncludes: [
-        'Deep Deep Screening',
-        'Recorded C1+ with Rubric',
-        'Role-Specific Practical Test',
-        'Scorecards with Evidence',
-        'Top 2–3 Final Recommendation',
+      tiersTitle: 'Shortlist Sprint White-Label',
+      tiersSubtitle: 'A single, powerful solution. A technical validation fee 100% creditable to the final hire.',
+      sprintTitle: 'Shortlist Sprint',
+      sprintPrice: '1,250 EUR/USD',
+      sprintCandidates: '3-5 senior candidates',
+      sprintSla: '72 hours',
+      sprintIncludes: [
+        '100% creditable to final hire',
+        'Vetted senior candidates',
+        'Delivered in 72h or the sprint is free',
+        'Argentina Power (LATAM hub)',
       ],
       replacementGuarantee: 'Replacement guarantee included',
       noReplacement: 'No replacement guarantee',
-      rolesTitle: 'Core Nearshore Roles We Cover',
-      rolesSubtitle: 'Low-friction roles pre-validated for immediate integration.',
+      rolesTitle: 'Core Software Engineering Roles',
+      rolesSubtitle: 'Pure tech talent pre-validated for immediate integration.',
       professionalRoles: [
-        { title: 'Customer Support Rep (C1+)', desc: 'Multichannel support with measurable quality standards.', kpis: 'FRT, CSAT, Resolution Rate' },
-        { title: 'Executive Assistant (VA)', desc: 'Operations, calendar management, and executive reporting.', kpis: 'SLA Response, Task Completion' },
-        { title: 'QA Tester (Manual)', desc: 'Functional testing and bug reporting before deployment.', kpis: 'Critical Bugs, Test Coverage' },
-        { title: 'Bookkeeper (US-focused)', desc: 'Clean books and timely month-end closures.', kpis: 'Accuracy, Reconciliation Gaps' },
-        { title: 'Graphic Designer', desc: 'Marketing assets and brand visual iteration.', kpis: 'First-Iter Approval Rate' },
-        { title: 'English Content Writer', desc: 'High-quality SEO and thought leadership content.', kpis: 'Editorial Grade, SEO Performance' },
+        { title: 'React / Next.js Engineer', desc: 'Frontend architectures and modern web applications.', kpis: 'Code Quality, Delivery Speed' },
+        { title: 'Node.js Backend Engineer', desc: 'Scalable APIs, microservices, and database optimization.', kpis: 'API Latency, Uptime' },
+        { title: 'AI / ML Engineer', desc: 'LLM integrations, data pipelines, and intelligent models.', kpis: 'Model Accuracy, Deployment' },
+        { title: 'DevOps / SRE', desc: 'Cloud infrastructure, CI/CD, and system reliability.', kpis: 'Deployment Frequency, MTTR' },
+        { title: 'Go Developer', desc: 'High-performance backend systems and concurrency.', kpis: 'System Throughput' },
+        { title: 'Python Engineer', desc: 'Backend services, data processing, and automation.', kpis: 'Clean Code, Efficiency' },
       ],
       ctaTitle: 'Ready to scale your team?',
       ctaDesc: 'Book a brief 15-minute alignment call to understand your needs and confirm our current talent pool availability.',
@@ -561,8 +530,8 @@ const translations: Record<Language, Translations> = {
     },
     home: {
       heroBadge: 'TalentSync360 Engine: Intake de Alta Velocidad Activo',
-      heroTitle: 'Shortlists de Talento Nearshore Curadas en 72 Horas',
-      heroSubtitle: 'El motor de TalentSync360 acelera la contratación técnica. El sistema provee acceso directo a ingenieros de LATAM evaluados. La validación técnica, verificación de inglés C1 y alineación cultural se entregan en menos de 3 días.',
+      heroTitle: 'Entrega de Capacidad Técnica en 72h',
+      heroSubtitle: 'Partner Estratégico de Capacidad Nearshore. Operamos desde el hub técnico #1 de LATAM (Argentina) para asegurar calidad y fit cultural. Soluciones de ingeniería validadas entregadas rápido.',
       ctaShortlist: 'Para Empresas',
       ctaGoldList: 'Para Talento',
       pipelineTitle: 'Pipeline Operacional TalentSync360',
@@ -596,13 +565,13 @@ const translations: Record<Language, Translations> = {
       availableEngineTimeLabel: 'TIEMPO DE MOTOR DISPONIBLE',
       solutionSplit: {
         consultancyTitle: 'Para Consultoras IT Españolas',
-        consultancyDesc: 'El Motor de TalentSync360 provee talento nearshore marca blanca. El sistema combate la brecha del 80% en el mercado español con velocidad. Shortlists en 72 horas, evaluadas por agilidad y precisión técnica.',
+        consultancyDesc: 'Tu motor de marca blanca para ganar proyectos sin preocuparte por el delivery.',
         consultancyBullet1: 'Integración marca blanca con equipos actuales',
         consultancyBullet2: 'Capacidad inmediata para overflow de proyectos',
         consultancyBullet3: 'Alineación horaria perfecta (GMT+1/CET)',
         consultancyCta: 'Ver Términos de Marca Blanca',
         startupTitle: 'Para Startups de EE.UU./UE',
-        startupDesc: 'El Motor de TalentSync360 extiende el runway. El sistema logra un ahorro del 60% comparado con la contratación local sin comprometer la calidad. Ingenieros del top 3% de LATAM, inglés C1 verificado, listos para contribución inmediata.',
+        startupDesc: 'Extendé tu runway un 60% con el mejor talento de Argentina en tu zona horaria.',
         startupBullet1: '60% de reducción promedio en burn rate',
         startupBullet2: 'Vetting técnico mediante red de CTOs Senior',
         startupBullet3: 'Escalamiento flexible de contratos (30 días)',
@@ -654,50 +623,29 @@ const translations: Record<Language, Translations> = {
       subtitle: 'Liberación operativa en tu zona horaria.',
       ctaShortlist: 'Solicitar Shortlist',
       ctaMethodology: 'Ver Nuestro Estándar',
-      tiersTitle: 'Elegí Tu Tier de Shortlist',
-      tiersSubtitle: 'Cada tier incluye screening humano y evaluación basada en evidencia. Elegí la profundidad que se adapte a tus necesidades de confianza.',
-      bronzeTitle: 'Bronce',
-      bronzePrice: 'desde $350',
-      bronzeCandidates: '6–8 candidatos',
-      bronzeSla: '5–7 días hábiles',
-      bronzeIncludes: [
-        'Pre-screening técnico',
-        'Entrevista inicial',
-        'Verificación de inglés (Quick Check)',
-        'Scorecard básico',
-      ],
-      silverTitle: 'Plata',
-      silverPrice: 'desde $650',
-      silverCandidates: '5–7 candidatos',
-      silverSla: '5 días hábiles',
-      silverIncludes: [
-        'Screening estructurado',
-        'Validación B2+/C1 grabada',
-        'Ejercicio práctico simplificado',
-        'Scorecards + notas de onboarding',
-      ],
-      goldTitle: 'Oro',
-      goldPrice: 'desde $1,200',
-      goldCandidates: '3–5 candidatos',
-      goldSla: '5 días hábiles',
-      goldIncludes: [
-        'Deep Screening profundo',
-        'Validación C1+ grabada con rúbrica',
-        'Prueba técnica específica del rol',
-        'Scorecards con evidencia de trabajo',
-        'Recomendación final Top 2–3',
+      tiersTitle: 'Shortlist Sprint White-Label',
+      tiersSubtitle: 'Una única y potente solución. Un fee de validación técnica 100% acreditable a la contratación final.',
+      sprintTitle: 'Shortlist Sprint',
+      sprintPrice: '1.250 EUR/USD',
+      sprintCandidates: '3-5 candidatos senior',
+      sprintSla: '72 horas',
+      sprintIncludes: [
+        '100% acreditable a la contratación final',
+        'Candidatos senior veteados en 72 horas',
+        'O el sprint es gratis',
+        'Argentina Power (hub LATAM)',
       ],
       replacementGuarantee: 'Garantía de reemplazo',
       noReplacement: 'Sin garantía de reemplazo',
-      rolesTitle: 'Roles Nearshore Principales que Cubrimos',
-      rolesSubtitle: 'Roles de baja fricción pre-validados para integración inmediata.',
+      rolesTitle: 'Roles Principales de Ingeniería de Software',
+      rolesSubtitle: 'Talento puramente técnico pre-validado para integración inmediata.',
       professionalRoles: [
-        { title: 'Soporte al Cliente (C1+)', desc: 'Soporte multicanal con estándares de calidad medibles.', kpis: 'FRT, CSAT, Resolution Rate' },
-        { title: 'Asistente Ejecutivo (VA)', desc: 'Operaciones, gestión de agenda y reportes ejecutivos.', kpis: 'SLA Response, Task Completion' },
-        { title: 'QA Tester (Manual)', desc: 'Pruebas funcionales y reporte de bugs antes del despliegue.', kpis: 'Bugs Críticos, Cobertura de Tests' },
-        { title: 'Contable / Bookkeeper (US)', desc: 'Libros limpios y cierres mensuales a tiempo.', kpis: 'Precisión, Brechas de Conciliación' },
-        { title: 'Diseñador Gráfico', desc: 'Activos de marketing e iteración visual de marca.', kpis: 'Tasa de aprobación primera iteración' },
-        { title: 'Redactor de Contenidos (EN)', desc: 'Contenido de SEO y liderazgo intelectual de alta calidad.', kpis: 'Grado Editorial, Rendimiento SEO' },
+        { title: 'React / Next.js Engineer', desc: 'Arquitecturas frontend y aplicaciones web modernas.', kpis: 'Calidad de Código, Velocidad de Entrega' },
+        { title: 'Node.js Backend Engineer', desc: 'APIs escalables, microservicios y optimización de bases de datos.', kpis: 'Latencia API, Uptime' },
+        { title: 'AI / ML Engineer', desc: 'Integraciones LLM, pipelines de datos y modelos inteligentes.', kpis: 'Precisión de Modelos, Deployment' },
+        { title: 'DevOps / SRE', desc: 'Infraestructura cloud, CI/CD y confiabilidad de sistemas.', kpis: 'Frecuencia de Deployment, MTTR' },
+        { title: 'Go Developer', desc: 'Sistemas backend de alto rendimiento y concurrencia.', kpis: 'Throughput del Sistema' },
+        { title: 'Python Engineer', desc: 'Servicios backend, procesamiento de datos y automatización.', kpis: 'Código Limpio, Eficiencia' },
       ],
       ctaTitle: '¿Listo para escalar tu equipo?',
       ctaDesc: 'Reservá una llamada de alineación de 15 minutos para entender tus necesidades y confirmar disponibilidad de talento.',

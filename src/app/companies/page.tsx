@@ -11,35 +11,15 @@ export default function CompaniesPage() {
 
   const tiers = [
     {
-      name: t.companies.bronzeTitle,
-      price: t.companies.bronzePrice,
-      candidates: t.companies.bronzeCandidates,
-      sla: t.companies.bronzeSla,
-      color: 'bronze',
-      includes: t.companies.bronzeIncludes,
-      guarantee: t.companies.noReplacement,
-      popular: false,
-    },
-    {
-      name: t.companies.silverTitle,
-      price: t.companies.silverPrice,
-      candidates: t.companies.silverCandidates,
-      sla: t.companies.silverSla,
-      color: 'slate',
-      includes: t.companies.silverIncludes,
+      name: t.companies.sprintTitle,
+      price: t.companies.sprintPrice,
+      candidates: t.companies.sprintCandidates,
+      sla: t.companies.sprintSla,
+      color: 'blue',
+      includes: t.companies.sprintIncludes,
       guarantee: t.companies.replacementGuarantee,
       popular: true,
-    },
-    {
-      name: t.companies.goldTitle,
-      price: t.companies.goldPrice,
-      candidates: t.companies.goldCandidates,
-      sla: t.companies.goldSla,
-      color: 'blue',
-      includes: t.companies.goldIncludes,
-      guarantee: t.companies.replacementGuarantee,
-      popular: false,
-    },
+    }
   ];
 
   const roles = t.companies.professionalRoles;
@@ -74,7 +54,7 @@ export default function CompaniesPage() {
               <p className="text-slate-500 max-w-xl mx-auto">{t.companies.tiersSubtitle}</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="max-w-lg mx-auto grid grid-cols-1 gap-6">
                 {tiers.map((tier) => (
                     <div key={tier.name} className={`relative p-8 bg-slate-950 border rounded-xl transition-all ${tier.popular ? 'border-blue-500/50 shadow-[0_0_30px_rgba(37,99,235,0.15)]' : 'border-slate-800 hover:border-slate-700'}`}>
                         {tier.popular && (
