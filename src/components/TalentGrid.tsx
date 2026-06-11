@@ -50,6 +50,9 @@ const TalentGrid = () => {
                 style={{ width: `${engineLoad}%` }}
               />
             </div>
+            <p className="text-[9px] text-slate-600 mt-2 text-right font-mono">
+              * Simulated load indicator
+            </p>
           </div>
         </div>
 
@@ -87,6 +90,9 @@ const TalentGrid = () => {
         <div className="mt-12 p-8 border border-dashed border-slate-800 rounded-3xl text-center">
             <p className="text-sm text-slate-500 font-mono animate-pulse">
                 SCANNED REGIONS: LATAM-1 (ARG, BRA, COL, MEX) | LATAM-2 (CHL, PER, URY) | TOTAL POOL: 14,281 ENGINEERS
+            </p>
+            <p className="text-[10px] text-slate-600 mt-2 font-mono">
+              Disclaimer: Region tracking and profile counts are simulated demonstration metrics of engine capacity.
             </p>
         </div>
       </div>
