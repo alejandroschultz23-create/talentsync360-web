@@ -661,8 +661,8 @@ const translations: Record<Language, Translations> = {
     },
     companies: {
       badge: 'Para Empresas',
-      title: 'Talento LATAM con screening humano y evaluación de comunicación en inglés.',
-      subtitle: 'Liberación operativa en tu zona horaria.',
+      title: 'Talento LATAM validado para equipos técnicos.',
+      subtitle: 'Shortlists con screening humano, señales técnicas y evaluación de comunicación en inglés.',
       ctaShortlist: 'Solicitar Shortlist',
       ctaMethodology: 'Ver Nuestro Estándar',
       tiersTitle: 'Shortlist Sprint White-Label',
