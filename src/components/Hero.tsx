@@ -26,17 +26,26 @@ const Hero = () => {
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-12 leading-tight tracking-tight">
-            Curated Nearshore Shortlists in 72 Hours.
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-extrabold text-white mb-6 leading-tight tracking-tight">
+            {t.home.heroTitle}
           </h1>
+          <p className="text-base sm:text-lg text-slate-400 mb-12 max-w-xl leading-relaxed">
+            {t.home.heroSubtitle}
+          </p>
 
-          <div className="flex">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
             <Link 
-              href="/companies"
-              className="px-8 py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 group animate-luminous animate-shimmer"
+              href="/contact"
+              className="w-full sm:w-auto px-8 py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 group animate-luminous animate-shimmer"
             >
               {t.home.ctaShortlist}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link 
+              href="/methodology"
+              className="w-full sm:w-auto px-8 py-5 bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-50 rounded-xl font-medium text-lg transition-all flex items-center justify-center"
+            >
+              {t.home.ctaGoldList}
             </Link>
           </div>
         </div>
@@ -48,8 +57,8 @@ const Hero = () => {
               <Zap className="w-6 h-6 text-indigo-500" />
             </div>
             <div>
-              <div className="text-2xl font-bold text-white">72h</div>
-              <p className="text-sm text-slate-500">Shortlist Delivery</p>
+              <div className="text-2xl font-bold text-white">{t.home.heroStat1Value}</div>
+              <p className="text-sm text-slate-500">{t.home.heroStat1Label}</p>
             </div>
           </div>
           <div className="flex items-start gap-4">
@@ -57,8 +66,8 @@ const Hero = () => {
               <ShieldCheck className="w-6 h-6 text-emerald-500" />
             </div>
             <div>
-              <div className="text-2xl font-bold text-white">95%</div>
-              <p className="text-sm text-slate-500">Retention Rate</p>
+              <div className="text-2xl font-bold text-white">{t.home.heroStat2Value}</div>
+              <p className="text-sm text-slate-500">{t.home.heroStat2Label}</p>
             </div>
           </div>
           <div className="flex items-start gap-4">
@@ -66,8 +75,8 @@ const Hero = () => {
               <ArrowRight className="w-6 h-6 text-slate-400 rotate-[-45deg]" />
             </div>
             <div>
-              <div className="text-2xl font-bold text-white">60%</div>
-              <p className="text-sm text-slate-500">Avg. Runway Extension</p>
+              <div className="text-2xl font-bold text-white">{t.home.heroStat3Value}</div>
+              <p className="text-sm text-slate-500">{t.home.heroStat3Label}</p>
             </div>
           </div>
         </div>

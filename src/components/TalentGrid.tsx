@@ -51,7 +51,7 @@ const TalentGrid = () => {
               />
             </div>
             <p className="text-[9px] text-slate-600 mt-2 text-right font-mono">
-              * Simulated load indicator
+              {t.home.talentGridSimulated}
             </p>
           </div>
         </div>
@@ -65,17 +65,17 @@ const TalentGrid = () => {
                 </div>
                 <div className="flex flex-col items-end">
                   <span className="text-[10px] font-mono text-slate-500 uppercase">{t.home.availableEngineTimeLabel}</span>
-                  <span className="text-sm font-bold text-indigo-400">{skill.count} Profiles</span>
+                  <span className="text-sm font-bold text-indigo-400">{skill.count} {t.home.talentGridProfiles}</span>
                 </div>
               </div>
               
               <h4 className="text-lg font-bold text-white mb-2">{skill.name}</h4>
               <div className="flex items-center gap-2 mb-6">
                 <span className="text-xs px-2 py-0.5 rounded bg-slate-900 text-slate-400 border border-slate-800">
-                  {skill.level}
+                  {skill.level === 'Senior' ? t.home.levelSenior : skill.level === 'Expert' ? t.home.levelExpert : t.home.levelArch}
                 </span>
                 <span className="text-xs px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-                  Vetted
+                  {t.home.talentGridVetted}
                 </span>
               </div>
 
@@ -89,10 +89,10 @@ const TalentGrid = () => {
         {/* Dynamic Overlay Placeholder */}
         <div className="mt-12 p-8 border border-dashed border-slate-800 rounded-3xl text-center">
             <p className="text-sm text-slate-500 font-mono animate-pulse">
-                SCANNED REGIONS: LATAM-1 (ARG, BRA, COL, MEX) | LATAM-2 (CHL, PER, URY) | TOTAL POOL: 14,281 ENGINEERS
+                {t.home.talentGridSignalMap}
             </p>
             <p className="text-[10px] text-slate-600 mt-2 font-mono">
-              Disclaimer: Region tracking and profile counts are simulated demonstration metrics of engine capacity.
+              {t.home.talentGridDisclaimer}
             </p>
         </div>
       </div>
