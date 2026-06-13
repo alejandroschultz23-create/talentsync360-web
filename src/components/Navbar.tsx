@@ -15,14 +15,16 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
               <div className="flex items-center gap-3 flex-shrink-0 group">
-                <Image 
-                  src="/logo_oficial.png" 
-                  alt="TalentSync360" 
-                  width={150} 
-                  height={36} 
-                  className="h-5 md:h-9 w-auto object-contain transition-opacity" 
-                  aria-hidden="true" 
-                />
+                <div className="relative w-[83px] md:w-[150px] aspect-[150/36]">
+                  <Image
+                    src="/logo_oficial.png"
+                    alt="TalentSync360"
+                    fill
+                    sizes="(min-width: 768px) 150px, 83px"
+                    className="object-contain transition-opacity"
+                    aria-hidden="true"
+                  />
+                </div>
                 <span className="text-[10px] sm:text-xs md:text-lg tracking-tight md:tracking-[0.15em] text-slate-50 [font-feature-settings:'cv02','cv03','cv04'] uppercase">
                   <span className="font-bold">TalentSync</span>
                   <span className="font-light text-slate-400 ml-0.5">360</span>
