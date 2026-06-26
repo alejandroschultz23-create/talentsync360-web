@@ -15,10 +15,10 @@ const FAQSchema = () => {
       },
       {
         "@type": "Question",
-        "name": "What English proficiency levels are guaranteed?",
+        "name": "How is English proficiency evaluated?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Every talent profile in the TalentSync360 Engine is verified for C1 or C2 English proficiency. Verification includes live conversational testing and technical communication assessments to ensure seamless integration with US and EU teams."
+          "text": "Every candidate undergoes an English communication screening, including live conversational testing and professional writing assessments to ensure team alignment."
         }
       },
       {
@@ -26,7 +26,7 @@ const FAQSchema = () => {
         "name": "What is the typical time to shortlist?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The TalentSync360 Engine delivers curated shortlists of 3-5 candidates within 72 hours of request validation."
+          "text": "The TalentSync360 sourcing sprints are designed for 48-72 hour cycles to deliver curated shortlists of 3-5 candidates for validated briefs."
         }
       }
     ]

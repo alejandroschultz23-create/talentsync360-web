@@ -28,7 +28,7 @@ const FAQS = [
   },
   {
     q: "What is the fee structure for a Sourcing Sprint?",
-    a: "Our model is based on a flat Sourcing Sprint fee of $1,250, which is 100% creditable toward the final hire, ensuring low risk and clear operational pricing."
+    a: "Our model is based on a Shortlist Sprint fee of $1,250 per brief in US outbound trials, where the fee may be credited toward a follow-on engagement if both sides continue."
   }
 ];
 
