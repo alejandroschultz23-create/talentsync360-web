@@ -255,6 +255,48 @@ interface Translations {
     section4Desc: string;
     footer: string;
   };
+  itConsultancies: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    ctaPilot: string;
+    ctaMethodology: string;
+    sectionAudienceTitle: string;
+    sectionAudienceSubtitle: string;
+    audience1Title: string;
+    audience1Desc: string;
+    audience2Title: string;
+    audience2Desc: string;
+    audience3Title: string;
+    audience3Desc: string;
+    sectionWhiteLabelTitle: string;
+    sectionWhiteLabelDesc: string;
+    bullet1Title: string;
+    bullet1Desc: string;
+    bullet2Title: string;
+    bullet2Desc: string;
+    bullet3Title: string;
+    bullet3Desc: string;
+    screenTitle: string;
+    screenBullet1: string;
+    screenBullet2: string;
+    screenBullet3: string;
+    screenBullet4: string;
+    processTitle: string;
+    processSubtitle: string;
+    step1Label: string;
+    step1Title: string;
+    step1Desc: string;
+    step2Label: string;
+    step2Title: string;
+    step2Desc: string;
+    step3Label: string;
+    step3Title: string;
+    step3Desc: string;
+    ctaTitle: string;
+    ctaDesc: string;
+    ctaButton: string;
+  };
 }
 
 const translations: Record<Language, Translations> = {
@@ -283,7 +325,7 @@ const translations: Record<Language, Translations> = {
     home: {
       heroBadge: 'AI SIGNAL OVER NOISE',
       heroTitle: 'Senior LATAM Technical Shortlists for Delivery-Ready Teams.',
-      heroSubtitle: 'Human-screened candidates, technical signals, and timezone-aligned sourcing sprints designed to reduce hiring noise before interviews.',
+      heroSubtitle: 'Human-screened candidates, technical signals, and timezone-aligned sourcing sprints designed for 48-72h shortlist cycles, ensuring AI assists signal extraction while final evaluation remains human-reviewed.',
       ctaShortlist: 'Request a Shortlist',
       ctaGoldList: 'See Our Vetting Standard',
       heroStat1Value: '72h',
@@ -307,7 +349,7 @@ const translations: Record<Language, Translations> = {
       trustTitle: 'Vetting Standard',
       trust1Value: '72h',
       trust1Label: 'Shortlist Sprints',
-      trust1Desc: 'Sprints designed to map, screen, and deliver top-tier candidates rapidly.',
+      trust1Desc: 'Sprints designed for 48-72h shortlist cycles with a 72h target SLA for validated briefs.',
       trust2Value: '360°',
       trust2Label: 'Vetting Matrix',
       trust2Desc: 'Rigorous technical assessments, communication screenings, and culture fit evaluations.',
@@ -324,7 +366,7 @@ const translations: Record<Language, Translations> = {
       talentGridProfiles: 'Profiles',
       talentGridVetted: 'Vetted',
       talentGridSimulated: '* Simulated load indicator',
-      talentGridDisclaimer: 'Disclaimer: Region tracking and profile counts are simulated demonstration metrics of engine capacity.',
+      talentGridDisclaimer: 'Disclaimer: Region tracking and profile counts are simulated demonstration metrics of engine capacity. TalentSync360 does not make automated hiring decisions. AI assists signal extraction, rubric mapping, and shortlist preparation. Final evaluation remains human-reviewed and client-controlled.',
       talentGridSignalMap: 'DEMONSTRATION SIGNAL MAP | SCANNED REGIONS: LATAM-1 (ARG, BRA, COL, MEX) | LATAM-2 (CHL, PER, URY)',
       levelSenior: 'Senior',
       levelExpert: 'Expert',
@@ -345,7 +387,7 @@ const translations: Record<Language, Translations> = {
       },
       faqTitle: 'Frequently Asked Questions',
       faqClients: [
-        { q: "How much does the service cost?", a: "Our model is based on the Shortlist Sprint of 1,250 EUR/USD (100% creditable to the final hire), guaranteeing technical quality with no hidden entry costs." },
+        { q: "How much does the service cost?", a: "Our model offers a Shortlist Sprint of €1,250 / $1,250 per brief (where the fee may be credited toward a follow-on engagement if both sides continue) and a 30-day Validation Pilot package." },
         { q: "How long to receive a shortlist?", a: "Usually within 2 to 5 business days, depending on the role complexity." },
         { q: "What's the replacement guarantee?", a: "Our processes include a 90-day replacement guarantee at no additional cost. At TalentSync360, we are committed to the long-term success of the hire, ensuring a match that transcends technical skills and aligns with your company's culture." },
         { q: "How do you verify English levels?", a: "Every candidate undergoes an English communication screening and a professional writing assessment." },
@@ -390,15 +432,15 @@ const translations: Record<Language, Translations> = {
       ctaShortlist: 'Request Shortlist',
       ctaMethodology: 'See Our Standard',
       tiersTitle: 'Shortlist Sprint White-Label',
-      tiersSubtitle: 'A single, powerful solution. A technical validation fee 100% creditable to the final hire.',
+      tiersSubtitle: 'A single, powerful solution. A technical validation fee that can be credited toward a follow-on engagement.',
       sprintTitle: 'Shortlist Sprint',
-      sprintPrice: '1,250 EUR/USD',
+      sprintPrice: '€1,250 / $1,250',
       sprintCandidates: '3-5 senior candidates',
       sprintSla: '72 hours',
       sprintIncludes: [
-        '100% creditable to final hire',
+        'Fee may be credited toward follow-on engagement',
         'Vetted senior candidates',
-        'Delivered in 72h or the sprint is free',
+        'Target SLA of 72 hours for validated briefs',
         'Argentina Power (LATAM hub)',
       ],
       replacementGuarantee: 'Replacement guarantee included',
@@ -533,6 +575,48 @@ const translations: Record<Language, Translations> = {
       section4Desc: 'You have the right to request access to, correction of, or deletion of your personal data at any time. To exercise these rights, please contact us at privacy@talentsync360.com.',
       footer: 'Last Updated: April',
     },
+    itConsultancies: {
+      badge: 'For IT Consultancies',
+      title: 'White-Label Developer Shortlists for Spanish IT Consultancies',
+      subtitle: 'Accelerate client brief delivery and resolve project overflow with human-reviewed white-label developer shortlists. Designed for 48-72h shortlist cycles with timezone overlap.',
+      ctaPilot: 'Request a Validation Pilot',
+      ctaMethodology: 'See Our Vetting Standard',
+      sectionAudienceTitle: 'Who This Is For',
+      sectionAudienceSubtitle: 'Custom sourcing pipelines for software consultancies and systems integrators in Spain.',
+      audience1Title: 'White-Label Integration',
+      audience1Desc: 'Present our candidate profiles under your own brand. We operate as an invisible sourcing engine behind your client engagements.',
+      audience2Title: 'Resolve Project Overflow',
+      audience2Desc: 'Don\'t turn down client briefs due to delivery constraints. Get validated LATAM developers matching your project timeline.',
+      audience3Title: 'Fast response to client briefs',
+      audience3Desc: 'Reduce sourcing cycles to win contracts. Sprints target a 72h shortlist delivery SLA for validated briefs.',
+      sectionWhiteLabelTitle: 'White-Label Sourcing Motor',
+      sectionWhiteLabelDesc: 'TalentSync360 operates as a white-label partner to accelerate client project delivery without sourcing overhead.',
+      bullet1Title: 'Seamless White-Label Presentation',
+      bullet1Desc: 'We provide structured scorecards that you can white-label and present directly to your clients as internal capability.',
+      bullet2Title: 'Technical scorecards & English checks',
+      bullet2Desc: 'Every developer undergoes rigorous technical screening criteria and English communication screening before introduction.',
+      bullet3Title: 'Structured feedback loop',
+      bullet3Desc: 'We coordinate with your delivery managers to align shortlist parameters and technical skills directly with your client\'s stack.',
+      screenTitle: 'Rigorous Vetting Before Delivery',
+      screenBullet1: 'Detailed soft-skills behavioral and team alignment evaluations.',
+      screenBullet2: 'English communication screening (oral and written proficiency).',
+      screenBullet3: 'Technical screening criteria checks reviewed by senior engineers.',
+      screenBullet4: 'Final evaluation remains human-reviewed and client-controlled.',
+      processTitle: 'The Validation Pilot Workflow',
+      processSubtitle: 'High-speed White-label technical recruitment, optimized for consultancy delivery teams.',
+      step1Label: '01 Brief Intake',
+      step1Title: 'Stack & KPI Mapping',
+      step1Desc: 'Define client requirements, tech stack, and role KPIs. Sourcing feasibility is confirmed within 24 hours.',
+      step2Label: '02 AI-Assisted Screening',
+      step2Title: 'Signal Extraction',
+      step2Desc: 'AI-assisted signal extraction and human-reviewed shortlist preparation ensures candidates match your technical vetting criteria.',
+      step3Label: '03 White-Label Delivery',
+      step3Title: 'Evidence scorecards',
+      step3Desc: 'Receive 3 to 5 candidate shortlists with technical scorecards, ready to present as your own talent.',
+      ctaTitle: 'Request a Validation Pilot',
+      ctaDesc: '€2,500 in Spain/EU or $2,500 in US outbound trials for a 2-brief validation pilot over 30 days. Pilot fee can be credited toward a follow-on retainer or expanded sprint package if both sides continue.',
+      ctaButton: 'Book a Pilot Discovery Call',
+    },
   },
   es: {
     nav: {
@@ -559,7 +643,7 @@ const translations: Record<Language, Translations> = {
     home: {
       heroBadge: 'IA CON CRITERIO, NO AL AZAR',
       heroTitle: 'Shortlists senior LATAM para equipos de delivery.',
-      heroSubtitle: 'Screening humano, señales técnicas y sourcing alineado con tu zona horaria para reducir ruido antes de entrevistar.',
+      heroSubtitle: 'Screening humano, señales técnicas y sourcing alineado en zona horaria diseñado para ciclos de 48-72h, donde la IA asiste en la extracción de señales y la evaluación final es revisada por humanos.',
       ctaShortlist: 'Solicitar una Shortlist',
       ctaGoldList: 'Ver nuestro estándar de validación',
       heroStat1Value: '72h',
@@ -583,7 +667,7 @@ const translations: Record<Language, Translations> = {
       trustTitle: 'Estándar de Validación',
       trust1Value: '72h',
       trust1Label: 'Sprints de Shortlist',
-      trust1Desc: 'Sprints diseñados para mapear, evaluar y entregar candidatos de primer nivel rápidamente.',
+      trust1Desc: 'Sprints diseñados para ciclos de 48-72h con un SLA objetivo de 72h para briefs validados.',
       trust2Value: '360°',
       trust2Label: 'Matriz de Validación',
       trust2Desc: 'Evaluaciones técnicas rigurosas, screening de comunicación y fit cultural.',
@@ -600,7 +684,7 @@ const translations: Record<Language, Translations> = {
       talentGridProfiles: 'perfiles',
       talentGridVetted: 'Validado',
       talentGridSimulated: '* Indicador simulado de carga',
-      talentGridDisclaimer: 'Nota: El seguimiento de regiones y recuentos de perfiles son métricas de simulación de la capacidad del motor.',
+      talentGridDisclaimer: 'Nota: El seguimiento de regiones y recuentos de perfiles son métricas de simulación de la capacidad del motor. TalentSync360 no toma decisiones automatizadas de contratación. La IA asiste en la extracción de señales, mapeo de rúbricas y preparación de shortlists. La evaluación final es revisada por humanos y controlada por el cliente.',
       talentGridSignalMap: 'MAPA DE SEÑALES DE DEMOSTRACIÓN | REGIONES ESCANEADAS: LATAM-1 (ARG, BRA, COL, MEX) | LATAM-2 (CHL, PER, URY)',
       levelSenior: 'Senior',
       levelExpert: 'Experto',
@@ -621,10 +705,10 @@ const translations: Record<Language, Translations> = {
       },
       faqTitle: 'Preguntas Frecuentes',
       faqClients: [
-        { q: "¿Cuál es el costo del servicio?", a: "Nuestro modelo se basa en el Shortlist Sprint de 1.250 EUR/USD (100% acreditable a la contratación final), garantizando calidad técnica sin costos ocultos de entrada." },
+        { q: "¿Cuál es el costo del servicio?", a: "Nuestro modelo ofrece un Shortlist Sprint de €1.250 / $1.250 por brief (donde el fee se puede acreditar a un engagement de seguimiento si ambas partes continúan) y un plan de Piloto de Validación de 30 días." },
         { q: "¿Cuánto tiempo toma recibir la shortlist?", a: "Normalmente entre 2 y 5 días hábiles, según la complejidad del rol." },
         { q: "¿Qué pasa si no me gusta ningún candidato?", a: "Nuestros procesos cuentan con una garantía de reemplazo de 90 días sin costo adicional. En TalentSync360 nos comprometemos con el éxito a largo plazo de la contratación, asegurando un match que trascienda lo técnico y se alinee con la cultura de tu empresa." },
-        { q: "¿Cómo verifican el nivel de inglés?", a: "Cada candidato pasa por una evaluación de comunicación en inglés y una evaluación de redacción profesional." },
+        { q: "¿Cómo verifcan el nivel de inglés?", a: "Cada candidato pasa por una evaluación de comunicación en inglés y una evaluación de redacción profesional." },
         { q: "¿Puedo contratar a más de un candidato?", a: "Sí. Podés escalar tu equipo solicitando múltiples shortlists o contratando varios finalistas." }
       ],
       faqTalents: [
@@ -666,15 +750,15 @@ const translations: Record<Language, Translations> = {
       ctaShortlist: 'Solicitar Shortlist',
       ctaMethodology: 'Ver Nuestro Estándar',
       tiersTitle: 'Shortlist Sprint White-Label',
-      tiersSubtitle: 'Una única y potente solución. Un fee de validación técnica 100% acreditable a la contratación final.',
+      tiersSubtitle: 'Una estructura de precios simple y clara. El fee del sprint y del piloto se pueden acreditar a un engagement de seguimiento.',
       sprintTitle: 'Shortlist Sprint',
-      sprintPrice: '1.250 EUR/USD',
+      sprintPrice: '€1.250 / $1.250',
       sprintCandidates: '3-5 candidatos senior',
       sprintSla: '72 horas',
       sprintIncludes: [
-        '100% acreditable a la contratación final',
-        'Candidatos senior veteados en 72 horas',
-        'O el sprint es gratis',
+        'El fee se puede acreditar a un engagement de seguimiento',
+        'Candidatos senior con screening de comunicación y técnico',
+        'SLA objetivo de 72 horas para briefs validados',
         'Argentina Power (hub LATAM)',
       ],
       replacementGuarantee: 'Garantía de reemplazo',
@@ -808,6 +892,48 @@ const translations: Record<Language, Translations> = {
       section4Title: '4. Tus Derechos',
       section4Desc: 'Tienes derecho a solicitar acceso, correccion o eliminacion de tus datos personales en cualquier momento. Para ejercer estos derechos, contactanos en privacy@talentsync360.com.',
       footer: 'Ultima Actualizacion: Abril',
+    },
+    itConsultancies: {
+      badge: 'Para Consultoras IT',
+      title: 'Shortlists técnicos white-label para consultoras IT en España',
+      subtitle: 'Entrega más rápido perfiles técnicos revisados para briefs de clientes, sin convertir la IA en una decisión automática de contratación.',
+      ctaPilot: 'Solicitar un Piloto de Validación',
+      ctaMethodology: 'Ver Nuestro Estándar',
+      sectionAudienceTitle: 'Para Quién Es Esto',
+      sectionAudienceSubtitle: 'Pipelines de sourcing personalizados para consultoras de software e integradores de sistemas en España.',
+      audience1Title: 'Integración Marca Blanca',
+      audience1Desc: 'Presenta los perfiles de nuestros candidatos bajo tu propia marca. Operamos como un motor de sourcing invisible detrás de tus proyectos.',
+      audience2Title: 'Resolver Desbordes de Proyectos',
+      audience2Desc: 'No rechaces briefs de clientes debido a limitaciones de entrega. Consigue desarrolladores LATAM validados que coincidan con tu cronograma.',
+      audience3Title: 'Respuesta Rápida a Briefs de Clientes',
+      audience3Desc: 'Reduce los ciclos de búsqueda para ganar contratos. Los sprints apuntan a un SLA de entrega de shortlist de 72 horas para briefs validados.',
+      sectionWhiteLabelTitle: 'Motor de Sourcing Marca Blanca',
+      sectionWhiteLabelDesc: 'TalentSync360 opera como un socio de marca blanca para acelerar la entrega de proyectos de clientes sin sobrecostos de reclutamiento.',
+      bullet1Title: 'Presentación Marca Blanca Impecable',
+      bullet1Desc: 'Proporcionamos scorecards estructurados que puedes personalizar y presentar directamente a tus clientes como capacidad interna.',
+      bullet2Title: 'Scorecards Técnicos y Pruebas de Inglés',
+      bullet2Desc: 'Cada desarrollador pasa por criterios rigurosos de screening técnico y evaluación de comunicación en inglés antes de su presentación.',
+      bullet3Title: 'Feedback Continuo y Estructurado',
+      bullet3Desc: 'Nos coordinamos con tus directores de delivery para alinear los parámetros de la shortlist y las habilidades técnicas directamente con el stack del cliente.',
+      screenTitle: 'Vetting Riguroso Antes de la Entrega',
+      screenBullet1: 'Evaluaciones detalladas de habilidades blandas y alineación de equipos.',
+      screenBullet2: 'Screening de comunicación en inglés (fluidez oral y escrita).',
+      screenBullet3: 'Screening técnico humano revisado por ingenieros senior.',
+      screenBullet4: 'La evaluación final es revisada por humanos y controlada por el cliente.',
+      processTitle: 'Flujo de Trabajo del Piloto de Validación',
+      processSubtitle: 'Reclutamiento técnico de marca blanca a alta velocidad, optimizado para equipos de entrega de consultoras.',
+      step1Label: '01 Brief Intake',
+      step1Title: 'Mapeo de Stack y KPIs',
+      step1Desc: 'Define los requisitos del cliente, el stack tecnológico y los KPIs del rol. La viabilidad del sourcing se confirma en 24 horas.',
+      step2Label: '02 Screening Asistido por IA',
+      step2Title: 'Extracción de Señales',
+      step2Desc: 'La extracción de señales asistida por IA y la preparación de shortlists revisadas por humanos aseguran que los candidatos cumplan con tus criterios de vetting.',
+      step3Label: '03 Entrega Marca Blanca',
+      step3Title: 'Scorecards de Evidencia',
+      step3Desc: 'Recibe shortlists de 3 a 5 candidatos con scorecards técnicos detallados, listos para presentar como talento propio.',
+      ctaTitle: 'Solicitar un Piloto de Validación',
+      ctaDesc: '€2.500 en España/UE o $2.500 en pruebas outbound en EE. UU. para un piloto de validación de 2 briefs durante 30 días. El fee del piloto puede acreditarse a un retainer de seguimiento o a un paquete de sprints ampliado si ambas partes continúan.',
+      ctaButton: 'Reservar Llamada de Descubrimiento de Piloto',
     },
   },
 };

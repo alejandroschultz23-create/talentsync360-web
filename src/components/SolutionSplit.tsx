@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Building2, Rocket, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { SolutionModal } from "./SolutionModals";
@@ -43,13 +44,13 @@ const SolutionSplit = () => {
                 </li>
               </ul>
               
-              <button 
-                onClick={() => setActiveModal("white-label")}
+              <Link 
+                href="/en/it-consultancies-spain"
                 className="text-indigo-400 font-medium flex items-center gap-2 group-hover:text-indigo-300 transition-colors cursor-pointer"
               >
                 {t.home.solutionSplit.consultancyCta}
                 <Rocket className="w-4 h-4 text-indigo-500/50" />
-              </button>
+              </Link>
             </div>
           </div>
 
