@@ -297,6 +297,11 @@ interface Translations {
     ctaDesc: string;
     ctaButton: string;
   };
+  whatsapp: {
+    buttonLabel: string;
+    prefilledMessage: string;
+    tooltip: string;
+  };
 }
 
 const translations: Record<Language, Translations> = {
@@ -617,6 +622,11 @@ const translations: Record<Language, Translations> = {
       ctaDesc: '€2,500 in Spain/EU or $2,500 in US outbound trials for a 2-brief validation pilot over 30 days. Pilot fee can be credited toward a follow-on retainer or expanded sprint package if both sides continue.',
       ctaButton: 'Book a Pilot Discovery Call',
     },
+    whatsapp: {
+      buttonLabel: 'Talk to TalentSync360',
+      prefilledMessage: 'Hi TalentSync360, I’d like to ask about your LATAM tech talent network.',
+      tooltip: 'Open a manual WhatsApp chat session with a TalentSync360 representative',
+    },
   },
   es: {
     nav: {
@@ -934,6 +944,11 @@ const translations: Record<Language, Translations> = {
       ctaTitle: 'Solicitar un Piloto de Validación',
       ctaDesc: '€2.500 en España/UE o $2.500 en pruebas outbound en EE. UU. para un piloto de validación de 2 briefs durante 30 días. El fee del piloto puede acreditarse a un retainer de seguimiento o a un paquete de sprints ampliado si ambas partes continúan.',
       ctaButton: 'Reservar Llamada de Descubrimiento de Piloto',
+    },
+    whatsapp: {
+      buttonLabel: 'Hablar con TalentSync360',
+      prefilledMessage: 'Hola TalentSync360, quiero hacer una consulta sobre su red de talento tech LATAM.',
+      tooltip: 'Abrir una sesión de chat manual de WhatsApp con un representante de TalentSync360',
     },
   },
 };
