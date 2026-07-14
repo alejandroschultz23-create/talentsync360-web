@@ -1,20 +1,32 @@
 import React from 'react';
 import HomeClient from './HomeClient';
+import FAQSchema from '@/components/FAQSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Decision-Ready LATAM Technical Shortlists",
-  description: "Get decision-ready LATAM technical shortlists in 72 hours. Our sourcing sprints combine human vetting, English communication screening, and a structured 360° Fit Matrix.",
+  title: "White-Label LATAM Technical Shortlists for IT Consultancies | TalentSync360",
+  description: "Scale your agency with white-label, human-reviewed LATAM developer shortlists. Our sourcing sprints deliver technically screened, decision-ready finalists under your own brand.",
   alternates: {
     canonical: "https://www.talentsync360.com/",
   },
   openGraph: {
-    title: "TalentSync360 | Decision-Ready LATAM Technical Shortlists",
-    description: "Get decision-ready LATAM technical shortlists in 72 hours. Our sourcing sprints combine human vetting, English communication screening, and a structured 360° Fit Matrix.",
+    title: "White-Label LATAM Developer Shortlists for IT Consultancies | TalentSync360",
+    description: "Scale your agency with white-label, human-reviewed LATAM developer shortlists. Our sourcing sprints deliver technically screened, decision-ready finalists under your own brand.",
     url: "https://www.talentsync360.com/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "White-Label LATAM Developer Shortlists for IT Consultancies | TalentSync360",
+    description: "Scale your agency with white-label, human-reviewed LATAM developer shortlists. Our sourcing sprints deliver technically screened, decision-ready finalists under your own brand.",
   }
 };
 
 export default function Page() {
-  return <HomeClient />;
+  return (
+    <>
+      <FAQSchema />
+      <HomeClient />
+    </>
+  );
 }

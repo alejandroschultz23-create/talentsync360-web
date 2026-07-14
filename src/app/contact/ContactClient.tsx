@@ -12,6 +12,8 @@ function ContactForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const [isShortlistSprint, setIsShortlistSprint] = useState(false);
+
   useEffect(() => {
     const tipo = searchParams.get('tipo');
     if (tipo === 'talent') {
@@ -21,6 +23,9 @@ function ContactForm() {
     } else {
       setContactType('b2b');
     }
+
+    const intent = searchParams.get('intent');
+    setIsShortlistSprint(intent === 'shortlist-sprint');
   }, [searchParams]);
 
   const isTalent = contactType === 'talent';
@@ -33,12 +38,12 @@ function ContactForm() {
 
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
-    
+
     try {
       const res = await fetch('/api/send?t=' + Date.now(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           ...data,
           contactType,
           lang: lang,
@@ -49,7 +54,7 @@ function ContactForm() {
       if (!res.ok) {
         throw new Error(`Server returned ${res.status}`);
       }
-      
+
       setIsSuccess(true);
     } catch (err: unknown) {
       console.error('Submission error:', err);
@@ -67,9 +72,9 @@ function ContactForm() {
                 {isTalent ? (t.contact.titleTalent || t.contact.title) : t.contact.title}
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
-                {isTalent 
+                {isTalent
                   ? (t.contact.subtitleTalent || t.contact.subtitle)
-                  : isGeneral 
+                  : isGeneral
                     ? (t.contact.subtitleGeneral || t.contact.subtitle)
                     : t.contact.subtitle}
             </p>
@@ -78,7 +83,7 @@ function ContactForm() {
 
       <section className="bg-slate-900/50 py-16 mb-24 max-w-4xl mx-auto rounded-3xl border border-slate-800 shadow-2xl p-6 sm:p-12 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-600 to-transparent"></div>
-          
+
           {isSuccess ? (
             <div className="text-center py-12 space-y-6 animate-fade-in">
               <div className="w-20 h-20 bg-blue-600/20 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-8">
@@ -88,7 +93,7 @@ function ContactForm() {
               </div>
               <h3 className="text-2xl font-bold text-white">Message Sent!</h3>
               <p className="text-slate-400 max-w-sm mx-auto">We&apos;ve received your inquiry and will get back to you within 24 hours.</p>
-              <button 
+              <button
                 onClick={() => setIsSuccess(false)}
                 className="text-blue-500 font-semibold hover:text-blue-400 transition-colors"
                 type="button"
@@ -97,7 +102,24 @@ function ContactForm() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+             <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+                {isShortlistSprint && (
+                  <div className="p-5 rounded-2xl border border-blue-500/20 bg-blue-500/10 text-blue-300 text-sm font-semibold flex flex-col items-start gap-2">
+                    <div className="flex items-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 flex-shrink-0 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l5-5z" clipRule="evenodd" />
+                      </svg>
+                      <span className="font-bold">
+                        {lang === 'es' ? 'Intake de Shortlist Sprint' : 'Shortlist Sprint intake'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 font-light mt-1 leading-relaxed">
+                      {lang === 'es'
+                        ? 'Estás solicitando la evaluación de un brief técnico activo. Compartí el rol, stack, seniority, contexto de entrega y plazo esperado para que podamos validar la viabilidad de la shortlist.'
+                        : 'You are requesting an evaluation for an active technical brief. Share the role, stack, seniority, delivery context and expected timeline so we can validate shortlist feasibility.'}
+                    </p>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-2">
                         <label htmlFor="firstName" className="text-sm font-semibold text-slate-300">{t.contact.labelFirstName}</label>
@@ -168,8 +190,8 @@ function ContactForm() {
                     </div>
                   </div>
                 )}
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={isSubmitting}
                   className={`w-full bg-blue-600 hover:bg-blue-700 text-white px-4 md:px-8 py-4 md:py-5 rounded-lg font-bold text-sm md:text-xl transition-all shadow-xl shadow-blue-600/20 active:scale-[0.98] flex items-center justify-center ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
@@ -195,10 +217,10 @@ function ContactForm() {
       {!isTalent && (
         <div className="text-center mb-32 group">
             <p className="text-slate-500 mb-6 font-bold uppercase tracking-[0.2em] text-xs">{t.contact.directLabel}</p>
-              <a 
-                href="https://calendly.com/alejandroschultz23/ts360-discovery-con-empresas-30-min" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://calendly.com/alejandroschultz23/ts360-discovery-con-empresas-30-min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center px-10 py-6 bg-slate-950 border border-slate-800 rounded-2xl text-slate-50 font-bold text-xl hover:border-blue-600/50 hover:bg-slate-900 transition-all shadow-xl"
               >
                 {t.contact.ctaButton}
