@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function WhiteLabelDemo() {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
   const demo = t.home.demo;
 
   const [selectedIdx, setSelectedIdx] = useState(0);
@@ -21,7 +21,7 @@ export default function WhiteLabelDemo() {
     return (
       <section id="white-label-demo" className="py-24 bg-slate-950 border-t border-white/5 min-h-[600px] flex items-center justify-center">
         <div className="text-slate-400 font-light">
-          {lang === 'es' ? 'Cargando demo...' : 'Loading white-label demo...'}
+          {demo.loadingDemo}
         </div>
       </section>
     );
@@ -231,7 +231,7 @@ export default function WhiteLabelDemo() {
                     <ul className="space-y-2 text-xs text-slate-400 font-light">
                       <li className="flex items-center gap-2 text-rose-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-                        {lang === 'es' ? 'Riesgo / Desvío:' : 'Uncertainty:'} {currentCandidate.risk}
+                        {demo.riskLabel} {currentCandidate.risk}
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />

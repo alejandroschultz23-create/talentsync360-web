@@ -102,6 +102,8 @@ export interface Translations {
       labelGap: string;
       labelNote: string;
       labelQuestion: string;
+      loadingDemo: string;
+      riskLabel: string;
       candidates: {
         name: string;
         country: string;
@@ -494,7 +496,7 @@ export const translations: Record<Language, Translations> = {
       sprint: {
         eyebrow: 'Primary Offer',
         title: 'One active brief. One focused Sprint. One client-ready shortlist.',
-        desc: 'We focus our screening engine on a single operational profile to deliver high-quality candidate matches directly to your team. No monthly overhead, no retainer lock-in. Just velocity.',
+        desc: 'We focus sourcing and evaluation on one validated technical brief to deliver 3–5 finalists with comparable evidence and human review.',
         cta: 'Validate your brief',
         specsTitle: 'Sprint Specifications',
         specsStatus: 'STATUS: READY',
@@ -535,13 +537,15 @@ export const translations: Record<Language, Translations> = {
         readyPrompt: 'Ready to request the candidate file?',
         clientBrandingActive: 'CLIENT BRANDING APPLIED',
         btnInterview: 'Book Final Interview',
-        embedNote: 'In client presentation mode, TalentSync360 branding is hidden. Candidates can be embedded on your site or shared via link under NovaTech Consulting branding.',
+        embedNote: 'Sample client-facing presentation using the fictional NovaTech Consulting identity.',
         labelRequirement: 'Role Requirement',
         labelEvidence: 'Candidate Evidence',
         labelRationale: 'Match Rationale',
         labelGap: 'Identified Gap',
         labelNote: 'Reviewer Note',
         labelQuestion: 'Recommended Interview Question',
+        loadingDemo: 'Loading white-label demo...',
+        riskLabel: 'Uncertainty:',
         candidates: [
           {
             name: 'Candidate A.R.',
@@ -556,7 +560,7 @@ export const translations: Record<Language, Translations> = {
             status: 'Human review completed',
             rationale: 'Candidate has built scalable Node.js microservices. Deep understanding of async communication.',
             gap: 'No serverless framework usage; needs minor onboarding on AWS Lambda.',
-            note: 'Exceptional communication. Highly proactive. Tech stack matches 90% of the core B2B platform.',
+            note: 'Exceptional communication. Highly proactive. The stack aligns strongly with the core B2B platform requirements.',
             question: 'Can you explain a scenario where you optimized a SQL query that was blocking a database connection in Node.js?',
           },
           {
@@ -600,15 +604,15 @@ export const translations: Record<Language, Translations> = {
         step1Desc: 'Define the stack, seniority, project context, timezone, language requirements and non-negotiables.',
         step2Title: '2. Screen and review',
         step2Desc: 'Talent signals are structured with AI assistance and reviewed by a senior human before delivery.',
-        step3Title: '3. Present under your brand',
-        step3Desc: 'Receive a structured shortlist and share it with your client through a professional white-label experience.',
+        step3Title: '3. Review or present the shortlist',
+        step3Desc: 'Consultancies and partners can use the white-label presentation. Direct employers receive a structured decision workspace.',
       },
 
       evidence: {
         eyebrow: 'Deliverable Evidence',
         title: 'What you actually receive',
         desc: 'We compile structured evidence for every finalist candidate. Instead of generic CVs, your delivery managers receive a complete decision package containing raw vetting signals, enabling you to present verified technical capability to your final client.',
-        disclaimer: 'We focus on presenting verified signals. TalentSync360 does not provide automated candidate selection, perfect matches, or particular levels of English. All profiles are human-reviewed to support your own delivery decisions.',
+        disclaimer: 'TalentSync360 does not make automated hiring decisions, guarantee perfect matches or certify a specific English level. Every shortlist is reviewed by a human before delivery.',
         items: [
           'Candidate executive summary',
           'Requirement-by-requirement match',
@@ -641,8 +645,8 @@ export const translations: Record<Language, Translations> = {
       },
 
       finalCta: {
-        title: 'Have an active client brief?',
-        desc: 'Validate the role, delivery target and shortlist feasibility before your team spends senior hours screening candidates.',
+        title: 'Do you have an active technical talent need?',
+        desc: 'Validate the role, context and shortlist feasibility before investing senior hours in screening.',
         cta: 'Request a Shortlist Sprint',
       },
 
@@ -793,7 +797,7 @@ export const translations: Record<Language, Translations> = {
       stage2Desc: 'Solve a hypothetical case via email under time pressure. We evaluate writing quality, executive tone, and analytical capacity.',
       stage3Label: 'Stage 3: Work Sample',
       stage3Title: 'Real-World Task',
-      stage3Desc: 'A role-specific technical task (QA, Support, Design, Content). If you pass the scorecard, you enter the Gold List permanently.',
+      stage3Desc: 'Una tarea tecnica específica del rol (QA, Soporte, Diseno, Contenido). If you pass the scorecard, you enter the Gold List permanently.',
       benefitTitle: 'Benefits for Gold List Members',
       benefit1Num: '01',
       benefit1Title: 'High-Level Exposure',
@@ -1010,7 +1014,7 @@ export const translations: Record<Language, Translations> = {
       sprint: {
         eyebrow: 'Oferta Principal',
         title: 'Un brief activo. Un Sprint enfocado. Una shortlist lista para tu cliente.',
-        desc: 'Enfocamos nuestro motor de evaluación en un único perfil operativo para entregar candidatos de alta calidad directamente a tu equipo. Sin costos mensuales ni retenciones fijas. Velocidad pura.',
+        desc: 'Concentramos la búsqueda y la evaluación en un brief técnico validado para entregar entre 3 y 5 finalistas con evidencia comparable y revisión humana.',
         cta: 'Validar mi brief',
         specsTitle: 'Especificaciones del Sprint',
         specsStatus: 'ESTADO: LISTO',
@@ -1051,13 +1055,15 @@ export const translations: Record<Language, Translations> = {
         readyPrompt: '¿Listo para solicitar el archivo del candidato?',
         clientBrandingActive: 'BRANDING DE CLIENTE APLICADO',
         btnInterview: 'Reservar Entrevista Final',
-        embedNote: 'En el modo de presentación al cliente, se oculta la marca de TalentSync360. Los candidatos se pueden incrustar en tu sitio o compartir mediante un enlace bajo la marca de NovaTech Consulting.',
+        embedNote: 'Vista de presentación de muestra bajo la identidad ficticia de NovaTech Consulting.',
         labelRequirement: 'Requisito del Rol',
         labelEvidence: 'Evidencia del Candidato',
         labelRationale: 'Justificación de Match',
         labelGap: 'Brecha Identificada',
         labelNote: 'Nota del Evaluador',
         labelQuestion: 'Pregunta de Entrevista Recomendada',
+        loadingDemo: 'Cargando demo...',
+        riskLabel: 'Riesgo / Desvío:',
         candidates: [
           {
             name: 'Candidato A.R.',
@@ -1072,7 +1078,7 @@ export const translations: Record<Language, Translations> = {
             status: 'Evidencia técnica revisada',
             rationale: 'El candidato ha construido microservicios escalables en Node.js. Comprensión profunda de comunicación asíncrona.',
             gap: 'Sin uso del framework serverless; necesita un onboarding menor en AWS Lambda.',
-            note: 'Comunicación excepcional. Altamente proactivo. El stack tecnológico coincide en un 90% con la plataforma B2B principal.',
+            note: 'Comunicación excepcional. Altamente proactivo. El stack presenta una alineación sólida con los requisitos principales de la plataforma B2B.',
             question: '¿Podrías explicar un escenario donde optimizaste una consulta SQL que estaba bloqueando conexiones a la base de datos en Node.js?',
           },
           {
@@ -1116,15 +1122,15 @@ export const translations: Record<Language, Translations> = {
         step1Desc: 'Define el stack, seniority, contexto del proyecto, zona horaria, requisitos de idioma y no negociables.',
         step2Title: '2. Evaluar y revisar',
         step2Desc: 'Las señales de talento se estructuran con asistencia de IA y son revisadas por un ingeniero senior antes de la entrega.',
-        step3Title: '3. Presentar bajo tu marca',
-        step3Desc: 'Recibe una shortlist estructurada y compártela con tu cliente a través de una experiencia profesional de marca blanca.',
+        step3Title: '3. Revisá o presentá la shortlist',
+        step3Desc: 'Las consultoras y partners pueden utilizar la presentación white-label. Las empresas que contratan directamente reciben un workspace estructurado para decidir.',
       },
 
       evidence: {
         eyebrow: 'Evidencia Entregable',
         title: 'Qué recibes realmente',
         desc: 'Compilamos evidencia estructurada para cada candidato finalista. En lugar de CVs genéricos, tus directores de delivery reciben un paquete completo de decisión con señales de evaluación reales, lo que te permite presentar capacidades técnicas verificadas a tu cliente final.',
-        disclaimer: 'Nos enfocamos en presentar señales verificadas. TalentSync360 no proporciona selección automatizada de candidatos, coincidencias perfectas ni niveles de inglés específicos. Todos los perfiles son revisados por humanos para respaldar tus propias decisiones de entrega.',
+        disclaimer: 'TalentSync360 no toma decisiones automatizadas de contratación, no garantiza coincidencias perfectas ni certifica un nivel específico de inglés. Cada shortlist es revisada por una persona antes de su entrega.',
         items: [
           'Resumen ejecutivo del candidato',
           'Match requisito por requisito',
@@ -1157,8 +1163,8 @@ export const translations: Record<Language, Translations> = {
       },
 
       finalCta: {
-        title: '¿Tienes un brief de cliente activo?',
-        desc: 'Valida el rol, el plazo de entrega y la viabilidad del sourcing antes de que tu equipo gaste valiosas horas senior evaluando candidatos.',
+        title: '¿Tenés una necesidad activa de talento técnico?',
+        desc: 'Validá el rol, el contexto y la viabilidad de la shortlist antes de invertir horas senior en screening.',
         cta: 'Solicitar un Sprint de Shortlist',
       },
 
@@ -1309,7 +1315,7 @@ export const translations: Record<Language, Translations> = {
       stage2Desc: 'Resuelve un caso hipotetico por email bajo presion de tiempo. Evaluamos calidad de escritura, tono ejecutivo y capacidad analitica.',
       stage3Label: 'Etapa 3: Muestra de Trabajo',
       stage3Title: 'Tarea del Mundo Real',
-      stage3Desc: 'Una tarea tecnica específica del rol (QA, Soporte, Diseno, Contenido). Si pasas el scorecard, entras a la Gold List permanentemente.',
+      stage3Desc: 'Una tarea tecnica específica del rol (QA, Soporte, Diseno, Contenido). If you pass the scorecard, you enter the Gold List permanently.',
       benefitTitle: 'Beneficios para Miembros de la Gold List',
       benefit1Num: '01',
       benefit1Title: 'Exposicion de Alto Nivel',
