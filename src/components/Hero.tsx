@@ -41,21 +41,27 @@ const Hero = () => {
             {t.home.heroSubtitle}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/contact?intent=shortlist-sprint"
-              className="w-full sm:w-auto px-8 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 group shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20"
+              className="h-11 px-5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-1.5 group shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 active:scale-98"
             >
               {t.home.ctaShortlist}
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
             <a
               href="#white-label-demo"
               onClick={handleScrollToDemo}
-              className="w-full sm:w-auto px-8 py-5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-50 rounded-xl font-medium text-lg transition-all flex items-center justify-center cursor-pointer"
+              className="h-11 px-5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-50 rounded-xl font-semibold text-sm transition-all flex items-center justify-center active:scale-98"
             >
               {t.home.ctaGoldList}
             </a>
+            <Link
+              href="/talents"
+              className="h-11 px-5 bg-transparent hover:bg-white/5 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white rounded-xl font-semibold text-sm transition-all flex items-center justify-center active:scale-98"
+            >
+              {t.home.ctaTalent}
+            </Link>
           </div>
         </div>
 

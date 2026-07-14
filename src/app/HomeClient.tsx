@@ -3,13 +3,14 @@
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import Hero from '@/components/Hero';
+import ICPSection from '@/components/ICPSection';
 import ConsultancyPain from '@/components/ConsultancyPain';
 import ShortlistSprint from '@/components/ShortlistSprint';
 import WhiteLabelDemo from '@/components/WhiteLabelDemo';
 import HowItWorks from '@/components/HowItWorks';
 import DeliverableEvidence from '@/components/DeliverableEvidence';
 import ConsultancyUseCases from '@/components/ConsultancyUseCases';
-import SecondaryStartupPath from '@/components/SecondaryStartupPath';
+import TalentPathway from '@/components/TalentPathway';
 import FAQAccordion from '@/components/FAQAccordion';
 import FinalCTA from '@/components/FinalCTA';
 
@@ -20,6 +21,9 @@ export default function HomeClient() {
     <div className="flex flex-col bg-slate-950">
       {/* 2. Hero Section */}
       <Hero />
+
+      {/* 2.5. ICP Section */}
+      <ICPSection />
 
       {/* 3. Consultancy Pain Section */}
       <ConsultancyPain />
@@ -39,8 +43,8 @@ export default function HomeClient() {
       {/* 8. Consultancy Use Cases Grid */}
       <ConsultancyUseCases />
 
-      {/* 9. Secondary Startup Path Section */}
-      <SecondaryStartupPath />
+      {/* 9.5. Talent Pathway Section */}
+      <TalentPathway />
 
       {/* 10. FAQ Accordion */}
       <FAQAccordion title={t.home.faqTitle} items={t.home.faqClients} />

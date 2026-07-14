@@ -15,13 +15,13 @@ export default function ShortlistSprint() {
           {/* Info Side */}
           <div className="lg:col-span-7 space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/5 text-xs font-semibold text-blue-400 uppercase tracking-wider">
-              Primary Offer
+              {sprint.eyebrow}
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-50 tracking-tight leading-tight">
               {sprint.title}
             </h2>
             <p className="text-lg text-slate-400 font-light leading-relaxed">
-              We focus our screening engine on a single operational profile to deliver high-quality candidate matches directly to your team. No monthly overhead, no retainer lock-in. Just velocity.
+              {sprint.desc}
             </p>
             <div>
               <Link
@@ -41,8 +41,8 @@ export default function ShortlistSprint() {
             <div className="p-8 border border-white/5 rounded-3xl bg-slate-900/30 backdrop-blur-sm relative group overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-transparent pointer-events-none" />
               <h3 className="text-xl font-semibold text-slate-100 mb-6 flex items-center justify-between">
-                <span>Sprint Specifications</span>
-                <span className="text-xs font-mono text-blue-400">STATUS: READY</span>
+                <span>{sprint.specsTitle}</span>
+                <span className="text-xs font-mono text-blue-400">{sprint.specsStatus}</span>
               </h3>
 
               <ul className="space-y-4">

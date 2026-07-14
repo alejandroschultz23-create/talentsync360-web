@@ -28,6 +28,7 @@ export interface Translations {
     heroSubtitle: string;
     ctaShortlist: string;
     ctaGoldList: string;
+    ctaTalent: string;
     heroStat1Value: string;
     heroStat1Label: string;
     heroStat2Value: string;
@@ -36,29 +37,65 @@ export interface Translations {
     heroStat3Label: string;
     heroQualifier: string;
 
-    pain: {
+    icp: {
       title: string;
-      slowResponseTitle: string;
-      slowResponseDesc: string;
-      timeLeakTitle: string;
-      timeLeakDesc: string;
-      reputationTitle: string;
-      reputationDesc: string;
+      cards: { title: string; desc: string }[];
     };
 
-    sprint: {
+    talentPathway: {
       title: string;
-      items: string[];
+      desc: string;
       cta: string;
     };
 
+    pain: {
+      title: string;
+      card1Title: string;
+      card1Desc: string;
+      card2Title: string;
+      card2Desc: string;
+      card3Title: string;
+      card3Desc: string;
+      card4Title: string;
+      card4Desc: string;
+    };
+
+    sprint: {
+      eyebrow: string;
+      title: string;
+      desc: string;
+      cta: string;
+      specsTitle: string;
+      specsStatus: string;
+      items: string[];
+    };
+
     demo: {
+      eyebrow: string;
+      title: string;
+      explanation: string;
       subtitle: string;
       workspaceTitle: string;
       sampleBrief: string;
       briefDetails: string;
       tabInternal: string;
       tabClient: string;
+      clientPortal: string;
+      activeBrief: string;
+      briefContext: string;
+      availability: string;
+      communication: string;
+      vettingStatus: string;
+      keyStrength: string;
+      internalRisk: string;
+      vettingChecklist: string;
+      vettingEngineer: string;
+      languageVerification: string;
+      copyPastePrompt: string;
+      readyPrompt: string;
+      clientBrandingActive: string;
+      btnInterview: string;
+      embedNote: string;
       labelRequirement: string;
       labelEvidence: string;
       labelRationale: string;
@@ -94,11 +131,15 @@ export interface Translations {
     };
 
     evidence: {
+      eyebrow: string;
       title: string;
+      desc: string;
+      disclaimer: string;
       items: string[];
     };
 
     useCases: {
+      eyebrow: string;
       title: string;
       items: { title: string; desc: string }[];
     };
@@ -407,11 +448,12 @@ export const translations: Record<Language, Translations> = {
       privacy: 'Privacy Policy',
     },
     home: {
-      heroBadge: 'WHITE-LABEL TALENT INFRASTRUCTURE FOR IT CONSULTANCIES',
-      heroTitle: 'Turn urgent client briefs into decision-ready LATAM shortlists.',
-      heroSubtitle: 'Receive 3–5 technically screened, human-reviewed candidates with evidence-backed scorecards, ready to present under your own brand.',
-      ctaShortlist: 'Start a Shortlist Sprint',
-      ctaGoldList: 'View the White-Label Demo',
+      heroBadge: 'TECH TALENT INFRASTRUCTURE',
+      heroTitle: 'Turn technical talent needs into decision-ready LATAM shortlists.',
+      heroSubtitle: 'We help IT consultancies, staff augmentation agencies, software factories, startups and technology teams evaluate and present LATAM talent through structured evidence, human review and AI assistance.',
+      ctaShortlist: 'Request a shortlist',
+      ctaGoldList: 'View demo',
+      ctaTalent: 'I’m a candidate',
       heroStat1Value: '72h Cycle',
       heroStat1Label: 'Target delivery timeframe',
       heroStat2Value: 'Human Vetted',
@@ -420,18 +462,42 @@ export const translations: Record<Language, Translations> = {
       heroStat3Label: 'Direct client-ready format',
       heroQualifier: 'Target delivery begins after the technical brief has been validated. Highly specialized roles may require 2–5 business days.',
 
+      icp: {
+        title: 'One infrastructure, multiple hiring models',
+        cards: [
+          { title: 'IT Consultancies', desc: 'Respond to client briefs with structured technical shortlists ready to present.' },
+          { title: 'Staff Augmentation Agencies', desc: 'Accelerate candidate validation and present LATAM talent through your existing commercial model.' },
+          { title: 'Software Factories', desc: 'Cover new projects, specialized stacks and demand peaks without overloading your senior team.' },
+          { title: 'Startups and Product Teams', desc: 'Build technical capacity without creating a full internal recruiting operation.' },
+          { title: 'Direct-Hiring Companies', desc: 'Receive pre-evaluated candidates for permanent or long-term internal roles.' }
+        ]
+      },
+
+      talentPathway: {
+        title: 'Are you a LATAM developer or technology professional?',
+        desc: 'Build your profile, share evidence of your experience and access opportunities aligned with your stack, seniority and availability.',
+        cta: 'Join as talent'
+      },
+
       pain: {
-        title: 'Your client needs candidates. Your senior team should not become the screening department.',
-        slowResponseTitle: 'Slow response',
-        slowResponseDesc: 'Every day spent assembling a shortlist increases the risk of losing the opportunity to a faster competitor.',
-        timeLeakTitle: 'Senior time leakage',
-        timeLeakDesc: 'Tech Leads and Delivery Managers lose billable or productive hours reviewing profiles that should have been filtered earlier.',
-        reputationTitle: 'Reputation risk',
-        reputationDesc: 'Weak candidates do not only waste interview time. They damage your credibility with the final client.',
+        title: 'The bottleneck is not finding profiles. It is turning them into reliable decisions.',
+        card1Title: 'Senior screening load',
+        card1Desc: 'Tech Leads, Delivery Managers and hiring teams spend valuable time reviewing profiles that lack structured evidence.',
+        card2Title: 'Slow response',
+        card2Desc: 'When an active need takes too long to qualify, projects, client opportunities and hiring plans lose momentum.',
+        card3Title: 'Evidence that is difficult to compare',
+        card3Desc: 'CVs, interviews and notes arrive in different formats, making consistent comparison difficult.',
+        card4Title: 'Validation risk',
+        card4Desc: 'Advancing with weak or incomplete evidence increases unproductive interviews, onboarding friction and delivery risk.',
       },
 
       sprint: {
+        eyebrow: 'Primary Offer',
         title: 'One active brief. One focused Sprint. One client-ready shortlist.',
+        desc: 'We focus our screening engine on a single operational profile to deliver high-quality candidate matches directly to your team. No monthly overhead, no retainer lock-in. Just velocity.',
+        cta: 'Validate your brief',
+        specsTitle: 'Sprint Specifications',
+        specsStatus: 'STATUS: READY',
         items: [
           'One validated technical brief',
           'LATAM sourcing and pre-screening',
@@ -442,16 +508,34 @@ export const translations: Record<Language, Translations> = {
           'Target delivery after brief validation',
           'Specialized-role exception'
         ],
-        cta: 'Validate your brief',
       },
 
       demo: {
-        subtitle: 'Sample white-label experience — fictional candidate data',
+        eyebrow: 'INTERACTIVE DEMO',
+        title: 'White-label candidate presentation',
+        explanation: 'Consultancies and partners can present the shortlist under their own brand. Direct employers use it as a structured workspace for hiring decisions.',
+        subtitle: 'Sample experience using fictional candidate data.',
         workspaceTitle: 'NovaTech Consulting Workspace',
         sampleBrief: 'Senior Node.js / TypeScript Engineer',
         briefDetails: 'B2B SaaS · Remote · Europe overlap',
         tabInternal: 'Internal Review',
         tabClient: 'Client Presentation',
+        clientPortal: 'CLIENT PORTAL',
+        activeBrief: 'Active Brief: Node.js',
+        briefContext: 'Brief Context',
+        availability: 'Availability',
+        communication: 'Technical Communication',
+        vettingStatus: 'Review Status',
+        keyStrength: 'Key Strength',
+        internalRisk: '(Internal Risk Indicator)',
+        vettingChecklist: 'Vetting Assurance Checklist',
+        vettingEngineer: 'Vetting Engineer: Senior Backend Specialist',
+        languageVerification: 'Language Verification: Recorded audio & script pass',
+        copyPastePrompt: '(Copy & Paste to Client Briefing)',
+        readyPrompt: 'Ready to request the candidate file?',
+        clientBrandingActive: 'CLIENT BRANDING APPLIED',
+        btnInterview: 'Book Final Interview',
+        embedNote: 'In client presentation mode, TalentSync360 branding is hidden. Candidates can be embedded on your site or shared via link under NovaTech Consulting branding.',
         labelRequirement: 'Role Requirement',
         labelEvidence: 'Candidate Evidence',
         labelRationale: 'Match Rationale',
@@ -463,13 +547,13 @@ export const translations: Record<Language, Translations> = {
             name: 'Candidate A.R.',
             country: 'Argentina',
             timezone: 'GMT-3',
-            match: '94%',
+            match: 'High fit',
             exp: '6 years Node.js & NestJS',
-            comm: 'High (C1 level verified)',
+            comm: 'High technical communication signal',
             avail: '2 weeks',
             strength: 'Architected B2B billing systems; strong TypeScript type-safety expert',
             risk: 'Limited direct experience with AWS serverless (primarily ECS/Docker)',
-            status: 'Passed Technical Screening',
+            status: 'Human review completed',
             rationale: 'Candidate has built scalable Node.js microservices. Deep understanding of async communication.',
             gap: 'No serverless framework usage; needs minor onboarding on AWS Lambda.',
             note: 'Exceptional communication. Highly proactive. Tech stack matches 90% of the core B2B platform.',
@@ -479,13 +563,13 @@ export const translations: Record<Language, Translations> = {
             name: 'Candidate M.S.',
             country: 'Colombia',
             timezone: 'GMT-5',
-            match: '90%',
+            match: 'High fit',
             exp: '5 years Node.js, Express & React',
-            comm: 'Excellent (C1 level verified)',
+            comm: 'High technical communication signal',
             avail: 'Immediate',
             strength: 'Full-stack profile; optimized SQL database queries reducing latency by 40%',
             risk: 'Prefers full-stack work; may get disengaged if limited only to pure backend APIs',
-            status: 'Passed Technical Screening',
+            status: 'Human review completed',
             rationale: 'Very strong problem solver. Has experience working with European startup timezone overlap.',
             gap: 'Database optimization is strong, but architectural design patterns are junior compared to Candidate A.R.',
             note: 'Highly motivated, ready to deploy immediately.',
@@ -495,13 +579,13 @@ export const translations: Record<Language, Translations> = {
             name: 'Candidate J.L.',
             country: 'Uruguay',
             timezone: 'GMT-3',
-            match: '88%',
+            match: 'Moderate fit',
             exp: '7 years Backend (Python & Node.js)',
-            comm: 'High (C1 level verified)',
+            comm: 'High technical communication signal',
             avail: '4 weeks',
             strength: 'Strong DevOps understanding, CI/CD setup, Docker and PostgreSQL performance tuning',
             risk: 'Longer notice period (4 weeks)',
-            status: 'Passed Technical Screening',
+            status: 'Human review completed',
             rationale: 'Great fit for projects requiring infrastructure tuning alongside API development.',
             gap: 'Notice period is 4 weeks. Backend experience is split between Python and NodeJS.',
             note: 'Very stable profile, excellent code structure.',
@@ -521,7 +605,10 @@ export const translations: Record<Language, Translations> = {
       },
 
       evidence: {
+        eyebrow: 'Deliverable Evidence',
         title: 'What you actually receive',
+        desc: 'We compile structured evidence for every finalist candidate. Instead of generic CVs, your delivery managers receive a complete decision package containing raw vetting signals, enabling you to present verified technical capability to your final client.',
+        disclaimer: 'We focus on presenting verified signals. TalentSync360 does not provide automated candidate selection, perfect matches, or particular levels of English. All profiles are human-reviewed to support your own delivery decisions.',
         items: [
           'Candidate executive summary',
           'Requirement-by-requirement match',
@@ -535,14 +622,15 @@ export const translations: Record<Language, Translations> = {
       },
 
       useCases: {
-        title: 'Designed for agency velocity',
+        eyebrow: 'Operational Applications',
+        title: 'Where TalentSync360 fits',
         items: [
-          { title: 'Responding to an urgent client brief', desc: 'Win competitive pitches by presenting vetted talent profiles in 72 hours.' },
-          { title: 'Covering delivery overflow', desc: 'Scale your project squads instantly when client requirements exceed internal bench capacity.' },
-          { title: 'Entering an unfamiliar technical stack', desc: 'Accept client projects in new technologies using our pre-screened niche developers.' },
-          { title: 'Building a LATAM delivery pod', desc: 'Establish full-time timezone-aligned remote teams with native Agile compatibility.' },
-          { title: 'Replacing an unavailable contractor', desc: 'Mitigate contractor attrition or sudden departures with quick replacement sprints.' },
-          { title: 'Validating candidates already sourced', desc: 'Apply our rigorous vetting rubrics to verify internal applicants before hire.' }
+          { title: 'Responding to an urgent client brief', desc: 'Structure and review a shortlist for an active client requirement without diverting the entire senior team.' },
+          { title: 'Covering delivery overflow', desc: 'Add evaluation capacity when project demand temporarily exceeds the team’s internal recruiting or screening bandwidth.' },
+          { title: 'Validating candidates already sourced internally', desc: 'Apply a consistent scorecard to candidates already found by recruiters, referrals or existing channels.' },
+          { title: 'Entering an unfamiliar technical stack', desc: 'Clarify technical evidence and open questions when hiring for a stack your current team does not evaluate frequently.' },
+          { title: 'Building a LATAM delivery pod', desc: 'Compare candidates for a distributed LATAM team using shared criteria for stack, communication, availability and timezone.' },
+          { title: 'Hiring for an internal product or technology team', desc: 'Support direct hiring with pre-evaluated profiles and structured evidence for permanent or long-term roles.' }
         ]
       },
 
@@ -650,7 +738,7 @@ export const translations: Record<Language, Translations> = {
         startupTitle: 'For US/EU Startups',
         startupDesc: 'Deploy delivery-ready engineering talent aligned with your timezone and business goals.',
         startupBullet1: 'Timezone alignment for real-time collaboration',
-        startupBullet2: 'Rigorous vetting based on technical screening criteria',
+        startupBullet2: 'Technical screening based on criteria',
         startupBullet3: 'Flexible contract scaling (up/down in 30 days)',
         startupCta: 'Request Sourcing Analysis',
       }
@@ -876,11 +964,12 @@ export const translations: Record<Language, Translations> = {
       privacy: 'Política de Privacidad',
     },
     home: {
-      heroBadge: 'INFRAESTRUCTURA DE TALENTO MARCA BLANCA PARA CONSULTORAS TI',
-      heroTitle: 'Transforma briefs urgentes de clientes en shortlists de LATAM listas para decidir.',
-      heroSubtitle: 'Recibe de 3 a 5 candidatos evaluados técnicamente y revisados por humanos, con scorecards basados en evidencia, listos para presentar bajo tu propia marca.',
-      ctaShortlist: 'Comenzar un Sprint de Shortlist',
-      ctaGoldList: 'Ver la Demo de Marca Blanca',
+      heroBadge: 'INFRAESTRUCTURA DE TALENTO TECNOLÓGICO',
+      heroTitle: 'Convertí necesidades de talento técnico en shortlists LATAM listas para decidir.',
+      heroSubtitle: 'Ayudamos a consultoras IT, agencias de staff augmentation, software factories, startups y equipos tecnológicos a evaluar y presentar talento con evidencia estructurada, revisión humana y soporte de IA.',
+      ctaShortlist: 'Solicitar una shortlist',
+      ctaGoldList: 'Ver demo',
+      ctaTalent: 'Busco oportunidades',
       heroStat1Value: 'Ciclo de 72h',
       heroStat1Label: 'Plazo de entrega objetivo',
       heroStat2Value: 'Filtro Humano',
@@ -889,18 +978,42 @@ export const translations: Record<Language, Translations> = {
       heroStat3Label: 'Formato listo para el cliente',
       heroQualifier: 'La entrega objetivo comienza después de que el brief técnico haya sido validado. Los roles altamente especializados pueden requerir de 2 a 5 días hábiles.',
 
+      icp: {
+        title: 'Una infraestructura, distintos modelos de contratación',
+        cards: [
+          { title: 'Consultoras de TI', desc: 'Respondé briefs de clientes con shortlists técnicas estructuradas y listas para presentar.' },
+          { title: 'Agencias de Staff Augmentation', desc: 'Acelerá la validación de candidatos y presentá talento LATAM dentro de tu modelo comercial actual.' },
+          { title: 'Software Factories', desc: 'Cubrí nuevos proyectos, stacks especializados y picos de demanda sin sobrecargar a tu equipo senior.' },
+          { title: 'Startups y Equipos de Producto', desc: 'Sumá capacidad técnica sin crear una operación interna completa de recruiting.' },
+          { title: 'Empresas de Contratación Directa', desc: 'Recibí candidatos preevaluados para posiciones internas permanentes o de largo plazo.' }
+        ]
+      },
+
+      talentPathway: {
+        title: '¿Sos desarrollador o profesional tecnológico en LATAM?',
+        desc: 'Creá tu perfil, compartí evidencia de tu experiencia y accedé a oportunidades alineadas con tu stack, seniority y disponibilidad.',
+        cta: 'Sumarme como talento'
+      },
+
       pain: {
-        title: 'Tu cliente necesita candidatos. Tu equipo senior no debería ser el departamento de screening.',
-        slowResponseTitle: 'Respuesta lenta',
-        slowResponseDesc: 'Cada día que pasas armando una shortlist aumenta el riesgo de perder la oportunidad frente a un competidor más rápido.',
-        timeLeakTitle: 'Fuga de tiempo senior',
-        timeLeakDesc: 'Los Tech Leads y Delivery Managers pierden horas facturables o productivas revisando perfiles que deberían haber sido filtrados antes.',
-        reputationTitle: 'Riesgo de reputación',
-        reputationDesc: 'Los candidatos débiles no solo hacen perder tiempo en las entrevistas. Dañan tu credibilidad con el cliente final.',
+        title: 'El cuello de botella no es encontrar perfiles. Es convertirlos en decisiones confiables.',
+        card1Title: 'Carga de screening senior',
+        card1Desc: 'Tech Leads, Delivery Managers y equipos de contratación invierten tiempo valioso revisando perfiles sin evidencia estructurada.',
+        card2Title: 'Respuesta lenta',
+        card2Desc: 'Cuando una necesidad activa tarda demasiado en calificarse, los proyectos, oportunidades comerciales y planes de contratación pierden impulso.',
+        card3Title: 'Evidencia difícil de comparar',
+        card3Desc: 'CVs, entrevistas y notas llegan en formatos diferentes, lo que dificulta una comparación consistente.',
+        card4Title: 'Riesgo de validación',
+        card4Desc: 'Avanzar con evidencia débil o incompleta aumenta las entrevistas improductivas, la fricción de onboarding y el riesgo de delivery.',
       },
 
       sprint: {
+        eyebrow: 'Oferta Principal',
         title: 'Un brief activo. Un Sprint enfocado. Una shortlist lista para tu cliente.',
+        desc: 'Enfocamos nuestro motor de evaluación en un único perfil operativo para entregar candidatos de alta calidad directamente a tu equipo. Sin costos mensuales ni retenciones fijas. Velocidad pura.',
+        cta: 'Validar mi brief',
+        specsTitle: 'Especificaciones del Sprint',
+        specsStatus: 'ESTADO: LISTO',
         items: [
           'Un brief técnico validado',
           'Sourcing y pre-screening en LATAM',
@@ -911,16 +1024,34 @@ export const translations: Record<Language, Translations> = {
           'Entrega objetivo tras validación del brief',
           'Excepción para roles muy especializados'
         ],
-        cta: 'Valida tu brief',
       },
 
       demo: {
-        subtitle: 'Muestra de experiencia marca blanca — datos simulados de candidatos',
+        eyebrow: 'DEMO INTERACTIVA',
+        title: 'Presentación white-label de candidatos',
+        explanation: 'Las consultoras y partners pueden presentar la shortlist bajo su propia marca. Las empresas que contratan directamente la utilizan como un workspace estructurado para decidir.',
+        subtitle: 'Experiencia de muestra con datos ficticios de candidatos.',
         workspaceTitle: 'Espacio de Trabajo NovaTech Consulting',
         sampleBrief: 'Ingeniero Senior Node.js / TypeScript',
         briefDetails: 'SaaS B2B · Remoto · Solape con Europa',
         tabInternal: 'Revisión Interna',
         tabClient: 'Presentación al Cliente',
+        clientPortal: 'PORTAL DEL CLIENTE',
+        activeBrief: 'Brief Activo: Node.js',
+        briefContext: 'Contexto del brief',
+        availability: 'Disponibilidad',
+        communication: 'Comunicación técnica',
+        vettingStatus: 'Estado de revisión',
+        keyStrength: 'Fortaleza principal',
+        internalRisk: '(Indicador de Riesgo Interno)',
+        vettingChecklist: 'Lista de control de evidencia',
+        vettingEngineer: 'Evaluador: Especialista Senior Backend',
+        languageVerification: 'Verificación de Idioma: Audio grabado y test aprobado',
+        copyPastePrompt: '(Copiar y pegar para el informe del cliente)',
+        readyPrompt: '¿Listo para solicitar el archivo del candidato?',
+        clientBrandingActive: 'BRANDING DE CLIENTE APLICADO',
+        btnInterview: 'Reservar Entrevista Final',
+        embedNote: 'En el modo de presentación al cliente, se oculta la marca de TalentSync360. Los candidatos se pueden incrustar en tu sitio o compartir mediante un enlace bajo la marca de NovaTech Consulting.',
         labelRequirement: 'Requisito del Rol',
         labelEvidence: 'Evidencia del Candidato',
         labelRationale: 'Justificación de Match',
@@ -932,13 +1063,13 @@ export const translations: Record<Language, Translations> = {
             name: 'Candidato A.R.',
             country: 'Argentina',
             timezone: 'GMT-3',
-            match: '94%',
+            match: 'Encaje alto',
             exp: '6 años Node.js y NestJS',
-            comm: 'Alto (nivel C1 verificado)',
+            comm: 'Señal alta de comunicación técnica',
             avail: '2 semanas',
             strength: 'Arquitecturó sistemas de facturación B2B; experto en type-safety de TypeScript',
             risk: 'Experiencia directa limitada con AWS serverless (principalmente ECS/Docker)',
-            status: 'Aprobó Screening Técnico',
+            status: 'Evidencia técnica revisada',
             rationale: 'El candidato ha construido microservicios escalables en Node.js. Comprensión profunda de comunicación asíncrona.',
             gap: 'Sin uso del framework serverless; necesita un onboarding menor en AWS Lambda.',
             note: 'Comunicación excepcional. Altamente proactivo. El stack tecnológico coincide en un 90% con la plataforma B2B principal.',
@@ -948,13 +1079,13 @@ export const translations: Record<Language, Translations> = {
             name: 'Candidato M.S.',
             country: 'Colombia',
             timezone: 'GMT-5',
-            match: '90%',
+            match: 'Encaje alto',
             exp: '5 años Node.js, Express y React',
-            comm: 'Excelente (nivel C1 verificado)',
+            comm: 'Señal alta de comunicación técnica',
             avail: 'Inmediata',
             strength: 'Perfil full-stack; optimizó consultas de bases de datos SQL reduciendo la latencia un 40%',
-            risk: 'Prefere trabajo full-stack; podría desmotivarse si se limita únicamente a APIs de backend puras',
-            status: 'Aprobó Screening Técnico',
+            risk: 'Prefiere trabajo full-stack; podría desmotivarse si se limita únicamente a APIs de backend puras',
+            status: 'Evidencia técnica revisada',
             rationale: 'Muy buen resolvedor de problemas. Tiene experiencia trabajando con solape de zona horaria europea.',
             gap: 'La optimización de bases de datos es sólida, pero sus patrones de diseño arquitectónico son más junior comparados con Candidato A.R.',
             note: 'Altamente motivado, listo para comenzar de inmediato.',
@@ -964,13 +1095,13 @@ export const translations: Record<Language, Translations> = {
             name: 'Candidato J.L.',
             country: 'Uruguay',
             timezone: 'GMT-3',
-            match: '88%',
+            match: 'Encaje moderado',
             exp: '7 años Backend (Python y Node.js)',
-            comm: 'Alto (nivel C1 verificado)',
+            comm: 'Señal alta de comunicación técnica',
             avail: '4 semanas',
             strength: 'Sólida comprensión de DevOps, configuración de CI/CD, Docker y tuning de performance de PostgreSQL',
             risk: 'Período de preaviso largo (4 semanas)',
-            status: 'Aprobó Screening Técnico',
+            status: 'Evidencia técnica revisada',
             rationale: 'Excelente fit para proyectos que requieren tuning de infraestructura junto con desarrollo de APIs.',
             gap: 'El período de preaviso es de 4 semanas. La experiencia de backend está dividida entre Python y NodeJS.',
             note: 'Perfil muy estable, excelente estructura de código.',
@@ -990,7 +1121,10 @@ export const translations: Record<Language, Translations> = {
       },
 
       evidence: {
+        eyebrow: 'Evidencia Entregable',
         title: 'Qué recibes realmente',
+        desc: 'Compilamos evidencia estructurada para cada candidato finalista. En lugar de CVs genéricos, tus directores de delivery reciben un paquete completo de decisión con señales de evaluación reales, lo que te permite presentar capacidades técnicas verificadas a tu cliente final.',
+        disclaimer: 'Nos enfocamos en presentar señales verificadas. TalentSync360 no proporciona selección automatizada de candidatos, coincidencias perfectas ni niveles de inglés específicos. Todos los perfiles son revisados por humanos para respaldar tus propias decisiones de entrega.',
         items: [
           'Resumen ejecutivo del candidato',
           'Match requisito por requisito',
@@ -1004,14 +1138,15 @@ export const translations: Record<Language, Translations> = {
       },
 
       useCases: {
-        title: 'Diseñado para la velocidad de las agencias',
+        eyebrow: 'Aplicaciones Operativas',
+        title: 'Dónde encaja TalentSync360',
         items: [
-          { title: 'Responder a un brief urgente', desc: 'Gana propuestas competitivas presentando perfiles de talento validados en 72 horas.' },
-          { title: 'Cubrir desbordes de entrega', desc: 'Escala tus equipos de proyecto al instante cuando las necesidades del cliente superen tu capacidad interna.' },
-          { title: 'Ingresar a un stack desconocido', desc: 'Acepta proyectos de clientes en nuevas tecnologías usando nuestros desarrolladores especializados.' },
-          { title: 'Crear una célula de delivery en LATAM', desc: 'Establece equipos remotos full-time alineados en zona horaria con compatibilidad ágil nativa.' },
-          { title: 'Reemplazar un contratista no disponible', desc: 'Mitiga la rotación de contratistas o salidas repentinas con sprints de reemplazo rápidos.' },
-          { title: 'Validar candidatos ya reclutados', desc: 'Aplica nuestras rigurosas rúbricas de vetting para verificar candidatos internos antes de contratarlos.' }
+          { title: 'Responder a un brief de cliente urgente', desc: 'Estructurá y revisá una shortlist para un requerimiento activo sin desviar a todo el equipo senior.' },
+          { title: 'Cubrir desbordes de entrega', desc: 'Sumá capacidad de evaluación cuando la demanda de proyectos supera temporalmente la capacidad interna de recruiting o screening.' },
+          { title: 'Validar candidatos ya reclutados internamente', desc: 'Aplicá una scorecard consistente a candidatos encontrados por recruiters, referidos o canales propios.' },
+          { title: 'Ingresar a un stack tecnológico desconocido', desc: 'Ordená la evidencia técnica y las preguntas pendientes cuando buscás un stack que tu equipo no evalúa con frecuencia.' },
+          { title: 'Crear una célula de delivery en LATAM', desc: 'Compará candidatos para un equipo LATAM distribuido con criterios comunes de stack, comunicación, disponibilidad y zona horaria.' },
+          { title: 'Contratar para un equipo interno de producto o tecnología', desc: 'Acompañá la contratación directa con perfiles preevaluados y evidencia estructurada para posiciones permanentes o de largo plazo.' }
         ]
       },
 
@@ -1031,8 +1166,8 @@ export const translations: Record<Language, Translations> = {
       faqClients: [
         { q: "¿Reemplazan a nuestros reclutadores internos?", a: "No. Actuamos como un motor de aceleración. Tus reclutadores se enfocan en la coordinación final y la relación con el cliente, mientras nosotros manejamos el vetting técnico especializado." },
         { q: "¿Los candidatos se pueden presentar bajo nuestra propia marca?", a: "Sí. Nuestros entregables son totalmente de marca blanca. Suministramos perfiles y scorecards anonimizados que puedes personalizar con tu logo y presentar como capacidad propia." },
-        { q: "¿Cuándo comienza el plazo objetivo de 72 horas?", a: "El plazo comienza inmediatamente después de que tu brief técnico ha sido validado y confirmado por nuestros líderes de sourcing. Esto asegura que alinear los parámetros de búsqueda antes de arrancar el reloj." },
-        { q: "¿Qué pasa si la primera shortlist no es adecuada?", a: "Si los candidatos iniciales no coinciden, revisamos tu feedback estructurado y ejecutamos un sprint de recalibración según el brief acordado, ajustando los parámetros de inmediato." },
+        { q: "¿Cuándo comienza el plazo objetivo de 72 horas?", a: "El plazo comienza inmediatamente después de que tu brief técnico ha sido validado y confirmado por nuestros límites de sourcing. Esto asegura que alinear los parámetros de búsqueda antes de arrancar el reloj." },
+        { q: "¿Qué pasa si la primera shortlist no es adecuada?", a: "Si los candidatos iniciales no coinciden, revisamos tu feedback estructurado y ejecutamos un sprint de recalibración según el brief acordado, adjusting los parámetros de inmediato." },
         { q: "¿Cómo se revisa la evidencia técnica?", a: "No confiamos en pruebas automatizadas de plataformas masivas. Cada test, muestra de trabajo y audio es revisado y calificado personalmente por un ingeniero senior con experiencia en el stack correspondiente." },
         { q: "¿La IA rechaza o selecciona candidatos automáticamente?", a: "No. La IA se utiliza como soporte de decisiones para la extracción de señales y el mapeo de rúbricas. Todas las decisiones finales de selección y rechazo permanecen estrictamente revisadas por humanos y controladas por un operador." },
         { q: "¿Un Sprint de Shortlist puede ser un servicio continuo?", a: "Sí. Los sprints se pueden programar bajo demanda, o podemos establecer un flujo continuo de sourcing para consultoras con necesidades recurrentes." }
@@ -1119,7 +1254,7 @@ export const translations: Record<Language, Translations> = {
         startupTitle: 'Para Startups de EE. UU. y la UE',
         startupDesc: 'Despliega talento de ingeniería listo para integrarse, alineado con tu zona horaria y objetivos de negocio.',
         startupBullet1: 'Alineación con tu zona horaria para colaboración en tiempo real',
-        startupBullet2: 'Evaluación rigurosa basada en criterios de screening técnico',
+        startupBullet2: 'Technical screening based on criteria',
         startupBullet3: 'Escalamiento flexible de contratos (ajustes en 30 días)',
         startupCta: 'Solicitar Análisis de Sourcing',
       }
@@ -1174,7 +1309,7 @@ export const translations: Record<Language, Translations> = {
       stage2Desc: 'Resuelve un caso hipotetico por email bajo presion de tiempo. Evaluamos calidad de escritura, tono ejecutivo y capacidad analitica.',
       stage3Label: 'Etapa 3: Muestra de Trabajo',
       stage3Title: 'Tarea del Mundo Real',
-      stage3Desc: 'Una tarea tecnica especifica del rol (QA, Soporte, Diseno, Contenido). Si pasas el scorecard, entras a la Gold List permanentemente.',
+      stage3Desc: 'Una tarea tecnica específica del rol (QA, Soporte, Diseno, Contenido). Si pasas el scorecard, entras a la Gold List permanentemente.',
       benefitTitle: 'Beneficios para Miembros de la Gold List',
       benefit1Num: '01',
       benefit1Title: 'Exposicion de Alto Nivel',
@@ -1184,7 +1319,7 @@ export const translations: Record<Language, Translations> = {
       benefit2Desc: 'Trabajamos exclusivamente con empresas que valoran tu seniority y pagan segun estandares nearshore premium.',
       benefit3Num: '03',
       benefit3Title: 'Feedback de Valor',
-      benefit3Desc: 'Incluso si no llegas a la shortlist, recibis tu puntuacion en el scorecard para saber exactamente que mejorar.',
+      benefit3Desc: 'Incluso si no recibis tu puntuacion en el scorecard para saber exactamente que mejorar.',
       checklistTitle: 'Tenes lo que se necesita?',
       checklist1: 'Nivel fluido de inglés para comunicación profesional',
       checklist2: 'Experiencia comprobable en roles remotos',
@@ -1272,7 +1407,7 @@ export const translations: Record<Language, Translations> = {
       section3Desc: 'Solo compartimos datos de candidatos (scorecards, curriculums y resultados) con empleadores potenciales que han celebrado un acuerdo de reclutamiento confidencial con nosotros. Nunca vendemos tus datos a terceros.',
       section4Title: '4. Tus Derechos',
       section4Desc: 'Tienes derecho a solicitar acceso, correccion o eliminacion de tus datos personales en cualquier momento. Para ejercer estos derechos, contactanos en privacy@talentsync360.com.',
-      footer: 'Ultima Actualizacion: Abril',
+      footer: 'Ultima Actualizacion: Politica de Privacidad',
     },
     itConsultancies: {
       badge: 'Para Consultoras IT',
@@ -1313,7 +1448,7 @@ export const translations: Record<Language, Translations> = {
       step3Title: 'Scorecards de Evidencia',
       step3Desc: 'Recibe shortlists de 3 a 5 candidatos con scorecards técnicos detallados, listos para presentar como talento propio.',
       ctaTitle: 'Solicitar un Piloto de Validación',
-      ctaDesc: '€2.500 en España/UE o $2.500 en pruebas outbound en EE. UU. para un piloto de validación de 2 briefs durante 30 días. El fee del piloto puede acreditarse a un retainer de seguimiento o a un paquete de sprints ampliado si ambas partes continúan.',
+      ctaDesc: '€2.500 en España/UE o $2.500 en pruebas outbound en EE. UU. para un piloto de validación de 2 briefs durante 30 days. El fee del piloto puede acreditarse a un retainer de seguimiento o a un paquete de sprints ampliado si ambas partes continúan.',
       ctaButton: 'Reservar Llamada de Descubrimiento de Piloto',
     },
     whatsapp: {

@@ -15,16 +15,16 @@ export default function DeliverableEvidence() {
           {/* Info Side */}
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/5 text-xs font-semibold text-blue-400 uppercase tracking-wider">
-              Deliverable Evidence
+              {evidence.eyebrow}
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-50 tracking-tight leading-tight">
               {evidence.title}
             </h2>
             <p className="text-slate-400 font-light leading-relaxed">
-              We compile structured evidence for every finalist candidate. Instead of generic CVs, your delivery managers receive a complete decision package containing raw vetting signals, enabling you to present verified technical capability to your final client.
+              {evidence.desc}
             </p>
             <div className="p-4 rounded-xl border border-white/5 bg-slate-950/40 text-xs text-slate-500 leading-relaxed font-light">
-              We focus on presenting verified signals. TalentSync360 does not provide automated candidate selection, perfect matches, or guaranteed levels of English. All profiles are human-reviewed to support your own delivery decisions.
+              {evidence.disclaimer}
             </div>
           </div>
 

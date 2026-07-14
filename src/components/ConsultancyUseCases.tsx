@@ -12,7 +12,7 @@ export default function ConsultancyUseCases() {
 
         <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/5 text-xs font-semibold text-blue-400 uppercase tracking-wider mb-4">
-            Operational Applications
+            {cases.eyebrow}
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-50 tracking-tight">
             {cases.title}

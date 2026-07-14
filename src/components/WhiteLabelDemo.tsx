@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function WhiteLabelDemo() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const demo = t.home.demo;
 
   const [selectedIdx, setSelectedIdx] = useState(0);
@@ -20,7 +20,9 @@ export default function WhiteLabelDemo() {
   if (!mounted) {
     return (
       <section id="white-label-demo" className="py-24 bg-slate-950 border-t border-white/5 min-h-[600px] flex items-center justify-center">
-        <div className="text-slate-400 font-light">Loading white-label demo...</div>
+        <div className="text-slate-400 font-light">
+          {lang === 'es' ? 'Cargando demo...' : 'Loading white-label demo...'}
+        </div>
       </section>
     );
   }
@@ -34,12 +36,15 @@ export default function WhiteLabelDemo() {
         {/* Header Block */}
         <div className="max-w-3xl mx-auto text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/5 text-xs font-semibold text-blue-400 uppercase tracking-wider mb-4">
-            Interactive Product Demo
+            {demo.eyebrow}
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-50 tracking-tight">
-            White-Label Candidate Delivery
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-50 tracking-tight mb-2">
+            {demo.title}
           </h2>
-          <p className="text-sm font-light text-slate-400 mt-2">
+          <p className="text-sm text-slate-350 font-normal leading-relaxed max-w-2xl mx-auto mb-4">
+            {demo.explanation}
+          </p>
+          <p className="text-xs font-light text-slate-500">
             {demo.subtitle}
           </p>
         </div>
@@ -58,7 +63,7 @@ export default function WhiteLabelDemo() {
                   </div>
                   <div>
                     <span className="text-sm font-semibold text-slate-100 uppercase tracking-wider">NovaTech Consulting</span>
-                    <span className="block text-xxs text-emerald-400 font-mono">PORTAL DE CLIENTE</span>
+                    <span className="block text-xxs text-emerald-400 font-mono">{demo.clientPortal}</span>
                   </div>
                 </div>
               ) : (
@@ -69,7 +74,7 @@ export default function WhiteLabelDemo() {
                   </div>
                   <div>
                     <span className="text-sm font-semibold text-slate-200">{demo.workspaceTitle}</span>
-                    <span className="block text-xxs text-slate-500 font-mono">Active Brief: Node.js</span>
+                    <span className="block text-xxs text-slate-500 font-mono">{demo.activeBrief}</span>
                   </div>
                 </div>
               )}
@@ -109,7 +114,7 @@ export default function WhiteLabelDemo() {
           {/* Fictional Job Brief Header (Sub-bar) */}
           <div className="px-6 py-3 bg-slate-900/10 border-b border-white/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
             <div>
-              <span className="text-slate-400 text-xs uppercase tracking-wider block">Brief Context</span>
+              <span className="text-slate-400 text-xs uppercase tracking-wider block">{demo.briefContext}</span>
               <span className="text-sm font-semibold text-slate-200">{demo.sampleBrief}</span>
             </div>
             <div className="text-slate-400 text-xs font-light">
@@ -139,7 +144,7 @@ export default function WhiteLabelDemo() {
                     <div className="font-semibold text-slate-200 group-hover:text-slate-50 transition-colors flex items-center gap-2">
                       {cand.name}
                       <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                        {cand.match} Match
+                        {cand.match}
                       </span>
                     </div>
                     <div className="text-xs text-slate-400 font-light">
@@ -159,15 +164,15 @@ export default function WhiteLabelDemo() {
               {/* Top summary cards */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="p-4 border border-white/5 rounded-xl bg-slate-950">
-                  <span className="text-[10px] text-slate-500 uppercase tracking-wider block">Availabilty</span>
+                  <span className="text-[10px] text-slate-500 uppercase tracking-wider block">{demo.availability}</span>
                   <span className="text-slate-200 text-sm font-semibold">{currentCandidate.avail}</span>
                 </div>
                 <div className="p-4 border border-white/5 rounded-xl bg-slate-950">
-                  <span className="text-[10px] text-slate-500 uppercase tracking-wider block">Communication</span>
+                  <span className="text-[10px] text-slate-500 uppercase tracking-wider block">{demo.communication}</span>
                   <span className="text-slate-200 text-sm font-semibold">{currentCandidate.comm}</span>
                 </div>
                 <div className="p-4 border border-white/5 rounded-xl bg-slate-950">
-                  <span className="text-[10px] text-slate-500 uppercase tracking-wider block">Vetting Status</span>
+                  <span className="text-[10px] text-slate-500 uppercase tracking-wider block">{demo.vettingStatus}</span>
                   <span className="text-emerald-400 text-sm font-semibold flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     {currentCandidate.status}
@@ -187,7 +192,7 @@ export default function WhiteLabelDemo() {
                 </div>
                 <div>
                   <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                    Key Strength
+                    {demo.keyStrength}
                   </h4>
                   <p className="text-slate-300 text-sm font-light leading-relaxed">
                     {currentCandidate.strength}
@@ -204,7 +209,7 @@ export default function WhiteLabelDemo() {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-xs font-semibold text-rose-400 uppercase tracking-wider mb-2">
-                        {demo.labelGap} (Internal Risk Indicator)
+                        {demo.labelGap} <span className="text-xxs opacity-80">{demo.internalRisk}</span>
                       </h4>
                       <p className="text-slate-300 text-sm font-light leading-relaxed">
                         {currentCandidate.gap}
@@ -221,20 +226,20 @@ export default function WhiteLabelDemo() {
                   </div>
                   <div className="p-6 rounded-2xl border border-rose-500/10 bg-rose-500/5 space-y-3">
                     <h5 className="text-xs font-semibold text-rose-400 uppercase tracking-wider">
-                      Vetting Assurance Checklist
+                      {demo.vettingChecklist}
                     </h5>
                     <ul className="space-y-2 text-xs text-slate-400 font-light">
                       <li className="flex items-center gap-2 text-rose-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-                        Uncertainty: {currentCandidate.risk}
+                        {lang === 'es' ? 'Riesgo / Desvío:' : 'Uncertainty:'} {currentCandidate.risk}
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
-                        Vetting Engineer: Senior Backend Specialist
+                        {demo.vettingEngineer}
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
-                        Language Verification: Recorded audio & script pass
+                        {demo.languageVerification}
                       </li>
                     </ul>
                   </div>
@@ -244,7 +249,7 @@ export default function WhiteLabelDemo() {
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                      {demo.labelQuestion} (Copy & Paste to Client Briefing)
+                      {demo.labelQuestion} <span className="text-xxs opacity-80">{demo.copyPastePrompt}</span>
                     </h4>
                     <div className="p-4 rounded-xl border border-emerald-500/10 bg-emerald-500/5 text-emerald-300 text-sm font-light leading-relaxed">
                       &quot;{currentCandidate.question}&quot;
@@ -254,11 +259,11 @@ export default function WhiteLabelDemo() {
                   {/* Action prompt */}
                   <div className="p-6 rounded-2xl border border-white/5 bg-slate-950 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                      <span className="text-xs text-slate-400 block font-light">Ready to request the candidate file?</span>
-                      <span className="text-xxs text-slate-500 font-mono">CLIENT BRADING APPLIED</span>
+                      <span className="text-xs text-slate-400 block font-light">{demo.readyPrompt}</span>
+                      <span className="text-xxs text-slate-500 font-mono">{demo.clientBrandingActive}</span>
                     </div>
                     <button className="px-5 py-2 text-xs font-semibold text-slate-950 bg-emerald-500 hover:bg-emerald-400 rounded-lg transition-colors">
-                      Book Final Interview
+                      {demo.btnInterview}
                     </button>
                   </div>
                 </div>
@@ -271,7 +276,7 @@ export default function WhiteLabelDemo() {
         {/* Client presentation note */}
         {viewMode === 'client' && (
           <div className="mt-4 text-center text-xs text-slate-500 font-light">
-            In client presentation mode, TalentSync360 branding is hidden. Candidates can be embedded on your site or shared via link under <span className="font-semibold text-slate-400">NovaTech Consulting</span> branding.
+            {demo.embedNote}
           </div>
         )}
 
