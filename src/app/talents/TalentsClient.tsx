@@ -38,7 +38,10 @@ export default function TalentsClient() {
           <div className="max-w-7xl mx-auto px-4 relative z-10">
               <div className="mb-24">
                 <h2 className="text-xl sm:text-2xl font-bold text-slate-50 mb-6 tracking-tight">{t.talents.processTitle}</h2>
-                <div className="w-16 h-1 bg-blue-600/30"></div>
+                <div className="w-16 h-1 bg-blue-600/30 mb-8"></div>
+                <div className="p-5 rounded-2xl border border-blue-500/10 bg-blue-500/5 max-w-3xl">
+                  <p className="text-sm text-slate-300 font-light leading-relaxed">{t.talents.languageClarification}</p>
+                </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
