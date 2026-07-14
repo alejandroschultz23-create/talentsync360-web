@@ -4,14 +4,14 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Join the Gold List | Global Opportunities for LATAM Tech Talent",
-  description: "Get validated for elite remote roles. Pass our business English screening and role-specific vetting to enter the TalentSync360 360° Fit Matrix.",
+  title: "Talent Opportunities for LATAM Professionals | TalentSync360",
+  description: "Build a structured technology talent profile and access opportunities aligned with your skills, experience, language and availability. English is assessed only when a role requires it.",
   alternates: {
     canonical: "https://www.talentsync360.com/talents",
   },
   openGraph: {
-    title: "Join the Gold List | Global Opportunities for LATAM Tech Talent",
-    description: "Get validated for elite remote roles. Pass our business English screening and role-specific vetting to enter the TalentSync360 360° Fit Matrix.",
+    title: "Talent Opportunities for LATAM Professionals | TalentSync360",
+    description: "Build a structured technology talent profile and access opportunities aligned with your skills, experience, language and availability. English is assessed only when a role requires it.",
     url: "https://www.talentsync360.com/talents",
   }
 };

@@ -269,6 +269,7 @@ export interface Translations {
     ctaApply: string;
     processTitle: string;
     processSubtitle: string;
+    languageClarification: string;
     stage1Label: string;
     stage1Title: string;
     stage1Desc: string;
@@ -656,7 +657,7 @@ export const translations: Record<Language, Translations> = {
         { q: "Can candidates be presented under our own brand?", a: "Yes. Our deliverables are fully white-label. We supply anonymized profiles and scorecards that you can customize with your company logo and present as your own capability." },
         { q: "When does the 72-hour target begin?", a: "The target starts immediately after your technical brief has been validated and confirmed by our sourcing leads. This ensures we align search parameters before starting the clock." },
         { q: "What happens if the first shortlist is not suitable?", a: "If the initial candidates do not match, we review your structured feedback and execute a recalibration sprint according to the agreed brief scope, adjusting parameters immediately." },
-        { q: "How is technical evidence reviewed?", a: "We do not rely on automated tests. Every test, work sample, and audio check is personally reviewed and scored by a senior engineer with relevant stack expertise." },
+        { q: "How is technical evidence reviewed?", a: "No info-based algorithms. Every test, work sample, and audio check is personally reviewed and scored by a senior engineer with relevant stack expertise." },
         { q: "Does AI automatically reject or select candidates?", a: "No. AI is used as decision support for signal extraction and rubric mapping. All final selection and rejection decisions remain strictly human-reviewed and operator-controlled." },
         { q: "Can a Shortlist Sprint continue as an ongoing service?", a: "Yes. Sprints can be scheduled on demand, or we can establish a recurring pipeline for active consultancies with ongoing recruitment flows." }
       ],
@@ -665,8 +666,8 @@ export const translations: Record<Language, Translations> = {
         { q: "How do I get paid?", a: "Clients pay you directly. We help set up the initial contract and payment terms in USD/EUR." },
         { q: "What types of roles are available?", a: "The engine highlights our specialization in Commercial and Strategic Consulting, Talent Leaders and Senior Recruiters, and Technological Profiles with Business Vision. We maintain an emphasis on verifiable experience focused on 360° Profiles (reputation, results, and impact)." },
         { q: "Is there a cost for the talent?", a: "No. Our validation and placement services are 100% free for professionals." },
-        { q: "What's the selection process?", a: "Voice Note (English), Business Writing Test, and a Practical Role-Specific Task." },
-        { q: "What English level is required?", a: "While we prioritize profiles with C1 fluency for international markets, the English level is not 100% exclusive. We validate each talent's technical communication capacity to ensure the team fit is productive from day 1." }
+        { q: "What's the selection process?", a: "An oral and written communication evaluation, followed by a practical work sample task." },
+        { q: "What language level is required?", a: "English is not required to join TalentSync360. Language requirements depend on each opportunity. For international roles, we assess professional English communication; for Spanish-speaking markets, professional communication is evaluated in Spanish." }
       ],
 
       solutionModals: {
@@ -784,20 +785,21 @@ export const translations: Record<Language, Translations> = {
     talents: {
       badge: 'The Gold List',
       title: 'Get Validated. Get Global Opportunities.',
-      subtitle: 'TalentSync360 is not a job board. It is a 360° validation platform connecting the top 1% of LATAM talent with US and European companies.',
-      subtitleAccent: 'Proven English. Proven Execution. Proven Reliability.',
+      subtitle: 'Build a structured talent profile for opportunities aligned with your skills, experience, language and availability.',
+      subtitleAccent: 'Professional Communication. Structured Evidence. Human Review.',
       ctaApply: 'Apply to the Gold List',
-      processTitle: 'The Validation Process',
+      processTitle: 'Validation process based on the opportunity',
       processSubtitle: 'Rigorous, fair, and oriented toward real performance outcomes.',
-      stage1Label: 'Stage 1: Voice Note',
-      stage1Title: 'English Communication Screening',
-      stage1Desc: 'Submit a 90-second recording demonstrating your experience and communication skills. We evaluate clarity, confidence, and professional delivery.',
-      stage2Label: 'Stage 2: Writing Test',
-      stage2Title: 'Business Communication',
-      stage2Desc: 'Solve a hypothetical case via email under time pressure. We evaluate writing quality, executive tone, and analytical capacity.',
-      stage3Label: 'Stage 3: Work Sample',
-      stage3Title: 'Real-World Task',
-      stage3Desc: 'Una tarea tecnica específica del rol (QA, Soporte, Diseno, Contenido). If you pass the scorecard, you enter the Gold List permanently.',
+      languageClarification: 'English is not required to join TalentSync360. Language requirements depend on each opportunity. For Spanish-speaking markets, professional communication is evaluated in Spanish; English is assessed only when the role requires it.',
+      stage1Label: 'STAGE 1: PROFESSIONAL COMMUNICATION',
+      stage1Title: 'Professional communication',
+      stage1Desc: 'We evaluate how clearly you explain your experience, decisions and way of working in the language required by the opportunity. English is assessed only when the role requires it.',
+      stage2Label: 'STAGE 2: WRITTEN COMMUNICATION',
+      stage2Title: 'Written communication',
+      stage2Desc: 'You may complete a written professional scenario to assess clarity, judgment and communication in the language relevant to the opportunity.',
+      stage3Label: 'STAGE 3: WORK SAMPLE',
+      stage3Title: 'Role-related practical task',
+      stage3Desc: 'You complete a practical task related to your specialty. The result becomes part of your profile evidence and is used for compatible opportunities.',
       benefitTitle: 'Benefits for Gold List Members',
       benefit1Num: '01',
       benefit1Title: 'High-Level Exposure',
@@ -809,7 +811,7 @@ export const translations: Record<Language, Translations> = {
       benefit3Title: 'Valuable Feedback',
       benefit3Desc: "Even if you don't make the shortlist, you receive your scorecard score so you know exactly what to improve.",
       checklistTitle: "Got What It Takes?",
-      checklist1: 'English communication proficiency',
+      checklist1: 'Communication proficiency based on the role',
       checklist2: 'Proven experience in remote roles',
       checklist3: 'US business hours availability (EST/CST)',
       ctaButton: 'Start Validation',
@@ -1128,7 +1130,7 @@ export const translations: Record<Language, Translations> = {
 
       evidence: {
         eyebrow: 'Evidencia Entregable',
-        title: 'Qué recibes realmente',
+        title: 'Qué recibís realmente',
         desc: 'Compilamos evidencia estructurada para cada candidato finalista. En lugar de CVs genéricos, tus directores de delivery reciben un paquete completo de decisión con señales de evaluación reales, lo que te permite presentar capacidades técnicas verificadas a tu cliente final.',
         disclaimer: 'TalentSync360 no toma decisiones automatizadas de contratación, no garantiza coincidencias perfectas ni certifica un nivel específico de inglés. Cada shortlist es revisada por una persona antes de su entrega.',
         items: [
@@ -1183,8 +1185,8 @@ export const translations: Record<Language, Translations> = {
         { q: "¿Cómo me pagan?", a: "Los clientes te pagan directamente. Ayudamos a configurar el contrato inicial y términos en USD/EUR." },
         { q: "¿Qué tipo de roles están buscando?", a: "El motor de búsqueda destaca nuestra especialización en Consultoría Comercial y Estratégica, Líderes de Talento y Recruiters Senior, y Perfiles Tecnológicos con Visión de Negocio. Mantenemos el énfasis en experiencia comprobable enfocada en Perfiles 360° (reputación, resultados e impacto)." },
         { q: "¿Tiene algún costo para el talento?", a: "No. Nuestros servicios de validación y colocación son 100% gratuitos para profesionales." },
-        { q: "¿Cómo es el proceso de selección?", a: "Nota de Voz (Inglés), Test de Escritura y una Tarea Práctica específica del rol." },
-        { q: "¿Qué nivel de inglés necesito?", a: "Aunque priorizamos perfiles con fluidez en inglés para mercados internacionales, la comunicación técnica fluida es lo que validamos para asegurar que el fit sea productivo desde el día 1." }
+        { q: "¿Cómo es el proceso de selección?", a: "Una evaluación de comunicación oral y escrita, seguida de una tarea práctica como muestra de trabajo." },
+        { q: "¿Qué nivel de idioma necesito?", a: "El inglés no es obligatorio para formar parte de TalentSync360. Los requisitos de idioma dependen de cada oportunidad. Para búsquedas internacionales evaluamos comunicación profesional en inglés; para mercados hispanohablantes la comunicación se evalúa en español." }
       ],
 
       solutionModals: {
@@ -1302,20 +1304,21 @@ export const translations: Record<Language, Translations> = {
     talents: {
       badge: 'La Gold List',
       title: 'Valida tu Perfil. Accede a Oportunidades Globales.',
-      subtitle: 'TalentSync360 no es una bolsa de trabajo. Es una plataforma de validacion 360 que conecta al 1% del talento LATAM con empresas de EE.UU. y Europa.',
-      subtitleAccent: 'Ingles Comprobado. Ejecucion Comprobada. Confiabilidad Comprobada.',
+      subtitle: 'Creá un perfil de talento estructurado para oportunidades alineadas con tus habilidades, experiencia, idioma y disponibilidad.',
+      subtitleAccent: 'Comunicación Profesional. Evidencia Estructurada. Revisión Humana.',
       ctaApply: 'Aplicar a la Gold List',
-      processTitle: 'El Proceso de Validacion',
+      processTitle: 'Proceso de validación según la oportunidad',
       processSubtitle: 'Riguroso, justo y orientado a resultados de rendimiento reales.',
-      stage1Label: 'Etapa 1: Nota de Voz',
-      stage1Title: 'Evaluación de Comunicación en Inglés',
-      stage1Desc: 'Envianos una grabacion de 90 segundos demostrando tu experiencia y habilidades de comunicación. Evaluamos claridad, confianza y entrega profesional.',
-      stage2Label: 'Etapa 2: Prueba de Escritura',
-      stage2Title: 'Comunicacion Empresarial',
-      stage2Desc: 'Resuelve un caso hipotetico por email bajo presion de tiempo. Evaluamos calidad de escritura, tono ejecutivo y capacidad analitica.',
-      stage3Label: 'Etapa 3: Muestra de Trabajo',
-      stage3Title: 'Tarea del Mundo Real',
-      stage3Desc: 'Una tarea tecnica específica del rol (QA, Soporte, Diseno, Contenido). If you pass the scorecard, you enter the Gold List permanently.',
+      languageClarification: 'El inglés no es obligatorio para formar parte de TalentSync360. Cada oportunidad define el idioma requerido. Para búsquedas en mercados hispanohablantes evaluamos comunicación profesional en español; el inglés se evalúa únicamente cuando el rol lo requiere.',
+      stage1Label: 'ETAPA 1: COMUNICACIÓN PROFESIONAL',
+      stage1Title: 'Comunicación profesional',
+      stage1Desc: 'Evaluamos cómo explicás tu experiencia, tus decisiones y tu forma de trabajar en el idioma requerido por la oportunidad. Para búsquedas en mercados hispanohablantes, el español es suficiente; el inglés se evalúa únicamente cuando el rol lo requiere.',
+      stage2Label: 'ETAPA 2: COMUNICACIÓN ESCRITA',
+      stage2Title: 'Comunicación escrita',
+      stage2Desc: 'Podés resolver una situación profesional por escrito para evaluar claridad, criterio y capacidad de comunicación en el idioma correspondiente a la búsqueda.',
+      stage3Label: 'ETAPA 3: MUESTRA DE TRABAJO',
+      stage3Title: 'Tarea práctica relacionada con tu rol',
+      stage3Desc: 'Completás una tarea práctica relacionada con tu especialidad. El resultado se incorpora a tu perfil como evidencia y se utiliza para oportunidades compatibles.',
       benefitTitle: 'Beneficios para Miembros de la Gold List',
       benefit1Num: '01',
       benefit1Title: 'Exposicion de Alto Nivel',
@@ -1327,7 +1330,7 @@ export const translations: Record<Language, Translations> = {
       benefit3Title: 'Feedback de Valor',
       benefit3Desc: 'Incluso si no recibis tu puntuacion en el scorecard para saber exactamente que mejorar.',
       checklistTitle: 'Tenes lo que se necesita?',
-      checklist1: 'Nivel fluido de inglés para comunicación profesional',
+      checklist1: 'Capacidad de comunicación profesional según el rol',
       checklist2: 'Experiencia comprobable en roles remotos',
       checklist3: 'Disponibilidad horario US (EST/CST)',
       ctaButton: 'Comenzar Validacion',
