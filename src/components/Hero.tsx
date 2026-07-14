@@ -34,7 +34,7 @@ const Hero = () => {
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-extrabold text-white mb-6 leading-tight tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-extrabold text-white mb-6 leading-[1.3] tracking-tight">
             {t.home.heroTitle}
           </h1>
           <p className="text-base sm:text-lg text-slate-400 mb-12 max-w-2xl leading-relaxed font-light">
@@ -98,7 +98,7 @@ const Hero = () => {
           </div>
 
           {/* Qualifier Disclaimer */}
-          <div className="text-xs text-slate-500 font-light max-w-3xl leading-relaxed">
+          <div className="text-xs text-slate-500 font-light lg:whitespace-nowrap leading-relaxed">
             {t.home.heroQualifier}
           </div>
         </div>

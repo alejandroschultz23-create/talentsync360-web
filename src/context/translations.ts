@@ -968,7 +968,7 @@ export const translations: Record<Language, Translations> = {
       privacy: 'Política de Privacidad',
     },
     home: {
-      heroBadge: 'INFRAESTRUCTURA DE TALENTO TECNOLÓGICO',
+      heroBadge: 'INFRAESTRUCTURA DE TECH TALENT',
       heroTitle: 'Convertí necesidades de talento técnico en shortlists LATAM listas para decidir.',
       heroSubtitle: 'Ayudamos a consultoras IT, agencias de staff augmentation, software factories, startups y equipos tecnológicos a evaluar y presentar talento con evidencia estructurada, revisión humana y soporte de IA.',
       ctaShortlist: 'Solicitar una shortlist',
@@ -1145,7 +1145,7 @@ export const translations: Record<Language, Translations> = {
 
       useCases: {
         eyebrow: 'Aplicaciones Operativas',
-        title: 'Dónde encaja TalentSync360',
+        title: 'Dónde aplica TalentSync360',
         items: [
           { title: 'Responder a un brief de cliente urgente', desc: 'Estructurá y revisá una shortlist para un requerimiento activo sin desviar a todo el equipo senior.' },
           { title: 'Cubrir desbordes de entrega', desc: 'Sumá capacidad de evaluación cuando la demanda de proyectos supera temporalmente la capacidad interna de recruiting o screening.' },
