@@ -3,6 +3,7 @@
 import { useLanguage } from '@/context/LanguageContext';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, Suspense } from 'react';
+import { pushGTMEvent } from '@/lib/analytics';
 
 function ContactForm() {
   const { t, lang } = useLanguage();
@@ -56,6 +57,12 @@ function ContactForm() {
       }
 
       setIsSuccess(true);
+
+      pushGTMEvent('contact_form_submit', {
+        form_type: contactType,
+        language: lang,
+        page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+      });
     } catch (err: unknown) {
       console.error('Submission error:', err);
       setError('FALLA TÉCNICA DETECTADA');

@@ -4,9 +4,10 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, Zap, ShieldCheck } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { pushGTMEvent } from "@/lib/analytics";
 
 const Hero = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const handleScrollToDemo = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -14,6 +15,26 @@ const Hero = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleShortlistClick = () => {
+    pushGTMEvent('click_request_shortlist', {
+      cta_label: typeof t.home.ctaShortlist === 'string' ? t.home.ctaShortlist : 'Request a shortlist',
+      cta_location: 'hero_primary',
+      destination: '/contact?intent=shortlist-sprint',
+      language: lang,
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
+  };
+
+  const handleTalentClick = () => {
+    pushGTMEvent('nearshore_cta_click', {
+      cta_label: typeof t.home.ctaTalent === 'string' ? t.home.ctaTalent : 'I am a candidate',
+      cta_location: 'hero_talent_path',
+      destination: '/talents',
+      language: lang,
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
   };
 
   return (
@@ -44,6 +65,7 @@ const Hero = () => {
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/contact?intent=shortlist-sprint"
+              onClick={handleShortlistClick}
               className="h-11 px-5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-1.5 group shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 active:scale-98"
             >
               {t.home.ctaShortlist}
@@ -58,6 +80,7 @@ const Hero = () => {
             </a>
             <Link
               href="/talents"
+              onClick={handleTalentClick}
               className="h-11 px-5 bg-transparent hover:bg-white/5 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white rounded-xl font-semibold text-sm transition-all flex items-center justify-center active:scale-98"
             >
               {t.home.ctaTalent}

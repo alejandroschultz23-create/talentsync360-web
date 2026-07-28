@@ -2,10 +2,21 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import { pushGTMEvent } from '@/lib/analytics';
 
 export default function SecondaryStartupPath() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const startup = t.home.secondaryStartup;
+
+  const handleClick = () => {
+    pushGTMEvent('companies_cta_click', {
+      cta_label: typeof startup.cta === 'string' ? startup.cta : 'Explore hiring for companies',
+      cta_location: 'secondary_startup_path',
+      destination: '/companies',
+      language: lang,
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
+  };
 
   return (
     <section className="py-16 bg-slate-900/10 border-t border-white/5">
@@ -20,6 +31,7 @@ export default function SecondaryStartupPath() {
           <div>
             <Link
               href="/companies"
+              onClick={handleClick}
               className="inline-flex items-center justify-center px-6 py-3 text-xs font-semibold text-slate-300 hover:text-slate-100 border border-white/10 hover:border-white/20 rounded-xl transition-all duration-200"
             >
               {startup.cta}

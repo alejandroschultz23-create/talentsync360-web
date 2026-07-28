@@ -3,9 +3,20 @@
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import Image from 'next/image';
+import { pushGTMEvent } from '@/lib/analytics';
 
 const Footer = () => {
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
+
+    const handleContactClick = (label: string) => {
+        pushGTMEvent('click_contact', {
+            cta_label: label,
+            cta_location: 'footer',
+            destination: '/contact',
+            language: lang,
+            page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+        });
+    };
 
     return (
         <footer className="bg-slate-950 border-t border-white/5 pt-32 pb-16 relative overflow-hidden">
@@ -44,13 +55,13 @@ const Footer = () => {
                         <h3 className="text-blue-500 font-bold text-[10px] tracking-[0.3em] uppercase mb-10">{t.footer.talentsTitle}</h3>
                         <ul className="space-y-4">
                             <li><Link href="/talents" className="text-slate-500 font-light hover:text-slate-200 transition-colors text-sm">{t.footer.talentsLink1}</Link></li>
-                            <li><Link href="/contact" className="text-slate-500 font-light hover:text-slate-200 transition-colors text-sm">{t.footer.talentsLink2}</Link></li>
+                            <li><Link href="/contact" onClick={() => handleContactClick('Footer Opportunities Contact')} className="text-slate-500 font-light hover:text-slate-200 transition-colors text-sm">{t.footer.talentsLink2}</Link></li>
                         </ul>
                     </div>
                     <div>
                         <h3 className="text-blue-500 font-bold text-[10px] tracking-[0.3em] uppercase mb-10">{t.footer.resourcesTitle}</h3>
                         <ul className="space-y-4">
-                            <li><Link href="/contact" className="text-slate-500 font-light hover:text-slate-200 transition-colors text-sm">{t.footer.resourcesLink1}</Link></li>
+                            <li><Link href="/contact" onClick={() => handleContactClick('Footer Resources Contact')} className="text-slate-500 font-light hover:text-slate-200 transition-colors text-sm">{t.footer.resourcesLink1}</Link></li>
                         </ul>
                     </div>
                 </div>

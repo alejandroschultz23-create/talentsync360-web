@@ -3,9 +3,20 @@
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import FAQAccordion from '@/components/FAQAccordion';
+import { pushGTMEvent } from '@/lib/analytics';
 
 export default function TalentsClient() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+
+  const handleApplyClick = (locationLabel: string, buttonText: string) => {
+    pushGTMEvent('nearshore_cta_click', {
+      cta_label: buttonText,
+      cta_location: locationLabel,
+      destination: '/contact?tipo=talent',
+      language: lang,
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
+  };
 
   return (
     <div className="flex flex-col">
@@ -26,6 +37,7 @@ export default function TalentsClient() {
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Link 
               href="/contact?tipo=talent" 
+              onClick={() => handleApplyClick('talents_page_hero', t.talents.ctaApply)}
               className="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-lg transition-all shadow-xl shadow-blue-600/20 active:scale-95"
             >
               {t.talents.ctaApply}
@@ -114,7 +126,7 @@ export default function TalentsClient() {
                         <span className="group-hover:text-slate-200 transition-colors">{t.talents.checklist3}</span>
                       </li>
                     </ul>
-                    <Link href="/contact?tipo=talent" className="block w-full text-center py-5 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 active:scale-95">{t.talents.ctaButton}</Link>
+                    <Link href="/contact?tipo=talent" onClick={() => handleApplyClick('talents_checklist_section', t.talents.ctaButton)} className="block w-full text-center py-5 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 active:scale-95">{t.talents.ctaButton}</Link>
                   </div>
               </div>
           </div>

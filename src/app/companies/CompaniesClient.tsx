@@ -4,10 +4,22 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { SolutionModal } from '@/components/SolutionModals';
+import { pushGTMEvent } from '@/lib/analytics';
 
 export default function CompaniesClient() {
   const { t, lang } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleShortlistClick = () => {
+    pushGTMEvent('click_request_shortlist', {
+      cta_label: typeof t.companies.ctaShortlist === 'string' ? t.companies.ctaShortlist : 'Request Shortlist',
+      cta_location: 'companies_page_hero',
+      destination: 'modal',
+      language: lang,
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
+    setIsModalOpen(true);
+  };
 
   const isEs = lang === 'es';
   const tiers = [
@@ -72,7 +84,7 @@ export default function CompaniesClient() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                 <button 
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={handleShortlistClick}
                   className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-slate-50 px-8 py-3 rounded-md font-bold text-lg transition-colors shadow-lg shadow-blue-600/20"
                 >
                   {t.companies.ctaShortlist}
