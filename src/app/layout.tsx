@@ -6,7 +6,8 @@ import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { Analytics } from "@vercel/analytics/react";
 import OrganizationSchema from "@/components/OrganizationSchema";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GTM from "@/components/GTM";
+import GTMRouteTracker from "@/components/GTMRouteTracker";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 const geistSans = Geist({
@@ -71,7 +72,8 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col bg-slate-950 font-sans text-slate-400">
         <LanguageProvider>
-          <GoogleAnalytics />
+          <GTM />
+          <GTMRouteTracker />
           <WhatsAppButton />
           <OrganizationSchema />
           <Navbar />

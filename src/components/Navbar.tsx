@@ -4,9 +4,20 @@ import Link from 'next/link';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/context/LanguageContext';
 import Image from 'next/image';
+import { pushGTMEvent } from '@/lib/analytics';
 
 const Navbar = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+
+  const handleContactClick = (label: string) => {
+    pushGTMEvent('click_contact', {
+      cta_label: label,
+      cta_location: 'navbar',
+      destination: '/contact',
+      language: lang,
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
@@ -37,12 +48,12 @@ const Navbar = () => {
               <Link href="/companies" className="text-slate-400 hover:text-slate-50 px-3 py-2 rounded-md text-sm font-medium transition-colors">{t.nav.companies}</Link>
               <Link href="/talents" className="text-slate-400 hover:text-slate-50 px-3 py-2 rounded-md text-sm font-medium transition-colors">{t.nav.talents}</Link>
               <Link href="/methodology" className="text-slate-400 hover:text-slate-50 px-3 py-2 rounded-md text-sm font-medium transition-colors">{t.nav.methodology}</Link>
-              <Link href="/contact" className="bg-blue-600 hover:bg-blue-700 text-slate-50 px-4 py-2 rounded-md text-sm font-medium transition-colors">{t.nav.contact}</Link>
+              <Link href="/contact" onClick={() => handleContactClick('Navbar Desktop Contact')} className="bg-blue-600 hover:bg-blue-700 text-slate-50 px-4 py-2 rounded-md text-sm font-medium transition-colors">{t.nav.contact}</Link>
             </div>
             <LanguageSwitcher />
           </div>
           <div className="md:hidden flex items-center gap-3">
-            <Link href="/contact" className="bg-blue-600 hover:bg-blue-700 text-slate-50 px-3 py-1.5 rounded-md text-xs font-medium transition-colors">{t.nav.contactShort}</Link>
+            <Link href="/contact" onClick={() => handleContactClick('Navbar Mobile Contact')} className="bg-blue-600 hover:bg-blue-700 text-slate-50 px-3 py-1.5 rounded-md text-xs font-medium transition-colors">{t.nav.contactShort}</Link>
             <LanguageSwitcher />
           </div>
         </div>

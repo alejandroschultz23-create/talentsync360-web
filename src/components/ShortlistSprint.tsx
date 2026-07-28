@@ -2,10 +2,21 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import { pushGTMEvent } from '@/lib/analytics';
 
 export default function ShortlistSprint() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const sprint = t.home.sprint;
+
+  const handleSprintClick = () => {
+    pushGTMEvent('click_request_shortlist', {
+      cta_label: typeof sprint.cta === 'string' ? sprint.cta : 'Validate your brief',
+      cta_location: 'shortlist_sprint_section',
+      destination: '/contact?intent=shortlist-sprint',
+      language: lang,
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
+  };
 
   return (
     <section className="py-24 bg-slate-900/10 relative overflow-hidden border-t border-white/5">
@@ -26,6 +37,7 @@ export default function ShortlistSprint() {
             <div>
               <Link
                 href="/contact?intent=shortlist-sprint"
+                onClick={handleSprintClick}
                 className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-all duration-200 shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 active:scale-98"
               >
                 {sprint.cta}

@@ -4,10 +4,21 @@ import React from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { Sparkles } from 'lucide-react';
+import { pushGTMEvent } from '@/lib/analytics';
 
 export default function TalentPathway() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const path = t.home.talentPathway;
+
+  const handleClick = () => {
+    pushGTMEvent('nearshore_cta_click', {
+      cta_label: typeof path.cta === 'string' ? path.cta : 'Join as talent',
+      cta_location: 'talent_pathway_section',
+      destination: '/talents',
+      language: lang,
+      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
+  };
 
   return (
     <section className="py-20 bg-slate-950 relative overflow-hidden border-t border-white/5">
@@ -33,6 +44,7 @@ export default function TalentPathway() {
           <div>
             <Link
               href="/talents"
+              onClick={handleClick}
               className="inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded-xl transition-all duration-200 shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/20 active:scale-98"
             >
               {path.cta}
