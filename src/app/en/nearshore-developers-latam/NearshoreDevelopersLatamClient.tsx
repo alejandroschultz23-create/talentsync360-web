@@ -63,10 +63,10 @@ export default function NearshoreDevelopersLatamClient() {
             </div>
 
             <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-8 leading-tight tracking-tight">
-              Top-tier LATAM Senior Talent in Your Timezone.
+              Hire vetted nearshore developers and technical talent in Latin America.
             </h1>
             <p className="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl leading-relaxed">
-              Technical-first matching. Human-screened candidates. 72-hour shortlist delivery.
+              Access LATAM developers, AI, data, DevOps, QA, and automation profiles through nearshore shortlists with timezone alignment, human screening, English communication checks, and decision-ready technical scorecards.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -84,6 +84,11 @@ export default function NearshoreDevelopersLatamClient() {
                 See Our Vetting Standard
               </Link>
             </div>
+            <div className="mt-6 text-sm text-slate-400">
+              <Link href="/companies" className="text-indigo-400 hover:text-indigo-300 underline font-medium transition-colors">
+                Compare with our B2B Shortlist Sprint packages →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -93,14 +98,14 @@ export default function NearshoreDevelopersLatamClient() {
         <div className="max-w-base">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-white mb-4">Who This Is For</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">Tailored sourcing pipelines for tech organizations demanding timezone alignment and senior talent.</p>
+            <p className="text-slate-400 max-w-2xl mx-auto">Tailored sourcing pipelines for tech organizations demanding timezone alignment and vetted technical talent.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="p-8 bg-slate-950 border border-slate-800 rounded-2xl">
               <h3 className="text-xl font-bold text-white mb-4">US & EU Startups</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Extend your team without async friction. Work in overlapping timezones with senior software developers who integrate seamlessly into daily standups and Slack channels.
+                Extend your team without async friction. Work in overlapping timezones with LATAM software developers who integrate seamlessly into daily standups and Slack channels.
               </p>
             </div>
             <div className="p-8 bg-slate-950 border border-slate-800 rounded-2xl">
@@ -135,7 +140,7 @@ export default function NearshoreDevelopersLatamClient() {
                   </div>
                   <div>
                     <h4 className="font-bold text-white mb-1">Timezone Overlap</h4>
-                    <p className="text-sm text-slate-400 leading-relaxed">Enjoy 6 to 8 hours of daily overlap. Real-time collaboration eliminates project blockages.</p>
+                    <p className="text-sm text-slate-400 leading-relaxed">Enjoy daily timezone overlap aligned with North American and European operations. Real-time collaboration eliminates project blockages.</p>
                   </div>
                 </li>
                 <li className="flex gap-4">
@@ -153,7 +158,7 @@ export default function NearshoreDevelopersLatamClient() {
                   </div>
                   <div>
                     <h4 className="font-bold text-white mb-1">Premium Technical Hubs</h4>
-                    <p className="text-sm text-slate-400 leading-relaxed">Access tech ecosystems in Argentina, Colombia, Brazil, and Uruguay, where senior talent builds global SaaS platforms.</p>
+                    <p className="text-sm text-slate-400 leading-relaxed">Access tech ecosystems in Argentina, Colombia, Brazil, and Uruguay, where technical talent builds global SaaS platforms.</p>
                   </div>
                 </li>
               </ul>

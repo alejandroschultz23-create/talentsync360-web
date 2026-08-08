@@ -76,8 +76,8 @@ export default function CompaniesClient() {
       <section className="bg-slate-950 pt-20 pb-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
             <span className="text-blue-500 font-medium mb-4 block uppercase tracking-widest text-sm">{t.companies.badge}</span>
-            <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 mb-6 tracking-tight leading-[1.15]">
-                {t.companies.title.split('.')[0]}.<br className="hidden md:block" /> {t.companies.title.split('.')[1]?.trim()}.
+            <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 mb-6 tracking-tight leading-[1.15] max-w-4xl mx-auto">
+                {t.companies.title}
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
                 {t.companies.subtitle}
@@ -90,6 +90,11 @@ export default function CompaniesClient() {
                   {t.companies.ctaShortlist}
                 </button>
                 <Link href="/methodology" className="w-full sm:w-auto bg-slate-900 border border-slate-800 text-slate-50 px-8 py-3 rounded-md font-medium text-lg transition-colors">{t.companies.ctaMethodology}</Link>
+            </div>
+            <div className="mt-6 text-sm text-slate-500">
+                <Link href="/talents" className="hover:text-blue-400 transition-colors inline-flex items-center gap-1">
+                  {lang === 'es' ? '¿Sos profesional de tecnología y buscás roles remotos? Sumate a la Gold List →' : 'Are you a tech professional looking for remote roles? Apply to the Gold List →'}
+                </Link>
             </div>
         </div>
       </section>

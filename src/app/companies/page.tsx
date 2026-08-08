@@ -5,14 +5,14 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "72-Hour Sourcing Sprints for B2B | TalentSync360",
-  description: "Scale your engineering team with 72-hour sourcing sprints. Receive vetted LATAM developers with structured candidate scorecards and business English screening.",
+  title: "Hire Vetted LATAM Tech Talent | B2B Technical Staffing | TalentSync360",
+  description: "Hire pre-screened LATAM tech professionals through 72-hour shortlists with human screening, technical signals, English communication checks, and candidate scorecards.",
   alternates: {
     canonical: "https://www.talentsync360.com/companies",
   },
   openGraph: {
-    title: "72-Hour Sourcing Sprints for B2B | TalentSync360",
-    description: "Scale your engineering team with 72-hour sourcing sprints. Receive vetted LATAM developers with structured candidate scorecards and business English screening.",
+    title: "Hire Vetted LATAM Tech Talent | B2B Technical Staffing | TalentSync360",
+    description: "Hire pre-screened LATAM tech professionals through 72-hour shortlists with human screening, technical signals, English communication checks, and candidate scorecards.",
     url: "https://www.talentsync360.com/companies",
   }
 };
