@@ -750,8 +750,8 @@ export const translations: Record<Language, Translations> = {
     },
     companies: {
       badge: 'For Companies',
-      title: 'Staff LATAM. Prove Every Hire.',
-      subtitle: 'Curated shortlists with human screening, practical testing, and evidence-backed scorecards. Less churn, less risk, more speed.',
+      title: 'Hire vetted LATAM tech talent with decision-ready shortlists.',
+      subtitle: 'Scale your technical team with curated candidate shortlists delivered in 72 hours. Human-screened LATAM professionals with technical signals, English communication checks, and transparent candidate scorecards.',
       ctaShortlist: 'Request Shortlist',
       ctaMethodology: 'See Our Standard',
       tiersTitle: 'Shortlist Sprint White-Label',
@@ -784,8 +784,8 @@ export const translations: Record<Language, Translations> = {
     },
     talents: {
       badge: 'The Gold List',
-      title: 'Get Validated. Get Global Opportunities.',
-      subtitle: 'Build a structured talent profile for opportunities aligned with your skills, experience, language and availability.',
+      title: 'Join TalentSync360: Get Validated & Access Global Tech Opportunities',
+      subtitle: 'Build your structured talent profile to get matched with remote opportunities aligned with your skills, experience, communication level, and availability through a transparent validation process.',
       subtitleAccent: 'Professional Communication. Structured Evidence. Human Review.',
       ctaApply: 'Apply to the Gold List',
       processTitle: 'Validation process based on the opportunity',
@@ -1303,8 +1303,8 @@ export const translations: Record<Language, Translations> = {
     },
     talents: {
       badge: 'La Gold List',
-      title: 'Valida tu Perfil. Accede a Oportunidades Globales.',
-      subtitle: 'Creá un perfil de talento estructurado para oportunidades alineadas con tus habilidades, experiencia, idioma y disponibilidad.',
+      title: 'Sumate a TalentSync360: Valida tu Perfil y Accede a Oportunidades Tecnológicas Globales',
+      subtitle: 'Creá tu perfil de talento estructurado para conectarte con oportunidades remotas alineadas con tus habilidades, experiencia, nivel de comunicación y disponibilidad a través de un proceso de validación transparente.',
       subtitleAccent: 'Comunicación Profesional. Evidencia Estructurada. Revisión Humana.',
       ctaApply: 'Aplicar a la Gold List',
       processTitle: 'Proceso de validación según la oportunidad',

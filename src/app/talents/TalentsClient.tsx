@@ -27,8 +27,8 @@ export default function TalentsClient() {
               <span className="text-yellow-500 text-xs font-bold uppercase tracking-widest">{t.talents.badge}</span>
             </div>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 mb-6">
-            {t.talents.title.split('.')[0]}.<br className="hidden md:block" /> {t.talents.title.split('.')[1]?.trim()}.
+          <h1 className="text-4xl sm:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 mb-6 max-w-4xl mx-auto leading-tight">
+            {t.talents.title}
           </h1>
           <p className="text-lg text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
             {t.talents.subtitle}
@@ -41,6 +41,12 @@ export default function TalentsClient() {
               className="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-lg transition-all shadow-xl shadow-blue-600/20 active:scale-95"
             >
               {t.talents.ctaApply}
+            </Link>
+            <Link 
+              href="/companies"
+              className="px-8 py-4 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white rounded-lg font-medium text-base transition-all flex items-center justify-center gap-2"
+            >
+              {lang === 'es' ? '¿Buscás contratar talento LATAM? Ver Sprints B2B →' : 'Looking to hire LATAM tech talent? Explore B2B Sourcing Sprints →'}
             </Link>
           </div>
         </div>
