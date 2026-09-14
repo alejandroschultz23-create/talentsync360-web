@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "evidence-review:operator": "node --conditions=react-server --import tsx scripts/evidence-review/operator.ts"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.12",
@@ -33,6 +34,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
     "tailwindcss": "^4",
+    "tsx": "^4.23.13",
     "typescript": "^5",
     "vitest": "^4.1.11"
   }

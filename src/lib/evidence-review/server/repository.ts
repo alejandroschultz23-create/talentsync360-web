@@ -11,8 +11,14 @@ import type {
   Person,
   ProfileAccessToken,
   TalentOptIn,
+  WorkflowEvent,
 } from "../database.types";
 import type { FindingStatus, OptInState, ReviewState } from "../domain";
+import type {
+  CoherenceInput,
+  PublishProfileInput,
+  WorkTimeInput,
+} from "../operator/validation";
 import type { ValidatedEvidenceReviewSubmission } from "../validation";
 import { getDatabaseClient } from "./db";
 import {
@@ -55,6 +61,33 @@ type NetworkConsent = {
   version: string;
   text: string;
   acceptedAt: string;
+};
+
+export type OperatorSubmissionInspection = {
+  submission: EvidenceReviewSubmission;
+  person: Pick<
+    Person,
+    "id" | "full_name" | "email" | "country" | "current_role"
+  >;
+  latestProfile: EvidenceProfile | null;
+  findings: EvidenceFinding[];
+};
+
+export type OperatorQueueItem = {
+  submissionId: string;
+  personId: string;
+  fullName: string;
+  email: string;
+  country: string;
+  currentRole: string;
+  reviewState: ReviewState;
+  coherenceStatus: EvidenceReviewSubmission["coherence_status"];
+  evidenceType: EvidenceReviewSubmission["evidence_type"];
+  source: EvidenceReviewSubmission["source"];
+  campaign: string | null;
+  createdAt: string;
+  latestProfileVersion: number | null;
+  latestProfileCreatedAt: string | null;
 };
 
 export class EvidenceReviewRepository {
@@ -139,6 +172,189 @@ export class EvidenceReviewRepository {
     return result.data;
   }
 
+  async getSubmission(
+    submissionId: string,
+  ): Promise<EvidenceReviewSubmission> {
+    const result = await this.database
+      .from("evidence_review_submissions")
+      .select("*")
+      .eq("id", submissionId)
+      .single();
+
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "loading a submission",
+        result.error,
+      );
+    }
+    return result.data;
+  }
+
+  async inspectSubmission(
+    submissionId: string,
+  ): Promise<OperatorSubmissionInspection> {
+    const submission = await this.getSubmission(submissionId);
+    const personResult = await this.database
+      .from("people")
+      .select("id, full_name, email, country, current_role")
+      .eq("id", submission.person_id)
+      .single();
+
+    if (personResult.error) {
+      throw new EvidenceReviewRepositoryError(
+        "loading submission identity",
+        personResult.error,
+      );
+    }
+
+    const latestProfile = await this.getLatestProfile(submissionId);
+    let findings: EvidenceFinding[] = [];
+    if (latestProfile) {
+      const findingsResult = await this.database
+        .from("evidence_findings")
+        .select("*")
+        .eq("profile_id", latestProfile.id)
+        .order("sort_order", { ascending: true });
+      if (findingsResult.error) {
+        throw new EvidenceReviewRepositoryError(
+          "loading profile findings",
+          findingsResult.error,
+        );
+      }
+      findings = findingsResult.data;
+    }
+
+    return {
+      submission,
+      person: personResult.data,
+      latestProfile,
+      findings,
+    };
+  }
+
+  async listOperationalQueue(limit = 20): Promise<OperatorQueueItem[]> {
+    const submissionsResult = await this.database
+      .from("evidence_review_submissions")
+      .select("*")
+      .order("created_at", { ascending: true })
+      .limit(limit);
+
+    if (submissionsResult.error) {
+      throw new EvidenceReviewRepositoryError(
+        "loading the operational queue",
+        submissionsResult.error,
+      );
+    }
+
+    return Promise.all(
+      submissionsResult.data.map(async (submission) => {
+        const [personResult, latestProfile] = await Promise.all([
+          this.database
+            .from("people")
+            .select("id, full_name, email, country, current_role")
+            .eq("id", submission.person_id)
+            .single(),
+          this.getLatestProfile(submission.id),
+        ]);
+
+        if (personResult.error) {
+          throw new EvidenceReviewRepositoryError(
+            "loading queue identity",
+            personResult.error,
+          );
+        }
+
+        return {
+          submissionId: submission.id,
+          personId: personResult.data.id,
+          fullName: personResult.data.full_name,
+          email: personResult.data.email,
+          country: personResult.data.country,
+          currentRole: personResult.data.current_role,
+          reviewState: submission.review_state,
+          coherenceStatus: submission.coherence_status,
+          evidenceType: submission.evidence_type,
+          source: submission.source,
+          campaign: submission.campaign,
+          createdAt: submission.created_at,
+          latestProfileVersion: latestProfile?.review_version ?? null,
+          latestProfileCreatedAt: latestProfile?.created_at ?? null,
+        };
+      }),
+    );
+  }
+
+  async recordCoherenceDecision(
+    submissionId: string,
+    input: CoherenceInput,
+  ): Promise<EvidenceReviewSubmission> {
+    const result = await this.database.rpc(
+      "record_evidence_review_coherence",
+      {
+        p_submission_id: submissionId,
+        p_decision: input.decision,
+        p_dimensions: input.dimensions as unknown as Json,
+        p_operator_note: input.operator_note,
+        p_actor_reference: input.actor_reference,
+        ...(input.clarification_required === undefined
+          ? {}
+          : { p_clarification_required: input.clarification_required }),
+      },
+    );
+
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "recording the coherence decision",
+        result.error,
+      );
+    }
+    return result.data;
+  }
+
+  async createProfileV1(
+    submissionId: string,
+    input: PublishProfileInput,
+  ): Promise<EvidenceProfile> {
+    const result = await this.database.rpc("create_evidence_profile_v1", {
+      p_submission_id: submissionId,
+      p_findings: input.findings as unknown as Json,
+      p_recommendations: input.recommendations as unknown as Json,
+      p_actor_reference: input.actor_reference,
+    });
+
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "creating internal profile v1",
+        result.error,
+      );
+    }
+    return result.data;
+  }
+
+  async recordWorkTime(
+    submissionId: string,
+    input: WorkTimeInput,
+  ): Promise<WorkflowEvent> {
+    const result = await this.database.rpc(
+      "record_evidence_review_work_time",
+      {
+        p_submission_id: submissionId,
+        p_category: input.category,
+        p_minutes: input.minutes,
+        p_actor_reference: input.actor_reference,
+        p_occurred_at: input.occurred_at,
+      },
+    );
+
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "recording Evidence Review work time",
+        result.error,
+      );
+    }
+    return result.data;
+  }
+
   async recordCoherenceReview(input: {
     submissionId: string;
     status: "READY" | "CLARIFICATION_NEEDED" | "NOT_ACTIONABLE_YET";
@@ -174,7 +390,9 @@ export class EvidenceReviewRepository {
     const result = await this.database.rpc("transition_review_state", {
       p_submission_id: submissionId,
       p_to_state: toState,
-      p_actor_reference: actorReference ?? null,
+      ...(actorReference === undefined
+        ? {}
+        : { p_actor_reference: actorReference }),
     });
 
     if (result.error) {
@@ -252,7 +470,9 @@ export class EvidenceReviewRepository {
   ): Promise<EvidenceProfile> {
     const result = await this.database.rpc("deliver_evidence_profile", {
       p_profile_id: profileId,
-      p_actor_reference: actorReference ?? null,
+      ...(actorReference === undefined
+        ? {}
+        : { p_actor_reference: actorReference }),
     });
     if (result.error) {
       throw new EvidenceReviewRepositoryError("delivering a profile", result.error);
@@ -270,7 +490,9 @@ export class EvidenceReviewRepository {
       {
         p_profile_id: profileId,
         p_correction_message: correctionMessage,
-        p_actor_reference: actorReference ?? null,
+        ...(actorReference === undefined
+          ? {}
+          : { p_actor_reference: actorReference }),
       },
     );
     if (result.error) {
@@ -288,7 +510,9 @@ export class EvidenceReviewRepository {
   ): Promise<EvidenceProfile> {
     const result = await this.database.rpc("confirm_evidence_profile", {
       p_profile_id: profileId,
-      p_actor_reference: actorReference ?? null,
+      ...(actorReference === undefined
+        ? {}
+        : { p_actor_reference: actorReference }),
     });
     if (result.error) {
       throw new EvidenceReviewRepositoryError("confirming a profile", result.error);
@@ -319,9 +543,13 @@ export class EvidenceReviewRepository {
     const result = await this.database.rpc("transition_talent_opt_in", {
       p_opt_in_id: optInId,
       p_to_state: toState,
-      p_network_consent_version: consent?.version ?? null,
-      p_network_consent_text: consent?.text ?? null,
-      p_network_consent_at: consent?.acceptedAt ?? null,
+      ...(consent
+        ? {
+            p_network_consent_version: consent.version,
+            p_network_consent_text: consent.text,
+            p_network_consent_at: consent.acceptedAt,
+          }
+        : {}),
     });
     if (result.error) {
       throw new EvidenceReviewRepositoryError(

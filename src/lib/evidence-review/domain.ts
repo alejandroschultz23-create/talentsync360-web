@@ -80,6 +80,45 @@ export const COHERENCE_STATUSES = [
 
 export type CoherenceStatus = (typeof COHERENCE_STATUSES)[number];
 
+export const COHERENCE_DIMENSIONS = [
+  "RESPONSE_RELEVANCE",
+  "PROFESSIONAL_INTENT_CLARITY",
+  "INDIVIDUAL_CONTRIBUTION_CLARITY",
+  "EXPECTATION_CONSISTENCY",
+  "EVIDENCE_READINESS",
+  "FOLLOW_THROUGH",
+] as const;
+
+export type CoherenceDimension = (typeof COHERENCE_DIMENSIONS)[number];
+
+export const COHERENCE_DIMENSION_VALUES = [
+  "CONFIRMED",
+  "PARTIAL",
+  "UNKNOWN",
+  "CONTRADICTORY",
+  "NOT_APPLICABLE",
+] as const;
+
+export type CoherenceDimensionValue =
+  (typeof COHERENCE_DIMENSION_VALUES)[number];
+
+export const COHERENCE_DECISIONS = [
+  "READY_FOR_REVIEW",
+  "CLARIFICATION_NEEDED",
+  "NOT_ACTIONABLE_YET",
+] as const;
+
+export type CoherenceDecision = (typeof COHERENCE_DECISIONS)[number];
+
+export const REVIEW_WORK_CATEGORIES = [
+  "COHERENCE_REVIEW",
+  "CLARIFICATION",
+  "EVIDENCE_REVIEW",
+  "PROFILE_COMPOSITION",
+] as const;
+
+export type ReviewWorkCategory = (typeof REVIEW_WORK_CATEGORIES)[number];
+
 export const WORKFLOW_ENTITY_TYPES = [
   "PERSON",
   "SUBMISSION",

@@ -386,7 +386,37 @@ export type Database = {
     }
     Functions: {
       confirm_evidence_profile: {
-        Args: { p_actor_reference?: string | null; p_profile_id: string }
+        Args: { p_actor_reference?: string; p_profile_id: string }
+        Returns: {
+          confirmed_at: string | null
+          correction_message: string | null
+          correction_requested_at: string | null
+          created_at: string
+          delivered_at: string | null
+          evidence_context_snapshot: Json
+          id: string
+          person_id: string
+          professional_intent_snapshot: Json
+          recommendations: Json
+          review_version: number
+          reviewed_at: string | null
+          submission_id: string
+          supersedes_profile_id: string | null
+        }
+        SetofOptions: {
+          from: "*"
+          to: "evidence_profiles"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      create_evidence_profile_v1: {
+        Args: {
+          p_actor_reference: string
+          p_findings: Json
+          p_recommendations: Json
+          p_submission_id: string
+        }
         Returns: {
           confirmed_at: string | null
           correction_message: string | null
@@ -441,7 +471,7 @@ export type Database = {
         }
       }
       deliver_evidence_profile: {
-        Args: { p_actor_reference?: string | null; p_profile_id: string }
+        Args: { p_actor_reference?: string; p_profile_id: string }
         Returns: {
           confirmed_at: string | null
           correction_message: string | null
@@ -465,9 +495,71 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      record_evidence_review_coherence: {
+        Args: {
+          p_actor_reference: string
+          p_clarification_required?: string
+          p_decision: Database["public"]["Enums"]["review_state"]
+          p_dimensions: Json
+          p_operator_note: string
+          p_submission_id: string
+        }
+        Returns: {
+          campaign: string | null
+          coherence_details: Json
+          coherence_reviewed_at: string | null
+          coherence_status: Database["public"]["Enums"]["coherence_status"]
+          created_at: string
+          evidence_type: Database["public"]["Enums"]["evidence_type"]
+          evidence_url: string | null
+          id: string
+          individual_contribution: string
+          opportunity_status: Database["public"]["Enums"]["opportunity_status"]
+          person_id: string
+          professional_context: string | null
+          professional_intents: Database["public"]["Enums"]["professional_intent"][]
+          review_consent_at: string
+          review_consent_text: string
+          review_consent_version: string
+          review_state: Database["public"]["Enums"]["review_state"]
+          reviewer_reference: string | null
+          source: Database["public"]["Enums"]["attribution_source"]
+          updated_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "evidence_review_submissions"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      record_evidence_review_work_time: {
+        Args: {
+          p_actor_reference: string
+          p_category: string
+          p_minutes: number
+          p_occurred_at?: string
+          p_submission_id: string
+        }
+        Returns: {
+          actor_reference: string | null
+          entity_id: string
+          entity_type: Database["public"]["Enums"]["workflow_entity_type"]
+          event_type: Database["public"]["Enums"]["workflow_event_type"]
+          id: string
+          metadata: Json
+          occurred_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "workflow_events"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       request_evidence_profile_correction: {
         Args: {
-          p_actor_reference?: string | null
+          p_actor_reference?: string
           p_correction_message: string
           p_profile_id: string
         }
@@ -496,7 +588,7 @@ export type Database = {
       }
       transition_review_state: {
         Args: {
-          p_actor_reference?: string | null
+          p_actor_reference?: string
           p_submission_id: string
           p_to_state: Database["public"]["Enums"]["review_state"]
         }
@@ -531,9 +623,9 @@ export type Database = {
       }
       transition_talent_opt_in: {
         Args: {
-          p_network_consent_at?: string | null
-          p_network_consent_text?: string | null
-          p_network_consent_version?: string | null
+          p_network_consent_at?: string
+          p_network_consent_text?: string
+          p_network_consent_version?: string
           p_opt_in_id: string
           p_to_state: Database["public"]["Enums"]["opt_in_status"]
         }
