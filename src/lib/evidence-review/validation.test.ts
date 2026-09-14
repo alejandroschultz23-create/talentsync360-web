@@ -86,4 +86,25 @@ describe("Evidence Review submission validation", () => {
       evidenceReviewSubmissionSchema.safeParse(withoutConsent).success,
     ).toBe(false);
   });
+
+  it("enforces field length boundaries", () => {
+    expect(
+      evidenceReviewSubmissionSchema.safeParse({
+        ...validInput,
+        fullName: "x".repeat(161),
+      }).success,
+    ).toBe(false);
+    expect(
+      evidenceReviewSubmissionSchema.safeParse({
+        ...validInput,
+        individualContribution: "x".repeat(5_001),
+      }).success,
+    ).toBe(false);
+    expect(
+      evidenceReviewSubmissionSchema.safeParse({
+        ...validInput,
+        professionalContext: "x".repeat(5_001),
+      }).success,
+    ).toBe(false);
+  });
 });
