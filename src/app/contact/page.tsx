@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 import { getContactRedirect } from '@/lib/contact-routing';
 
 export const metadata: Metadata = {
-  title: "Contact TalentSync360 | Start Your Sourcing Sprint",
+  title: "Contact | Start Your Sourcing Sprint",
   description: "Contact TalentSync360 about nearshore technical sourcing, Shortlist Sprints, or a general inquiry.",
   alternates: {
     canonical: "https://www.talentsync360.com/contact",

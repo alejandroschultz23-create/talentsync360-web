@@ -17,7 +17,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 export const metadata: Metadata = {
-  title: "Talent Network Decision | TalentSync360",
+  title: "Talent Network Decision",
   referrer: "no-referrer",
   robots: {
     index: false,

@@ -4,7 +4,7 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Evidence-Based Talent Review Methodology | TalentSync360",
+  title: "Evidence-Based Talent Review Methodology",
   description: "See how TalentSync360 combines human review, role-specific technical evidence, and opportunity-specific communication requirements without automated ranking.",
   alternates: {
     canonical: "https://www.talentsync360.com/methodology",

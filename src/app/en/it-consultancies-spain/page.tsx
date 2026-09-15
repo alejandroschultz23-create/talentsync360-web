@@ -5,7 +5,7 @@ import ServiceSchema from '@/components/ServiceSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "White-Label Developer Shortlists for Spanish IT Consultancies | TalentSync360",
+  title: "White-Label Developer Shortlists for Spanish IT Consultancies",
   description: "Accelerate client brief delivery with human-reviewed white-label developer shortlists and structured, role-specific evidence profiles.",
   alternates: {
     canonical: "https://www.talentsync360.com/en/it-consultancies-spain",

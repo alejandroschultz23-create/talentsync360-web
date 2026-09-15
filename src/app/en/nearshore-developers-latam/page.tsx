@@ -5,7 +5,7 @@ import ServiceSchema from '@/components/ServiceSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Hire Nearshore Developers in LATAM | Vetted Tech Talent | TalentSync360",
+  title: "Hire Nearshore Developers in LATAM | Vetted Tech Talent",
   description: "Access LATAM developers through human-reviewed nearshore shortlists with role-specific technical evidence and opportunity-specific communication requirements.",
   alternates: {
     canonical: "https://www.talentsync360.com/en/nearshore-developers-latam",
