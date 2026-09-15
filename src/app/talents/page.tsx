@@ -4,14 +4,14 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Join the Gold List for LATAM Tech Professionals | TalentSync360",
-  description: "Join TalentSync360’s Gold List, build a structured tech profile, and access remote opportunities aligned with your skills, experience, English level, and availability.",
+  title: "Professional Evidence Review for LATAM Tech Talent | TalentSync360",
+  description: "Share one professional experience and receive a private, structured Evidence Profile showing what the available evidence supports, partially supports, or leaves unknown.",
   alternates: {
     canonical: "https://www.talentsync360.com/talents",
   },
   openGraph: {
-    title: "Join the Gold List for LATAM Tech Professionals | TalentSync360",
-    description: "Join TalentSync360’s Gold List, build a structured tech profile, and access remote opportunities aligned with your skills, experience, English level, and availability.",
+    title: "Professional Evidence Review for LATAM Tech Talent | TalentSync360",
+    description: "Share one professional experience and receive a private, structured Evidence Profile showing what the available evidence supports, partially supports, or leaves unknown.",
     url: "https://www.talentsync360.com/talents",
   }
 };

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { SolutionModal } from '@/components/SolutionModals';
 import { pushGTMEvent } from '@/lib/analytics';
+import { EVIDENCE_REVIEW_PATH } from '@/lib/contact-routing';
 
 export default function CompaniesClient() {
   const { t, lang } = useLanguage();
@@ -56,12 +57,12 @@ export default function CompaniesClient() {
       includes: isEs ? [
         "Acelera la entrega de briefs a tus clientes",
         "Diseñado para testear la velocidad del pipeline",
-        "Scorecards de candidatos basados en evidencia",
+        "Perfiles de evidencia estructurados por candidato",
         "El fee del piloto se puede acreditar a un retainer de seguimiento o paquete sprint ampliado si ambas partes continúan",
       ] : [
         "Accelerate client brief delivery response times",
         "Designed for testing pipeline velocity",
-        "Evidence-backed candidate scorecards & vetting",
+        "Structured candidate evidence profiles & human review",
         "Pilot fee can be credited toward a follow-on retainer or expanded sprint package if both sides continue",
       ],
       guarantee: isEs ? "El fee del piloto se puede acreditar a un retainer de seguimiento o paquete sprint ampliado si ambas partes continúan" : "Pilot fee can be credited toward a follow-on retainer or expanded sprint package if both sides continue",
@@ -92,8 +93,8 @@ export default function CompaniesClient() {
                 <Link href="/methodology" className="w-full sm:w-auto bg-slate-900 border border-slate-800 text-slate-50 px-8 py-3 rounded-md font-medium text-lg transition-colors">{t.companies.ctaMethodology}</Link>
             </div>
             <div className="mt-6 text-sm text-slate-500">
-                <Link href="/talents" className="hover:text-blue-400 transition-colors inline-flex items-center gap-1">
-                  {lang === 'es' ? '¿Sos profesional de tecnología y buscás roles remotos? Sumate a la Gold List →' : 'Are you a tech professional looking for remote roles? Apply to the Gold List →'}
+                <Link href={EVIDENCE_REVIEW_PATH} className="hover:text-blue-400 transition-colors inline-flex items-center gap-1">
+                  {lang === 'es' ? '¿Sos profesional de tecnología? Solicitá tu Evidence Review →' : 'Are you a tech professional? Request your Evidence Review →'}
                 </Link>
             </div>
         </div>

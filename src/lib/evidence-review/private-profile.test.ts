@@ -21,11 +21,11 @@ describe("Private Profile View Builder and Content Sanitization", () => {
   const mockSubmission: EvidenceReviewSubmission = {
     id: "00000000-0000-4000-8000-000000000001",
     person_id: "00000000-0000-4000-8000-000000000002",
-    opportunity_status: "EXPLORING_LATAM_OPPORTUNITIES",
-    professional_intents: ["REMOTE_CONTRACTING_GLOBAL"],
+    opportunity_status: "OPEN",
+    professional_intents: ["FREELANCE"],
     source: "direct",
     campaign: null,
-    evidence_type: "CODE_REPOSITORY",
+    evidence_type: "PUBLIC_REPOSITORY",
     evidence_url: "https://github.com/example/pipeline",
     individual_contribution: "Architected distributed ETL streaming pipelines.",
     professional_context: "Fintech scaleup",
@@ -50,11 +50,11 @@ describe("Private Profile View Builder and Content Sanitization", () => {
       full_name: "Ana Silva",
       current_role: "Staff Data Engineer",
       country: "Argentina",
-      opportunity_status: "EXPLORING_LATAM_OPPORTUNITIES",
-      professional_intents: ["REMOTE_CONTRACTING_GLOBAL"],
+      opportunity_status: "OPEN",
+      professional_intents: ["FREELANCE"],
     },
     evidence_context_snapshot: {
-      evidence_type: "CODE_REPOSITORY",
+      evidence_type: "PUBLIC_REPOSITORY",
       evidence_url: "https://github.com/example/pipeline",
       individual_contribution: "Architected distributed ETL streaming pipelines.",
       professional_context: "Fintech scaleup",
@@ -72,7 +72,6 @@ describe("Private Profile View Builder and Content Sanitization", () => {
     correction_requested_at: null,
     correction_message: null,
     created_at: "2026-09-14T10:00:00Z",
-    updated_at: "2026-09-14T11:00:00Z",
   };
 
   const mockFindings: EvidenceFinding[] = [
