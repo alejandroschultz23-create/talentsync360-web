@@ -5,7 +5,7 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Hire Vetted LATAM Tech Talent | B2B Technical Staffing | TalentSync360",
+  title: "Hire Vetted LATAM Tech Talent | B2B Technical Staffing",
   description: "Hire LATAM tech professionals through human-reviewed shortlists with role-specific technical evidence and opportunity-specific communication requirements.",
   alternates: {
     canonical: "https://www.talentsync360.com/companies",

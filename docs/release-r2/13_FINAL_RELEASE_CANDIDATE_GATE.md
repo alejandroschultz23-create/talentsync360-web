@@ -14,8 +14,8 @@
 | :--- | :--- | :--- | :--- |
 | **Lineage & Baseline** | Clean branch off approved R1 commit (`d6fc585b`) | Confirmed | ✅ PASS |
 | **Product Boundaries** | Zero product features added during R2 | Confirmed | ✅ PASS |
-| **Untouched Files** | `outputs/` remains 100% untouched | Confirmed | ✅ PASS |
-| **Metadata Fix** | Duplicate title in `/talents` resolved | Fixed & verified | ✅ PASS |
+| **Untouched Files** | `outputs/` remains pre-existing, untracked, untouched, and unstaged | Confirmed | ✅ PASS |
+| **Metadata Fix** | Duplicate title in `/talents` and `/companies` resolved | Fixed & verified | ✅ PASS |
 | **Dependency Health** | `resend` updated to `6.28.1`; 0 prod runtime CVEs | Audited & verified | ✅ PASS |
 | **Consent Versions** | Evidence: `evidence-review-v1-2026-09-14`; Opt-In: `talent-network-opt-in-v1-2026-09-15` | Verified in docs & code | ✅ PASS |
 | **Database Schema** | Exactly SEVEN public product tables verified | Documented in Doc 05 | ✅ PASS |

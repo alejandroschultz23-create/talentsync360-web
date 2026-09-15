@@ -92,7 +92,7 @@
 **Objective:** Verify production site health and database connectivity.
 
 - [ ] 1. Visit `https://talentsync360.com` — verify home page loads cleanly.
-- [ ] 2. Visit `https://talentsync360.com/talents` — verify title is "Professional Evidence Review for LATAM Tech Talent | TalentSync360".
+- [ ] 2. Visit `https://talentsync360.com/talents` and `https://talentsync360.com/companies` — verify single branding suffix in title.
 - [ ] 3. Visit `https://talentsync360.com/talents/evidence-review` — verify landing page renders cleanly.
 - [ ] 4. Verify `robots.txt` and `sitemap.xml` load correctly.
 
