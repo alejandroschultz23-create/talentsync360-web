@@ -6,6 +6,7 @@ import {
 } from "./private-routes";
 import { PRIVATE_RESPONSE_HEADERS } from "./server/private-http";
 import nextConfig from "../../../next.config";
+import sitemap from "../../app/sitemap";
 
 describe("Private route classification and analytics exclusion", () => {
   it("classifies private access and profile paths as private", () => {
@@ -21,6 +22,18 @@ describe("Private route classification and analytics exclusion", () => {
     ).toBe(true);
     expect(
       isPrivateEvidenceReviewPath("/talents/evidence-review/profile/correction"),
+    ).toBe(true);
+    expect(
+      isPrivateEvidenceReviewPath("/talents/evidence-review/profile/opt-in"),
+    ).toBe(true);
+    expect(
+      isPrivateEvidenceReviewPath("/talents/evidence-review/profile/opt-in/offer"),
+    ).toBe(true);
+    expect(
+      isPrivateEvidenceReviewPath("/talents/evidence-review/profile/opt-in/accept"),
+    ).toBe(true);
+    expect(
+      isPrivateEvidenceReviewPath("/talents/evidence-review/profile/opt-in/decline"),
     ).toBe(true);
     expect(
       isPrivateEvidenceReviewPath("/talents/evidence-review/profile?lang=es"),
@@ -43,6 +56,19 @@ describe("Private route classification and analytics exclusion", () => {
         "https://www.talentsync360.com/talents/evidence-review/profile/confirm",
       ),
     ).toBe(true);
+    expect(
+      isPrivateEvidenceReviewUrl(
+        "https://www.talentsync360.com/talents/evidence-review/profile/opt-in?lang=en",
+      ),
+    ).toBe(true);
+  });
+
+  it("keeps every private profile and opt-in path out of the sitemap", () => {
+    expect(
+      sitemap().some(({ url }) =>
+        url.includes("/talents/evidence-review/profile"),
+      ),
+    ).toBe(false);
   });
 
   it("ensures public Phase B routes remain non-private for acquisition analytics", () => {

@@ -71,5 +71,9 @@ describe("profile versioning", () => {
     expect(deriveTalentState("REVIEW_CONFIRMED", "ACCEPTED")).toBe(
       "TALENT_PROFILE_ACTIVE",
     );
+    expect(deriveTalentState("REVIEW_CONFIRMED", "DECLINED")).toBe(
+      "EVIDENCE_REVIEW_COMPLETED_NO_OPTIN",
+    );
+    expect(deriveTalentState("REVIEW_DELIVERED", "ACCEPTED")).toBeNull();
   });
 });

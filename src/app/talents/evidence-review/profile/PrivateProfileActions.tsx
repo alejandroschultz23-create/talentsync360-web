@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 
 import type { EvidenceReviewLanguage } from "@/lib/evidence-review/consent";
+import { optInContent } from "@/lib/evidence-review/opt-in-content";
 import { privateProfileContent } from "@/lib/evidence-review/private-content";
 
 type ActionState = "open" | "confirmed" | "correction_requested";
@@ -15,13 +16,30 @@ export default function PrivateProfileActions({
   state: ActionState;
 }) {
   const content = privateProfileContent[language];
+  const networkContent = optInContent[language];
   const [busy, setBusy] = useState<"confirm" | "correction" | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
   if (state === "confirmed") {
     return (
-      <div className="rounded-2xl border border-emerald-400/30 bg-emerald-400/10 p-5 text-emerald-100">
-        {content.confirmed}
+      <div className="rounded-2xl border border-emerald-400/30 bg-emerald-400/10 p-6">
+        <p className="text-base font-semibold text-emerald-100">{content.confirmed}</p>
+        <p className="mt-3 text-sm leading-relaxed text-slate-200">
+          {networkContent.profileInvitation}
+        </p>
+        <div className="mt-5">
+          <form
+            action={`/talents/evidence-review/profile/opt-in/offer?lang=${language}`}
+            method="POST"
+          >
+            <button
+              type="submit"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+            >
+              {networkContent.profileDecisionButton}
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

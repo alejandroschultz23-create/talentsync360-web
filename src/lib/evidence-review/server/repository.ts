@@ -13,7 +13,12 @@ import type {
   TalentOptIn,
   WorkflowEvent,
 } from "../database.types";
+import type { EvidenceReviewLanguage } from "../consent";
 import type { FindingStatus, OptInState, ReviewState } from "../domain";
+import {
+  getNetworkOptInConsentText,
+  NETWORK_OPT_IN_CONSENT_VERSION,
+} from "../network-consent";
 import type {
   CoherenceInput,
   PublishProfileInput,
@@ -102,6 +107,12 @@ export type PrivateProfileAccess = {
 export type IssuedPrivateAccess = {
   token: string;
   record: ProfileAccessToken;
+};
+
+export type PrivateOptInAccess = {
+  access: PrivateProfileAccess;
+  eligibility: "ELIGIBLE" | "NOT_CONFIRMED";
+  optIn: TalentOptIn | null;
 };
 
 export class EvidenceReviewRepository {
@@ -818,6 +829,142 @@ export class EvidenceReviewRepository {
       );
     }
     return result.data;
+  }
+
+  async getTalentOptIn(profileId: string): Promise<TalentOptIn | null> {
+    const result = await this.database
+      .from("talent_opt_ins")
+      .select("*")
+      .eq("profile_id", profileId)
+      .maybeSingle();
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "fetching talent opt-in",
+        result.error,
+      );
+    }
+    return result.data;
+  }
+
+  async ensureTalentOptInOffered(
+    personId: string,
+    profileId: string,
+  ): Promise<TalentOptIn> {
+    let existing = await this.getTalentOptIn(profileId);
+    if (!existing) {
+      try {
+        existing = await this.createTalentOptIn(personId, profileId);
+      } catch (error) {
+        if (
+          !(error instanceof EvidenceReviewRepositoryError) ||
+          error.code !== "23505"
+        ) {
+          throw error;
+        }
+
+        existing = await this.getTalentOptIn(profileId);
+        if (!existing) throw error;
+      }
+    }
+    if (existing.opt_in_status === "NOT_OFFERED") {
+      return this.transitionTalentOptIn(existing.id, "OFFERED");
+    }
+    return existing;
+  }
+
+  async resolvePrivateOptInAccess(
+    token: unknown,
+    now = new Date(),
+  ): Promise<PrivateOptInAccess | null> {
+    const access = await this.resolvePrivateProfileAccess(token, now, false);
+    if (!access) return null;
+
+    if (
+      access.submission.review_state !== "REVIEW_CONFIRMED" ||
+      !access.profile.confirmed_at
+    ) {
+      return {
+        access,
+        eligibility: "NOT_CONFIRMED",
+        optIn: null,
+      };
+    }
+
+    const optIn = await this.getTalentOptIn(access.profile.id);
+    return {
+      access,
+      eligibility: "ELIGIBLE",
+      optIn,
+    };
+  }
+
+  async offerTalentOptIn(
+    token: unknown,
+    now = new Date(),
+  ): Promise<TalentOptIn> {
+    const access = await this.resolvePrivateProfileAccess(token, now);
+    if (!access) {
+      throw new Error("Invalid private access");
+    }
+    if (
+      access.submission.review_state !== "REVIEW_CONFIRMED" ||
+      !access.profile.confirmed_at
+    ) {
+      throw new Error("Profile must be confirmed to offer talent opt-in");
+    }
+    return this.ensureTalentOptInOffered(access.person.id, access.profile.id);
+  }
+
+  async acceptTalentOptIn(
+    token: unknown,
+    language: EvidenceReviewLanguage = "es",
+    now = new Date(),
+  ): Promise<TalentOptIn> {
+    const access = await this.resolvePrivateProfileAccess(token, now);
+    if (!access) {
+      throw new Error("Invalid private access");
+    }
+    if (
+      access.submission.review_state !== "REVIEW_CONFIRMED" ||
+      !access.profile.confirmed_at
+    ) {
+      throw new Error("Profile must be confirmed to accept talent opt-in");
+    }
+
+    const optIn = await this.getTalentOptIn(access.profile.id);
+    if (!optIn || optIn.opt_in_status !== "OFFERED") {
+      throw new Error("Talent opt-in must be OFFERED before it can be ACCEPTED");
+    }
+
+    const consentText = getNetworkOptInConsentText(language);
+    return this.transitionTalentOptIn(optIn.id, "ACCEPTED", {
+      version: NETWORK_OPT_IN_CONSENT_VERSION,
+      text: consentText,
+      acceptedAt: now.toISOString(),
+    });
+  }
+
+  async declineTalentOptIn(
+    token: unknown,
+    now = new Date(),
+  ): Promise<TalentOptIn> {
+    const access = await this.resolvePrivateProfileAccess(token, now);
+    if (!access) {
+      throw new Error("Invalid private access");
+    }
+    if (
+      access.submission.review_state !== "REVIEW_CONFIRMED" ||
+      !access.profile.confirmed_at
+    ) {
+      throw new Error("Profile must be confirmed to decline talent opt-in");
+    }
+
+    const optIn = await this.getTalentOptIn(access.profile.id);
+    if (!optIn || optIn.opt_in_status !== "OFFERED") {
+      throw new Error("Talent opt-in must be OFFERED before it can be DECLINED");
+    }
+
+    return this.transitionTalentOptIn(optIn.id, "DECLINED");
   }
 
   async issueProfileAccessToken(
