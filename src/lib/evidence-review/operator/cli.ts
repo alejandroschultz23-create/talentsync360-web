@@ -8,6 +8,7 @@ import { parseOperatorArguments, requireOption } from "./arguments";
 import { EvidenceReviewOperatorService, toSafeInspectionOutput } from "./service";
 import {
   coherenceInputSchema,
+  expiresHoursSchema,
   publishProfileInputSchema,
   submissionIdSchema,
   workTimeInputSchema,
@@ -126,6 +127,79 @@ export async function runEvidenceReviewOperator(
       submission_id: profile.submission_id,
       profile_id: profile.id,
       review_version: profile.review_version,
+      reviewed_at: profile.reviewed_at,
+      delivered_at: profile.delivered_at,
+    });
+    return;
+  }
+
+  if (command === "deliver-profile") {
+    const actorReference = requireOption(options, "actor").trim();
+    if (!actorReference || actorReference.length > 160) {
+      throw new Error("Actor reference must contain between 1 and 160 characters");
+    }
+    const expiresHours = options["expires-hours"]
+      ? expiresHoursSchema.parse(options["expires-hours"])
+      : 72;
+    const result = await service.deliverProfile({
+      submissionId,
+      actorReference,
+      expiresHours,
+    });
+    writeJson(result);
+    return;
+  }
+
+  if (command === "reissue-access") {
+    const actorReference = requireOption(options, "actor").trim();
+    if (!actorReference || actorReference.length > 160) {
+      throw new Error("Actor reference must contain between 1 and 160 characters");
+    }
+    const expiresHours = options["expires-hours"]
+      ? expiresHoursSchema.parse(options["expires-hours"])
+      : 72;
+    const result = await service.reissueAccess({
+      submissionId,
+      actorReference,
+      expiresHours,
+    });
+    writeJson(result);
+    return;
+  }
+
+  if (command === "revoke-access") {
+    const actorReference = requireOption(options, "actor").trim();
+    if (!actorReference || actorReference.length > 160) {
+      throw new Error("Actor reference must contain between 1 and 160 characters");
+    }
+    const result = await service.revokeAccess({
+      submissionId,
+      actorReference,
+    });
+    writeJson(result);
+    return;
+  }
+
+  if (command === "revise-profile") {
+    const input = await readValidatedJson(
+      requireOption(options, "input"),
+      publishProfileInputSchema,
+    );
+    if (options.actor) {
+      const actorReference = options.actor.trim();
+      if (!actorReference || actorReference.length > 160) {
+        throw new Error("Actor reference must contain between 1 and 160 characters");
+      }
+      input.actor_reference = actorReference;
+    }
+    const profile = await service.reviseProfile(submissionId, input);
+    writeJson({
+      ok: true,
+      command,
+      submission_id: profile.submission_id,
+      profile_id: profile.id,
+      review_version: profile.review_version,
+      supersedes_profile_id: profile.supersedes_profile_id,
       reviewed_at: profile.reviewed_at,
       delivered_at: profile.delivered_at,
     });

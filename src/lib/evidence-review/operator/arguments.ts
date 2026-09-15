@@ -5,6 +5,10 @@ const COMMAND_OPTIONS = {
   "start-review": new Set(["submission", "actor"]),
   "publish-profile": new Set(["submission", "input"]),
   "log-time": new Set(["submission", "input"]),
+  "deliver-profile": new Set(["submission", "actor", "expires-hours"]),
+  "reissue-access": new Set(["submission", "actor", "expires-hours"]),
+  "revoke-access": new Set(["submission", "actor"]),
+  "revise-profile": new Set(["submission", "input", "actor"]),
 } as const;
 
 export type OperatorCommand = keyof typeof COMMAND_OPTIONS;
@@ -20,7 +24,7 @@ export function parseOperatorArguments(
   const command = argv[0] as OperatorCommand | undefined;
   if (!command || !(command in COMMAND_OPTIONS)) {
     throw new Error(
-      "Command must be one of: queue, inspect, coherence, start-review, publish-profile, log-time",
+      "Command must be one of: queue, inspect, coherence, start-review, publish-profile, log-time, deliver-profile, reissue-access, revoke-access, revise-profile",
     );
   }
 

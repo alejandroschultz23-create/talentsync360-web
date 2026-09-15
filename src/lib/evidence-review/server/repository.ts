@@ -25,6 +25,7 @@ import {
   generateAccessToken,
   hashAccessToken,
   isAccessTokenUsable,
+  isValidAccessTokenFormat,
 } from "./tokens";
 
 export class EvidenceReviewRepositoryError extends Error {
@@ -88,6 +89,19 @@ export type OperatorQueueItem = {
   createdAt: string;
   latestProfileVersion: number | null;
   latestProfileCreatedAt: string | null;
+};
+
+export type PrivateProfileAccess = {
+  token: ProfileAccessToken;
+  profile: EvidenceProfile;
+  submission: EvidenceReviewSubmission;
+  person: Pick<Person, "id" | "full_name" | "country" | "current_role">;
+  findings: EvidenceFinding[];
+};
+
+export type IssuedPrivateAccess = {
+  token: string;
+  record: ProfileAccessToken;
 };
 
 export class EvidenceReviewRepository {
@@ -325,6 +339,252 @@ export class EvidenceReviewRepository {
     if (result.error) {
       throw new EvidenceReviewRepositoryError(
         "creating internal profile v1",
+        result.error,
+      );
+    }
+    return result.data;
+  }
+
+  async createProfileRevision(
+    submissionId: string,
+    input: PublishProfileInput,
+  ): Promise<EvidenceProfile> {
+    const result = await this.database.rpc("create_evidence_profile_revision", {
+      p_submission_id: submissionId,
+      p_findings: input.findings as unknown as Json,
+      p_recommendations: input.recommendations as unknown as Json,
+      p_actor_reference: input.actor_reference,
+    });
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "creating an internal profile revision",
+        result.error,
+      );
+    }
+    return result.data;
+  }
+
+  async deliverProfileWithToken(input: {
+    submissionId: string;
+    expiresAt: Date;
+    actorReference: string;
+  }): Promise<IssuedPrivateAccess> {
+    const token = generateAccessToken();
+    const result = await this.database.rpc(
+      "deliver_evidence_profile_with_token",
+      {
+        p_submission_id: input.submissionId,
+        p_token_hash: hashAccessToken(token),
+        p_expires_at: input.expiresAt.toISOString(),
+        p_actor_reference: input.actorReference,
+      },
+    );
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "delivering a profile with private access",
+        result.error,
+      );
+    }
+    return { token, record: result.data };
+  }
+
+  async reissueProfileAccess(input: {
+    submissionId: string;
+    expiresAt: Date;
+    actorReference: string;
+  }): Promise<IssuedPrivateAccess> {
+    const token = generateAccessToken();
+    const result = await this.database.rpc(
+      "reissue_evidence_profile_access",
+      {
+        p_submission_id: input.submissionId,
+        p_token_hash: hashAccessToken(token),
+        p_expires_at: input.expiresAt.toISOString(),
+        p_actor_reference: input.actorReference,
+      },
+    );
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "reissuing private profile access",
+        result.error,
+      );
+    }
+    return { token, record: result.data };
+  }
+
+  async revokeProfileAccess(
+    submissionId: string,
+    actorReference: string,
+  ): Promise<number> {
+    const result = await this.database.rpc("revoke_evidence_profile_access", {
+      p_submission_id: submissionId,
+      p_actor_reference: actorReference,
+    });
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "revoking private profile access",
+        result.error,
+      );
+    }
+    return result.data;
+  }
+
+  async recordProfileNotification(input: {
+    profileId: string;
+    status: "sent" | "skipped" | "failed";
+    actorReference: string;
+  }): Promise<WorkflowEvent> {
+    const result = await this.database.rpc(
+      "record_evidence_profile_notification",
+      {
+        p_profile_id: input.profileId,
+        p_status: input.status,
+        p_actor_reference: input.actorReference,
+      },
+    );
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "recording profile notification outcome",
+        result.error,
+      );
+    }
+    return result.data;
+  }
+
+  async resolvePrivateProfileAccess(
+    token: unknown,
+    now = new Date(),
+    touch = true,
+  ): Promise<PrivateProfileAccess | null> {
+    if (!isValidAccessTokenFormat(token)) return null;
+
+    const tokenResult = await this.database
+      .from("profile_access_tokens")
+      .select("*")
+      .eq("token_hash", hashAccessToken(token))
+      .maybeSingle();
+    if (tokenResult.error) {
+      throw new EvidenceReviewRepositoryError(
+        "resolving private profile access",
+        tokenResult.error,
+      );
+    }
+    if (
+      !tokenResult.data ||
+      !isAccessTokenUsable(
+        {
+          expiresAt: tokenResult.data.expires_at,
+          revokedAt: tokenResult.data.revoked_at,
+        },
+        now,
+      )
+    ) {
+      return null;
+    }
+
+    const profileResult = await this.database
+      .from("evidence_profiles")
+      .select("*")
+      .eq("id", tokenResult.data.profile_id)
+      .maybeSingle();
+    if (profileResult.error) {
+      throw new EvidenceReviewRepositoryError(
+        "loading the private profile",
+        profileResult.error,
+      );
+    }
+    const profile = profileResult.data;
+    if (!profile?.delivered_at) return null;
+
+    const [submissionResult, personResult, findingsResult] = await Promise.all([
+      this.database
+        .from("evidence_review_submissions")
+        .select("*")
+        .eq("id", profile.submission_id)
+        .maybeSingle(),
+      this.database
+        .from("people")
+        .select("id, full_name, country, current_role")
+        .eq("id", profile.person_id)
+        .maybeSingle(),
+      this.database
+        .from("evidence_findings")
+        .select("*")
+        .eq("profile_id", profile.id)
+        .order("sort_order", { ascending: true }),
+    ]);
+    if (submissionResult.error || personResult.error || findingsResult.error) {
+      throw new EvidenceReviewRepositoryError(
+        "loading private profile relationships",
+        submissionResult.error ?? personResult.error ?? findingsResult.error!,
+      );
+    }
+    if (
+      !submissionResult.data ||
+      !personResult.data ||
+      submissionResult.data.person_id !== profile.person_id ||
+      personResult.data.id !== profile.person_id
+    ) {
+      return null;
+    }
+
+    let tokenRecord = tokenResult.data;
+    if (touch) {
+      const touched = await this.database
+        .from("profile_access_tokens")
+        .update({ last_used_at: now.toISOString() })
+        .eq("id", tokenRecord.id)
+        .is("revoked_at", null)
+        .gt("expires_at", now.toISOString())
+        .select("*")
+        .maybeSingle();
+      if (touched.error) {
+        throw new EvidenceReviewRepositoryError(
+          "recording private profile access",
+          touched.error,
+        );
+      }
+      if (!touched.data) return null;
+      tokenRecord = touched.data;
+    }
+
+    return {
+      token: tokenRecord,
+      profile,
+      submission: submissionResult.data,
+      person: personResult.data,
+      findings: findingsResult.data,
+    };
+  }
+
+  async confirmPrivateProfile(token: string): Promise<EvidenceProfile> {
+    const result = await this.database.rpc(
+      "confirm_evidence_profile_by_token",
+      { p_token_hash: hashAccessToken(token) },
+    );
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "confirming a private profile",
+        result.error,
+      );
+    }
+    return result.data;
+  }
+
+  async requestPrivateProfileCorrection(
+    token: string,
+    correctionMessage: string,
+  ): Promise<EvidenceProfile> {
+    const result = await this.database.rpc(
+      "request_evidence_profile_correction_by_token",
+      {
+        p_token_hash: hashAccessToken(token),
+        p_correction_message: correctionMessage,
+      },
+    );
+    if (result.error) {
+      throw new EvidenceReviewRepositoryError(
+        "requesting a private profile correction",
         result.error,
       );
     }

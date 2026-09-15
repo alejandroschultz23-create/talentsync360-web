@@ -9,7 +9,14 @@ import {
 
 export const submissionIdSchema = z.string().uuid();
 
-const actorReferenceSchema = z.string().trim().min(1).max(160);
+export const actorReferenceSchema = z.string().trim().min(1).max(160);
+
+export const expiresHoursSchema = z
+  .coerce
+  .number()
+  .min(1, "Expires hours must be at least 1 hour")
+  .max(168, "Expires hours cannot exceed 168 hours (7 days)");
+
 const coherenceDimensionValueSchema = z.enum(COHERENCE_DIMENSION_VALUES);
 
 export const coherenceDimensionsSchema = z

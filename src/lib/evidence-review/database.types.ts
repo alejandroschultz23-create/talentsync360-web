@@ -410,6 +410,61 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      confirm_evidence_profile_by_token: {
+        Args: { p_token_hash: string }
+        Returns: {
+          confirmed_at: string | null
+          correction_message: string | null
+          correction_requested_at: string | null
+          created_at: string
+          delivered_at: string | null
+          evidence_context_snapshot: Json
+          id: string
+          person_id: string
+          professional_intent_snapshot: Json
+          recommendations: Json
+          review_version: number
+          reviewed_at: string | null
+          submission_id: string
+          supersedes_profile_id: string | null
+        }
+        SetofOptions: {
+          from: "*"
+          to: "evidence_profiles"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      create_evidence_profile_revision: {
+        Args: {
+          p_actor_reference: string
+          p_findings: Json
+          p_recommendations: Json
+          p_submission_id: string
+        }
+        Returns: {
+          confirmed_at: string | null
+          correction_message: string | null
+          correction_requested_at: string | null
+          created_at: string
+          delivered_at: string | null
+          evidence_context_snapshot: Json
+          id: string
+          person_id: string
+          professional_intent_snapshot: Json
+          recommendations: Json
+          review_version: number
+          reviewed_at: string | null
+          submission_id: string
+          supersedes_profile_id: string | null
+        }
+        SetofOptions: {
+          from: "*"
+          to: "evidence_profiles"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       create_evidence_profile_v1: {
         Args: {
           p_actor_reference: string
@@ -495,6 +550,51 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      deliver_evidence_profile_with_token: {
+        Args: {
+          p_actor_reference: string
+          p_expires_at: string
+          p_submission_id: string
+          p_token_hash: string
+        }
+        Returns: {
+          created_at: string
+          expires_at: string
+          id: string
+          last_used_at: string | null
+          profile_id: string
+          revoked_at: string | null
+          token_hash: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "profile_access_tokens"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      record_evidence_profile_notification: {
+        Args: {
+          p_actor_reference: string
+          p_profile_id: string
+          p_status: string
+        }
+        Returns: {
+          actor_reference: string | null
+          entity_id: string
+          entity_type: Database["public"]["Enums"]["workflow_entity_type"]
+          event_type: Database["public"]["Enums"]["workflow_event_type"]
+          id: string
+          metadata: Json
+          occurred_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "workflow_events"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       record_evidence_review_coherence: {
         Args: {
           p_actor_reference: string
@@ -557,6 +657,29 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      reissue_evidence_profile_access: {
+        Args: {
+          p_actor_reference: string
+          p_expires_at: string
+          p_submission_id: string
+          p_token_hash: string
+        }
+        Returns: {
+          created_at: string
+          expires_at: string
+          id: string
+          last_used_at: string | null
+          profile_id: string
+          revoked_at: string | null
+          token_hash: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "profile_access_tokens"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       request_evidence_profile_correction: {
         Args: {
           p_actor_reference?: string
@@ -585,6 +708,35 @@ export type Database = {
           isOneToOne: true
           isSetofReturn: false
         }
+      }
+      request_evidence_profile_correction_by_token: {
+        Args: { p_correction_message: string; p_token_hash: string }
+        Returns: {
+          confirmed_at: string | null
+          correction_message: string | null
+          correction_requested_at: string | null
+          created_at: string
+          delivered_at: string | null
+          evidence_context_snapshot: Json
+          id: string
+          person_id: string
+          professional_intent_snapshot: Json
+          recommendations: Json
+          review_version: number
+          reviewed_at: string | null
+          submission_id: string
+          supersedes_profile_id: string | null
+        }
+        SetofOptions: {
+          from: "*"
+          to: "evidence_profiles"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      revoke_evidence_profile_access: {
+        Args: { p_actor_reference: string; p_submission_id: string }
+        Returns: number
       }
       transition_review_state: {
         Args: {
@@ -711,6 +863,7 @@ export type Database = {
         | "ACCESS_TOKEN_CREATED"
         | "ACCESS_TOKEN_REVOKED"
         | "WORK_RECORDED"
+        | "PROFILE_NOTIFICATION_RECORDED"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -903,6 +1056,7 @@ export const Constants = {
         "ACCESS_TOKEN_CREATED",
         "ACCESS_TOKEN_REVOKED",
         "WORK_RECORDED",
+        "PROFILE_NOTIFICATION_RECORDED",
       ],
     },
   },

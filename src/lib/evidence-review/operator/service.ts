@@ -4,7 +4,10 @@ import type {
   WorkflowEvent,
 } from "../database.types";
 import { assertReviewTransition } from "../workflow";
+import { sendEvidenceProfileReadyEmail } from "../server/notifications";
+import { buildPrivateAccessUrl } from "../server/tokens";
 import type {
+  IssuedPrivateAccess,
   OperatorQueueItem,
   OperatorSubmissionInspection,
 } from "../server/repository";
@@ -37,10 +40,66 @@ export type EvidenceReviewOperatorRepository = {
     submissionId: string,
     input: WorkTimeInput,
   ): Promise<WorkflowEvent>;
+  deliverProfileWithToken(input: {
+    submissionId: string;
+    expiresAt: Date;
+    actorReference: string;
+  }): Promise<IssuedPrivateAccess>;
+  reissueProfileAccess(input: {
+    submissionId: string;
+    expiresAt: Date;
+    actorReference: string;
+  }): Promise<IssuedPrivateAccess>;
+  revokeProfileAccess(
+    submissionId: string,
+    actorReference: string,
+  ): Promise<number>;
+  createProfileRevision(
+    submissionId: string,
+    input: PublishProfileInput,
+  ): Promise<EvidenceProfile>;
+  recordProfileNotification(input: {
+    profileId: string;
+    status: "sent" | "skipped" | "failed";
+    actorReference: string;
+  }): Promise<WorkflowEvent>;
+};
+
+export type DeliverProfileOutput = {
+  ok: true;
+  command: "deliver-profile";
+  submission_id: string;
+  profile_id: string;
+  review_version: number;
+  expires_at: string;
+  notification: "sent" | "skipped" | "failed";
+  access_url: string;
+  warning: string;
+};
+
+export type ReissueAccessOutput = {
+  ok: true;
+  command: "reissue-access";
+  submission_id: string;
+  profile_id: string;
+  expires_at: string;
+  access_url: string;
+  warning: string;
+};
+
+export type RevokeAccessOutput = {
+  ok: true;
+  command: "revoke-access";
+  submission_id: string;
+  revoked_count: number;
 };
 
 export class EvidenceReviewOperatorService {
-  constructor(private readonly repository: EvidenceReviewOperatorRepository) {}
+  constructor(
+    private readonly repository: EvidenceReviewOperatorRepository,
+    private readonly siteUrl: string = process.env.NEXT_PUBLIC_SITE_URL || "https://www.talentsync360.com",
+    private readonly sendNotification = sendEvidenceProfileReadyEmail,
+  ) {}
 
   queue(limit?: number): Promise<OperatorQueueItem[]> {
     return this.repository.listOperationalQueue(limit);
@@ -99,6 +158,130 @@ export class EvidenceReviewOperatorService {
   ): Promise<WorkflowEvent> {
     await this.repository.getSubmission(submissionId);
     return this.repository.recordWorkTime(submissionId, input);
+  }
+
+  async deliverProfile(input: {
+    submissionId: string;
+    actorReference: string;
+    expiresHours?: number;
+    now?: Date;
+  }): Promise<DeliverProfileOutput> {
+    const submission = await this.repository.getSubmission(input.submissionId);
+    if (submission.review_state !== "REVIEW_IN_PROGRESS") {
+      throw new Error("Profile delivery requires REVIEW_IN_PROGRESS");
+    }
+
+    const now = input.now ?? new Date();
+    const hours = input.expiresHours ?? 72;
+    const expiresAt = new Date(now.getTime() + hours * 3600 * 1000);
+
+    const { token, record } = await this.repository.deliverProfileWithToken({
+      submissionId: input.submissionId,
+      expiresAt,
+      actorReference: input.actorReference,
+    });
+
+    const accessUrl = buildPrivateAccessUrl(this.siteUrl, token);
+
+    let notificationStatus: "sent" | "skipped" | "failed" = "skipped";
+    try {
+      const inspection = await this.repository.inspectSubmission(input.submissionId);
+      notificationStatus = await this.sendNotification({
+        email: inspection.person.email,
+        language: "es",
+        accessUrl,
+      });
+    } catch {
+      notificationStatus = "failed";
+    }
+
+    await this.repository.recordProfileNotification({
+      profileId: record.profile_id,
+      status: notificationStatus,
+      actorReference: input.actorReference,
+    });
+
+    const inspection = await this.repository.inspectSubmission(input.submissionId);
+    const reviewVersion = inspection.latestProfile?.review_version ?? 1;
+
+    return {
+      ok: true,
+      command: "deliver-profile",
+      submission_id: input.submissionId,
+      profile_id: record.profile_id,
+      review_version: reviewVersion,
+      expires_at: record.expires_at,
+      notification: notificationStatus,
+      access_url: accessUrl,
+      warning: "Sensitive: transient private access URL. Do not persist, log or forward.",
+    };
+  }
+
+  async reissueAccess(input: {
+    submissionId: string;
+    actorReference: string;
+    expiresHours?: number;
+    now?: Date;
+  }): Promise<ReissueAccessOutput> {
+    await this.repository.getSubmission(input.submissionId);
+    const now = input.now ?? new Date();
+    const hours = input.expiresHours ?? 72;
+    const expiresAt = new Date(now.getTime() + hours * 3600 * 1000);
+
+    const { token, record } = await this.repository.reissueProfileAccess({
+      submissionId: input.submissionId,
+      expiresAt,
+      actorReference: input.actorReference,
+    });
+
+    const accessUrl = buildPrivateAccessUrl(this.siteUrl, token);
+
+    return {
+      ok: true,
+      command: "reissue-access",
+      submission_id: input.submissionId,
+      profile_id: record.profile_id,
+      expires_at: record.expires_at,
+      access_url: accessUrl,
+      warning: "Sensitive: transient private access URL. Do not persist, log or forward.",
+    };
+  }
+
+  async revokeAccess(input: {
+    submissionId: string;
+    actorReference: string;
+  }): Promise<RevokeAccessOutput> {
+    await this.repository.getSubmission(input.submissionId);
+    const revokedCount = await this.repository.revokeProfileAccess(
+      input.submissionId,
+      input.actorReference,
+    );
+
+    return {
+      ok: true,
+      command: "revoke-access",
+      submission_id: input.submissionId,
+      revoked_count: revokedCount,
+    };
+  }
+
+  async reviseProfile(
+    submissionId: string,
+    input: PublishProfileInput,
+  ): Promise<EvidenceProfile> {
+    const submission = await this.repository.getSubmission(submissionId);
+    if (submission.review_state !== "CORRECTION_REQUESTED") {
+      throw new Error("Profile revision requires CORRECTION_REQUESTED");
+    }
+
+    assertReviewTransition(submission.review_state, "REVIEW_IN_PROGRESS");
+    await this.repository.transitionReviewState(
+      submissionId,
+      "REVIEW_IN_PROGRESS",
+      input.actor_reference,
+    );
+
+    return this.repository.createProfileRevision(submissionId, input);
   }
 }
 

@@ -36,7 +36,7 @@ describe("operator inspection output", () => {
         coherence_details: {},
         reviewer_reference: null,
         coherence_reviewed_at: null,
-      } as EvidenceReviewSubmission,
+      } as unknown as EvidenceReviewSubmission,
       latestProfile: null as EvidenceProfile | null,
       findings: [],
     });

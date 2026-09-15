@@ -143,6 +143,7 @@ export const WORKFLOW_EVENT_TYPES = [
   "ACCESS_TOKEN_CREATED",
   "ACCESS_TOKEN_REVOKED",
   "WORK_RECORDED",
+  "PROFILE_NOTIFICATION_RECORDED",
 ] as const;
 
 export type WorkflowEventType = (typeof WORKFLOW_EVENT_TYPES)[number];

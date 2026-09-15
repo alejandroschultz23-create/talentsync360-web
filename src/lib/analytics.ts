@@ -5,6 +5,7 @@ import {
   normalizeAttributionSource,
   normalizeCampaign,
 } from '@/lib/evidence-review/attribution';
+import { isPrivateEvidenceReviewPath } from '@/lib/evidence-review/private-routes';
 
 // Prohibited PII keys that must never be sent to dataLayer/GA4
 const PROHIBITED_PII_KEYS = new Set([
@@ -97,6 +98,7 @@ export function sanitizeEvidenceReviewAnalyticsParams(
  */
 export function pushGTMEvent(eventName: string, params?: GTMEventParams): void {
   if (typeof window === 'undefined') return;
+  if (isPrivateEvidenceReviewPath(window.location.pathname)) return;
 
   const safeParams = sanitizeParams(params);
 
@@ -111,6 +113,7 @@ export function pushEvidenceReviewEvent(
   params?: EvidenceReviewAnalyticsParams,
 ): void {
   if (typeof window === 'undefined') return;
+  if (isPrivateEvidenceReviewPath(window.location.pathname)) return;
 
   sendGTMEvent({
     event: eventName,
