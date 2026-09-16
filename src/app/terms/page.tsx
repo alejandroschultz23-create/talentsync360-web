@@ -4,7 +4,7 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Terms of Service | TalentSync360",
+  title: "Terms of Service",
   description: "Terms and conditions for accessing the TalentSync360 platform and nearshore hiring services.",
   alternates: {
     canonical: "https://www.talentsync360.com/terms",

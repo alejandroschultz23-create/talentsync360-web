@@ -4,7 +4,7 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | TalentSync360",
+  title: "Privacy Policy",
   description: "Privacy Policy and data protection terms for TalentSync360 users, candidates, and partners.",
   alternates: {
     canonical: "https://www.talentsync360.com/privacy",

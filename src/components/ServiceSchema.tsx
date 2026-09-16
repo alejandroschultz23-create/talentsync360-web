@@ -10,7 +10,7 @@ export default function ServiceSchema() {
       "@type": "Organization",
       "name": "TalentSync360"
     },
-    "description": "Curated technical shortlists of nearshore LATAM talent with verified English and structured candidate scorecards."
+    "description": "Human-reviewed technical shortlists of nearshore LATAM talent with role-specific evidence and opportunity-specific communication requirements."
   };
 
   return (

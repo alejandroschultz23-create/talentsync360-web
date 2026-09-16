@@ -4,14 +4,14 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Our Vetting Methodology & 360° Fit Matrix | TalentSync360",
-  description: "Discover our rigorous curation process. Human vetting, business English screening, and structured candidate scorecards for nearshore developers.",
+  title: "Evidence-Based Talent Review Methodology",
+  description: "See how TalentSync360 combines human review, role-specific technical evidence, and opportunity-specific communication requirements without automated ranking.",
   alternates: {
     canonical: "https://www.talentsync360.com/methodology",
   },
   openGraph: {
-    title: "Our Vetting Methodology & 360° Fit Matrix | TalentSync360",
-    description: "Discover our rigorous curation process. Human vetting, business English screening, and structured candidate scorecards for nearshore developers.",
+    title: "Evidence-Based Talent Review Methodology | TalentSync360",
+    description: "See how TalentSync360 combines human review, role-specific technical evidence, and opportunity-specific communication requirements without automated ranking.",
     url: "https://www.talentsync360.com/methodology",
   }
 };

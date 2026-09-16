@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
+import { isAllowedLegacyContactType } from '@/lib/contact-routing';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,9 +12,6 @@ interface ContactBody {
   message?: string;
   contactType?: string;
   role?: string;
-  currentRole?: string;
-  experience?: string;
-  englishLevel?: string;
   pageOrigin?: string;
   lang?: 'en' | 'es';
 }
@@ -34,7 +32,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Respuesta inválida o vacía' }, { status: 400 });
     }
 
-    const { firstName, lastName, name, email, message, contactType, role, currentRole, experience, englishLevel, pageOrigin, lang } = body;
+    const { firstName, lastName, name, email, message, contactType, role, pageOrigin, lang } = body;
+
+    if (!isAllowedLegacyContactType(contactType)) {
+      return NextResponse.json({ error: 'Tipo de contacto no válido' }, { status: 400 });
+    }
+
     const fullName = firstName ? `${firstName} ${lastName}`.trim() : name || 'Usuario';
 
     const { data, error } = await resend.emails.send({
@@ -49,9 +52,6 @@ export async function POST(req: Request) {
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Tipo de Contacto:</strong> ${contactType}</p>
           ${role ? `<p><strong>Interés (B2B):</strong> ${role}</p>` : ''}
-          ${currentRole ? `<p><strong>Rol Actual:</strong> ${currentRole}</p>` : ''}
-          ${experience ? `<p><strong>Experiencia:</strong> ${experience}</p>` : ''}
-          ${englishLevel ? `<p><strong>Nivel de Inglés:</strong> ${englishLevel}</p>` : ''}
           <p><strong>Origen:</strong> ${pageOrigin || 'Directo'}</p>
           <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-left: 4px solid #2563eb;">
             <strong>Mensaje:</strong><br />
