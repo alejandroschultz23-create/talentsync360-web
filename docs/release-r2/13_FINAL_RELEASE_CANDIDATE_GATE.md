@@ -1,9 +1,9 @@
 # TalentSync360 — Opt-In Engine v1A
-## 13. Final Release Candidate Gate (R2 Readiness Summary)
+## 13. Final Release Candidate Gate (R2.3 Privacy Lifecycle)
 
-**Status:** APPROVED CANDIDATE FOR MAIN MERGE
+**Status:** LOCAL R2.3.1 VALIDATION PASSED — Production migration 008 application and release verification remain gated
 **Release Candidate Branch:** `release/opt-in-v1a-production-readiness-r2`
-**Base Commit:** `d6fc585ba39876dc3e61a92f7f6d8a7652ca55e2` (Approved R1)
+**Current HEAD before uncommitted R2.3 work:** `8c69372925109850c46bca33d09fe53a3bc8197a`
 **Target Destination:** `main`
 
 ---
@@ -12,52 +12,35 @@
 
 | Category | Requirement | Audit Result | Status |
 | :--- | :--- | :--- | :--- |
-| **Lineage & Baseline** | Clean branch off approved R1 commit (`d6fc585b`) | Confirmed | ✅ PASS |
-| **Product Boundaries** | Zero product features added during R2 | Confirmed | ✅ PASS |
-| **Untouched Files** | `outputs/` remains pre-existing, untracked, untouched, and unstaged | Confirmed | ✅ PASS |
-| **Metadata Fix** | Duplicate title in `/talents` and `/companies` resolved | Fixed & verified | ✅ PASS |
-| **Dependency Health** | `resend` updated to `6.28.1`; 0 prod runtime CVEs | Audited & verified | ✅ PASS |
-| **Consent Versions** | Evidence: `evidence-review-v1-2026-09-14`; Opt-In: `talent-network-opt-in-v1-2026-09-15` | Verified in docs & code | ✅ PASS |
-| **Database Schema** | Exactly SEVEN public product tables verified | Documented in Doc 05 | ✅ PASS |
-| **Employer Boundary** | Future separate capability — not implemented in v1A | Documented in Doc 04 | ✅ PASS |
-| **Pilot Scope** | Controlled pilot of 3–5 professionals | Documented in Doc 07 | ✅ PASS |
-| **Access Tokens** | 32 bytes / 256-bit base64url, SHA-256 persisted, 72h default (1–168h range) | Documented in Doc 08 | ✅ PASS |
-| **Retention Policy** | Documented as Decision Register with owner/legal placeholders | Documented in Doc 03 | ✅ PASS |
-| **Legal Draft** | DRAFT FOR LEGAL REVIEW; no unverified compliance claims | Documented in Doc 02 | ✅ PASS |
-| **Resend Checklist** | Uses `EVIDENCE_REVIEW_FROM_EMAIL` with owner decision placeholder | Documented in Doc 01 | ✅ PASS |
-| **App Configuration** | Uses `SUPABASE_SECRET_KEY`; no nonexistent feature flags | Documented in Doc 06 | ✅ PASS |
-| **Automated Tests** | 22 test suites, 126+ unit & integration tests pass | 126/126 Passed (100%) | ✅ PASS |
-| **Static Analysis** | `npm run lint` passes with zero errors | Zero errors | ✅ PASS |
-| **Production Build** | `npm run build` passes with zero errors | Zero errors | ✅ PASS |
-| **Git Cleanliness** | `git diff --check` clean | Zero issues | ✅ PASS |
-| **Database Lint** | `npx supabase db lint --linked` passes | Zero schema issues | ✅ PASS |
-| **Migration Dry-Run** | `npx supabase db push --dry-run --linked` passes | Remote DB up to date | ✅ PASS |
+| **Owner Decision Gate** | Approved retention and sender decisions | APPROVED / CLOSED | ✅ PASS |
+| **Qualified Legal Review** | Approved public `/privacy` and `/terms` | APPROVED / CLOSED | ✅ PASS |
+| **Consent Versions** | Evidence: `evidence-review-v1-2026-09-14`; Opt-In: `talent-network-opt-in-v1-2026-09-15` | Source constants unchanged | ✅ PASS |
+| **Employer Boundary** | Future separate capability, not implemented in v1A | No employer-presentation implementation added | ✅ PASS |
+| **Production Baseline** | Dedicated Supabase exists with migrations 001–007; sender and Production Supabase Vercel variables configured; Resend domain verified | Prepared separately | ✅ PASS |
+| **Privacy Lifecycle** | Migration 008 adds guarded withdrawal, closure, and minimal audit in a non-exposed `private` schema | R2.3.1 ACL, owner, seven-public-table, and local replay tests passed; separate Production authorization still required | 🛑 HOLD |
+| **Operator Pilot** | 3–5 professionals; manual retention queue, preview, and closure after migration 008 | Pending migration and runbook verification | 🛑 HOLD |
+| **Automated Tests / Lint / Build** | `npm test`, `npm run lint`, `npm run build`, `git diff --check` | Passed locally; rerun on the final diff before approval | ✅ PASS |
+| **Production Dependencies** | `npm audit --omit=dev --audit-level=moderate` | Zero production runtime advisories after a transitive lockfile update | ✅ PASS |
+| **Database Lint / Dry-Run** | `npx supabase db lint --linked`; `npx supabase db push --dry-run --linked` must propose only 008 | Linked lint passed; dry-run proposed only 008 and applied nothing | ✅ PASS |
 
 ---
 
-### 2. Negative Authorization Confirmations (Strict Compliance)
+### 2. Current deployment boundary
 
-During Release Prep R2, the agent certifies:
-- ❌ **NO Production Supabase project was created.**
-- ❌ **NO Production Supabase migrations were executed.**
-- ❌ **NO Production Vercel environment variables were modified.**
-- ❌ **NO real emails were dispatched via Resend.**
-- ❌ **NO merge to `main` was performed.**
-- ❌ **NO git push was performed.**
-- ❌ **NO git commit was performed.**
+Production Supabase and migrations 001–007 already exist. Migration 008 has not been applied. Production has not been deployed with the R2.3 legal copy or privacy lifecycle. This document does not authorize a commit, push, merge, migration push, or deployment.
 
-Repository is in a clean local working state on `release/opt-in-v1a-production-readiness-r2` awaiting user final review.
+The working tree contains uncommitted legal copy and R2.3 work. The pre-existing untracked `outputs/` directory must remain untouched.
 
 ---
 
-### 3. Release Candidate Sign-Off Block
+### 3. Final RC sign-off block (pending)
 
 ```
 Release Candidate: Opt-In Engine v1A
 Branch: release/opt-in-v1a-production-readiness-r2
-Approved R1 Base: d6fc585ba39876dc3e61a92f7f6d8a7652ca55e2
+R2.3 Starting HEAD: 8c69372925109850c46bca33d09fe53a3bc8197a
 
-Release Engineer Sign-Off: _____________________ Date: 2026-09-15
-Security & Compliance Sign-Off: _________________ Date: 2026-09-15
-Product Lead Sign-Off: _________________________ Date: 2026-09-15
+Release Engineer Sign-Off: _____________________ Date: __________
+Security & Compliance Sign-Off: _________________ Date: __________
+Product Lead Sign-Off: _________________________ Date: __________
 ```

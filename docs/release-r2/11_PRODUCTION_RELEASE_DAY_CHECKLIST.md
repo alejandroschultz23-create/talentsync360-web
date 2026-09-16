@@ -1,7 +1,7 @@
 # TalentSync360 — Opt-In Engine v1A
 ## 11. Production Release Day Checklist & STOP/GO Gates
 
-**Status:** APPROVED RELEASE DAY RUNBOOK
+**Status:** RELEASE DAY RUNBOOK — FINAL RC BLOCKED UNTIL R2.3 VALIDATION AND MIGRATION 008 APPROVAL
 **Target Release:** Release Candidate (Opt-In Engine v1A)
 **Target Pilot Scope:** Controlled Pilot of 3–5 Professionals
 **Rule:** Every phase contains a mandatory STOP/GO gate. Do NOT proceed to the next phase until all conditions are satisfied.
@@ -13,61 +13,42 @@
 **Objective:** Verify release candidate integrity before touching production infrastructure.
 
 - [ ] 1. Confirm active branch is `release/opt-in-v1a-production-readiness-r2`.
-- [ ] 2. Run test suite: `npm test` (all 22 test suites, 126+ tests must pass 100%).
+- [ ] 2. Run test suite: `npm test` (all suites must pass).
 - [ ] 3. Run linter: `npm run lint` (zero errors).
 - [ ] 4. Run build: `npm run build` (zero errors, production build succeeds).
 - [ ] 5. Run git diff check: `git diff --check` (clean diff, no whitespace issues).
-- [ ] 6. Run dependency audit: `npm audit` (zero production runtime vulnerabilities).
-- [ ] 7. Verify non-prod Supabase migrations: `npx supabase db push --dry-run --linked`.
+- [ ] 6. Run production dependency audit: `npm audit --omit=dev --audit-level=moderate` (zero production runtime vulnerabilities).
+- [ ] 7. Run `npx supabase db lint --linked` and `npx supabase db push --dry-run --linked`; confirm the dry-run proposes only migration 008. Do not apply it in this validation step.
 
 🛑 **STOP/GO GATE 1:** All 7 verification items must be strictly satisfied. If any test or build fails, STOP execution.
 
 ---
 
-### Phase 2: Production Supabase Infrastructure Provisioning
+### Phase 2: Production Supabase Migration 008 Gate
 
-**Objective:** Provision and migrate the production Supabase database instance.
+**Objective:** Production Supabase already exists and migrations 001–007 are applied. Review and approve migration 008 separately before any application.
 
-- [ ] 1. Organization owner creates production Supabase project in authorized region.
-- [ ] 2. Securely record production project credentials:
-  - Project URL
-  - Anon Public Key
-  - Secret Key (`SUPABASE_SECRET_KEY`)
-- [ ] 3. Authenticate Supabase CLI to production project:
-  ```bash
-  npx supabase link --project-ref "<production-project-ref>"
-  ```
-- [ ] 4. Apply migration sequence (001 through 007) in strict order:
-  ```bash
-  npx supabase db push
-  ```
-- [ ] 5. Verify production schema: confirm presence of exactly **SEVEN** public product tables:
-  1. `people`
-  2. `evidence_review_submissions`
-  3. `evidence_profiles`
-  4. `evidence_findings`
-  5. `talent_opt_ins`
-  6. `profile_access_tokens`
-  7. `workflow_events`
-- [ ] 6. Verify Row-Level Security (RLS) is ENABLED on all seven tables.
-- [ ] 7. Verify core stored procedures (RPCs) are present.
+- [x] 1. Dedicated Production project exists; migrations 001–007 are applied.
+- [ ] 2. Review migration 008 SQL, guarded privacy functions, tests, and Production dry-run result.
+- [ ] 3. Obtain separate authorization to apply migration 008. This checklist does not authorize the push.
+- [ ] 4. After authorized application, verify exactly seven public product tables, `private.privacy_lifecycle_events`, owner/ACL denials for `service_role`, and operator-only private withdrawal/closure procedures.
 
-🛑 **STOP/GO GATE 2:** Schema, seven tables, and RPCs must exist and match non-prod exactly. If migration fails, STOP and do not configure Vercel.
+🛑 **STOP/GO GATE 2:** Migration 008 must be reviewed, authorized, applied, and verified before deploying copy that promises its privacy lifecycle.
 
 ---
 
 ### Phase 3: Vercel Production Environment Configuration
 
-**Objective:** Populate production environment variables in Vercel.
+**Objective:** Verify existing Production variables without changing them during the R2.3 review.
 
 - [ ] 1. Log into Vercel Dashboard ──> Project `talentsync360-web` ──> Settings ──> Environment Variables.
-- [ ] 2. Set `NEXT_PUBLIC_SUPABASE_URL` = Production Supabase URL.
-- [ ] 3. Set `NEXT_PUBLIC_SUPABASE_ANON_KEY` = Production Supabase Anon Key.
-- [ ] 4. Set `SUPABASE_SECRET_KEY` = Production Supabase Secret Key (Server-only / Encrypted).
-- [ ] 5. Set `RESEND_API_KEY` = Production Resend API Key (Server-only / Encrypted).
-- [ ] 6. Set `EVIDENCE_REVIEW_FROM_EMAIL` = `[OWNER DECISION REQUIRED: approved sender address]`.
-- [ ] 7. Set `EVIDENCE_REVIEW_BASE_URL` = `https://talentsync360.com`.
-- [ ] 8. Save all variables for the **Production** environment.
+- [x] 2. Production `SUPABASE_URL` is configured.
+- [ ] 3. Verify other required public values against the deployed runtime.
+- [x] 4. Production `SUPABASE_SECRET_KEY` is configured server-side.
+- [ ] 5. Verify `RESEND_API_KEY` remains available server-side.
+- [x] 6. `EVIDENCE_REVIEW_FROM_EMAIL` is configured as `TalentSync360 Evidence Review <reviews@talentsync360.com>`.
+- [ ] 7. Verify `EVIDENCE_REVIEW_BASE_URL` before deployment.
+- [ ] 8. Confirm all values are scoped to **Production** and secrets are not exposed to clients.
 
 🛑 **STOP/GO GATE 3:** Confirm all variables are saved specifically for "Production" and that secret keys are not exposed to client bundles.
 
@@ -105,7 +86,7 @@
 **Objective:** Initiate controlled pilot intake.
 
 - [ ] 1. Invite the controlled cohort of 3–5 LATAM tech professionals to submit for the pilot.
-- [ ] 2. Ready operator CLI: `npm run operator -- queue` connected to production DB.
+- [ ] 2. Ready operator CLI: normal `queue` uses the service client; `retention-queue` and other privacy commands require a separate local `SUPABASE_DB_URL` database-owner connection after migration 008 is authorized and applied. Never configure that credential in Vercel.
 - [ ] 3. Monitor submissions as they arrive.
 
 🛑 **STOP/GO GATE 6:** Opt-In Engine v1A is actively serving the controlled 3–5 professional pilot.

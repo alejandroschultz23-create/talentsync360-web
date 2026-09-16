@@ -9,6 +9,11 @@ const COMMAND_OPTIONS = {
   "reissue-access": new Set(["submission", "actor", "expires-hours"]),
   "revoke-access": new Set(["submission", "actor"]),
   "revise-profile": new Set(["submission", "input", "actor"]),
+  "retention-queue": new Set(["limit"]),
+  "record-activity": new Set(["submission", "actor"]),
+  "withdraw-network": new Set(["submission", "actor"]),
+  "closure-preview": new Set(["submission", "reason"]),
+  "close-case": new Set(["submission", "actor", "reason", "confirm"]),
 } as const;
 
 export type OperatorCommand = keyof typeof COMMAND_OPTIONS;
@@ -24,7 +29,7 @@ export function parseOperatorArguments(
   const command = argv[0] as OperatorCommand | undefined;
   if (!command || !(command in COMMAND_OPTIONS)) {
     throw new Error(
-      "Command must be one of: queue, inspect, coherence, start-review, publish-profile, log-time, deliver-profile, reissue-access, revoke-access, revise-profile",
+      `Command must be one of: ${Object.keys(COMMAND_OPTIONS).join(", ")}`,
     );
   }
 

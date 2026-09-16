@@ -92,12 +92,13 @@ export function assertProfileContentMutable(
 export function deriveTalentState(
   reviewState: ReviewState,
   optInState: OptInState,
+  withdrawnAt: string | Date | null = null,
 ): DerivedTalentState {
   if (reviewState !== "REVIEW_CONFIRMED") {
     return null;
   }
 
-  return optInState === "ACCEPTED"
+  return optInState === "ACCEPTED" && withdrawnAt === null
     ? "TALENT_PROFILE_ACTIVE"
     : "EVIDENCE_REVIEW_COMPLETED_NO_OPTIN";
 }

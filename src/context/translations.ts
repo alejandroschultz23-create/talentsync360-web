@@ -341,30 +341,13 @@ export interface Translations {
   terms: {
     title: string;
     intro: string;
-    section1Title: string;
-    section1Desc: string;
-    section2Title: string;
-    section2Desc: string;
-    section3Title: string;
-    section3Desc: string;
-    section4Title: string;
-    section4Desc: string;
+    sections: { title: string; paragraphs: string[] }[];
     footer: string;
   };
   privacy: {
     title: string;
     intro: string;
-    section1Title: string;
-    section1Desc: string;
-    section2Title: string;
-    section2ListItem1: string;
-    section2ListItem2: string;
-    section2ListItem3: string;
-    section2ListItem4: string;
-    section3Title: string;
-    section3Desc: string;
-    section4Title: string;
-    section4Desc: string;
+    sections: { title: string; paragraphs: string[] }[];
     footer: string;
   };
   itConsultancies: {
@@ -850,32 +833,38 @@ export const translations: Record<Language, Translations> = {
     },
     terms: {
       title: 'Terms of Service',
-      intro: 'Welcome to TalentSync360. By accessing our website and using our services, you agree to comply with and be bound by the following terms.',
-      section1Title: '1. Services Provided',
-      section1Desc: 'TalentSync360 provides professional evidence review, talent network, sourcing, and recruitment support services. Each service has its own scope and authorization boundaries.',
-      section2Title: '2. Professional Integrity',
-      section2Desc: 'Professionals using our services are responsible for providing accurate information about their experience, skills, and identity. Material inaccuracies may pause the relevant review or service while clarification is requested.',
-      section3Title: '3. No Guarantee of Placement',
-      section3Desc: 'An Evidence Review, a confirmed profile, or voluntary Talent Network membership does not guarantee an interview, employment, placement, or presentation to a company.',
-      section4Title: '4. Limitation of Liability',
-      section4Desc: "TalentSync360 is not liable for outcomes following a candidate's hire. All final employment decisions and contracts are the responsibility of the hiring company and the professional.",
-      footer: 'These terms are effective as of April',
+      intro: 'These terms describe the current TalentSync360 services and the choices available to professionals. By using the website or requesting a service, you agree to the applicable terms.',
+      sections: [
+        { title: '1. Services', paragraphs: ['TalentSync360 offers a voluntary Professional Evidence Review and, after review confirmation, a separate voluntary Talent Network invitation. Employer presentation is a third, separate capability and is not implemented in v1A. Other sourcing and recruitment services do not change these professional authorization boundaries.'] },
+        { title: '2. Professional Evidence Review', paragraphs: ['You may submit a concrete professional experience and relevant evidence or references for a private review. A résumé or public code repository is not required. The review may produce a private Professional Evidence Profile that distinguishes supported, partially supported, unknown, and clarification-needed information. UNKNOWN does not mean GAP. English is not a universal review requirement; communication requirements depend on a specific opportunity.'] },
+        { title: '3. Accuracy of information', paragraphs: ['Provide information you are authorized to share and describe your individual contribution accurately. Do not submit confidential code, client data, or material belonging to others without permission. Material inaccuracies may pause the review while we seek clarification.'] },
+        { title: '4. Correction and confirmation', paragraphs: ['You may confirm the private profile or request a correction. Talent Network membership is offered only after the review is confirmed (REVIEW_CONFIRMED). A request for correction does not by itself enroll you in the network.'] },
+        { title: '5. Talent Network', paragraphs: ['Joining is a separate choice. ACCEPTED authorizes TalentSync360 to retain your confirmed profile and contact you about potentially relevant opportunities. It does not authorize presenting, sharing, sending, or publishing your profile to an employer. DECLINED is not a negative signal or ranking. You may withdraw; opportunity outreach and use stop immediately, technical closure may take up to 30 days, and future re-entry requires a new opt-in.'] },
+        { title: '6. No guarantee', paragraphs: ['A review, confirmed profile, or Talent Network participation does not guarantee an interview, placement, employment, hiring, or presentation to an employer.'] },
+        { title: '7. Private access and security', paragraphs: ['Private profile and access links are confidential and revocable. Keep them secure and do not share another person’s link or attempt to access a profile without authorization.'] },
+        { title: '8. Permitted and prohibited use', paragraphs: ['Use the website and services lawfully and for their intended purposes. Do not impersonate others, submit misleading evidence, interfere with service operation, or attempt unauthorized access.'] },
+        { title: '9. Privacy', paragraphs: ['The Privacy Policy explains the information we process, retention periods, and how to request access, correction, withdrawal, or deletion. Send privacy requests to privacy@talentsync360.com. Evidence Review questions may be sent to reviews@talentsync360.com.'] },
+        { title: '10. Evolution of the service', paragraphs: ['We may update the service and these terms prospectively. Any future employer presentation would require a separate authorization before it could occur; that capability is not implemented in v1A. The terms applicable to a new capability will be explained before you choose whether to use it.'] },
+      ],
+      footer: 'Effective date: September 16, 2026.',
     },
     privacy: {
       title: 'Privacy Policy',
-      intro: 'At TalentSync360, we are committed to protecting your privacy and ensuring the security of your personal data. This policy outlines how we collect, use, and safeguard your information.',
-      section1Title: '1. Information We Collect',
-      section1Desc: 'We collect information that you provide directly to us through our contact forms, applications, and during the validation process. This includes your name, email address, professional experience, resumes, and video/audio recordings used for language proficiency testing.',
-      section2Title: '2. How We Use Your Data',
-      section2ListItem1: 'To evaluate your skills for nearshore job opportunities.',
-      section2ListItem2: 'To present curated shortlists to our partner companies.',
-      section2ListItem3: 'To communicate with you regarding your application or inquiry.',
-      section2ListItem4: 'To improve our validation methodology and platform experience.',
-      section3Title: '3. Data Sharing',
-      section3Desc: 'We share candidate data (scorecards, resumes, and results) only with prospective employers who have entered into a confidential recruitment agreement with us. We never sell your data to third parties.',
-      section4Title: '4. Your Rights',
-      section4Desc: 'You have the right to request access to, correction of, or deletion of your personal data at any time. To exercise these rights, please contact us at privacy@talentsync360.com.',
-      footer: 'Last Updated: April',
+      intro: 'This policy explains how TalentSync360 handles information in its current professional services and website. Professional Evidence Review is voluntary. The review, Talent Network membership, and employer presentation are three separate layers.',
+      sections: [
+        { title: '1. Scope and purpose', paragraphs: ['This policy covers website inquiries, Professional Evidence Review, private Professional Evidence Profiles, and voluntary Talent Network participation. Employer presentation is a future separate capability and is not implemented in v1A.'] },
+        { title: '2. Information we collect', paragraphs: ['We collect contact details and inquiry content you provide, along with the professional experience, individual contribution, evidence descriptions, and optional references you submit for review. We also process review and correction history, profile confirmation, Talent Network decisions, and limited service and access records needed to administer the case and protect private access. A résumé, public repository, or language recording is not required for Evidence Review.'] },
+        { title: '3. How we use information', paragraphs: ['We use this information to respond to inquiries, conduct and justify the requested review, prepare and administer a private profile, handle confirmation or correction, maintain secure access, and manage retention and privacy requests. Only after you separately accept Talent Network membership may we retain the confirmed profile for network participation and contact you about potentially relevant opportunities.'] },
+        { title: '4. Talent Network and employer presentation', paragraphs: ['Talent Network is offered only after REVIEW_CONFIRMED. ACCEPTED authorizes retention of the confirmed profile and opportunity contact. It does not authorize TalentSync360 to present, share, send, or publish the profile or review findings to an employer. DECLINED is not a negative signal or ranking. Any future employer presentation would require a separate authorization; it is not implemented in v1A.'] },
+        { title: '5. Technology and service providers', paragraphs: ['We use infrastructure and service providers such as Supabase, Vercel, and Resend to store data, operate the website and private service, and deliver communications. They process information as needed to provide those services. We do not treat their operational access as authorization to present a professional to an employer.'] },
+        { title: '6. Private Evidence Profile and access', paragraphs: ['The review may produce a private Professional Evidence Profile. You may confirm it or request correction. The profile distinguishes supported, partially supported, unknown, and clarification-needed information; UNKNOWN does not mean GAP. Private profile and access links are confidential and revocable.'] },
+        { title: '7. Source evidence', paragraphs: ['We retain only source evidence and references needed to perform, justify, and administer the review during the applicable case lifecycle. Evidence URLs and context follow that lifecycle. We do not systematically archive external repositories, code, websites, or artifacts. Submission alone does not permit reuse for other professionals, marketing, training, or employer sharing. The minimal post-closure audit trail does not retain source evidence URLs or content.'] },
+        { title: '8. Retention', paragraphs: ['Abandoned, incomplete, or NOT_ACTIONABLE_YET Evidence Review submissions are retained for 90 days from the last meaningful activity, then closed, deleted, or anonymized according to policy.', 'A completed and confirmed Evidence Profile with Talent Network DECLINED is retained for 180 days from DECLINED, unless deletion is requested earlier. With Talent Network ACCEPTED, we retain the confirmed profile while voluntary participation remains active.', 'If you withdraw from Talent Network, opportunity outreach and use stop immediately. Technical closure may take up to 30 days. Future re-entry requires a new opt-in.', 'A minimal audit trail is retained for 24 months from definitive case closure. It is limited to minimal consent, lifecycle, and closure metadata. It excludes the professional profile, source evidence, findings, recommendations, and, where avoidable, email or name. It is not used for sourcing, marketing, or reactivation.'] },
+        { title: '9. Access, correction, withdrawal, and deletion', paragraphs: ['You can request access to or correction of your information, withdraw from Talent Network, or request deletion by writing to privacy@talentsync360.com. We review and handle these requests under the applicable lifecycle and retention policy.'] },
+        { title: '10. Automation and AI assistance', paragraphs: ['AI and automation may assist operational or analytical tasks, with human review of the Evidence Review process. They do not automatically enroll a professional in Talent Network or authorize employer presentation. In the current v1A process, irreversible privacy actions require human review. English testing is not universal; any communication requirement depends on a specific opportunity.'] },
+        { title: '11. Contact', paragraphs: ['For privacy requests, contact privacy@talentsync360.com. For Evidence Review questions, contact reviews@talentsync360.com.'] },
+      ],
+      footer: 'Last updated: September 16, 2026.',
     },
     itConsultancies: {
       badge: 'For IT Consultancies',
@@ -1357,33 +1346,39 @@ export const translations: Record<Language, Translations> = {
       ctaButton: 'Reservar Llamada de Alineacion de 15 min',
     },
     terms: {
-      title: 'Terminos y Condiciones',
-      intro: 'Bienvenido a TalentSync360. Al acceder a nuestro sitio web y utilizar nuestros servicios, aceptas cumplir y estar sujeto a los siguientes terminos.',
-      section1Title: '1. Servicios Prestados',
-      section1Desc: 'TalentSync360 ofrece servicios de revisión de evidencia profesional, red de talento, sourcing y apoyo de reclutamiento. Cada servicio tiene su propio alcance y límites de autorización.',
-      section2Title: '2. Integridad Profesional',
-      section2Desc: 'Los profesionales que usan nuestros servicios son responsables de brindar información precisa sobre su experiencia, habilidades e identidad. Las inexactitudes materiales pueden pausar la revisión o el servicio correspondiente mientras se solicita una aclaración.',
-      section3Title: '3. Sin Garantia de Colocacion',
-      section3Desc: 'Una Evidence Review, un perfil confirmado o la participación voluntaria en la red de talento no garantizan entrevista, empleo, colocación ni presentación ante una empresa.',
-      section4Title: '4. Limitacion de Responsabilidad',
-      section4Desc: 'TalentSync360 no es responsable de los resultados posteriores a la contratacion de un candidato. Todas las decisiones y contratos de empleo finales son responsabilidad de la empresa contratante y del profesional.',
-      footer: 'Estos terminos son efectivos desde Abril',
+      title: 'Términos y Condiciones',
+      intro: 'Estos términos describen los servicios actuales de TalentSync360 y las decisiones disponibles para los profesionales. Al usar el sitio web o solicitar un servicio, aceptás los términos aplicables.',
+      sections: [
+        { title: '1. Servicios', paragraphs: ['TalentSync360 ofrece una Revisión de Evidencia Profesional voluntaria y, después de confirmar la revisión, una invitación separada y voluntaria a la Red de Talento. La presentación ante empresas es una tercera capacidad separada que no está implementada en v1A. Otros servicios de sourcing y reclutamiento no modifican estos límites de autorización del profesional.'] },
+        { title: '2. Revisión de Evidencia Profesional', paragraphs: ['Podés compartir una experiencia profesional concreta y evidencia o referencias relevantes para una revisión privada. No se exige un currículum ni un repositorio público de código. La revisión puede producir un Perfil de Evidencia Profesional privado que distingue información respaldada, parcialmente respaldada, desconocida y que requiere aclaración. UNKNOWN no significa GAP. El inglés no es un requisito universal de la revisión; los requisitos de comunicación dependen de cada oportunidad.'] },
+        { title: '3. Exactitud de la información', paragraphs: ['Proporcioná información que estés autorizado a compartir y describí con precisión tu contribución individual. No envíes código confidencial, datos de clientes ni material de terceros sin permiso. Las inexactitudes importantes pueden pausar la revisión mientras solicitamos una aclaración.'] },
+        { title: '4. Corrección y confirmación', paragraphs: ['Podés confirmar el perfil privado o solicitar una corrección. La incorporación a la Red de Talento se ofrece solo después de que la revisión esté confirmada (REVIEW_CONFIRMED). Solicitar una corrección no te incorpora por sí solo a la red.'] },
+        { title: '5. Red de Talento', paragraphs: ['Incorporarte es una decisión separada. ACCEPTED autoriza a TalentSync360 a conservar tu perfil confirmado y contactarte por oportunidades potencialmente relevantes. No autoriza a presentar, compartir, enviar ni publicar tu perfil ante una empresa. DECLINED no es una señal negativa ni una clasificación. Podés retirarte: cesan de inmediato el contacto y el uso para oportunidades, el cierre técnico puede demorar hasta 30 días y un futuro reingreso requiere una nueva aceptación.'] },
+        { title: '6. Sin garantía', paragraphs: ['Una revisión, un perfil confirmado o la participación en la Red de Talento no garantizan entrevistas, colocación, empleo, contratación ni presentación ante una empresa.'] },
+        { title: '7. Acceso privado y seguridad', paragraphs: ['Los enlaces privados al perfil y de acceso son confidenciales y revocables. Protegelos y no compartas enlaces de otra persona ni intentes acceder a un perfil sin autorización.'] },
+        { title: '8. Uso permitido y prohibido', paragraphs: ['Usá el sitio web y los servicios de forma lícita y para sus fines previstos. No suplantes a otras personas, no envíes evidencia engañosa, no interfieras con el funcionamiento del servicio ni intentes acceder sin autorización.'] },
+        { title: '9. Privacidad', paragraphs: ['La Política de Privacidad explica qué información tratamos, los plazos de conservación y cómo solicitar acceso, corrección, retiro o eliminación. Enviá solicitudes de privacidad a privacy@talentsync360.com. Para consultas sobre la revisión, escribí a reviews@talentsync360.com.'] },
+        { title: '10. Evolución del servicio', paragraphs: ['Podemos actualizar el servicio y estos términos hacia adelante. Cualquier futura presentación ante empresas requeriría una autorización separada antes de realizarse; esa capacidad no está implementada en v1A. Explicaremos los términos de una nueva capacidad antes de que decidas si querés usarla.'] },
+      ],
+      footer: 'Fecha de vigencia: 16 de septiembre de 2026.',
     },
     privacy: {
-      title: 'Politica de Privacidad',
-      intro: 'En TalentSync360, estamos comprometidos a proteger tu privacidad y garantizar la seguridad de tus datos personales. Esta politica describe como recopilamos, usamos y protegemos tu informacion.',
-      section1Title: '1. Informacion que Recopilamos',
-      section1Desc: 'Recopilamos informacion que nos proporcionas directamente a traves de nuestros formularios de contacto, solicitudes y durante el proceso de validacion. Esto incluye tu nombre, direccion de correo electronico, experiencia profesional, curriculums y grabaciones de video/audio utilizadas para pruebas de proficiency en idiomas.',
-      section2Title: '2. Como Usamos Tus Datos',
-      section2ListItem1: 'Para evaluar tus habilidades para oportunidades de trabajo nearshore.',
-      section2ListItem2: 'Para presentar shortlists curadas a nuestras empresas asociadas.',
-      section2ListItem3: 'Para comunicarnos contigo respecto a tu solicitud o consulta.',
-      section2ListItem4: 'Para mejorar nuestra metodologia de validacion y experiencia de plataforma.',
-      section3Title: '3. Compartir de Datos',
-      section3Desc: 'Solo compartimos datos de candidatos (scorecards, curriculums y resultados) con empleadores potenciales que han celebrado un acuerdo de reclutamiento confidencial con nosotros. Nunca vendemos tus datos a terceros.',
-      section4Title: '4. Tus Derechos',
-      section4Desc: 'Tienes derecho a solicitar acceso, correccion o eliminacion de tus datos personales en cualquier momento. Para ejercer estos derechos, contactanos en privacy@talentsync360.com.',
-      footer: 'Ultima Actualizacion: Politica de Privacidad',
+      title: 'Política de Privacidad',
+      intro: 'Esta política explica cómo TalentSync360 trata la información en sus servicios profesionales actuales y en el sitio web. La Revisión de Evidencia Profesional es voluntaria. La revisión, la Red de Talento y la presentación ante empresas son tres capas separadas.',
+      sections: [
+        { title: '1. Alcance y finalidad', paragraphs: ['Esta política cubre las consultas del sitio web, la Revisión de Evidencia Profesional, los Perfiles de Evidencia Profesional privados y la participación voluntaria en la Red de Talento. La presentación ante empresas es una futura capacidad separada que no está implementada en v1A.'] },
+        { title: '2. Información que recopilamos', paragraphs: ['Recopilamos los datos de contacto y el contenido de consultas que nos proporcionás, además de la experiencia profesional, la contribución individual, las descripciones de evidencia y las referencias opcionales que enviás para revisión. También tratamos el historial de revisión y corrección, la confirmación del perfil, las decisiones sobre la Red de Talento y los registros limitados de servicio y acceso necesarios para administrar el caso y proteger el acceso privado. La revisión no exige currículum, repositorio público ni grabación para evaluar idiomas.'] },
+        { title: '3. Cómo usamos la información', paragraphs: ['Usamos esta información para responder consultas, realizar y fundamentar la revisión solicitada, preparar y administrar un perfil privado, gestionar la confirmación o corrección, mantener el acceso seguro y atender la conservación de datos y las solicitudes de privacidad. Solo después de que aceptes por separado la Red de Talento podemos conservar el perfil confirmado para tu participación en la red y contactarte por oportunidades potencialmente relevantes.'] },
+        { title: '4. Red de Talento y presentación ante empresas', paragraphs: ['La Red de Talento se ofrece solo después de REVIEW_CONFIRMED. ACCEPTED autoriza a conservar el perfil confirmado y a contactarte por oportunidades. No autoriza a TalentSync360 a presentar, compartir, enviar ni publicar el perfil o los hallazgos de la revisión ante una empresa. DECLINED no es una señal negativa ni una clasificación. Cualquier presentación futura ante empresas requeriría una autorización separada; no está implementada en v1A.'] },
+        { title: '5. Tecnología y proveedores de servicios', paragraphs: ['Usamos proveedores de infraestructura y servicios como Supabase, Vercel y Resend para almacenar datos, operar el sitio web y el servicio privado, y enviar comunicaciones. Tratan la información según sea necesario para prestar esos servicios. Su acceso operativo no constituye una autorización para presentar a un profesional ante una empresa.'] },
+        { title: '6. Perfil de Evidencia privado y acceso', paragraphs: ['La revisión puede producir un Perfil de Evidencia Profesional privado. Podés confirmarlo o solicitar una corrección. El perfil distingue información respaldada, parcialmente respaldada, desconocida y que requiere aclaración; UNKNOWN no significa GAP. Los enlaces privados al perfil y de acceso son confidenciales y revocables.'] },
+        { title: '7. Evidencia de origen', paragraphs: ['Conservamos solo la evidencia y las referencias necesarias para realizar, fundamentar y administrar la revisión durante el ciclo de vida aplicable al caso. Las URL de evidencia y su contexto siguen ese ciclo. No archivamos sistemáticamente repositorios externos, código, sitios web ni otros materiales. El solo envío no permite reutilizar la evidencia para otros profesionales, marketing, entrenamiento ni compartirla con empresas. El registro mínimo posterior al cierre no conserva URL ni contenido de la evidencia de origen.'] },
+        { title: '8. Conservación', paragraphs: ['Las solicitudes de Revisión de Evidencia abandonadas, incompletas o NOT_ACTIONABLE_YET se conservan durante 90 días desde la última actividad significativa; luego se cierran, eliminan o anonimizan según la política.', 'Un Perfil de Evidencia completado y confirmado con la Red de Talento en estado DECLINED se conserva durante 180 días desde DECLINED, salvo que se solicite su eliminación antes. Con la Red de Talento en estado ACCEPTED, conservamos el perfil confirmado mientras la participación voluntaria siga activa.', 'Si te retirás de la Red de Talento, cesan de inmediato el contacto y el uso para oportunidades. El cierre técnico puede demorar hasta 30 días. Un futuro reingreso requiere una nueva aceptación.', 'Conservamos un registro mínimo de auditoría durante 24 meses desde el cierre definitivo del caso. Se limita a metadatos mínimos de consentimiento, ciclo de vida y cierre. Excluye el perfil profesional, la evidencia de origen, los hallazgos, las recomendaciones y, cuando sea evitable, el correo electrónico o el nombre. No se utiliza para sourcing, marketing ni reactivación.'] },
+        { title: '9. Acceso, corrección, retiro y eliminación', paragraphs: ['Podés solicitar acceso a tu información o su corrección, retirarte de la Red de Talento o solicitar la eliminación escribiendo a privacy@talentsync360.com. Revisamos y gestionamos estas solicitudes según el ciclo de vida y la política de conservación aplicables.'] },
+        { title: '10. Automatización y asistencia de IA', paragraphs: ['La IA y la automatización pueden asistir tareas operativas o analíticas, con revisión humana del proceso de Revisión de Evidencia. No incorporan automáticamente a un profesional a la Red de Talento ni autorizan su presentación ante empresas. En el proceso actual de v1A, las acciones de privacidad irreversibles requieren revisión humana. La evaluación de inglés no es universal; los requisitos de comunicación dependen de cada oportunidad específica.'] },
+        { title: '11. Contacto', paragraphs: ['Para solicitudes de privacidad, escribí a privacy@talentsync360.com. Para consultas sobre la Revisión de Evidencia, escribí a reviews@talentsync360.com.'] },
+      ],
+      footer: 'Última actualización: 16 de septiembre de 2026.',
     },
     itConsultancies: {
       badge: 'Para Consultoras IT',

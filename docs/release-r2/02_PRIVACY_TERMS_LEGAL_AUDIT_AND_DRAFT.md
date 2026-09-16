@@ -1,7 +1,8 @@
 # TalentSync360 — Opt-In Engine v1A
 ## 02. Privacy Policy & Terms Legal Audit and Draft
 
-**Status:** DRAFT — REQUIRES QUALIFIED LEGAL REVIEW
+**Status:** QUALIFIED LEGAL REVIEW APPROVED / CLOSED — historical draft retained below
+**Current public policy:** `/privacy` and `/terms`, effective September 16, 2026 / 16 de septiembre de 2026. The draft in Section 4 is superseded and is not release copy.
 **Notice:** This document identifies privacy and regulatory considerations for qualified legal counsel. It does not constitute legal advice and does NOT assert regulatory compliance.
 **Approved Version Constants:**
 - Evidence Review Consent: `evidence-review-v1-2026-09-14`
@@ -51,16 +52,16 @@ Legal counsel should specifically evaluate and provide formal clauses regarding:
    - Hosting and edge compute (Vercel Inc.).
    - Transactional email communications (Resend Inc.).
 3. **Data Retention & Erasure:**
-   - Policy-level retention windows for submissions, profiles, tokens, and audit logs (subject to owner decisions recorded in Document 03).
+   - Approved retention windows and closure controls are recorded in Document 03 and implemented by migration 008 once applied.
    - Procedures for honoring right-to-erasure and correction requests.
 
 ---
 
-### 4. Proposed Draft Privacy Policy Language (DRAFT FOR LEGAL REVIEW)
+### 4. Superseded Historical Draft Privacy Policy Language
 
 ```markdown
 # Privacy Notice — TalentSync360 Evidence Review & Talent Network
-*DRAFT — REQUIRES QUALIFIED LEGAL REVIEW*
+*Historical draft, superseded by the approved public Privacy Policy effective September 16, 2026.*
 
 ### 1. Scope and Controller
 TalentSync360 provides professionals with an independent technical Evidence Review. This Notice explains how we collect, process, and protect your information when you request an Evidence Review and when you choose to join the TalentSync360 Talent Network.
@@ -90,5 +91,5 @@ We do not sell your personal information. We transmit data only to technical ser
 - Transactional notification delivery (Resend).
 
 ### 6. Your Rights
-Depending on your applicable jurisdiction, you may have rights to access, review, correct, or request deletion of your personal data. To exercise these rights, contact [OWNER DECISION REQUIRED: privacy contact email].
+Depending on your applicable jurisdiction, you may have rights to access, review, correct, or request deletion of your personal data. To exercise these rights, contact privacy@talentsync360.com.
 ```

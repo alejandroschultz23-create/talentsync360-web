@@ -5,6 +5,14 @@ import type { z } from "zod";
 
 import { EvidenceReviewRepository } from "../server/repository";
 import { parseOperatorArguments, requireOption } from "./arguments";
+import {
+  closePrivacyCase,
+  listPrivacyRetentionQueue,
+  previewPrivacyCaseClosure,
+  recordPrivacyCaseActivity,
+  withdrawTalentNetwork,
+} from "./privacy-database";
+import type { PrivacyClosureReason } from "./privacy-database";
 import { EvidenceReviewOperatorService, toSafeInspectionOutput } from "./service";
 import {
   coherenceInputSchema,
@@ -15,6 +23,28 @@ import {
 } from "./validation";
 
 const MAX_OPERATOR_INPUT_BYTES = 64_000;
+const CLOSURE_REASONS: ReadonlySet<string> = new Set([
+  "RETENTION_90_DAYS",
+  "RETENTION_DECLINED_180_DAYS",
+  "WITHDRAWAL",
+  "PRIVACY_REQUEST",
+]);
+
+function parsePrivacyActor(options: Record<string, string>): string {
+  const actor = requireOption(options, "actor");
+  if (!/^[A-Za-z0-9_-]{3,64}$/.test(actor)) {
+    throw new Error("Privacy actor must be a non-email operator identifier (3–64 characters)");
+  }
+  return actor;
+}
+
+function parseClosureReason(options: Record<string, string>): PrivacyClosureReason {
+  const reason = requireOption(options, "reason");
+  if (!CLOSURE_REASONS.has(reason)) {
+    throw new Error("Unsupported privacy closure reason");
+  }
+  return reason as PrivacyClosureReason;
+}
 
 async function readValidatedJson<T>(
   inputPath: string,
@@ -58,8 +88,6 @@ export async function runEvidenceReviewOperator(
   argv: readonly string[],
 ): Promise<void> {
   const { command, options } = parseOperatorArguments(argv);
-  const repository = new EvidenceReviewRepository();
-  const service = new EvidenceReviewOperatorService(repository);
 
   if (command === "queue") {
     const limitValue = options.limit ?? "20";
@@ -70,13 +98,60 @@ export async function runEvidenceReviewOperator(
     if (limit < 1 || limit > 100) {
       throw new Error("Queue limit must be an integer between 1 and 100");
     }
-    writeJson(await service.queue(limit));
+    writeJson(await new EvidenceReviewOperatorService(new EvidenceReviewRepository()).queue(limit));
+    return;
+  }
+
+  if (command === "retention-queue") {
+    const limitValue = options.limit ?? "100";
+    if (!/^\d+$/.test(limitValue) || Number(limitValue) < 1 || Number(limitValue) > 100) {
+      throw new Error("Retention queue limit must be between 1 and 100");
+    }
+    writeJson(await listPrivacyRetentionQueue(Number(limitValue)));
     return;
   }
 
   const submissionId = parseSubmissionId(
     requireOption(options, "submission"),
   );
+
+  if (command === "record-activity") {
+    const occurredAt = await recordPrivacyCaseActivity(submissionId, parsePrivacyActor(options));
+    writeJson({ ok: true, command, submission_id: submissionId, occurred_at: occurredAt });
+    return;
+  }
+
+  if (command === "withdraw-network") {
+    const optIn = await withdrawTalentNetwork(submissionId, parsePrivacyActor(options));
+    writeJson({ ok: true, command, submission_id: submissionId, opt_in_id: optIn.id, withdrawn_at: optIn.withdrawn_at });
+    return;
+  }
+
+  if (command === "closure-preview") {
+    writeJson(await previewPrivacyCaseClosure(submissionId, parseClosureReason(options)));
+    return;
+  }
+
+  if (command === "close-case") {
+    const confirmSubmissionId = parseSubmissionId(requireOption(options, "confirm"));
+    if (confirmSubmissionId !== submissionId) {
+      throw new Error("--confirm must exactly match --submission");
+    }
+    const result = await closePrivacyCase({
+      submissionId,
+      actor: parsePrivacyActor(options),
+      reason: parseClosureReason(options),
+      confirmSubmissionId,
+    });
+    writeJson({ ok: true, command, submission_id: submissionId, event_id: result.id,
+      closed_at: result.occurred_at, audit_expires_at: result.audit_expires_at });
+    return;
+  }
+
+  // The preceding privacy commands use a separate local database-owner
+  // connection. Actor, reason, and confirmation guard mistakes and record
+  // intent; they do not authorize the operation.
+  const service = new EvidenceReviewOperatorService(new EvidenceReviewRepository());
 
   if (command === "inspect") {
     writeJson(toSafeInspectionOutput(await service.inspect(submissionId)));

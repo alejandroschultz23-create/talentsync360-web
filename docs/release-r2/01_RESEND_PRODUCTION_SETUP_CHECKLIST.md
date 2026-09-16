@@ -1,7 +1,7 @@
 # TalentSync360 — Opt-In Engine v1A
 ## 01. Resend Production Setup Checklist
 
-**Status:** PRE-PRODUCTION OPERATIONAL CHECKLIST
+**Status:** PROVIDER VERIFIED; PRODUCTION DEPLOYMENT PENDING
 **Target Environment:** Production
 **Runtime Integration:** `resend@6.28.1` (Zero production runtime CVEs)
 
@@ -21,15 +21,15 @@ The TalentSync360 Opt-In Engine v1A utilizes Resend exclusively for transactiona
 
 ### 2. Provider Configuration & Verification Steps
 
-Complete the following provider verification steps in the Resend administrative console prior to production release:
+Provider verification is complete. These steps remain a record for operators; no provider change is required for R2.3.
 
 #### Step 1: Sending Domain Verification
-- [ ] Domain `talentsync360.com` registered in Resend console.
+- [x] Domain `talentsync360.com` registered and verified in Resend console.
 - [ ] Complete DNS verification records configured in primary DNS provider:
   - **DKIM:** TXT record (provided by Resend)
   - **SPF:** TXT / MX record (provided by Resend)
   - **DMARC:** TXT record configured according to domain security policy.
-- [ ] Provider status confirmed as **"Verified"** before sending production traffic.
+- [x] Provider status confirmed as **"Verified"**.
 
 #### Step 2: Production API Key Generation
 - [ ] Generate a production API key within the Resend console.
@@ -37,10 +37,10 @@ Complete the following provider verification steps in the Resend administrative 
 - [ ] Store key securely in the team password manager.
 - [ ] **Crucial:** Never log, print, or commit this key to version control.
 
-#### Step 3: Verified Sender Address Determination
-- [ ] Record the approved sending address in project configuration:
+#### Step 3: Verified Sender Address
+- [x] Approved sending address recorded in Production configuration:
   - Variable: `EVIDENCE_REVIEW_FROM_EMAIL`
-  - Value: `[OWNER DECISION REQUIRED: approved sender address]` (e.g., `TalentSync360 <reviews@talentsync360.com>` or designated notification mailbox).
+  - Value: `TalentSync360 Evidence Review <reviews@talentsync360.com>`.
 
 ---
 
@@ -51,7 +51,7 @@ Configure the following variables in the Vercel Production deployment:
 | Variable Name | Environment | Description |
 | :--- | :--- | :--- |
 | `RESEND_API_KEY` | Production (Server-only) | Resend API key generated in Step 2 |
-| `EVIDENCE_REVIEW_FROM_EMAIL` | Production (Server-only) | `[OWNER DECISION REQUIRED: approved sender address]` |
+| `EVIDENCE_REVIEW_FROM_EMAIL` | Production (Server-only) | Configured as `TalentSync360 Evidence Review <reviews@talentsync360.com>` |
 | `EVIDENCE_REVIEW_BASE_URL` | Production (Server-only) | Base URL for link generation (`https://talentsync360.com`) |
 
 ---
@@ -63,5 +63,5 @@ If an email fails to deliver during live operations (e.g., recipient mailbox ful
 2. The delivery failure is recorded with details in `workflow_events`.
 3. An authorized operator can reissue and resend the access link using the CLI tool:
    ```bash
-   npm run operator -- reissue-access --id="<submission-uuid>" --actor="operator@talentsync360.com"
+   npm run evidence-review:operator -- reissue-access --submission <submission-uuid> --actor operator-id
    ```

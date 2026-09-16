@@ -75,5 +75,8 @@ describe("profile versioning", () => {
       "EVIDENCE_REVIEW_COMPLETED_NO_OPTIN",
     );
     expect(deriveTalentState("REVIEW_DELIVERED", "ACCEPTED")).toBeNull();
+    expect(deriveTalentState("REVIEW_CONFIRMED", "ACCEPTED", "2026-09-16T00:00:00Z")).toBe(
+      "EVIDENCE_REVIEW_COMPLETED_NO_OPTIN",
+    );
   });
 });

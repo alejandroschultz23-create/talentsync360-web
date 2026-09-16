@@ -836,6 +836,7 @@ export class EvidenceReviewRepository {
       .from("talent_opt_ins")
       .select("*")
       .eq("profile_id", profileId)
+      .is("withdrawn_at", null)
       .maybeSingle();
     if (result.error) {
       throw new EvidenceReviewRepositoryError(

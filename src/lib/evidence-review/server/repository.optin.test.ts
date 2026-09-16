@@ -35,6 +35,7 @@ function createMockSupabase(overrides: {
         return {
           select: vi.fn().mockReturnThis(),
           eq: vi.fn().mockReturnThis(),
+          is: vi.fn().mockReturnThis(),
           maybeSingle: vi.fn().mockImplementation(() =>
             Promise.resolve({
               data:

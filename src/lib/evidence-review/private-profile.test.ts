@@ -28,6 +28,7 @@ describe("Private Profile View Builder and Content Sanitization", () => {
     evidence_type: "PUBLIC_REPOSITORY",
     evidence_url: "https://github.com/example/pipeline",
     individual_contribution: "Architected distributed ETL streaming pipelines.",
+    last_meaningful_activity_at: null,
     professional_context: "Fintech scaleup",
     review_state: "REVIEW_DELIVERED",
     coherence_status: "READY",

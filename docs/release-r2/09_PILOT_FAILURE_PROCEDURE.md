@@ -24,17 +24,19 @@ This procedure outlines standard operational responses for failure scenarios dur
 1. Check Resend dashboard for recipient status (e.g. invalid mailbox, DNS block).
 2. Check `workflow_events` for detailed error message:
    ```sql
-   SELECT created_at, event_type, metadata
+   SELECT occurred_at, event_type, metadata
    FROM workflow_events
-   WHERE submission_id = '<submission-uuid>'
-     AND event_type = 'DELIVERY_NOTIFICATION_FAILED'
-   ORDER BY created_at DESC LIMIT 1;
+   WHERE entity_type = 'PROFILE'
+     AND entity_id = '<profile-uuid>'
+     AND event_type = 'PROFILE_NOTIFICATION_RECORDED'
+     AND metadata->>'status' = 'failed'
+   ORDER BY occurred_at DESC LIMIT 1;
    ```
 3. If the professional's email address was mistyped:
    - Verify identity and correct email in `people` via authorized operator process.
 4. Execute CLI reissuance:
    ```bash
-   npm run operator -- reissue-access --id="<submission-uuid>" --actor="operator@talentsync360.com"
+   npm run evidence-review:operator -- reissue-access --submission "<submission-uuid>" --actor operator-id
    ```
 
 ---
@@ -49,7 +51,7 @@ This procedure outlines standard operational responses for failure scenarios dur
 1. Confirm professional identity.
 2. Execute CLI reissuance:
    ```bash
-   npm run operator -- reissue-access --id="<submission-uuid>" --actor="operator@talentsync360.com"
+   npm run evidence-review:operator -- reissue-access --submission "<submission-uuid>" --actor operator-id
    ```
 3. Fresh link with a new 72-hour window is delivered to their inbox.
 
@@ -66,7 +68,7 @@ This procedure outlines standard operational responses for failure scenarios dur
    - Update profile draft JSON.
    - Run CLI revision:
      ```bash
-     npm run operator -- revise-profile --id="<submission-uuid>" --actor="operator@talentsync360.com" --file="path/to/updated-profile.json"
+     npm run evidence-review:operator -- revise-profile --submission "<submission-uuid>" --actor operator-id --input path/to/updated-profile.json
      ```
 3. If correction cannot be verified with demonstrable artifacts, maintain factual evidence standard and explain rationale to professional.
 
@@ -78,8 +80,8 @@ This procedure outlines standard operational responses for failure scenarios dur
 - Professional confirms Evidence Profile, but chooses "Decline for now" on the network choice screen.
 
 **Procedure:**
-1. System commits `status = 'DECLINED'` in `talent_opt_ins`.
-2. **NO OPERATOR ACTION REQUIRED.**
+1. System commits `opt_in_status = 'DECLINED'` in `talent_opt_ins`.
+2. Record the 180-day retention due date from `declined_at` in the pilot tracker and review `retention-queue` regularly.
 3. Verify core invariant: The professional's confirmed Evidence Profile remains accessible to them privately. No employer presentation or outreach is initiated.
 
 ---
@@ -90,10 +92,12 @@ This procedure outlines standard operational responses for failure scenarios dur
 - Professional requests deletion of their personal data.
 
 **Procedure:**
-1. Follow guidelines in `03_RETENTION_DELETION_DECISION_REGISTER.md`.
-2. Execute deletion protocol according to approved legal determination:
-   - Status: **[LEGAL REVIEW REQUIRED: Deletion vs. Audit Retention Standard]**.
-3. Confirm deletion to professional once completed.
+1. Route the verified request through `privacy@talentsync360.com` and identify the submission.
+   Use the operator-only local `SUPABASE_DB_URL` connection for the following privacy commands; the web application's `SUPABASE_SECRET_KEY` cannot execute them.
+2. If Talent Network participation is active, stop opportunity use immediately and run `withdraw-network --submission "<submission-uuid>" --actor operator-id`.
+3. Run `closure-preview --submission "<submission-uuid>" --reason PRIVACY_REQUEST`. Review its eligibility and case counts.
+4. Run `close-case --submission "<submission-uuid>" --actor operator-id --reason PRIVACY_REQUEST --confirm "<submission-uuid>"` only after human review. The guarded transaction removes professional content and leaves the minimal 24-month closure audit.
+5. Verify the `CASE_CLOSED` event and confirm completion to the professional.
 
 ---
 
@@ -118,5 +122,5 @@ This procedure outlines standard operational responses for failure scenarios dur
 **Procedure:**
 1. **Pause Outreach:** Immediately halt invitation outreach to the 3–5 pilot cohort professionals.
 2. **Promote Prior Deployment:** In Vercel Deployments dashboard, promote the prior known-good deployment.
-3. **Database Integrity:** Migrations 001–007 are purely additive and backward-compatible; database schema does not require rollback.
+3. **Database Integrity:** Migrations 001–007 are already applied in Production. Migration 008 must pass its separate release gate before application; do not assume a schema rollback.
 4. **Analyze Logs:** Inspect Vercel runtime logs and `workflow_events` table to diagnose root cause.

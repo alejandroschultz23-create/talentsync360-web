@@ -46,14 +46,14 @@ Access to private Evidence Profiles and the Talent Network choice is protected b
 - Delivery is performed programmatically via Resend to the verified professional email on record.
 - If email delivery fails repeatedly, reissuance must be executed via the official CLI:
   ```bash
-  npm run operator -- reissue-access --id="<submission-uuid>" --actor="operator@talentsync360.com"
+  npm run evidence-review:operator -- reissue-access --submission "<submission-uuid>" --actor operator-id
   ```
 
 #### Rule 5: Immediate Revocation Procedure
 If there is suspicion that an access link has been misdirected or intercepted:
 1. Operator runs:
    ```bash
-   npm run operator -- revoke-access --id="<submission-uuid>" --actor="operator@talentsync360.com"
+   npm run evidence-review:operator -- revoke-access --submission "<submission-uuid>" --actor operator-id
    ```
 2. Database immediately sets `revoked_at = now()` on all active tokens for that profile.
 3. Active sessions utilizing that token are invalidated on their next request.

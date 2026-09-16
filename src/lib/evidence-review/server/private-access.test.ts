@@ -47,6 +47,7 @@ function mockAccess(expiresInSeconds = 3600): PrivateProfileAccess {
       evidence_type: "PUBLIC_REPOSITORY",
       evidence_url: "https://github.com/example/repo",
       individual_contribution: "Core contributor",
+      last_meaningful_activity_at: null,
       professional_context: "Enterprise app",
       review_state: "REVIEW_DELIVERED",
       coherence_status: "READY",

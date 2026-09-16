@@ -54,7 +54,7 @@ LIMIT 20;
 #### Pillar 2: Operator CLI Queue
 Check pending reviews in real time:
 ```bash
-npm run operator -- queue
+npm run evidence-review:operator -- queue
 ```
 
 #### Pillar 3: Resend Delivery Analytics

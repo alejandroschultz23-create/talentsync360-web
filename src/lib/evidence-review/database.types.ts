@@ -153,6 +153,7 @@ export type Database = {
           evidence_url: string | null
           id: string
           individual_contribution: string
+          last_meaningful_activity_at: string | null
           opportunity_status: Database["public"]["Enums"]["opportunity_status"]
           person_id: string
           professional_context: string | null
@@ -175,6 +176,7 @@ export type Database = {
           evidence_url?: string | null
           id?: string
           individual_contribution: string
+          last_meaningful_activity_at?: string | null
           opportunity_status: Database["public"]["Enums"]["opportunity_status"]
           person_id: string
           professional_context?: string | null
@@ -197,6 +199,7 @@ export type Database = {
           evidence_url?: string | null
           id?: string
           individual_contribution?: string
+          last_meaningful_activity_at?: string | null
           opportunity_status?: Database["public"]["Enums"]["opportunity_status"]
           person_id?: string
           professional_context?: string | null
@@ -304,6 +307,7 @@ export type Database = {
           person_id: string
           profile_id: string
           updated_at: string
+          withdrawn_at: string | null
         }
         Insert: {
           accepted_at?: string | null
@@ -318,6 +322,7 @@ export type Database = {
           person_id: string
           profile_id: string
           updated_at?: string
+          withdrawn_at?: string | null
         }
         Update: {
           accepted_at?: string | null
@@ -332,6 +337,7 @@ export type Database = {
           person_id?: string
           profile_id?: string
           updated_at?: string
+          withdrawn_at?: string | null
         }
         Relationships: [
           {
@@ -614,6 +620,7 @@ export type Database = {
           evidence_url: string | null
           id: string
           individual_contribution: string
+          last_meaningful_activity_at: string | null
           opportunity_status: Database["public"]["Enums"]["opportunity_status"]
           person_id: string
           professional_context: string | null
@@ -754,6 +761,7 @@ export type Database = {
           evidence_url: string | null
           id: string
           individual_contribution: string
+          last_meaningful_activity_at: string | null
           opportunity_status: Database["public"]["Enums"]["opportunity_status"]
           person_id: string
           professional_context: string | null
@@ -794,6 +802,7 @@ export type Database = {
           person_id: string
           profile_id: string
           updated_at: string
+          withdrawn_at: string | null
         }
         SetofOptions: {
           from: "*"
