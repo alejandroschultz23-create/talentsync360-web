@@ -8,7 +8,7 @@ import { pushGTMEvent } from '@/lib/analytics';
 function ContactForm() {
   const { t, lang } = useLanguage();
   const searchParams = useSearchParams();
-  const [contactType, setContactType] = useState<'b2b' | 'talent' | 'general'>('b2b');
+  const [contactType, setContactType] = useState<'b2b' | 'general'>('b2b');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -17,9 +17,7 @@ function ContactForm() {
 
   useEffect(() => {
     const tipo = searchParams.get('tipo');
-    if (tipo === 'talent') {
-      setContactType('talent');
-    } else if (tipo === 'general') {
+    if (tipo === 'general') {
       setContactType('general');
     } else {
       setContactType('b2b');
@@ -29,7 +27,6 @@ function ContactForm() {
     setIsShortlistSprint(intent === 'shortlist-sprint');
   }, [searchParams]);
 
-  const isTalent = contactType === 'talent';
   const isGeneral = contactType === 'general';
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -76,14 +73,12 @@ function ContactForm() {
       <section className="bg-slate-950 pt-24 pb-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 mb-6 tracking-tight">
-                {isTalent ? (t.contact.titleTalent || t.contact.title) : t.contact.title}
+                {t.contact.title}
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
-                {isTalent
-                  ? (t.contact.subtitleTalent || t.contact.subtitle)
-                  : isGeneral
-                    ? (t.contact.subtitleGeneral || t.contact.subtitle)
-                    : t.contact.subtitle}
+                {isGeneral
+                  ? (t.contact.subtitleGeneral || t.contact.subtitle)
+                  : t.contact.subtitle}
             </p>
         </div>
       </section>
@@ -142,46 +137,20 @@ function ContactForm() {
                     <input name="email" type="email" id="email" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none" placeholder={t.contact.placeholderEmail} />
                 </div>
 
-                {isTalent && (
-                  <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      <div className="space-y-2">
-                        <label htmlFor="currentRole" className="text-sm font-semibold text-slate-300">{t.contact.labelCurrentRole}</label>
-                        <input name="currentRole" type="text" id="currentRole" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none" placeholder={t.contact.placeholderCurrentRole} />
-                      </div>
-                      <div className="space-y-2">
-                        <label htmlFor="experience" className="text-sm font-semibold text-slate-300">{t.contact.labelExperience}</label>
-                        <input name="experience" type="text" id="experience" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none" placeholder={t.contact.placeholderExperience} />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="englishLevel" className="text-sm font-semibold text-slate-300">{t.contact.labelEnglishLevel}</label>
-                      <select name="englishLevel" id="englishLevel" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none appearance-none cursor-pointer">
-                        <option value="">{t.contact.labelEnglishLevel}</option>
-                        <option value="C1+">C1+ (Advanced/Fluent)</option>
-                        <option value="C1">C1 (Professional Working)</option>
-                        <option value="B2">B2 (Upper Intermediate)</option>
-                        <option value="B1">B1 (Intermediate)</option>
-                      </select>
-                    </div>
-                  </>
-                )}
-
                   <div className="space-y-2">
                       <label htmlFor="role" className="text-sm font-semibold text-slate-300">{t.contact.labelRole}</label>
                       <select name="role" id="role" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none appearance-none cursor-pointer">
                           <option value="">{t.contact.labelRole}</option>
                           <option>{t.contact.optionB2B}</option>
-                          <option>{t.contact.optionB2C}</option>
                           <option>{t.contact.optionGeneral}</option>
                       </select>
                   </div>
 
                 <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-semibold text-slate-300">
-                      {isTalent ? t.contact.labelMessageTalent : t.contact.labelMessage}
+                      {t.contact.labelMessage}
                     </label>
-                    <textarea name="message" id="message" rows={5} required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none resize-none" placeholder={isTalent ? t.contact.placeholderMessageTalent : t.contact.placeholderMessage}></textarea>
+                    <textarea name="message" id="message" rows={5} required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none resize-none" placeholder={t.contact.placeholderMessage}></textarea>
                 </div>
 
                 {error && (
@@ -211,7 +180,7 @@ function ContactForm() {
                       Sending...
                     </>
                   ) : (
-                    isTalent ? t.contact.buttonSubmitTalent : t.contact.buttonSubmit
+                    t.contact.buttonSubmit
                   )}
                 </button>
                 <div className="text-center">
@@ -221,8 +190,7 @@ function ContactForm() {
           )}
       </section>
 
-      {!isTalent && (
-        <div className="text-center mb-32 group">
+      <div className="text-center mb-32 group">
             <p className="text-slate-500 mb-6 font-bold uppercase tracking-[0.2em] text-xs">{t.contact.directLabel}</p>
               <a
                 href="https://calendly.com/alejandroschultz23/ts360-discovery-con-empresas-30-min"
@@ -232,8 +200,7 @@ function ContactForm() {
               >
                 {t.contact.ctaButton}
               </a>
-        </div>
-      )}
+      </div>
     </>
   );
 }

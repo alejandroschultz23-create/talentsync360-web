@@ -1,56 +1,66 @@
 'use client';
 
-import React from 'react';
-import { useLanguage } from '@/context/LanguageContext';
-import Hero from '@/components/Hero';
-import ICPSection from '@/components/ICPSection';
-import ConsultancyPain from '@/components/ConsultancyPain';
-import ShortlistSprint from '@/components/ShortlistSprint';
-import WhiteLabelDemo from '@/components/WhiteLabelDemo';
-import HowItWorks from '@/components/HowItWorks';
-import DeliverableEvidence from '@/components/DeliverableEvidence';
-import ConsultancyUseCases from '@/components/ConsultancyUseCases';
-import TalentPathway from '@/components/TalentPathway';
-import FAQAccordion from '@/components/FAQAccordion';
-import FinalCTA from '@/components/FinalCTA';
+import React, { useState } from 'react';
+import Section01Hero from '@/components/homepage/Section01Hero';
+import Section02Problem from '@/components/homepage/Section02Problem';
+import Section03ProductTransformation from '@/components/homepage/Section03ProductTransformation';
+import Section04EvidenceContextDecide from '@/components/homepage/Section04EvidenceContextDecide';
+import Section05HiringTeams from '@/components/homepage/Section05HiringTeams';
+import Section06TechnicalProfessionals from '@/components/homepage/Section06TechnicalProfessionals';
+import Section07EvidenceStates from '@/components/homepage/Section07EvidenceStates';
+import Section08PartnerDelivery from '@/components/homepage/Section08PartnerDelivery';
+import Section09EvidenceBriefPreview from '@/components/homepage/Section09EvidenceBriefPreview';
+import Section10FinalCTA from '@/components/homepage/Section10FinalCTA';
+import EvidenceBriefModal from '@/components/homepage/EvidenceBriefModal';
 
 export default function HomeClient() {
-  const { t } = useLanguage();
+  const [isBriefModalOpen, setIsBriefModalOpen] = useState(false);
+
+  const handleOpenBriefModal = () => {
+    setIsBriefModalOpen(true);
+  };
+
+  const handleCloseBriefModal = () => {
+    setIsBriefModalOpen(false);
+  };
 
   return (
-    <div className="flex flex-col bg-slate-950">
-      {/* 2. Hero Section */}
-      <Hero />
+    <div className="flex flex-col w-full selection:bg-blue-600/30 selection:text-white">
+      {/* 01. HERO */}
+      <Section01Hero onOpenBriefModal={handleOpenBriefModal} />
 
-      {/* 2.5. ICP Section */}
-      <ICPSection />
+      {/* 02. THE PROBLEM */}
+      <Section02Problem />
 
-      {/* 3. Consultancy Pain Section */}
-      <ConsultancyPain />
+      {/* 03. PRODUCT TRANSFORMATION */}
+      <Section03ProductTransformation />
 
-      {/* 4. Shortlist Sprint Section */}
-      <ShortlistSprint />
+      {/* 04. EVIDENCE → CONTEXT → DECIDE */}
+      <Section04EvidenceContextDecide />
 
-      {/* 5. Interactive White-Label Demo */}
-      <WhiteLabelDemo />
+      {/* 05. FOR HIRING TEAMS & RECRUITERS */}
+      <Section05HiringTeams />
 
-      {/* 6. How It Works Section */}
-      <HowItWorks />
+      {/* 06. FOR TECHNICAL PROFESSIONALS */}
+      <Section06TechnicalProfessionals />
 
-      {/* 7. Deliverable Evidence Section */}
-      <DeliverableEvidence />
+      {/* 07. EVIDENCE STATES / METHODOLOGY PREVIEW */}
+      <Section07EvidenceStates />
 
-      {/* 8. Consultancy Use Cases Grid */}
-      <ConsultancyUseCases />
+      {/* 08. PARTNER DELIVERY */}
+      <Section08PartnerDelivery />
 
-      {/* 9.5. Talent Pathway Section */}
-      <TalentPathway />
+      {/* 09. EVIDENCE BRIEF PREVIEW */}
+      <Section09EvidenceBriefPreview onOpenBriefModal={handleOpenBriefModal} />
 
-      {/* 10. FAQ Accordion */}
-      <FAQAccordion title={t.home.faqTitle} items={t.home.faqClients} />
+      {/* 10. FINAL CTA */}
+      <Section10FinalCTA onOpenBriefModal={handleOpenBriefModal} />
 
-      {/* 11. Final CTA Banner */}
-      <FinalCTA />
+      {/* Interactive Evidence Brief Modal (Accessible across sections) */}
+      <EvidenceBriefModal
+        isOpen={isBriefModalOpen}
+        onClose={handleCloseBriefModal}
+      />
     </div>
   );
 }

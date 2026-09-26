@@ -4,6 +4,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, Suspense } from 'react';
 import { pushGTMEvent } from '@/lib/analytics';
 import { useLanguage } from '@/context/LanguageContext';
+import { isPrivateEvidenceReviewPath } from '@/lib/evidence-review/private-routes';
 
 function RouteTrackerContent() {
   const pathname = usePathname();
@@ -12,7 +13,7 @@ function RouteTrackerContent() {
   const lastTrackedPath = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!pathname) return;
+    if (!pathname || isPrivateEvidenceReviewPath(pathname)) return;
 
     const queryString = searchParams?.toString();
     const currentPath = queryString ? `${pathname}?${queryString}` : pathname;

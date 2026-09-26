@@ -4,11 +4,11 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/context/LanguageContext";
-import { Analytics } from "@vercel/analytics/react";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import GTM from "@/components/GTM";
 import GTMRouteTracker from "@/components/GTMRouteTracker";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import VercelAnalytics from "@/components/VercelAnalytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     default: "TalentSync360 | Decision-Ready LATAM Technical Shortlists",
     template: "%s | TalentSync360"
   },
-  description: "Get decision-ready LATAM technical shortlists in 72 hours. Our sourcing sprints combine human vetting, English communication screening, and a structured 360° Fit Matrix.",
-  keywords: ["LATAM developers", "Nearshore sourcing", "Technical vetting", "Sourcing sprints", "360 Fit Matrix", "English communication screening", "Candidate scorecards"],
+  description: "Get decision-ready LATAM technical shortlists. Our sourcing sprints combine human review, role-specific evidence, and opportunity-specific communication requirements.",
+  keywords: ["LATAM developers", "Nearshore sourcing", "Technical vetting", "Sourcing sprints", "Professional Evidence Review", "Role-specific validation"],
   alternates: {
     canonical: "/",
   },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "TalentSync360 | Decision-Ready LATAM Technical Shortlists",
-    description: "Get decision-ready LATAM technical shortlists in 72 hours. Our sourcing sprints combine human vetting, English communication screening, and a structured 360° Fit Matrix.",
+    description: "Get decision-ready LATAM technical shortlists. Our sourcing sprints combine human review, role-specific evidence, and opportunity-specific communication requirements.",
     url: "https://www.talentsync360.com",
     siteName: "TalentSync360",
     images: [
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "TalentSync360 | Decision-Ready LATAM Technical Shortlists",
-    description: "Get decision-ready LATAM technical shortlists in 72 hours. Our sourcing sprints combine human vetting, English communication screening, and a structured 360° Fit Matrix.",
+    description: "Get decision-ready LATAM technical shortlists. Our sourcing sprints combine human review, role-specific evidence, and opportunity-specific communication requirements.",
     images: ["https://www.talentsync360.com/logo_oficial.png"],
   }
 };
@@ -81,7 +81,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <Analytics />
+          <VercelAnalytics />
         </LanguageProvider>
       </body>
     </html>

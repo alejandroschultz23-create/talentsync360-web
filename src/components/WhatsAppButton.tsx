@@ -2,13 +2,16 @@
 
 import { useLanguage } from '@/context/LanguageContext';
 import { pushGTMEvent } from '@/lib/analytics';
+import { usePathname } from 'next/navigation';
+import { isPrivateEvidenceReviewPath } from '@/lib/evidence-review/private-routes';
 
 export default function WhatsAppButton() {
+  const pathname = usePathname();
   const { t, lang } = useLanguage();
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_BUSINESS_NUMBER;
 
   // Render nothing if the phone number is not configured in the environment
-  if (!whatsappNumber) {
+  if (!whatsappNumber || isPrivateEvidenceReviewPath(pathname)) {
     return null;
   }
 

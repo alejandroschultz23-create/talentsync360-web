@@ -105,8 +105,8 @@ const FAQS = [
     a: "An Evidence Pack is a structured evaluation deliverable for each shortlisted candidate. It includes a requirement-by-requirement evidence matrix, technical challenge results, observations from the 30-minute technical defense, communication signals, explicit evidence states (VERIFIED, OBSERVED, SELF-REPORTED, INFERRED, CONTRADICTORY, UNKNOWN), transparent strengths and gaps, and tailored interview questions for your hiring team."
   },
   {
-    q: "How does TalentSync360 validate technical capability and English communication?",
-    a: "Candidates undergo a hands-on, role-specific practical challenge evaluated against calibrated technical rubrics, followed by an up to 30-minute technical defense with TalentSync360 to assess architectural reasoning, code decisions, and technical tradeoffs. Professional English communication is evaluated as observed interaction during this live defense."
+    q: "How does TalentSync360 validate technical capability and role-specific communication?",
+    a: "Candidates undergo a hands-on, role-specific practical challenge evaluated against calibrated technical rubrics, followed by an up to 30-minute technical defense with TalentSync360 to assess architectural reasoning, code decisions, and technical tradeoffs. Professional English communication is observed during the defense only when the client brief requires it."
   },
   {
     q: "What is the fee structure for a Shortlist Sprint?",
@@ -162,7 +162,7 @@ export default function NearshoreDevelopersLatamClient() {
               Hire vetted nearshore developers and technical talent in Latin America.
             </h1>
             <p className="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl leading-relaxed">
-              Access LATAM software engineers through structured Shortlist Sprints. Every candidate is evaluated through a role-specific technical challenge and up to 30-minute technical defense, delivered with evidence-backed scorecards that show verified capabilities, known constraints, and remaining client validation points.
+              Access LATAM software engineers through structured Shortlist Sprints. Every candidate is reviewed through a role-specific technical challenge and up to 30-minute technical defense, delivered with evidence profiles that separate supported capabilities, known constraints, and remaining client validation points.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -491,7 +491,7 @@ export default function NearshoreDevelopersLatamClient() {
                   <div>
                     <h4 className="font-bold text-white mb-1">Observed Communication Signals</h4>
                     <p className="text-sm text-slate-400 leading-relaxed">
-                      English proficiency is evaluated directly through the candidate’s ability to articulate complex technical ideas and explain engineering reasoning during the defense.
+                      When the client brief requires English, professional communication is observed through the candidate’s ability to articulate complex technical ideas and explain engineering reasoning during the defense.
                     </p>
                   </div>
                 </div>
@@ -512,7 +512,7 @@ export default function NearshoreDevelopersLatamClient() {
                   <ul className="text-xs text-slate-300 space-y-1.5 pl-6 list-disc">
                     <li>Role-specific technical challenge performance</li>
                     <li>Technical reasoning and defense observations</li>
-                    <li>Observed English communication during defense</li>
+                    <li>Observed communication in the language required by the opportunity</li>
                     <li>Chronology and project timeline consistency</li>
                     <li>Availability and compensation expectations</li>
                   </ul>

@@ -5,14 +5,14 @@ import ServiceSchema from '@/components/ServiceSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "White-Label Developer Shortlists for Spanish IT Consultancies | TalentSync360",
-  description: "Accelerate client brief delivery and resolve project overflow with human-reviewed white-label developer shortlists. Target SLAs & evidence-backed scorecards.",
+  title: "White-Label Developer Shortlists for Spanish IT Consultancies",
+  description: "Accelerate client brief delivery with human-reviewed white-label developer shortlists and structured, role-specific evidence profiles.",
   alternates: {
     canonical: "https://www.talentsync360.com/en/it-consultancies-spain",
   },
   openGraph: {
     title: "White-Label Developer Shortlists for Spanish IT Consultancies | TalentSync360",
-    description: "Accelerate client brief delivery and resolve project overflow with human-reviewed white-label developer shortlists. Target SLAs & evidence-backed scorecards.",
+    description: "Accelerate client brief delivery with human-reviewed white-label developer shortlists and structured, role-specific evidence profiles.",
     url: "https://www.talentsync360.com/en/it-consultancies-spain",
     siteName: "TalentSync360",
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "White-Label Developer Shortlists for Spanish IT Consultancies | TalentSync360",
-    description: "Accelerate client brief delivery and resolve project overflow with human-reviewed white-label developer shortlists. Target SLAs & evidence-backed scorecards.",
+    description: "Accelerate client brief delivery with human-reviewed white-label developer shortlists and structured, role-specific evidence profiles.",
     images: ["https://www.talentsync360.com/logo_oficial.png"],
   }
 };
