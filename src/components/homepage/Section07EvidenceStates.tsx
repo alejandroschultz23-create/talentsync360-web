@@ -33,7 +33,7 @@ const STATE_DETAILS: Record<EvidenceState, StateDetail> = {
     title: 'Unknown State (Strictly Non-Punitive)',
     definition: 'The available evidence does not support a conclusion. Missing evidence is not failure; it simply highlights an area for live interview discussion.',
     exampleContext: 'No observable artifact demonstrates direct exposure to custom Kubernetes CRD development. The candidate simply did not submit that specific project.',
-    interviewAction: 'UNKNOWN triggers a targeted validation question. Zero score penalty is assessed beforehand.',
+    interviewAction: 'UNKNOWN is not treated as a negative conclusion. It identifies what still needs to be explored in the interview.',
   },
   CONFLICT: {
     state: 'CONFLICT',
@@ -56,7 +56,7 @@ export default function Section07EvidenceStates() {
   const activeDetail = STATE_DETAILS[selectedState];
 
   return (
-    <section className="py-20 md:py-28 bg-[#0b0f19] border-b border-slate-900 text-white">
+    <section id="evidence-states" className="py-20 md:py-28 bg-[#0b0f19] border-b border-slate-900 text-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">

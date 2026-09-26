@@ -42,35 +42,35 @@ export default function RoleContextPreview() {
       <div className="p-6 space-y-5">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Field: Role */}
-          <div className="p-3 rounded-lg border border-slate-200 bg-slate-50/60">
-            <label className="block text-[11px] font-mono uppercase text-slate-400 font-medium">Role Title</label>
-            <span className="text-sm font-semibold text-slate-800 block mt-0.5">Staff Backend Engineer</span>
+          <div className="p-3 rounded-lg border border-slate-300/80 bg-slate-50">
+            <label className="block text-[11px] font-mono uppercase text-slate-500 font-semibold">Role Title</label>
+            <span className="text-sm font-bold text-slate-950 block mt-0.5">Staff Backend Engineer</span>
           </div>
 
           {/* Field: Seniority */}
-          <div className="p-3 rounded-lg border border-slate-200 bg-slate-50/60">
-            <label className="block text-[11px] font-mono uppercase text-slate-400 font-medium">Seniority Level</label>
-            <span className="text-sm font-semibold text-slate-800 block mt-0.5">Senior / Staff (6+ Years Prod)</span>
+          <div className="p-3 rounded-lg border border-slate-300/80 bg-slate-50">
+            <label className="block text-[11px] font-mono uppercase text-slate-500 font-semibold">Seniority Level</label>
+            <span className="text-sm font-bold text-slate-950 block mt-0.5">Senior / Staff (6+ Years Prod)</span>
           </div>
         </div>
 
         {/* Core Stack Calibration */}
-        <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/40 space-y-2">
-          <label className="block text-[11px] font-mono uppercase text-slate-400 font-medium flex items-center gap-1.5">
+        <div className="p-4 rounded-xl border border-slate-300/80 bg-slate-50/60 space-y-2">
+          <label className="block text-[11px] font-mono uppercase text-slate-600 font-semibold flex items-center gap-1.5">
             <Cpu className="w-3.5 h-3.5 text-blue-600" />
             <span>Target Tech Stack Requirements</span>
           </label>
           <div className="flex flex-wrap gap-2 pt-1">
-            <span className="px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200 text-blue-700 font-mono text-xs font-medium">
+            <span className="px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200 text-blue-700 font-mono text-xs font-semibold">
               Node.js / TypeScript
             </span>
-            <span className="px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200 text-blue-700 font-mono text-xs font-medium">
+            <span className="px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200 text-blue-700 font-mono text-xs font-semibold">
               PostgreSQL (Query Opt)
             </span>
-            <span className="px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200 text-blue-700 font-mono text-xs font-medium">
+            <span className="px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200 text-blue-700 font-mono text-xs font-semibold">
               AWS (ECS / SQS)
             </span>
-            <span className="px-2.5 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-600 font-mono text-xs">
+            <span className="px-2.5 py-1 rounded-md bg-slate-100 border border-slate-300 text-slate-700 font-mono text-xs font-medium">
               Redis / Caching
             </span>
           </div>
@@ -78,19 +78,19 @@ export default function RoleContextPreview() {
 
         {/* Operating Constraints */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-          <div className="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 bg-white">
+          <div className="flex items-center gap-2 p-2.5 rounded-lg border border-slate-300/80 bg-white">
             <Clock className="w-4 h-4 text-blue-600 shrink-0" />
-            <span className="text-slate-600">Timezone: <strong>UTC-3 to UTC-5</strong> (4h+ overlap)</span>
+            <span className="text-slate-700">Timezone: <strong>UTC-3 to UTC-5</strong> (4h+ overlap)</span>
           </div>
-          <div className="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 bg-white">
+          <div className="flex items-center gap-2 p-2.5 rounded-lg border border-slate-300/80 bg-white">
             <Shield className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span className="text-slate-600">Screening: <strong>Human Reviewed</strong></span>
+            <span className="text-slate-700">Screening: <strong>Human Reviewed</strong></span>
           </div>
         </div>
 
         {/* Evaluation Output Teaser */}
-        <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-          <span className="text-slate-500">
+        <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-xs">
+          <span className="text-slate-600 font-medium">
             {activeTab === 'sourced'
               ? 'Benchmarking your sourced candidates against this criteria'
               : 'Targeting 3–5 human-reviewed LATAM finalists'}

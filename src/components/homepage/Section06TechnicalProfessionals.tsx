@@ -4,10 +4,21 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import CandidateEvidenceReviewPreview from './CandidateEvidenceReviewPreview';
+import { pushGTMEvent } from '@/lib/analytics';
 
 export default function Section06TechnicalProfessionals() {
+  const handleStartReview = () => {
+    pushGTMEvent('click_start_evidence_review', {
+      cta_label: 'Start Evidence Review',
+      cta_location: 'technical_professionals',
+      destination: '/talents/evidence-review',
+      language: 'en',
+      page_path: '/',
+    });
+  };
+
   return (
-    <section className="py-20 md:py-28 bg-[#f8fafc] border-b border-slate-200 text-slate-900">
+    <section id="talents" className="py-20 md:py-28 bg-[#f8fafc] border-b border-slate-200 text-slate-900 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Candidate Value Proposition */}
@@ -16,11 +27,11 @@ export default function Section06TechnicalProfessionals() {
               FOR LATAM DEVELOPERS
             </span>
 
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-950 tracking-tight leading-tight">
               Turn your experience into evidence you can review and own.
             </h2>
 
-            <p className="text-base text-slate-600 font-normal leading-relaxed">
+            <p className="text-base text-slate-700 font-normal leading-relaxed">
               Your experience is more than a list of keywords. Turn projects, work context and technical signals into evidence you can review and clarify.
             </p>
 
@@ -29,8 +40,8 @@ export default function Section06TechnicalProfessionals() {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Share your real engineering work</h4>
-                  <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5">
+                  <h4 className="text-sm font-bold text-slate-950">Share your real engineering work</h4>
+                  <p className="text-xs sm:text-sm text-slate-700 font-normal mt-0.5">
                     Submit public repositories, project overviews, architectural design summaries, and professional context. GitHub is optional.
                   </p>
                 </div>
@@ -39,8 +50,8 @@ export default function Section06TechnicalProfessionals() {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Receive a private Evidence Review</h4>
-                  <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5">
+                  <h4 className="text-sm font-bold text-slate-950">Receive a private Evidence Review</h4>
+                  <p className="text-xs sm:text-sm text-slate-700 font-normal mt-0.5">
                     Get a structured readout identifying what your work demonstrably supports, what remains partial, and where your strongest signals lie.
                   </p>
                 </div>
@@ -49,8 +60,8 @@ export default function Section06TechnicalProfessionals() {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Add context and clarify misunderstandings</h4>
-                  <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5">
+                  <h4 className="text-sm font-bold text-slate-950">Add context and clarify misunderstandings</h4>
+                  <p className="text-xs sm:text-sm text-slate-700 font-normal mt-0.5">
                     You own your interpretation. Review the structured draft, add technical nuances, and approve how your experience is documented.
                   </p>
                 </div>
@@ -59,8 +70,8 @@ export default function Section06TechnicalProfessionals() {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Control your network visibility</h4>
-                  <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5">
+                  <h4 className="text-sm font-bold text-slate-950">Control your network visibility</h4>
+                  <p className="text-xs sm:text-sm text-slate-700 font-normal mt-0.5">
                     Decide privately whether to opt in to the TalentSync360 network for matching opportunities. No public profiles without consent.
                   </p>
                 </div>
@@ -71,6 +82,7 @@ export default function Section06TechnicalProfessionals() {
             <div className="pt-4">
               <Link
                 href="/talents/evidence-review"
+                onClick={handleStartReview}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold shadow-lg shadow-blue-500/15 active:scale-98 transition-all"
               >
                 <span>Start Evidence Review</span>

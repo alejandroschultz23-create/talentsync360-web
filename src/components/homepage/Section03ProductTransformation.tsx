@@ -6,7 +6,7 @@ import EvidenceStateBadge from './EvidenceStateBadge';
 
 export default function Section03ProductTransformation() {
   return (
-    <section id="product-transformation" className="py-20 md:py-28 bg-[#0b0f19] border-b border-slate-900 text-white">
+    <section id="product-transformation" className="py-20 md:py-28 bg-[#0b0f19] border-b border-slate-900 text-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">

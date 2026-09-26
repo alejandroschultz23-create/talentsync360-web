@@ -3,14 +3,33 @@
 import React from 'react';
 import { FileText, ShieldCheck, MapPin, Calendar, Compass, ExternalLink } from 'lucide-react';
 import EvidenceStateBadge from './EvidenceStateBadge';
+import { pushGTMEvent } from '@/lib/analytics';
 
 interface Section09EvidenceBriefPreviewProps {
   onOpenBriefModal: () => void;
 }
 
 export default function Section09EvidenceBriefPreview({ onOpenBriefModal }: Section09EvidenceBriefPreviewProps) {
+  const handleOpenBriefHeader = () => {
+    pushGTMEvent('click_see_evidence_brief', {
+      cta_label: 'Full Interactive View',
+      cta_location: 'evidence_brief_preview_header',
+      page_path: '/',
+    });
+    onOpenBriefModal();
+  };
+
+  const handleOpenBriefFooter = () => {
+    pushGTMEvent('click_see_evidence_brief', {
+      cta_label: 'See an Evidence Brief',
+      cta_location: 'evidence_brief_preview_footer',
+      page_path: '/',
+    });
+    onOpenBriefModal();
+  };
+
   return (
-    <section className="py-20 md:py-28 bg-[#030712] border-b border-slate-900 text-white">
+    <section id="evidence-brief" className="py-20 md:py-28 bg-[#030712] border-b border-slate-900 text-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
@@ -42,7 +61,7 @@ export default function Section09EvidenceBriefPreview({ onOpenBriefModal }: Sect
                 Human Review Complete
               </span>
               <button
-                onClick={onOpenBriefModal}
+                onClick={handleOpenBriefHeader}
                 className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1 font-mono transition-colors"
               >
                 <span>Full Interactive View</span>
@@ -132,7 +151,7 @@ export default function Section09EvidenceBriefPreview({ onOpenBriefModal }: Sect
               Inspect complete evaluation format in interactive modal
             </span>
             <button
-              onClick={onOpenBriefModal}
+              onClick={handleOpenBriefFooter}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-500/20 transition-all active:scale-98"
             >
               <FileText className="w-3.5 h-3.5" />

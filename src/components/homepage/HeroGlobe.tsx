@@ -82,8 +82,7 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
     const wireMesh = new THREE.Mesh(sphereGeo, wireMat);
     globeGroup.add(wireMesh);
 
-    // 3. LATAM Tech Hub Data Points
-    // Convert lat/long to 3D sphere coordinate
+    // Helper: Convert lat/long to 3D sphere coordinate
     const latLongToVector3 = (lat: number, lon: number, radius: number) => {
       const phi = (90 - lat) * (Math.PI / 180);
       const theta = (lon + 180) * (Math.PI / 180);
@@ -93,6 +92,108 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
       return new THREE.Vector3(x, y, z);
     };
 
+    // Helper: Point in polygon (ray-casting algorithm)
+    const pointInPoly = (pt: [number, number], poly: [number, number][]) => {
+      let inside = false;
+      for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+        const xi = poly[i][1], yi = poly[i][0];
+        const xj = poly[j][1], yj = poly[j][0];
+        const intersect = ((yi > pt[0]) !== (yj > pt[0])) &&
+          (pt[1] < (xj - xi) * (pt[0] - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+      }
+      return inside;
+    };
+
+    // 3. Recognizable Continent Coastlines
+    const SA_COAST: [number, number][] = [
+      [12.5, -71.5], [11.0, -64.0], [8.0, -60.0], [5.5, -52.5], [0.5, -50.0], [-2.5, -44.0],
+      [-5.0, -35.0], [-8.0, -35.0], [-13.0, -38.5], [-18.0, -39.5], [-23.0, -43.0], [-27.0, -48.5],
+      [-33.0, -51.5], [-38.0, -57.5], [-43.0, -63.5], [-50.0, -66.0], [-55.0, -66.5], [-54.5, -71.0],
+      [-50.0, -74.5], [-44.0, -74.0], [-37.0, -73.5], [-30.0, -71.5], [-22.0, -70.5], [-15.0, -75.5],
+      [-8.0, -79.5], [-4.0, -81.0], [2.0, -78.5], [7.5, -77.5], [10.0, -75.5], [12.5, -71.5]
+    ];
+
+    const CA_MX_COAST: [number, number][] = [
+      [8.0, -77.5], [9.0, -83.0], [10.5, -85.5], [13.5, -87.5], [15.5, -92.5], [18.0, -103.5],
+      [22.5, -106.0], [26.0, -110.0], [31.5, -116.0], [31.5, -113.0], [28.0, -111.0], [24.0, -108.5],
+      [19.0, -96.0], [22.0, -97.5], [26.0, -97.5], [29.0, -94.0], [28.0, -89.0], [25.0, -90.0],
+      [21.5, -87.0], [18.5, -88.0], [16.0, -88.5], [15.5, -85.5], [12.0, -83.5], [9.0, -83.0], [8.0, -77.5]
+    ];
+
+    const NA_COAST: [number, number][] = [
+      [26.0, -97.5], [29.0, -94.0], [29.5, -85.0], [25.0, -80.5], [31.0, -81.0], [35.0, -75.5],
+      [41.0, -71.0], [44.5, -67.0], [48.0, -64.0], [53.0, -56.0], [58.0, -63.0], [60.0, -70.0],
+      [58.0, -94.0], [65.0, -120.0], [65.0, -165.0], [59.0, -150.0], [54.0, -132.0], [48.5, -124.5],
+      [43.0, -124.5], [37.5, -122.5], [32.5, -117.0], [31.5, -116.0]
+    ];
+
+    const EU_AF_COAST: [number, number][] = [
+      [36.0, -6.0], [43.5, -9.0], [48.0, -4.5], [51.0, 1.5], [54.0, 8.5], [58.0, 6.0],
+      [62.0, 5.0], [60.0, 11.0], [55.0, 12.0], [50.0, 15.0], [44.0, 10.0], [40.0, 0.0], [36.0, -6.0],
+      [30.0, -10.0], [21.0, -17.0], [14.5, -17.5], [8.0, -13.0], [4.5, -2.0],
+      [4.0, 9.0], [0.0, 9.0], [-10.0, 13.0], [-20.0, 12.0], [-34.0, 18.5], [-34.0, 25.0],
+      [-25.0, 33.0], [-15.0, 40.0], [0.0, 42.0], [12.0, 44.0], [24.0, 36.0], [31.0, 32.0], [36.0, -6.0]
+    ];
+
+    const createCoastGeo = (coords: [number, number][], radius = 1.006) => {
+      const points = coords.map(c => latLongToVector3(c[0], c[1], radius));
+      return new THREE.BufferGeometry().setFromPoints(points);
+    };
+
+    const saCoastGeo = createCoastGeo(SA_COAST);
+    const caMxCoastGeo = createCoastGeo(CA_MX_COAST);
+    const naCoastGeo = createCoastGeo(NA_COAST);
+    const euAfCoastGeo = createCoastGeo(EU_AF_COAST);
+
+    // LATAM Coastlines (Cobalt)
+    const latamCoastMat = new THREE.LineBasicMaterial({
+      color: 0x3b82f6,
+      transparent: true,
+      opacity: 0.85,
+    });
+    globeGroup.add(new THREE.Line(saCoastGeo, latamCoastMat));
+    globeGroup.add(new THREE.Line(caMxCoastGeo, latamCoastMat));
+
+    // Global Architectural Coastlines (Muted Slate)
+    const globalCoastMat = new THREE.LineBasicMaterial({
+      color: 0x334155,
+      transparent: true,
+      opacity: 0.45,
+    });
+    globeGroup.add(new THREE.Line(naCoastGeo, globalCoastMat));
+    globeGroup.add(new THREE.Line(euAfCoastGeo, globalCoastMat));
+
+    // 4. LATAM Landmass Particle Field (Solidifying Central & South America)
+    const latamLandPositions: number[] = [];
+    for (let lat = -54; lat <= 12; lat += 2.5) {
+      for (let lon = -82; lon <= -34; lon += 2.5) {
+        if (pointInPoly([lat, lon], SA_COAST)) {
+          const pos = latLongToVector3(lat, lon, 1.008);
+          latamLandPositions.push(pos.x, pos.y, pos.z);
+        }
+      }
+    }
+    for (let lat = 8; lat <= 32; lat += 2.5) {
+      for (let lon = -116; lon <= -76; lon += 2.5) {
+        if (pointInPoly([lat, lon], CA_MX_COAST)) {
+          const pos = latLongToVector3(lat, lon, 1.008);
+          latamLandPositions.push(pos.x, pos.y, pos.z);
+        }
+      }
+    }
+
+    const latamLandGeo = new THREE.BufferGeometry();
+    latamLandGeo.setAttribute('position', new THREE.Float32BufferAttribute(latamLandPositions, 3));
+    const latamLandMat = new THREE.PointsMaterial({
+      color: 0x2563eb,
+      size: 0.022,
+      transparent: true,
+      opacity: 0.85,
+    });
+    globeGroup.add(new THREE.Points(latamLandGeo, latamLandMat));
+
+    // 5. LATAM Tech Hub Data Points
     const hubs = [
       { name: 'Bogota', lat: 4.711, lon: -74.072 },
       { name: 'Medellin', lat: 6.244, lon: -75.581 },
@@ -105,21 +206,21 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
     const hubPointsGeo = new THREE.BufferGeometry();
     const hubPositions: number[] = [];
     hubs.forEach((h) => {
-      const pos = latLongToVector3(h.lat, h.lon, 1.01);
+      const pos = latLongToVector3(h.lat, h.lon, 1.015);
       hubPositions.push(pos.x, pos.y, pos.z);
     });
     hubPointsGeo.setAttribute('position', new THREE.Float32BufferAttribute(hubPositions, 3));
 
     const hubPointsMat = new THREE.PointsMaterial({
-      color: 0x3b82f6,
-      size: 0.045,
+      color: 0x60a5fa,
+      size: 0.05,
       transparent: true,
-      opacity: 0.9,
+      opacity: 0.95,
     });
     const hubPoints = new THREE.Points(hubPointsGeo, hubPointsMat);
     globeGroup.add(hubPoints);
 
-    // 4. Subtle Destination Hubs (US & Europe)
+    // 6. Subtle Destination Hubs (US & Europe)
     const destHubs = [
       { name: 'NewYork', lat: 40.7128, lon: -74.006 },
       { name: 'SanFrancisco', lat: 37.7749, lon: -122.4194 },
@@ -128,7 +229,7 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
     ];
     const destPositions: number[] = [];
     destHubs.forEach((h) => {
-      const pos = latLongToVector3(h.lat, h.lon, 1.01);
+      const pos = latLongToVector3(h.lat, h.lon, 1.012);
       destPositions.push(pos.x, pos.y, pos.z);
     });
     const destGeo = new THREE.BufferGeometry();
@@ -141,7 +242,7 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
     });
     globeGroup.add(new THREE.Points(destGeo, destMat));
 
-    // 5. Connecting Spline Arcs from LATAM to US/EU
+    // 7. Connecting Spline Arcs from LATAM to US/EU
     const createArc = (startVec: THREE.Vector3, endVec: THREE.Vector3) => {
       const mid = new THREE.Vector3().addVectors(startVec, endVec).multiplyScalar(0.5);
       mid.normalize().multiplyScalar(1.25); // lift arc above surface
@@ -249,6 +350,14 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
       sphereGeo.dispose();
       sphereMat.dispose();
       wireMat.dispose();
+      saCoastGeo.dispose();
+      caMxCoastGeo.dispose();
+      naCoastGeo.dispose();
+      euAfCoastGeo.dispose();
+      latamCoastMat.dispose();
+      globalCoastMat.dispose();
+      latamLandGeo.dispose();
+      latamLandMat.dispose();
       hubPointsGeo.dispose();
       hubPointsMat.dispose();
       destGeo.dispose();

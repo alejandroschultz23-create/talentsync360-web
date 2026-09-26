@@ -3,14 +3,34 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, FileText } from 'lucide-react';
+import { pushGTMEvent } from '@/lib/analytics';
 
 interface Section10FinalCTAProps {
   onOpenBriefModal: () => void;
 }
 
 export default function Section10FinalCTA({ onOpenBriefModal }: Section10FinalCTAProps) {
+  const handleValidateRole = () => {
+    pushGTMEvent('click_contact', {
+      cta_label: 'Validate a Role',
+      cta_location: 'final_cta',
+      destination: '/contact?intent=validate-role',
+      language: 'en',
+      page_path: '/',
+    });
+  };
+
+  const handleOpenBrief = () => {
+    pushGTMEvent('click_see_evidence_brief', {
+      cta_label: 'See an Evidence Brief',
+      cta_location: 'final_cta',
+      page_path: '/',
+    });
+    onOpenBriefModal();
+  };
+
   return (
-    <section className="py-24 md:py-32 bg-[#030712] relative overflow-hidden text-white border-t border-slate-900">
+    <section id="final-cta" className="py-24 md:py-32 bg-[#030712] relative overflow-hidden text-white border-t border-slate-900 scroll-mt-20">
       {/* Background ambient depth */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-[130px] rounded-full pointer-events-none -z-0" />
 
@@ -33,6 +53,7 @@ export default function Section10FinalCTA({ onOpenBriefModal }: Section10FinalCT
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
           <Link
             href="/contact?intent=validate-role"
+            onClick={handleValidateRole}
             className="w-full sm:w-auto h-12 px-8 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold flex items-center justify-center gap-2 shadow-xl shadow-blue-500/20 active:scale-98 transition-all"
           >
             <span>Validate a Role</span>
@@ -40,7 +61,7 @@ export default function Section10FinalCTA({ onOpenBriefModal }: Section10FinalCT
           </Link>
 
           <button
-            onClick={onOpenBriefModal}
+            onClick={handleOpenBrief}
             className="w-full sm:w-auto h-12 px-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-200 text-sm font-semibold flex items-center justify-center gap-2 active:scale-98 transition-all"
           >
             <FileText className="w-4 h-4" />

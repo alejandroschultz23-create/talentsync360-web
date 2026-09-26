@@ -4,14 +4,44 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, FileText } from 'lucide-react';
 import HeroGlobe from './HeroGlobe';
+import { pushGTMEvent } from '@/lib/analytics';
 
 interface Section01HeroProps {
   onOpenBriefModal: () => void;
 }
 
 export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) {
+  const handleOpenBrief = () => {
+    pushGTMEvent('click_see_evidence_brief', {
+      cta_label: 'See an Evidence Brief',
+      cta_location: 'hero',
+      page_path: '/',
+    });
+    onOpenBriefModal();
+  };
+
+  const handleValidateRole = () => {
+    pushGTMEvent('click_contact', {
+      cta_label: 'Validate a Role',
+      cta_location: 'hero',
+      destination: '/contact?intent=validate-role',
+      language: 'en',
+      page_path: '/',
+    });
+  };
+
+  const handleReviewEvidence = () => {
+    pushGTMEvent('click_start_evidence_review', {
+      cta_label: 'Review my evidence',
+      cta_location: 'hero',
+      destination: '/talents/evidence-review',
+      language: 'en',
+      page_path: '/',
+    });
+  };
+
   return (
-    <section className="relative overflow-hidden bg-[#030712] pt-24 pb-20 md:pt-32 md:pb-28 border-b border-slate-900">
+    <section id="hero" className="relative overflow-hidden bg-[#030712] pt-24 pb-20 md:pt-32 md:pb-28 border-b border-slate-900">
       {/* Background radial blue ambient depth */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 blur-[140px] rounded-full pointer-events-none -z-0" />
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-slate-800/20 blur-[100px] rounded-full pointer-events-none -z-0" />
@@ -44,7 +74,7 @@ export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) 
             {/* CTA Group */}
             <div className="pt-2 flex flex-wrap items-center gap-3.5">
               <button
-                onClick={onOpenBriefModal}
+                onClick={handleOpenBrief}
                 className="h-11 px-6 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-98 transition-all"
               >
                 <FileText className="w-4 h-4" />
@@ -53,6 +83,7 @@ export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) 
 
               <Link
                 href="/contact?intent=validate-role"
+                onClick={handleValidateRole}
                 className="h-11 px-6 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-slate-200 text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5 active:scale-98 transition-all"
               >
                 <span>Validate a Role</span>
@@ -64,6 +95,7 @@ export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) 
             <div className="pt-2">
               <Link
                 href="/talents/evidence-review"
+                onClick={handleReviewEvidence}
                 className="text-xs sm:text-sm text-slate-400 hover:text-slate-200 font-medium inline-flex items-center gap-1.5 group transition-colors"
               >
                 <span>I’m a tech professional</span>

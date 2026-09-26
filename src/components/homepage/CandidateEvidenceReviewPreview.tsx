@@ -26,36 +26,36 @@ export default function CandidateEvidenceReviewPreview() {
       <div className="p-6 space-y-6">
         {/* Source-Neutral Evidence Input Inventory */}
         <div className="space-y-2.5">
-          <span className="text-[11px] font-mono uppercase text-slate-400 font-medium block">
+          <span className="text-[11px] font-mono uppercase text-slate-500 font-semibold block">
             Submitted Professional Evidence Sources
           </span>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-            <div className="p-2.5 rounded-lg border border-slate-200 bg-slate-50/50 flex items-center gap-2 text-slate-700">
+            <div className="p-2.5 rounded-lg border border-slate-300/80 bg-slate-50 flex items-center gap-2 text-slate-800">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               <span>Project Architecture & Data Flow Overview</span>
             </div>
-            <div className="p-2.5 rounded-lg border border-slate-200 bg-slate-50/50 flex items-center gap-2 text-slate-700">
+            <div className="p-2.5 rounded-lg border border-slate-300/80 bg-slate-50 flex items-center gap-2 text-slate-800">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               <span>Engineering Production Responsibilities</span>
             </div>
-            <div className="p-2.5 rounded-lg border border-slate-200 bg-slate-50/50 flex items-center gap-2 text-slate-700">
+            <div className="p-2.5 rounded-lg border border-slate-300/80 bg-slate-50 flex items-center gap-2 text-slate-800">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               <span>High-Load Concurrency Case Writeup</span>
             </div>
-            <div className="p-2.5 rounded-lg border border-slate-200 bg-slate-50/50 flex items-center gap-2 text-slate-700">
-              <GitBranch className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+            <div className="p-2.5 rounded-lg border border-slate-300/80 bg-slate-50 flex items-center gap-2 text-slate-800">
+              <GitBranch className="w-3.5 h-3.5 text-slate-500 shrink-0" />
               <span>Public Repository (Optional / Attached)</span>
             </div>
           </div>
         </div>
 
         {/* Structured Interpretation Preview */}
-        <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/30 space-y-3">
+        <div className="p-4 rounded-xl border border-slate-300/80 bg-slate-50/60 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-800">Demonstrated Engineering Signal</span>
+            <span className="text-xs font-bold text-slate-900">Demonstrated Engineering Signal</span>
             <EvidenceStateBadge state="SUPPORTED" variant="light" size="sm" />
           </div>
-          <p className="text-xs text-slate-600 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed font-normal">
             &ldquo;Candidate demonstrably owned the event-streaming consumer pipeline architecture in Go, handling sustained traffic of 12,000 req/sec with documented zero-loss failover.&rdquo;
           </p>
 
