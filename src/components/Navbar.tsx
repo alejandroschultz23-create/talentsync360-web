@@ -29,22 +29,17 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0">
-              <div className="flex items-center gap-3 group">
-                <div className="relative w-[120px] sm:w-[140px] aspect-[150/36]">
-                  <Image
-                    src="/logo_oficial.png"
-                    alt="TalentSync360"
-                    fill
-                    sizes="(min-width: 640px) 140px, 120px"
-                    className="object-contain transition-opacity"
-                    priority
-                  />
-                </div>
-                <span className="hidden sm:inline-block text-xs font-mono tracking-widest text-slate-400 uppercase">
-                  <span className="font-bold text-white">TalentSync</span>
-                  <span className="text-blue-400 font-light ml-0.5">360</span>
-                </span>
+            <Link href="/" className="flex-shrink-0" aria-label="TalentSync360 Home">
+              <div className="relative w-[170px] sm:w-[200px] h-8 sm:h-9">
+                <Image
+                  src="/logo_horizontal.png"
+                  alt="TalentSync360"
+                  fill
+                  sizes="(min-width: 640px) 200px, 170px"
+                  className="object-contain object-left transition-opacity hover:opacity-90"
+                  priority
+                  unoptimized
+                />
               </div>
             </Link>
           </div>

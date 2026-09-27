@@ -72,7 +72,7 @@ export default function Section09EvidenceBriefPreview({ onOpenBriefModal }: Sect
 
           {/* Synthetic Data Label Banner */}
           <div className="px-6 py-2 bg-amber-500/10 border-b border-amber-500/20 text-[11px] font-mono text-amber-300">
-            [ ILLUSTRATIVE SAMPLE — FICTIONAL CANDIDATE DATA ]
+            [ ILLUSTRATIVE SAMPLE · FICTIONAL CANDIDATE DATA ]
           </div>
 
           <div className="p-6 space-y-6">

@@ -56,13 +56,13 @@ export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) 
             </div>
 
             {/* Display H1 */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold text-white tracking-tight leading-[1.15]">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-[1.2]">
               Know why a technical candidate deserves an interview.
             </h1>
 
             {/* Subheadline */}
             <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
-              TalentSync360 turns professional experience, projects, work evidence and role context into structured candidate briefs — with strengths, gaps, unknowns and questions worth validating in the interview.
+              TalentSync360 turns professional experience, projects, work evidence, and role context into structured candidate briefs with strengths, gaps, unknowns, and questions worth validating in the interview.
             </p>
 
             {/* Support Line (Neutral Slate Accent Dot) */}

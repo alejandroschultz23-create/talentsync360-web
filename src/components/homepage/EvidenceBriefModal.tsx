@@ -111,7 +111,7 @@ export default function EvidenceBriefModal({ isOpen, onClose }: EvidenceBriefMod
         {/* Synthetic Data Disclaimer Banner */}
         <div className="px-6 py-2 bg-amber-500/10 border-b border-amber-500/20 flex items-center justify-between shrink-0">
           <p className="text-[11px] font-mono text-amber-300 font-medium">
-            [ ILLUSTRATIVE SAMPLE — FICTIONAL CANDIDATE DATA ]
+            [ ILLUSTRATIVE SAMPLE · FICTIONAL CANDIDATE DATA ]
           </p>
           <span className="text-[10px] text-amber-400/80 font-sans hidden md:inline">
             Demonstrates structured decision support format

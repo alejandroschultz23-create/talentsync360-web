@@ -265,24 +265,95 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
     globeGroup.add(createArc(bogotaVec, nyVec));
     globeGroup.add(createArc(spVec, londonVec));
 
-    // Mouse Interaction (Bounded Parallax)
+    // Mouse & Touch Drag Interaction + Inertia + Parallax
     let targetRotationX = 0.25;
     let targetRotationY = -1.2;
-    let mouseX = 0;
-    let mouseY = 0;
+    let dragVelocityX = 0;
+    let dragVelocityY = 0;
+    let isDragging = false;
+    let lastPointerX = 0;
+    let lastPointerY = 0;
+    let hoverParallaxX = 0;
+    let hoverParallaxY = 0;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      const relX = (e.clientX - rect.left) / rect.width - 0.5;
-      const relY = (e.clientY - rect.top) / rect.height - 0.5;
-      mouseX = relX;
-      mouseY = relY;
-      // Bounded parallax offset
-      targetRotationY = -1.2 + mouseX * 0.25;
-      targetRotationX = 0.25 + mouseY * 0.2;
+    const handlePointerDown = (e: PointerEvent) => {
+      // Don't drag if clicking directly on an interactive overlay node or link
+      if ((e.target as HTMLElement)?.closest('.pointer-events-auto:not(canvas)')) {
+        return;
+      }
+      isDragging = true;
+      lastPointerX = e.clientX;
+      lastPointerY = e.clientY;
+      dragVelocityX = 0;
+      dragVelocityY = 0;
+      try {
+        container.setPointerCapture(e.pointerId);
+      } catch {
+        // Ignore if pointer capture fails
+      }
     };
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    const handlePointerMove = (e: PointerEvent) => {
+      if (isDragging) {
+        const deltaX = e.clientX - lastPointerX;
+        const deltaY = e.clientY - lastPointerY;
+        lastPointerX = e.clientX;
+        lastPointerY = e.clientY;
+
+        const sensitivity = 0.005;
+        dragVelocityY = deltaX * sensitivity;
+        dragVelocityX = deltaY * sensitivity;
+
+        targetRotationY += dragVelocityY;
+        targetRotationX += dragVelocityX;
+      } else {
+        const rect = container.getBoundingClientRect();
+        const normX = (e.clientX - rect.left) / rect.width - 0.5;
+        const normY = (e.clientY - rect.top) / rect.height - 0.5;
+        hoverParallaxY = normX * 0.15;
+        hoverParallaxX = normY * 0.15;
+      }
+    };
+
+    const handlePointerUp = (e: PointerEvent) => {
+      if (isDragging) {
+        isDragging = false;
+        try {
+          if (container.hasPointerCapture(e.pointerId)) {
+            container.releasePointerCapture(e.pointerId);
+          }
+        } catch {
+          // Ignore
+        }
+      }
+    };
+
+    container.addEventListener('pointerdown', handlePointerDown);
+    container.addEventListener('pointermove', handlePointerMove);
+    container.addEventListener('pointerup', handlePointerUp);
+    container.addEventListener('pointercancel', handlePointerUp);
+
+    // Subtle window mousemove parallax when outside container
+    const handleWindowMouseMove = (e: MouseEvent) => {
+      if (isDragging) return;
+      const rect = container.getBoundingClientRect();
+      const isInside =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+
+      if (!isInside) {
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const distFromCenterX = (e.clientX - centerX) / (window.innerWidth / 2);
+        const distFromCenterY = (e.clientY - centerY) / (window.innerHeight / 2);
+        hoverParallaxY = Math.max(-0.2, Math.min(0.2, distFromCenterX * 0.1));
+        hoverParallaxX = Math.max(-0.15, Math.min(0.15, distFromCenterY * 0.1));
+      }
+    };
+
+    window.addEventListener('mousemove', handleWindowMouseMove, { passive: true });
 
     // Visibility Observer (Pause when off-screen)
     const observer = new IntersectionObserver(
@@ -311,12 +382,26 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
 
       const delta = clock.getDelta();
 
-      // Slow perpetual idle drift
-      targetRotationY += 0.04 * delta;
+      // Momentum decay when not dragging
+      if (!isDragging) {
+        targetRotationY += dragVelocityY;
+        targetRotationX += dragVelocityX;
+        dragVelocityY *= 0.94;
+        dragVelocityX *= 0.94;
+
+        // Slow perpetual idle drift
+        targetRotationY += 0.03 * delta;
+      }
+
+      // Clamp X rotation to prevent flipping upside down
+      targetRotationX = Math.max(-0.55, Math.min(0.65, targetRotationX));
+
+      const finalTargetY = targetRotationY + (isDragging ? 0 : hoverParallaxY);
+      const finalTargetX = targetRotationX + (isDragging ? 0 : hoverParallaxX);
 
       // Smooth damped lerp
-      globeGroup.rotation.y += (targetRotationY - globeGroup.rotation.y) * 0.05;
-      globeGroup.rotation.x += (targetRotationX - globeGroup.rotation.x) * 0.05;
+      globeGroup.rotation.y += (finalTargetY - globeGroup.rotation.y) * 0.08;
+      globeGroup.rotation.x += (finalTargetX - globeGroup.rotation.x) * 0.08;
 
       renderer.render(scene, camera);
     };
@@ -342,7 +427,11 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
     // Cleanup
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('mousemove', handleMouseMove);
+      container.removeEventListener('pointerdown', handlePointerDown);
+      container.removeEventListener('pointermove', handlePointerMove);
+      container.removeEventListener('pointerup', handlePointerUp);
+      container.removeEventListener('pointercancel', handlePointerUp);
+      window.removeEventListener('mousemove', handleWindowMouseMove);
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       observer.disconnect();
@@ -377,7 +466,7 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
   return (
     <div
       ref={containerRef}
-      className={`relative w-full aspect-square max-w-[500px] mx-auto flex items-center justify-center pointer-events-none select-none ${className}`}
+      className={`relative w-full aspect-square max-w-[500px] mx-auto flex items-center justify-center cursor-grab active:cursor-grabbing select-none touch-none ${className}`}
       aria-label="Interactive 3D representation of LATAM technical engineering talent and role context"
     >
       {/* Overlay HTML Evidence Nodes aligned around the 3D globe */}

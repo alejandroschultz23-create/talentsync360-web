@@ -16,7 +16,7 @@ export default function PartnerPresentationToggle() {
             Presentation Layer Switcher
           </span>
           <span className="text-[11px] text-amber-700 font-mono font-medium">
-            [ ILLUSTRATIVE EXAMPLE — FICTIONAL PARTNER ]
+            [ ILLUSTRATIVE EXAMPLE · FICTIONAL PARTNER ]
           </span>
         </div>
 

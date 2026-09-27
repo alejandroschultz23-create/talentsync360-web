@@ -18,43 +18,52 @@ export default function Section08PartnerDelivery() {
   };
 
   return (
-    <section id="partners" className="py-20 md:py-28 bg-white border-b border-slate-200 text-slate-900 scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="partners" className="relative py-20 md:py-28 bg-gradient-to-b from-white via-slate-50/50 to-white border-b border-slate-200/80 text-slate-900 scroll-mt-20 overflow-hidden">
+      {/* Subtle ambient lighting */}
+      <div className="absolute top-1/3 right-1/4 w-[600px] h-[400px] bg-blue-500/[0.03] blur-[130px] pointer-events-none -z-0" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
-          <span className="text-xs font-mono font-semibold uppercase tracking-widest text-blue-600 block">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-blue-700 font-mono text-[11px] font-semibold tracking-wider uppercase">
             PARTNER & CONSULTANCY DELIVERY
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-950 tracking-tight leading-tight">
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
             Built for recruiting partners too.
           </h2>
-          <p className="text-base text-slate-700 font-normal leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto">
             Need to present candidates under your own client relationship? TalentSync360 supports authorized white-label delivery for recruiting agencies, consultancies and staffing partners.
           </p>
         </div>
 
         {/* 3 Partner Value Points */}
         <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 text-left">
-          <div className="p-4 rounded-xl border border-slate-300/80 bg-slate-50 space-y-1.5 shadow-sm">
-            <CheckCircle2 className="w-4 h-4 text-blue-600" />
+          <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-blue-500/30 transition-all space-y-2.5">
+            <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100/80 flex items-center justify-center text-blue-600">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
             <h4 className="text-sm font-bold text-slate-950">Authorized White-Label Briefs</h4>
-            <p className="text-xs text-slate-700 leading-relaxed font-normal">
+            <p className="text-xs text-slate-600 leading-relaxed font-normal">
               Present candidate briefs under your brand once candidate data-sharing consent is established.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-slate-300/80 bg-slate-50 space-y-1.5 shadow-sm">
-            <CheckCircle2 className="w-4 h-4 text-blue-600" />
+          <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-blue-500/30 transition-all space-y-2.5">
+            <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100/80 flex items-center justify-center text-blue-600">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
             <h4 className="text-sm font-bold text-slate-950">Evidence-Backed Submissions</h4>
-            <p className="text-xs text-slate-700 leading-relaxed font-normal">
+            <p className="text-xs text-slate-600 leading-relaxed font-normal">
               Back your client submissions with structured technical evidence that technical buyers immediately respect.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-slate-300/80 bg-slate-50 space-y-1.5 shadow-sm">
-            <CheckCircle2 className="w-4 h-4 text-blue-600" />
+          <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-blue-500/30 transition-all space-y-2.5">
+            <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100/80 flex items-center justify-center text-blue-600">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
             <h4 className="text-sm font-bold text-slate-950">Focused Technical Depth</h4>
-            <p className="text-xs text-slate-700 leading-relaxed font-normal">
+            <p className="text-xs text-slate-600 leading-relaxed font-normal">
               Deliver consistent technical depth without consuming your internal senior engineering capacity.
             </p>
           </div>

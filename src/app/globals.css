@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@source "../**";
+@source "../../src";
 
 :root {
   --background: #020617; /* slate-950 */
@@ -69,7 +71,6 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--foreground);
   font-weight: 700;
   line-height: 1.25;
 }
@@ -91,12 +92,10 @@ h3 {
 
 p {
   line-height: 1.7;
-  color: var(--muted);
 }
 
 b, strong {
   font-weight: 700;
-  color: var(--foreground);
 }
 
 .max-w-base {

@@ -10,7 +10,7 @@ export default function RoleContextPreview() {
     <div className="w-full rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-100 overflow-hidden text-slate-800">
       {/* Top Banner / Disclaimer */}
       <div className="px-4 py-2 bg-slate-50 border-b border-slate-200 flex items-center justify-between text-[11px] font-mono text-slate-500">
-        <span>[ PRODUCT INTERFACE PREVIEW — NOT AN ACTIVE FORM ]</span>
+        <span>[ PRODUCT INTERFACE PREVIEW · NOT AN ACTIVE FORM ]</span>
         <span className="hidden sm:inline text-blue-600 font-semibold">Step 1: Role Context Definition</span>
       </div>
 
@@ -93,7 +93,7 @@ export default function RoleContextPreview() {
           <span className="text-slate-600 font-medium">
             {activeTab === 'sourced'
               ? 'Benchmarking your sourced candidates against this criteria'
-              : 'Targeting 3–5 human-reviewed LATAM finalists'}
+              : 'Targeting 3 to 5 human-reviewed LATAM finalists'}
           </span>
           <span className="font-semibold text-blue-600 flex items-center gap-1">
             <Check className="w-3.5 h-3.5" />

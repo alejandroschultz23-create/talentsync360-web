@@ -27,18 +27,17 @@ const Footer = () => {
             <div className="max-w-base mx-auto px-4 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-32">
                     <div className="col-span-1 md:col-span-1">
-                        <Link href="/" className="group inline-flex items-center gap-3 mb-8">
-                        <div className="relative w-[100px] aspect-[150/36]">
-                            <Image
-                                src="/logo_oficial.png"
-                                alt="TalentSync360"
-                                fill
-                                sizes="100px"
-                                className="object-contain opacity-80"
-                                aria-hidden="true"
-                            />
-                        </div>
-                            <span className="text-base tracking-[0.15em] text-slate-100 font-bold uppercase">TalentSync<span className="font-light text-slate-500">360</span></span>
+                        <Link href="/" className="group inline-flex items-center mb-8" aria-label="TalentSync360 Home">
+                            <div className="relative w-[180px] h-9">
+                                <Image
+                                    src="/logo_horizontal.png"
+                                    alt="TalentSync360"
+                                    fill
+                                    sizes="180px"
+                                    className="object-contain object-left opacity-90 group-hover:opacity-100 transition-opacity"
+                                    unoptimized
+                                />
+                            </div>
                         </Link>
                         <p className="text-slate-500 font-light text-sm leading-relaxed max-w-xs">
                           {t.footer.tagline}
