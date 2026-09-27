@@ -625,13 +625,12 @@ export const translations: Record<Language, Translations> = {
 
       faqTitle: 'Frequently Asked Questions',
       faqClients: [
-        { q: "Do you replace our internal recruiters?", a: "No. We act as an acceleration engine. Your recruiters focus on final coordination and client relations, while we handle specialized technical vetting." },
+        { q: "Do you replace our internal recruiters?", a: "No. We act as a decision support engine. Your recruiters focus on final coordination and client relations, while we turn candidate work samples into structured evidence briefs." },
         { q: "Can candidates be presented under our own brand?", a: "The service supports white-label presentation after the relevant professional-sharing authorization has been confirmed. Network membership alone does not authorize presentation." },
-        { q: "When does the 72-hour target begin?", a: "The target starts immediately after your technical brief has been validated and confirmed by our sourcing leads. This ensures we align search parameters before starting the clock." },
-        { q: "What happens if the first shortlist is not suitable?", a: "If the initial candidates do not match, we review your structured feedback and execute a recalibration sprint according to the agreed brief scope, adjusting parameters immediately." },
         { q: "How is technical evidence reviewed?", a: "No automated ranking determines the result. Work samples are reviewed by a human against the criteria relevant to the role and opportunity." },
         { q: "Does AI automatically reject or select candidates?", a: "No. AI is used as decision support for signal extraction and rubric mapping. All final selection and rejection decisions remain strictly human-reviewed and operator-controlled." },
-        { q: "Can a Shortlist Sprint continue as an ongoing service?", a: "Yes. Sprints can be scheduled on demand, or we can establish a recurring pipeline for active consultancies with ongoing recruitment flows." }
+        { q: "What happens if candidate evidence does not match the role?", a: "If initial candidate evidence does not match your role requirements, we review your structured feedback and recalibrate our evidence search parameters immediately." },
+        { q: "How are candidate strengths, gaps, and unknowns categorized?", a: "TalentSync360 categorizes signals into five canonical states: SUPPORTED, PARTIAL, UNKNOWN, CONFLICT, and NEEDS VALIDATION. Missing evidence is non-punitive and identifies what still needs to be explored in the interview." }
       ],
 
       faqTalents: [
@@ -1139,13 +1138,12 @@ export const translations: Record<Language, Translations> = {
 
       faqTitle: 'Preguntas Frecuentes',
       faqClients: [
-        { q: "¿Reemplazan a nuestros reclutadores internos?", a: "No. Actuamos como un motor de aceleración. Tus reclutadores se enfocan en la coordinación final y la relación con el cliente, mientras nosotros manejamos el vetting técnico especializado." },
+        { q: "¿Reemplazan a nuestros reclutadores internos?", a: "No. Actuamos como un motor de soporte de decisiones. Tus reclutadores se enfocan en la coordinación final y la relación con el cliente, mientras nosotros transformamos muestras de trabajo en briefs de evidencia estructurados." },
         { q: "¿Los candidatos se pueden presentar bajo nuestra propia marca?", a: "El servicio admite presentación white-label una vez confirmada la autorización correspondiente del profesional. La membresía en la red por sí sola no autoriza la presentación." },
-        { q: "¿Cuándo comienza el plazo objetivo de 72 horas?", a: "El plazo comienza inmediatamente después de que tu brief técnico ha sido validado y confirmado por nuestros límites de sourcing. Esto asegura que alinear los parámetros de búsqueda antes de arrancar el reloj." },
-        { q: "¿Qué pasa si la primera shortlist no es adecuada?", a: "Si los candidatos iniciales no coinciden, revisamos tu feedback estructurado y ejecutamos un sprint de recalibración según el brief acordado, adjusting los parámetros de inmediato." },
         { q: "¿Cómo se revisa la evidencia técnica?", a: "Ningún ranking automático determina el resultado. Las muestras de trabajo son revisadas por una persona según los criterios relevantes para el rol y la oportunidad." },
         { q: "¿La IA rechaza o selecciona candidatos automáticamente?", a: "No. La IA se utiliza como soporte de decisiones para la extracción de señales y el mapeo de rúbricas. Todas las decisiones finales de selección y rechazo permanecen estrictamente revisadas por humanos y controladas por un operador." },
-        { q: "¿Un Sprint de Shortlist puede ser un servicio continuo?", a: "Sí. Los sprints se pueden programar bajo demanda, o podemos establecer un flujo continuo de sourcing para consultoras con necesidades recurrentes." }
+        { q: "¿Qué pasa si la evidencia del candidato no coincide con el rol?", a: "Si la evidencia inicial no coincide con los requisitos del puesto, revisamos tu feedback estructurado y recalibramos los parámetros de búsqueda de inmediato." },
+        { q: "¿Cómo se categorizan las fortalezas, brechas y aspectos desconocidos?", a: "TalentSync360 categoriza las señales en cinco estados canónicos: SUPPORTED, PARTIAL, UNKNOWN, CONFLICT y NEEDS VALIDATION. La falta de evidencia no es punitiva e identifica lo que aún debe explorarse en la entrevista." }
       ],
 
       faqTalents: [

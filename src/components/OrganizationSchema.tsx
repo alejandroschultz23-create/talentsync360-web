@@ -10,7 +10,7 @@ export default function OrganizationSchema() {
     "sameAs": [
       "https://www.linkedin.com/company/talentsync360"
     ],
-    "description": "TalentSync360 delivers decision-ready LATAM technical shortlists through AI-assisted sourcing and human vetting."
+    "description": "TalentSync360 turns candidate work evidence and role context into structured evaluation briefs for LATAM technical hiring."
   };
 
   return (
