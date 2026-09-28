@@ -44,6 +44,7 @@ type EvidenceReviewContent = {
     workModes: Record<ProfessionalIntent, string>;
     confidentialWarning: string;
     consentBoundary: string;
+    consentCheckboxLabel: string;
     privacyPrefix: string;
     privacyLink: string;
     submit: string;
@@ -180,13 +181,14 @@ export const evidenceReviewContent = {
         "No compartas código privado, nombres de clientes, credenciales ni información confidencial.",
       consentBoundary:
         "Este consentimiento no autoriza membresía en TalentSync360, marketing, publicación del perfil ni presentación a empresas.",
+      consentCheckboxLabel: "He leído y acepto este consentimiento.",
       privacyPrefix: "Consultá también nuestra",
       privacyLink: "Política de Privacidad",
       submit: "Enviar evidencia",
       submitting: "Enviando…",
       errors: {
         field: "Revisá este campo.",
-        consent: "Necesitamos tu autorización específica para realizar esta revisión.",
+        consent: "Debés aceptar este consentimiento para continuar.",
         submission: "No pudimos recibir la solicitud. Revisá los campos e intentá nuevamente.",
       },
     },
@@ -316,13 +318,14 @@ export const evidenceReviewContent = {
         "Do not share private code, client names, credentials or confidential information.",
       consentBoundary:
         "This consent does not authorize TalentSync360 membership, marketing, profile publication or presentation to companies.",
+      consentCheckboxLabel: "I have read and accept this consent statement.",
       privacyPrefix: "Also review our",
       privacyLink: "Privacy Policy",
       submit: "Submit evidence",
       submitting: "Submitting…",
       errors: {
         field: "Please review this field.",
-        consent: "We need your specific authorization to perform this review.",
+        consent: "You must accept this consent statement to continue.",
         submission: "We could not receive the request. Review the fields and try again.",
       },
     },

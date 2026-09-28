@@ -45,7 +45,11 @@ export function validatePublicEvidenceReviewPayload(
     inputRecord.language === "es" ? "es" : "en";
   const errors: Record<string, string> = {};
 
-  if (inputRecord.review_consent_accepted !== true) {
+  const consentAccepted =
+    inputRecord.review_consent_accepted === true ||
+    inputRecord.consent_profile_creation === true;
+
+  if (!consentAccepted) {
     errors.review_consent = "Review consent is required";
   }
 

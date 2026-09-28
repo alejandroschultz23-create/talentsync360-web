@@ -54,4 +54,22 @@ describe("public Evidence Review request mapping", () => {
       }).success,
     ).toBe(false);
   });
+
+  it("accepts consent_profile_creation: true and maps English consent accurately", () => {
+    const now = new Date("2026-09-28T12:00:00.000Z");
+    const payloadWithProfileConsent = {
+      ...validPayload,
+      review_consent_accepted: false,
+      consent_profile_creation: true,
+      language: "en",
+    };
+    const result = validatePublicEvidenceReviewPayload(
+      payloadWithProfileConsent,
+      now,
+    );
+    expect(result.success).toBe(true);
+    if (!result.success) return;
+    expect(result.data.submission.reviewConsentText).toBe(REVIEW_CONSENT_TEXT.en);
+    expect(result.data.submission.reviewConsentText).toContain("solely and exclusively for the creation of a professional profile");
+  });
 });

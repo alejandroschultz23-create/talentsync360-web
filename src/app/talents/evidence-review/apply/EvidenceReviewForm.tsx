@@ -156,6 +156,8 @@ function EvidenceReviewFormContent() {
     const formData = new FormData(event.currentTarget);
     const payload = {
       ...values,
+      consent_profile_creation: values.review_consent_accepted,
+      consent_profile_creation_at: new Date().toISOString(),
       source: attribution.source,
       campaign: attribution.campaign,
       language: lang,
@@ -310,16 +312,60 @@ function EvidenceReviewFormContent() {
             </fieldset>
           )}
 
-          <div className="rounded-2xl border border-blue-400/20 bg-blue-400/5 p-5">
-            <label className="flex cursor-pointer items-start gap-3" htmlFor="review_consent">
-              <input id="review_consent" name="review_consent_accepted" type="checkbox" required checked={values.review_consent_accepted} onChange={(event) => updateValue("review_consent_accepted", event.target.checked)} aria-invalid={Boolean(errors.review_consent)} aria-describedby={errors.review_consent ? "review_consent-error review-consent-boundary" : "review-consent-boundary"} className="mt-1 h-5 w-5 shrink-0 rounded accent-blue-600" />
-              <span className="text-base leading-7 text-slate-200">{REVIEW_CONSENT_TEXT[lang]}</span>
-            </label>
-            <p id="review-consent-boundary" className="mt-4 text-sm text-slate-400">{content.consentBoundary}</p>
-            {errors.review_consent && <FieldError id="review_consent-error" message={content.errors.consent} />}
-            <p className="mt-4 text-sm text-slate-500">
+          {/* Explicit Legal Consent for Profile Creation */}
+          <div className="rounded-2xl border border-blue-400/20 bg-blue-400/5 p-6 space-y-4">
+            <div className="rounded-xl border border-slate-700/80 bg-slate-950/70 p-4 text-sm leading-relaxed text-slate-200">
+              <p>{REVIEW_CONSENT_TEXT[lang]}</p>
+            </div>
+
+            <div className="pt-1">
+              <label
+                className="flex cursor-pointer items-start gap-3 select-none"
+                htmlFor="review_consent"
+              >
+                <input
+                  id="review_consent"
+                  name="review_consent_accepted"
+                  type="checkbox"
+                  required
+                  checked={values.review_consent_accepted}
+                  onChange={(event) =>
+                    updateValue("review_consent_accepted", event.target.checked)
+                  }
+                  aria-invalid={Boolean(errors.review_consent)}
+                  aria-describedby={
+                    errors.review_consent
+                      ? "review_consent-error review-consent-boundary"
+                      : "review-consent-boundary"
+                  }
+                  className="mt-1 h-5 w-5 shrink-0 rounded accent-blue-600 focus:ring-2 focus:ring-blue-500/20"
+                />
+                <span className="text-base font-semibold text-slate-100">
+                  {content.consentCheckboxLabel}
+                </span>
+              </label>
+            </div>
+
+            <p id="review-consent-boundary" className="text-xs text-slate-400 leading-relaxed">
+              {content.consentBoundary}
+            </p>
+
+            {errors.review_consent && (
+              <FieldError
+                id="review_consent-error"
+                message={content.errors.consent}
+              />
+            )}
+
+            <p className="text-xs text-slate-500">
               {content.privacyPrefix}{" "}
-              <Link href="/privacy" className="font-medium text-blue-400 underline underline-offset-4 hover:text-blue-300">{content.privacyLink}</Link>.
+              <Link
+                href="/privacy"
+                className="font-medium text-blue-400 underline underline-offset-4 hover:text-blue-300"
+              >
+                {content.privacyLink}
+              </Link>
+              .
             </p>
           </div>
 

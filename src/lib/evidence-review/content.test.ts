@@ -13,8 +13,10 @@ describe("Evidence Review bilingual content", () => {
     expect(evidenceReviewContent.en.submitted.title).toBe(
       "We received your evidence.",
     );
-    expect(REVIEW_CONSENT_TEXT.es).toContain("Autorizo");
-    expect(REVIEW_CONSENT_TEXT.en).toContain("I authorize");
+    expect(REVIEW_CONSENT_TEXT.es).toContain("Con la presente solicitud");
+    expect(REVIEW_CONSENT_TEXT.en).toContain("With this application");
+    expect(evidenceReviewContent.es.form.consentCheckboxLabel).toBe("He leído y acepto este consentimiento.");
+    expect(evidenceReviewContent.en.form.consentCheckboxLabel).toBe("I have read and accept this consent statement.");
   });
 
   it("keeps success and error messages localized", () => {
