@@ -13,7 +13,7 @@ function ContactForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [isShortlistSprint, setIsShortlistSprint] = useState(false);
+  const [intentType, setIntentType] = useState<string | null>(null);
 
   useEffect(() => {
     const tipo = searchParams.get('tipo');
@@ -24,8 +24,15 @@ function ContactForm() {
     }
 
     const intent = searchParams.get('intent');
-    setIsShortlistSprint(intent === 'shortlist-sprint');
+    setIntentType(intent);
   }, [searchParams]);
+
+  const isShortlistSprint = intentType === 'shortlist-sprint';
+  const isFreeTrial = intentType === 'free-trial';
+  const isPilot = intentType === 'pilot';
+  const isShortlist = intentType === 'shortlist';
+  const isOngoingPartner = intentType === 'ongoing-partner';
+  const isDemo = intentType === 'demo';
 
   const isGeneral = contactType === 'general';
 
@@ -111,6 +118,81 @@ function ContactForm() {
             </div>
           ) : (
              <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+                {isFreeTrial && (
+                  <div className="p-5 rounded-2xl border border-blue-500/20 bg-blue-500/10 text-blue-300 text-sm font-semibold flex flex-col items-start gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                      <span className="font-bold">
+                        {lang === 'es' ? 'Prueba de Evidencia Gratuita' : 'Free Evidence Trial Request'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 font-light mt-1 leading-relaxed">
+                      {lang === 'es'
+                        ? 'Compartí los requerimientos de 1 rol activo y la documentación de 1 candidato provisto por tu equipo. Sin tarjeta de crédito. Sujeto a adecuación del rol y disponibilidad de revisores. Confirmamos tu fecha de entrega antes de iniciar la prueba.'
+                        : 'Share the requirements for 1 active role and the documentation of 1 candidate provided by your team. No credit card required. Subject to fit and reviewer availability. We confirm your delivery date before the trial begins.'}
+                    </p>
+                  </div>
+                )}
+                {isPilot && (
+                  <div className="p-5 rounded-2xl border border-blue-500/20 bg-blue-500/10 text-blue-300 text-sm font-semibold flex flex-col items-start gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                      <span className="font-bold">
+                        {lang === 'es' ? 'Piloto de Evidence Review (USD 1.250)' : 'Evidence Review Pilot (USD 1,250)'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 font-light mt-1 leading-relaxed">
+                      {lang === 'es'
+                        ? 'Revisión contextual para una decisión de contratación: 1 rol, hasta 3 candidatos provistos por tu equipo, revisión humana, fortalezas, brechas, incógnitas y sesión de debrief.'
+                        : 'Contextual review engagement for one hiring decision: 1 role, up to 3 candidates provided by your team, human review, strengths, gaps, unknowns, and review/debrief session.'}
+                    </p>
+                  </div>
+                )}
+                {isShortlist && (
+                  <div className="p-5 rounded-2xl border border-blue-500/20 bg-blue-500/10 text-blue-300 text-sm font-semibold flex flex-col items-start gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                      <span className="font-bold">
+                        {lang === 'es' ? 'Shortlist con Evidencia (USD 4.500)' : 'Evidence-backed Shortlist (USD 4,500)'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 font-light mt-1 leading-relaxed">
+                      {lang === 'es'
+                        ? 'Búsqueda técnica estándar de punta a punta: 1 rol, sourcing, objetivo de hasta 3 finalistas calificados con Informe de Evidencia completo. Si se entregan menos candidatos que cumplan el criterio, el fee final se ajusta en consecuencia.'
+                        : 'Standard end-to-end technical search: 1 role, sourcing, target of up to 3 qualifying finalists with complete Evidence Briefs. If fewer qualifying candidates are delivered, the final fee adjusts accordingly.'}
+                    </p>
+                  </div>
+                )}
+                {isOngoingPartner && (
+                  <div className="p-5 rounded-2xl border border-blue-500/20 bg-blue-500/10 text-blue-300 text-sm font-semibold flex flex-col items-start gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                      <span className="font-bold">
+                        {lang === 'es' ? 'Necesidades Continuas o para Partners' : 'Ongoing / Partner Delivery Requirements'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 font-light mt-1 leading-relaxed">
+                      {lang === 'es'
+                        ? 'Estructuración de acuerdos de capacidad recurrente, esquemas para consultoras y agencias, o requerimientos especiales de revisión técnica.'
+                        : 'Structure custom recurring capacity arrangements, consultancies/agencies partner delivery, or specialized technical review engagements.'}
+                    </p>
+                  </div>
+                )}
+                {isDemo && (
+                  <div className="p-5 rounded-2xl border border-blue-500/20 bg-blue-500/10 text-blue-300 text-sm font-semibold flex flex-col items-start gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                      <span className="font-bold">
+                        {lang === 'es' ? 'Solicitud de Demo / Conversación Técnica' : 'Book a Demo / Workflow Walkthrough'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 font-light mt-1 leading-relaxed">
+                      {lang === 'es'
+                        ? 'Conocé cómo se integra el Evidence Review en tu flujo de contratación actual, ya sea que cuentes con candidatos propios o requieras sourcing.'
+                        : 'Explore how Evidence Review integrates into your hiring workflow, whether you bring your own candidates or need sourcing.'}
+                    </p>
+                  </div>
+                )}
                 {isShortlistSprint && (
                   <div className="p-5 rounded-2xl border border-blue-500/20 bg-blue-500/10 text-blue-300 text-sm font-semibold flex flex-col items-start gap-2">
                     <div className="flex items-center gap-2">

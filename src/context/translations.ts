@@ -525,26 +525,137 @@ export interface Translations {
     };
   };
   companies: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    ctaShortlist: string;
-    ctaMethodology: string;
-    tiersTitle: string;
-    tiersSubtitle: string;
-    sprintTitle: string;
-    sprintPrice: string;
-    sprintCandidates: string;
-    sprintSla: string;
-    sprintIncludes: string[];
-    replacementGuarantee: string;
-    noReplacement: string;
-    rolesTitle: string;
-    rolesSubtitle: string;
-    professionalRoles: { title: string; desc: string; kpis: string }[];
-    ctaTitle: string;
-    ctaDesc: string;
-    ctaButton: string;
+    hero: {
+      eyebrow: string;
+      title: string;
+      subtitle1: string;
+      subtitle2: string;
+      ctaTrial: string;
+      ctaDemo: string;
+      ctaViewBrief: string;
+    };
+    productProof: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      sampleBanner: string;
+      candidateRef: string;
+      humanReviewVerified: string;
+      fullInteractiveView: string;
+      targetRoleLabel: string;
+      targetRoleValue: string;
+      sourcesLabel: string;
+      sourcesValue: string;
+      signals: {
+        supported: {
+          badge: string;
+          title: string;
+          detail: string;
+        };
+        partial: {
+          badge: string;
+          title: string;
+          detail: string;
+        };
+        unknown: {
+          badge: string;
+          title: string;
+          detail: string;
+        };
+        needsValidation: {
+          badge: string;
+          title: string;
+          detail: string;
+        };
+      };
+      validationPromptLabel: string;
+      validationPromptText: string;
+      openModalCta: string;
+    };
+    howItWorks: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      steps: {
+        number: string;
+        title: string;
+        desc: string;
+      }[];
+    };
+    freeTrial: {
+      eyebrow: string;
+      title: string;
+      price: string;
+      coreSummary: string;
+      deliveryWording: string;
+      supportLine: string;
+      scopePoints: string[];
+      cta: string;
+    };
+    pricing: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      pilot: {
+        tag: string;
+        title: string;
+        price: string;
+        period: string;
+        audience: string;
+        scopePoints: string[];
+        cta: string;
+      };
+      shortlist: {
+        tag: string;
+        title: string;
+        price: string;
+        period: string;
+        footnote: string;
+        audience: string;
+        scopePoints: string[];
+        cta: string;
+      };
+      custom: {
+        tag: string;
+        title: string;
+        price: string;
+        copy: string;
+        scopePoints: string[];
+        cta: string;
+      };
+    };
+    payment: {
+      eyebrow: string;
+      title: string;
+      copy: string;
+      pillars: {
+        title: string;
+        desc: string;
+      }[];
+    };
+    demo: {
+      eyebrow: string;
+      title: string;
+      body: string;
+      cta: string;
+    };
+    faq: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      items: {
+        question: string;
+        answer: string;
+      }[];
+    };
+    finalCta: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      ctaTrial: string;
+      ctaDemo: string;
+      footnote: string;
+    };
   };
   talents: {
     badge: string;
@@ -1288,38 +1399,262 @@ export const translations: Record<Language, Translations> = {
       }
     },
     companies: {
-      badge: 'For Companies',
-      title: 'Hire vetted LATAM tech talent with decision-ready shortlists.',
-      subtitle: 'Scale your technical team with curated candidate shortlists delivered in 72 hours. Human-reviewed LATAM professionals with technical evidence and communication requirements evaluated for the specific opportunity.',
-      ctaShortlist: 'Request Shortlist',
-      ctaMethodology: 'See Our Standard',
-      tiersTitle: 'Shortlist Sprint White-Label',
-      tiersSubtitle: 'A single, powerful solution. A technical validation fee that can be credited toward a follow-on engagement.',
-      sprintTitle: 'Shortlist Sprint',
-      sprintPrice: '€1,250 / $1,250',
-      sprintCandidates: '3-5 senior candidates',
-      sprintSla: '72 hours',
-      sprintIncludes: [
-        'Fee may be credited toward follow-on engagement',
-        'Vetted senior candidates',
-        'Target SLA of 72 hours for validated briefs',
-        'Argentina Power (LATAM hub)',
-      ],
-      replacementGuarantee: 'Replacement guarantee included',
-      noReplacement: 'No replacement guarantee',
-      rolesTitle: 'Core Software Engineering Roles',
-      rolesSubtitle: 'Pure tech talent pre-validated for immediate integration.',
-      professionalRoles: [
-        { title: 'React / Next.js Engineer', desc: 'Frontend architectures and modern web applications.', kpis: 'Code Quality, Delivery Speed' },
-        { title: 'Node.js Backend Engineer', desc: 'Scalable APIs, microservices, and database optimization.', kpis: 'API Latency, Uptime' },
-        { title: 'AI / ML Engineer', desc: 'LLM integrations, data pipelines, and intelligent models.', kpis: 'Model Accuracy, Deployment' },
-        { title: 'DevOps / SRE', desc: 'Cloud infrastructure, CI/CD, and system reliability.', kpis: 'Deployment Frequency, MTTR' },
-        { title: 'Go Developer', desc: 'High-performance backend systems and concurrency.', kpis: 'System Throughput' },
-        { title: 'Python Engineer', desc: 'Backend services, data processing, and automation.', kpis: 'Clean Code, Efficiency' },
-      ],
-      ctaTitle: 'Ready to scale your team?',
-      ctaDesc: 'Book a brief 15-minute alignment call to understand your needs and confirm our current talent pool availability.',
-      ctaButton: 'Book Discovery Call',
+      hero: {
+        eyebrow: "EVIDENCE-BACKED TECHNICAL RECRUITING",
+        title: "Know what the evidence supports and what to ask next.",
+        subtitle1: "Human-reviewed Evidence Briefs connect candidate information to your role, surface strengths, gaps and unknowns, and prepare focused interview questions.",
+        subtitle2: "Bring your candidates or discuss a sourcing engagement.",
+        ctaTrial: "Request a Free Evidence Trial",
+        ctaDemo: "Book a Demo",
+        ctaViewBrief: "View an Evidence Brief",
+      },
+      productProof: {
+        eyebrow: "DELIVERABLE ARTIFACT PROOF",
+        title: "What an Evidence Brief actually looks like.",
+        subtitle: "A structured, human-reviewed technical dossier built for hiring decision-makers before the engineering interview.",
+        sampleBanner: "Illustrative Sample · Fictional Candidate Data",
+        candidateRef: "TS-BRIEF-2026-084",
+        humanReviewVerified: "Human Review Complete",
+        fullInteractiveView: "Full Interactive View",
+        targetRoleLabel: "Target Role Context",
+        targetRoleValue: "Senior Full-Stack Engineer (LATAM Remote) · High-Throughput Event Architecture",
+        sourcesLabel: "Sources Reviewed",
+        sourcesValue: "4 public PRs, 1 system architecture RFC, 1 live production telemetry report, 3 verifiable employment references",
+        signals: {
+          supported: {
+            badge: "SUPPORTED",
+            title: "Distributed Event-Driven Architecture in Go / Node.js",
+            detail: "Candidate architected and authored Kafka event consumers processing >12,000 req/sec with documented circuit breakers and idempotency keys.",
+          },
+          partial: {
+            badge: "PARTIAL",
+            title: "Production Kubernetes Cluster Orchestration",
+            detail: "Authored Helm charts and deployment manifests, but production root access and failover recovery were managed by a dedicated platform SRE squad.",
+          },
+          unknown: {
+            badge: "UNKNOWN",
+            title: "Direct Financial Ledger Reconciliation Experience",
+            detail: "No verifiable repository commits or documentation demonstrate accounting ledger double-entry systems. UNKNOWN remains UNKNOWN.",
+          },
+          needsValidation: {
+            badge: "NEEDS VALIDATION",
+            title: "Primary Microservice Decomposition Ownership",
+            detail: "Resume indicates sole lead architect; commit history reflects collaborative co-authorship across a 5-engineer team. Requires focused interview probe.",
+          },
+        },
+        validationPromptLabel: "PREPARED INTERVIEW QUESTION FOR HIRING TEAM",
+        validationPromptText: "“Ask the candidate to trace a single transaction rollback across the Kafka boundary when the ledger reconciliation failed in their 2025 platform migration.”",
+        openModalCta: "Open Interactive Dossier Preview",
+      },
+      howItWorks: {
+        eyebrow: "OPERATIONAL METHODOLOGY",
+        title: "How Evidence Review works before the interview.",
+        subtitle: "A disciplined 5-step process connecting candidate facts to your role. No automated ranking replaces human engineering judgment.",
+        steps: [
+          {
+            number: "01",
+            title: "Define the Role Context",
+            desc: "We capture your actual architectural dependencies, stack constraints, and technical communication environment.",
+          },
+          {
+            number: "02",
+            title: "Review Candidate Evidence",
+            desc: "We inspect verifiable technical work: production code artifacts, architectural writeups, PRs, technical decisions, and verifiable trajectory.",
+          },
+          {
+            number: "03",
+            title: "Classify Under Canonical States",
+            desc: "Every signal is strictly classified as Supported, Partial, Unknown, Conflicting, or Needs Validation. We never guess or inflate.",
+          },
+          {
+            number: "04",
+            title: "Produce the Evidence Brief",
+            desc: "A concise, structured technical dossier synthesizes genuine strengths, clear gaps, unverified areas, and tailored interview probes.",
+          },
+          {
+            number: "05",
+            title: "Prepare the Next Interview",
+            desc: "Your engineering interviewers receive the dossier in advance to conduct a focused, efficient validation interview instead of generic screening.",
+          },
+        ],
+      },
+      freeTrial: {
+        eyebrow: "NO-RISK EVALUATION",
+        title: "Try it with one real candidate.",
+        price: "Free",
+        coreSummary: "One role. One candidate you provide. One complete, human-reviewed Evidence Brief.",
+        deliveryWording: "We confirm your delivery date before the trial begins.",
+        supportLine: "No card required. Subject to fit and reviewer availability.",
+        scopePoints: [
+          "1 active technical role definition",
+          "1 candidate provided by your team",
+          "1 complete human-reviewed Evidence Brief",
+          "Role Context, strengths, gaps & unknowns surfaced",
+          "Specific interview validation questions included",
+          "Exportable PDF dossier allowed",
+          "No sourcing included",
+          "No credit card required",
+        ],
+        cta: "Request a Free Evidence Trial",
+      },
+      pricing: {
+        eyebrow: "COMMERCIAL ENGAGEMENTS",
+        title: "Clear, transparent pricing for technical hiring teams.",
+        subtitle: "Whether you already have candidates to evaluate or need an end-to-end evidence-backed search, select the model that matches your current pipeline.",
+        pilot: {
+          tag: "REVIEW CANDIDATES YOU HAVE",
+          title: "EVIDENCE REVIEW PILOT",
+          price: "USD 1,250",
+          period: "per engagement",
+          audience: "For teams that already have candidates.",
+          scopePoints: [
+            "1 role context definition",
+            "Up to 3 candidates provided by the client",
+            "Up to 3 complete Evidence Briefs",
+            "Role Context, strengths, gaps & unknowns surfaced",
+            "Conflicts highlighted where genuinely present",
+            "Specific interview validation questions for your team",
+            "Human engineering review on all dossiers",
+            "One consolidated revision round",
+            "Review / debrief session with lead reviewer",
+            "No sourcing included",
+          ],
+          cta: "Discuss Your Candidates",
+        },
+        shortlist: {
+          tag: "END-TO-END SEARCH",
+          title: "EVIDENCE-BACKED SHORTLIST",
+          price: "USD 4,500",
+          period: "standard accepted search",
+          footnote: "If fewer qualifying candidates are delivered, the final fee adjusts accordingly.",
+          audience: "For teams that need sourcing and evidence-backed review.",
+          scopePoints: [
+            "1 targeted technical role",
+            "Full sourcing & technical qualification",
+            "Target of up to 3 qualifying finalists",
+            "Complete Evidence Brief for each delivered finalist",
+            "Human review of production code & verifiable experience",
+            "Candidate interest confirmed",
+            "Compensation & conditions compatibility confirmed",
+            "Availability updated before client presentation",
+          ],
+          cta: "Scope a Search",
+        },
+        custom: {
+          tag: "RECURRING & PARTNERS",
+          title: "ONGOING / PARTNER REQUIREMENTS",
+          price: "Custom Scope",
+          copy: "Need recurring reviews, partner delivery or a special engagement? We structure custom capacity arrangements for consultancies, agencies, and high-velocity hiring organizations.",
+          scopePoints: [
+            "Ongoing review capacity retainers",
+            "Partner delivery for agencies & consultancies",
+            "Multi-role search batches",
+            "White-label delivery discussions",
+            "Dedicated senior reviewer bandwidth",
+          ],
+          cta: "Discuss Ongoing Needs",
+        },
+      },
+      payment: {
+        eyebrow: "COMMERCIAL INTEGRITY & BILLING",
+        title: "How commercial engagements work.",
+        copy: "Prices are in USD. Paid engagements begin after scope, delivery terms and payment schedule are confirmed. Invoices are paid by bank transfer/wire. Bank details are shared privately after confirmation.",
+        pillars: [
+          {
+            title: "Scope Confirmed First",
+            desc: "Terms, timelines, and candidate volume are formally agreed upon before work begins.",
+          },
+          {
+            title: "Direct Invoicing in USD",
+            desc: "Transparent commercial billing via bank transfer/wire.",
+          },
+          {
+            title: "Private Bank Coordinates",
+            desc: "Zero public exposure of financial accounts or routing numbers.",
+          },
+          {
+            title: "Proportional Delivery Protection",
+            desc: "For search shortlists, final fees adjust transparently if fewer qualifying finalists are presented.",
+          },
+        ],
+      },
+      demo: {
+        eyebrow: "EXPLORATORY CONVERSATION",
+        title: "Prefer to see the workflow first?",
+        body: "The demo is for teams that want to understand how Evidence Review fits into their current recruiting process, whether they bring candidates or need sourcing.",
+        cta: "Book a Demo",
+      },
+      faq: {
+        eyebrow: "FREQUENTLY ASKED QUESTIONS",
+        title: "Questions hiring teams ask about Evidence Review.",
+        subtitle: "Clear answers on our methodology, commercial terms, and evaluation boundaries.",
+        items: [
+          {
+            question: "What does the human reviewer actually review?",
+            answer: "Our reviewers inspect actual code samples, architecture writeups, pull requests, technical decision logs, and verifiable work history to separate genuine capability from resume claims.",
+          },
+          {
+            question: "Does TalentSync360 certify a candidate's skills?",
+            answer: "No. We do not certify universal competence or issue generic badges. We assess whether verifiable evidence supports suitability for your specific role context.",
+          },
+          {
+            question: "What do I need to provide?",
+            answer: "For candidate reviews, provide the active role requirements, target tech stack, and the candidate's documentation (CV, links, work samples). For sourcing, share your technical brief and hiring criteria.",
+          },
+          {
+            question: "Is GitHub required?",
+            answer: "No. GitHub is optional. Many senior engineers do proprietary enterprise work under NDA. We evaluate whatever verifiable artifacts, architecture documents, or professional references are available.",
+          },
+          {
+            question: "Do you use technical challenges?",
+            answer: "Only when necessary. If existing public or private documentation is insufficient and the agreed scope requires it, we employ a focused, realistic technical exercise.",
+          },
+          {
+            question: "Does the Free Evidence Trial include sourcing?",
+            answer: "No. The Free Evidence Trial is strictly an evaluation of one role and one candidate provided by your hiring team, designed to demonstrate dossier depth.",
+          },
+          {
+            question: "What happens if the available evidence is insufficient?",
+            answer: "UNKNOWN remains UNKNOWN. We do not guess, inflate scores, or fabricate ratings. The Evidence Brief explicitly flags unverified areas and prepares questions for your interview.",
+          },
+          {
+            question: "Can I download and share the Evidence Brief internally?",
+            answer: "Yes. All completed Evidence Briefs can be exported as clean, branded PDF dossiers and shared with your hiring managers and interview panel.",
+          },
+          {
+            question: "What happens if fewer than three qualifying candidates are found?",
+            answer: "In an Evidence-backed Shortlist search, we never push unqualified candidates to fill a quota. If fewer qualifying finalists meet the standard, the final fee adjusts accordingly.",
+          },
+          {
+            question: "Is hiring guaranteed?",
+            answer: "No. TalentSync360 does not guarantee hiring outcomes. We provide evidence-backed dossiers and qualified finalists, but the hiring decision always remains with your team.",
+          },
+          {
+            question: "What changes or revisions are included?",
+            answer: "Paid engagements include one consolidated round of questions or clarifications on the delivered dossiers, plus a debrief session with the lead reviewer.",
+          },
+          {
+            question: "How is candidate data handled?",
+            answer: "Candidate information is processed confidentially and stored securely. We maintain strict privacy controls and never expose personal data publicly.",
+          },
+          {
+            question: "Does TalentSync360 replace the technical interview?",
+            answer: "No. The human technical interview remains decisive. The Evidence Brief equips your engineers with facts, identified gaps, and targeted prompts so the interview is focused and rigorous.",
+          },
+          {
+            question: "Can agencies or partners work with TalentSync360?",
+            answer: "Yes. We work with IT consultancies, recruitment agencies, and software boutiques under custom partner delivery and white-label capacity frameworks.",
+          },
+        ],
+      },
+      finalCta: {
+        eyebrow: "DECISION-READY HIRING",
+        title: "Start with a candidate you have, or scope a search with us.",
+        subtitle: "See how Evidence Review transforms technical screening before your next engineering interview.",
+        ctaTrial: "Request a Free Evidence Trial",
+        ctaDemo: "Book a Demo",
+        footnote: "No credit card required. Delivery date confirmed before the trial begins.",
+      },
     },
     talents: {
       badge: 'Professional Evidence Review',
@@ -2084,38 +2419,262 @@ export const translations: Record<Language, Translations> = {
       }
     },
     companies: {
-      badge: 'Para Empresas',
-      title: 'Talento LATAM validado para equipos técnicos.',
-      subtitle: 'Shortlists con revisión humana, evidencia técnica y requisitos de comunicación evaluados para cada oportunidad específica.',
-      ctaShortlist: 'Solicitar Shortlist',
-      ctaMethodology: 'Ver Nuestro Estándar',
-      tiersTitle: 'Shortlist Sprint White-Label',
-      tiersSubtitle: 'Una estructura de precios simple y clara. El fee del sprint y del piloto se pueden acreditar a un engagement de seguimiento.',
-      sprintTitle: 'Shortlist Sprint',
-      sprintPrice: '€1.250 / $1.250',
-      sprintCandidates: '3-5 candidatos senior',
-      sprintSla: '72 horas',
-      sprintIncludes: [
-        'El fee se puede acreditar a un engagement de seguimiento',
-        'Candidatos senior con screening de comunicación y técnico',
-        'SLA objetivo de 72 horas para briefs validados',
-        'Argentina Power (hub LATAM)',
-      ],
-      replacementGuarantee: 'Garantía de reemplazo',
-      noReplacement: 'Sin garantía de reemplazo',
-      rolesTitle: 'Roles Principales de Ingeniería de Software',
-      rolesSubtitle: 'Talento puramente técnico pre-validado para integración inmediata.',
-      professionalRoles: [
-        { title: 'React / Next.js Engineer', desc: 'Arquitecturas frontend y aplicaciones web modernas.', kpis: 'Calidad de Código, Velocidad de Entrega' },
-        { title: 'Node.js Backend Engineer', desc: 'APIs escalables, microservicios y optimización de bases de datos.', kpis: 'Latencia API, Uptime' },
-        { title: 'AI / ML Engineer', desc: 'Integraciones LLM, pipelines de datos y modelos inteligentes.', kpis: 'Precisión de Modelos, Deployment' },
-        { title: 'DevOps / SRE', desc: 'Infraestructura cloud, CI/CD y confiabilidad de sistemas.', kpis: 'Frecuencia de Deployment, MTTR' },
-        { title: 'Go Developer', desc: 'Sistemas backend de alto rendimiento y concurrencia.', kpis: 'Throughput del Sistema' },
-        { title: 'Python Engineer', desc: 'Servicios backend, procesamiento de datos y automatización.', kpis: 'Código Limpio, Eficiencia' },
-      ],
-      ctaTitle: '¿Listo para escalar tu equipo?',
-      ctaDesc: 'Reservá una llamada de alineación de 15 minutos para entender tus necesidades y confirmar disponibilidad de talento.',
-      ctaButton: 'Reservar Llamada',
+      hero: {
+        eyebrow: "RECLUTAMIENTO TÉCNICO BASADO EN EVIDENCIA",
+        title: "Sabé qué respalda la evidencia y qué preguntar a continuación.",
+        subtitle1: "Informes de Evidencia con revisión humana conectan la información del candidato con tu rol, visibilizan fortalezas, brechas e incógnitas, y preparan preguntas de entrevista enfocadas.",
+        subtitle2: "Traé tus candidatos o conversemos una búsqueda con sourcing.",
+        ctaTrial: "Solicitar una Prueba de Evidencia Gratuita",
+        ctaDemo: "Agendar una Demo",
+        ctaViewBrief: "Ver un Informe de Evidencia",
+      },
+      productProof: {
+        eyebrow: "PRUEBA TANGIBLE DEL ENTREGABLE",
+        title: "Cómo se ve realmente un Informe de Evidencia.",
+        subtitle: "Un dossier técnico estructurado y revisado por humanos, diseñado para quienes deciden antes de la entrevista de ingeniería.",
+        sampleBanner: "Muestra Ilustrativa · Datos de Candidato Ficticios",
+        candidateRef: "TS-BRIEF-2026-084",
+        humanReviewVerified: "Revisión Humana Completada",
+        fullInteractiveView: "Vista Interactiva Completa",
+        targetRoleLabel: "Contexto del Rol Objetivo",
+        targetRoleValue: "Ingeniero Full-Stack Senior (Remoto LATAM) · Arquitectura de Eventos de Alto Tráfico",
+        sourcesLabel: "Fuentes Revisadas",
+        sourcesValue: "4 PRs públicas, 1 RFC de arquitectura de sistemas, 1 reporte de telemetría en producción, 3 referencias laborales verificables",
+        signals: {
+          supported: {
+            badge: "RESPALDADO",
+            title: "Arquitectura distribuida guiada por eventos en Go / Node.js",
+            detail: "El candidato diseñó y escribió consumidores de eventos Kafka procesando >12.000 req/seg con disyuntores documentados y claves de idempotencia.",
+          },
+          partial: {
+            badge: "PARCIAL",
+            title: "Orquestación de clústeres Kubernetes en producción",
+            detail: "Escribió Helm charts y manifiestos de deployment, pero el acceso root en producción y la recuperación de fallas eran gestionados por un equipo dedicado de SRE.",
+          },
+          unknown: {
+            badge: "DESCONOCIDO",
+            title: "Experiencia directa en conciliación de libros contables / fintech",
+            detail: "Ningún commit ni documentación verificable demuestra sistemas de partida doble o ledger contable. Lo desconocido permanece DESCONOCIDO.",
+          },
+          needsValidation: {
+            badge: "REQUIERE VALIDACIÓN",
+            title: "Liderazgo principal en la descomposición de microservicios",
+            detail: "El CV indica liderazgo exclusivo; el historial de commits refleja coautoría colaborativa en un equipo de 5 ingenieros. Requiere indagación focalizada en la entrevista.",
+          },
+        },
+        validationPromptLabel: "PREGUNTA DE VALIDACIÓN PREPARADA PARA EL EQUIPO",
+        validationPromptText: "“Pedile al candidato que trace el rollback de una transacción a través de Kafka cuando falló la conciliación contable en su migración de plataforma de 2025.”",
+        openModalCta: "Abrir Vista Previa Interactiva del Dossier",
+      },
+      howItWorks: {
+        eyebrow: "METODOLOGÍA OPERATIVA",
+        title: "Cómo funciona Evidence Review antes de la entrevista.",
+        subtitle: "Un proceso disciplinado de 5 pasos que conecta los hechos del candidato con tu rol. Ningún puntaje automatizado reemplaza el juicio de ingeniería humana.",
+        steps: [
+          {
+            number: "01",
+            title: "Definir el contexto del rol",
+            desc: "Relevamos las dependencias arquitectónicas reales, restricciones del stack y el entorno de comunicación técnica que exige el rol.",
+          },
+          {
+            number: "02",
+            title: "Revisar la evidencia del candidato",
+            desc: "Inspeccionamos trabajo técnico verificable: artefactos de código en producción, documentos de arquitectura, PRs, decisiones técnicas y trayectoria laboral comprobable.",
+          },
+          {
+            number: "03",
+            title: "Clasificar bajo estados canónicos",
+            desc: "Cada señal se clasifica estrictamente como Respaldado, Parcial, Desconocido, Conflicto o Requiere Validación. Nunca asumimos ni inflamos.",
+          },
+          {
+            number: "04",
+            title: "Generar el Informe de Evidencia",
+            desc: "Un dossier técnico estructurado y conciso sintetiza fortalezas reales, brechas claras, áreas no verificadas y preguntas enfocadas para la entrevista.",
+          },
+          {
+            number: "05",
+            title: "Preparar la siguiente entrevista",
+            desc: "Tus entrevistadores técnicos reciben el dossier por adelantado para realizar una validación focalizada y eficiente en lugar de un screening genérico.",
+          },
+        ],
+      },
+      freeTrial: {
+        eyebrow: "EVALUACIÓN SIN RIESGO",
+        title: "Probalo con un candidato real.",
+        price: "Gratis",
+        coreSummary: "Un rol. Un candidato que vos proporcionás. Un Informe de Evidencia completo y revisado por humanos.",
+        deliveryWording: "Confirmamos tu fecha de entrega antes de iniciar la prueba.",
+        supportLine: "Sin tarjeta de crédito. Sujeto a adecuación técnica y disponibilidad de revisores.",
+        scopePoints: [
+          "1 definición de rol técnico activo",
+          "1 candidato provisto por tu equipo",
+          "1 Informe de Evidencia completo con revisión humana",
+          "Fortalezas, brechas e incógnitas visibilizadas",
+          "Preguntas de validación específicas para la entrevista",
+          "Dossier exportable a PDF permitido",
+          "No incluye sourcing",
+          "Sin tarjeta de crédito requerida",
+        ],
+        cta: "Solicitar una Prueba de Evidencia Gratuita",
+      },
+      pricing: {
+        eyebrow: "ESQUEMAS COMERCIALES",
+        title: "Precios claros y transparentes para equipos que contratan talento técnico.",
+        subtitle: "Ya sea que tengas candidatos para evaluar o necesites una búsqueda completa basada en evidencia, elegí el modelo que se adapte a tu pipeline.",
+        pilot: {
+          tag: "REVISÁ CANDIDATOS QUE YA TENÉS",
+          title: "PILOTO DE EVIDENCE REVIEW",
+          price: "USD 1.250",
+          period: "por proceso",
+          audience: "Para equipos que ya cuentan con candidatos.",
+          scopePoints: [
+            "1 definición de contexto de rol",
+            "Hasta 3 candidatos provistos por el cliente",
+            "Hasta 3 Informes de Evidencia completos",
+            "Contexto de rol, fortalezas, brechas e incógnitas visibilizadas",
+            "Conflictos señalados donde estén genuinamente presentes",
+            "Preguntas de validación específicas para tu equipo",
+            "Revisión por ingenieros humanos en todos los dossiers",
+            "Una ronda consolidada de revisiones",
+            "Sesión de debrief y alineación con revisor líder",
+            "No incluye sourcing",
+          ],
+          cta: "Evaluar Candidatos",
+        },
+        shortlist: {
+          tag: "BÚSQUEDA INTEGRAL DE PUNTA A PUNTA",
+          title: "SHORTLIST CON EVIDENCIA",
+          price: "USD 4.500",
+          period: "búsqueda estándar aceptada",
+          footnote: "Si se entregan menos candidatos que cumplan el criterio, el fee final se ajusta en consecuencia.",
+          audience: "Para equipos que necesitan sourcing y revisión con evidencia.",
+          scopePoints: [
+            "1 rol técnico objetivo",
+            "Sourcing integral y calificación técnica",
+            "Objetivo de hasta 3 finalistas calificados",
+            "Informe de Evidencia completo para cada finalista entregado",
+            "Revisión humana de código en producción y experiencia verificable",
+            "Interés del candidato confirmado",
+            "Compatibilidad de compensación y condiciones remotas verificada",
+            "Disponibilidad actualizada antes de la presentación con el cliente",
+          ],
+          cta: "Definir una Búsqueda",
+        },
+        custom: {
+          tag: "RECURRENCIA Y PARTNERS",
+          title: "NECESIDADES CONTINUAS O PARA PARTNERS",
+          price: "A Medida",
+          copy: "¿Necesitás revisiones continuas, entrega para partners o un esquema especial? Estructuramos acuerdos de capacidad personalizada para consultoras, agencias y organizaciones con contratación continua.",
+          scopePoints: [
+            "Retainers de capacidad de revisión continua",
+            "Entrega para partners en consultoras y agencias",
+            "Lotes de búsqueda para múltiples roles",
+            "Esquemas de entrega white-label conversables",
+            "Ancho de banda dedicado con revisores senior",
+          ],
+          cta: "Conversar Necesidades Continuas",
+        },
+      },
+      payment: {
+        eyebrow: "FACTURACIÓN Y TÉRMINOS COMERCIALES",
+        title: "Cómo funcionan los acuerdos comerciales.",
+        copy: "Los precios están expresados en USD. Los servicios pagos comienzan una vez confirmados el alcance, los plazos de entrega y el cronograma de pago. La facturación se abona mediante transferencia bancaria / wire. Los datos bancarios se comparten de forma privada tras la confirmación comercial.",
+        pillars: [
+          {
+            title: "Alcance confirmado primero",
+            desc: "Los términos, plazos y volumen de candidatos se acuerdan formalmente antes de comenzar el trabajo.",
+          },
+          {
+            title: "Facturación directa en USD",
+            desc: "Facturación comercial transparente mediante transferencia bancaria / wire.",
+          },
+          {
+            title: "Datos bancarios privados",
+            desc: "Cero exposición pública de cuentas financieras o números de ruteo.",
+          },
+          {
+            title: "Protección proporcional en la entrega",
+            desc: "En búsquedas de shortlist, los fees finales se ajustan con total transparencia si se presentan menos finalistas calificados.",
+          },
+        ],
+      },
+      demo: {
+        eyebrow: "CONVERSACIÓN EXPLORATORIA",
+        title: "¿Preferís ver el flujo de trabajo primero?",
+        body: "La demo está pensada para equipos que desean entender cómo se integra el Evidence Review en su proceso de contratación actual, ya sea que cuenten con candidatos propios o requieran sourcing.",
+        cta: "Agendar una Demo",
+      },
+      faq: {
+        eyebrow: "PREGUNTAS FRECUENTES",
+        title: "Preguntas que hacen los equipos de contratación sobre Evidence Review.",
+        subtitle: "Respuestas claras sobre nuestra metodología, términos comerciales y límites de evaluación.",
+        items: [
+          {
+            question: "¿Qué revisa realmente el revisor humano?",
+            answer: "Nuestros revisores inspeccionan muestras de código reales, documentos de arquitectura, pull requests, registros de decisiones técnicas y trayectoria laboral comprobable para separar la capacidad real de los textos del CV.",
+          },
+          {
+            question: "¿TalentSync360 certifica las habilidades de un candidato?",
+            answer: "No. No certificamos competencia universal ni otorgamos badges genéricos. Evaluamos si la evidencia verificable respalda la adecuación para el contexto específico de tu rol.",
+          },
+          {
+            question: "¿Qué necesito proporcionar?",
+            answer: "Para revisión de candidatos, proporcioná los requisitos del rol activo, stack objetivo y la documentación del postulante (CV, enlaces, muestras de trabajo). Para sourcing, compartí tu brief técnico y criterios de contratación.",
+          },
+          {
+            question: "¿Es obligatorio tener GitHub?",
+            answer: "No. GitHub es opcional. Muchos ingenieros senior realizan trabajo corporativo propietario bajo NDA. Evaluamos los artefactos verificables, documentación de arquitectura o referencias que estén disponibles.",
+          },
+          {
+            question: "¿Utilizan pruebas técnicas o challenges?",
+            answer: "Únicamente cuando es necesario. Si la documentación existente resulta insuficiente y el alcance acordado lo requiere, implementamos un ejercicio técnico acotado y realista.",
+          },
+          {
+            question: "¿La Prueba de Evidencia Gratuita incluye sourcing?",
+            answer: "No. La Prueba de Evidencia Gratuita es estrictamente una evaluación de un rol y un candidato provisto por tu equipo, diseñada para demostrar la profundidad del dossier.",
+          },
+          {
+            question: "¿Qué sucede si la evidencia disponible es insuficiente?",
+            answer: "Lo DESCONOCIDO permanece DESCONOCIDO. No adivinamos, no inflamos puntajes ni inventamos calificaciones. El informe marca explícitamente las áreas no verificadas y prepara preguntas para tu entrevista.",
+          },
+          {
+            question: "¿Puedo descargar y compartir el Informe de Evidencia internamente?",
+            answer: "Sí. Todos los Informes de Evidencia completados se pueden exportar como dossiers en PDF y compartir internamente con tus hiring managers y panel técnico.",
+          },
+          {
+            question: "¿Qué sucede si se encuentran menos de tres candidatos calificados?",
+            answer: "En una búsqueda de Shortlist con Evidencia, nunca presentamos candidatos que no cumplan el estándar para llenar una cuota. Si se entregan menos finalistas calificados, el fee final se ajusta proporcionalmente.",
+          },
+          {
+            question: "¿La contratación está garantizada?",
+            answer: "No. TalentSync360 no garantiza resultados de contratación. Brindamos dossiers respaldados por evidencia y finalistas calificados, pero la decisión de contratación siempre reside en tu equipo.",
+          },
+          {
+            question: "¿Qué cambios o revisiones están incluidos?",
+            answer: "Los servicios pagos incluyen una ronda consolidada de preguntas o aclaraciones sobre los dossiers entregados, además de una sesión de debrief con el revisor líder.",
+          },
+          {
+            question: "¿Cómo se manejan los datos del candidato?",
+            answer: "La información de los postulantes se procesa de forma confidencial y se almacena de forma segura. Mantenemos estrictos controles de privacidad y jamás exponemos datos personales públicamente.",
+          },
+          {
+            question: "¿TalentSync360 reemplaza la entrevista técnica?",
+            answer: "No. La entrevista técnica humana sigue siendo decisiva. El Informe de Evidencia equipa a tus ingenieros con hechos, brechas identificadas y preguntas concretas para que la entrevista sea focalizada y rigurosa.",
+          },
+          {
+            question: "¿Las agencias o partners pueden trabajar con TalentSync360?",
+            answer: "Sí. Trabajamos con consultoras IT, agencias de recruiting y software factories bajo esquemas personalizados de entrega para partners y capacidad white-label.",
+          },
+        ],
+      },
+      finalCta: {
+        eyebrow: "CONTRATACIÓN LISTA PARA DECIDIR",
+        title: "Empezá con un candidato propio o definí una búsqueda con nosotros.",
+        subtitle: "Comprobá cómo el Evidence Review transforma el screening técnico antes de tu próxima entrevista de ingeniería.",
+        ctaTrial: "Solicitar una Prueba de Evidencia Gratuita",
+        ctaDemo: "Agendar una Demo",
+        footnote: "Sin tarjeta de crédito. Fecha de entrega confirmada antes de iniciar la prueba.",
+      },
     },
     talents: {
       badge: 'Professional Evidence Review',

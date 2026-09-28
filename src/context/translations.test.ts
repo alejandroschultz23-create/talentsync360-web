@@ -83,5 +83,58 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     expect(states.CONFLICT).toBeDefined();
     expect(states.NEEDS_VALIDATION).toBeDefined();
   });
+
+  it('provides complete approved commercial architecture for companies', () => {
+    const { companies } = translations[language];
+    expect(companies).toBeDefined();
+
+    // 1. Hero
+    expect(companies.hero.title).toBeTruthy();
+    expect(companies.hero.ctaTrial).toBeTruthy();
+    expect(companies.hero.ctaDemo).toBeTruthy();
+    expect(companies.hero.ctaViewBrief).toBeTruthy();
+
+    // 2. Product Proof
+    expect(companies.productProof.candidateRef).toBe('TS-BRIEF-2026-084');
+    expect(companies.productProof.sampleBanner).toBeTruthy();
+    expect(companies.productProof.signals.supported.badge).toBe(language === 'es' ? 'RESPALDADO' : 'SUPPORTED');
+    expect(companies.productProof.signals.partial.badge).toBe(language === 'es' ? 'PARCIAL' : 'PARTIAL');
+    expect(companies.productProof.signals.unknown.badge).toBe(language === 'es' ? 'DESCONOCIDO' : 'UNKNOWN');
+    expect(companies.productProof.signals.needsValidation.badge).toBe(language === 'es' ? 'REQUIERE VALIDACIÓN' : 'NEEDS VALIDATION');
+
+    // 3. How it works
+    expect(companies.howItWorks.steps).toHaveLength(5);
+
+    // 4. Free Evidence Trial
+    expect(companies.freeTrial.price).toBe(language === 'es' ? 'Gratis' : 'Free');
+    expect(companies.freeTrial.deliveryWording).toContain(language === 'es' ? 'Confirmamos tu fecha de entrega antes de iniciar la prueba.' : 'We confirm your delivery date before the trial begins.');
+    expect(companies.freeTrial.deliveryWording).not.toMatch(/3 business days|3 days|3 días/i);
+    expect(companies.freeTrial.supportLine).toBeTruthy();
+
+    // 5. Pricing (Pilot, Shortlist, Custom)
+    expect(companies.pricing.pilot.price).toBe(language === 'es' ? 'USD 1.250' : 'USD 1,250');
+    expect(companies.pricing.shortlist.price).toBe(language === 'es' ? 'USD 4.500' : 'USD 4,500');
+    expect(companies.pricing.shortlist.footnote).toContain(language === 'es' ? 'fee final se ajusta' : 'final fee adjusts');
+    expect(companies.pricing.custom.title).toBeTruthy();
+    expect(companies.pricing.custom.cta).toBeTruthy();
+
+    // 6. Payment & Integrity
+    expect(companies.payment.copy).toContain('USD');
+    expect(companies.payment.copy).toMatch(/transfer|wire/i);
+    expect(companies.payment.copy).not.toMatch(/account number|beneficiary|facebank|iban|routing/i);
+
+    // 7. Demo
+    expect(companies.demo.cta).toBeTruthy();
+
+    // 8. FAQ (14 canonical items)
+    expect(companies.faq.items).toHaveLength(14);
+    const allAnswers = companies.faq.items.map((i) => i.answer).join(' ');
+    expect(allAnswers).toMatch(/optional|opcional/i); // GitHub optional
+    expect(allAnswers).not.toMatch(/top 1%|pre-vetted top talent|guaranteed hiring/i);
+
+    // 9. Final CTA
+    expect(companies.finalCta.ctaTrial).toBeTruthy();
+    expect(companies.finalCta.ctaDemo).toBeTruthy();
+  });
 });
 
