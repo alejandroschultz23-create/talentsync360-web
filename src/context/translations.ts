@@ -11,6 +11,14 @@ export interface HomepageTranslations {
     candidateEyebrow: string;
     candidateAction: string;
   };
+  heroFallback: {
+    projects: string;
+    github: string;
+    evidenceBrief: string;
+    decisionReady: string;
+    workExp: string;
+    roleContext: string;
+  };
   problem: {
     eyebrow: string;
     title: string;
@@ -700,6 +708,14 @@ export const translations: Record<Language, Translations> = {
         ctaValidateRole: "Validate a Role",
         candidateEyebrow: "I’m a tech professional",
         candidateAction: "Review my evidence",
+      },
+      heroFallback: {
+        projects: "PROJECTS",
+        github: "GITHUB",
+        evidenceBrief: "EVIDENCE BRIEF",
+        decisionReady: "Decision Ready",
+        workExp: "WORK EXP",
+        roleContext: "ROLE CONTEXT",
       },
       problem: {
         eyebrow: "THE SCREENING BREAKDOWN",
@@ -1488,6 +1504,14 @@ export const translations: Record<Language, Translations> = {
         ctaValidateRole: "Validar un Rol",
         candidateEyebrow: "Soy un profesional de tecnología",
         candidateAction: "Revisar mi evidencia",
+      },
+      heroFallback: {
+        projects: "PROYECTOS",
+        github: "GITHUB",
+        evidenceBrief: "INFORME DE EVIDENCIA",
+        decisionReady: "Listo para decidir",
+        workExp: "EXPERIENCIA",
+        roleContext: "CONTEXTO DEL ROL",
       },
       problem: {
         eyebrow: "LA FALLA EN EL SCREENING TRADICIONAL",

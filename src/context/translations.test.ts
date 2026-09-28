@@ -55,6 +55,12 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     expect(homepage.hero.title).toBeTruthy();
     expect(homepage.hero.ctaBrief).toBeTruthy();
     expect(homepage.hero.ctaValidateRole).toBeTruthy();
+    expect(homepage.heroFallback.projects).toBe(language === 'es' ? 'PROYECTOS' : 'PROJECTS');
+    expect(homepage.heroFallback.github).toBe('GITHUB');
+    expect(homepage.heroFallback.evidenceBrief).toBe(language === 'es' ? 'INFORME DE EVIDENCIA' : 'EVIDENCE BRIEF');
+    expect(homepage.heroFallback.decisionReady).toBe(language === 'es' ? 'Listo para decidir' : 'Decision Ready');
+    expect(homepage.heroFallback.workExp).toBe(language === 'es' ? 'EXPERIENCIA' : 'WORK EXP');
+    expect(homepage.heroFallback.roleContext).toBe(language === 'es' ? 'CONTEXTO DEL ROL' : 'ROLE CONTEXT');
     expect(homepage.problem.title).toBeTruthy();
     expect(homepage.transformation.title).toBeTruthy();
     expect(homepage.framework.title).toBeTruthy();
