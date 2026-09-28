@@ -107,11 +107,11 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     expect(companies.howItWorks.steps).toHaveLength(5);
 
     // 4. Free Evidence Trial
-    expect(companies.freeTrial.title).toBe(language === 'es' ? 'Prueba TalentSync360 con un candidato real.' : 'Try TalentSync360 with one real candidate.');
+    expect(companies.freeTrial.title).toBe(language === 'es' ? 'Prueba TalentSync360 con un candidato real.' : 'Try it with one real candidate.');
     expect(companies.freeTrial.title).not.toMatch(/audit|audite/i);
-    expect(companies.freeTrial.price).toBe(language === 'es' ? 'Sin costo' : 'Zero Cost');
-    expect(companies.freeTrial.deliveryWording).toContain(language === 'es' ? 'Confirmamos tu fecha de entrega antes de iniciar la prueba.' : 'We confirm your delivery date before the trial begins.');
-    expect(companies.freeTrial.deliveryWording).not.toMatch(/3 business days|3 days|3 días/i);
+    expect(companies.freeTrial.price).toBe(language === 'es' ? 'Sin costo' : 'Free');
+    expect(companies.freeTrial.deliveryWording).toContain(language === 'es' ? 'Confirmamos la fecha de entrega antes de iniciar la prueba.' : 'We confirm your delivery date before the trial begins.');
+    expect(companies.freeTrial.deliveryWording).not.toMatch(/3 business days|3 days|3 días|fast turnaround|rapid turnaround|quick delivery|72 hours|72 horas/i);
     expect(companies.freeTrial.supportLine).toBeTruthy();
 
     // 5. Pricing (Pilot, Shortlist, Custom)
@@ -127,6 +127,7 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     // Canonical language check: no "verified gap" or "terna" in companies
     const companiesJson = JSON.stringify(companies);
     expect(companiesJson).not.toMatch(/verified gaps?|brechas? verificadas?|\bternas?\b/i);
+    expect(companiesJson).not.toMatch(/fast turnaround|rapid turnaround|quick delivery|3-day delivery|72 hours|72 horas/i);
     if (language === 'es') {
       expect(companiesJson).not.toMatch(/\b(sabé|descubrí|traé|probalo|elegí|preferís|comprobá|proporcioná|compartí|empezá|definí)\b/i);
     }

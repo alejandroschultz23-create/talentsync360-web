@@ -1478,9 +1478,9 @@ export const translations: Record<Language, Translations> = {
       },
       freeTrial: {
         eyebrow: "NO-RISK EVALUATION",
-        title: "Try TalentSync360 with one real candidate.",
-        price: "Zero Cost",
-        coreSummary: "One role. One candidate. One complete, human-reviewed Evidence Brief to evaluate how we work.",
+        title: "Try it with one real candidate.",
+        price: "Free",
+        coreSummary: "One role. One candidate you provide. One complete, human-reviewed Evidence Brief.",
         deliveryWording: "We confirm your delivery date before the trial begins.",
         supportLine: "No card required. Subject to fit and reviewer availability.",
         scopePoints: [
@@ -2493,7 +2493,7 @@ export const translations: Record<Language, Translations> = {
         title: "Prueba TalentSync360 con un candidato real.",
         price: "Sin costo",
         coreSummary: "Un rol. Un candidato. Un Evidence Brief completo y revisado por humanos para que evalúes cómo trabajamos.",
-        deliveryWording: "Confirmamos tu fecha de entrega antes de iniciar la prueba.",
+        deliveryWording: "Confirmamos la fecha de entrega antes de iniciar la prueba.",
         supportLine: "Sin tarjeta de crédito. Sujeto a adecuación técnica y disponibilidad de revisores.",
         scopePoints: [
           "1 definición de rol técnico activo",
