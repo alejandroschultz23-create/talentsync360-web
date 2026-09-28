@@ -201,6 +201,141 @@ section {
   }
 }
 
+/* ==========================================================================
+   Mobile Hero Fallback Animations (MOBILE_HERO_FALLBACK_MOTION_FIX_V2)
+   ========================================================================== */
+
+@keyframes mobileGlobeOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mobileGlobeOrbitInner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes mobileDashFlow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+@keyframes mobileChipFloat1 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes mobileChipFloat2 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@keyframes mobileChipFloat3 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-5px) translateX(3px);
+  }
+}
+
+@keyframes mobileChipFloat4 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(6px) translateX(-3px);
+  }
+}
+
+@keyframes mobileBriefPulse {
+  0%, 100% {
+    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.35);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 16px 36px -2px rgba(59, 130, 246, 0.55), 0 0 20px 4px rgba(59, 130, 246, 0.45);
+    transform: scale(1.035);
+  }
+}
+
+.mobile-globe-orbit {
+  transform-box: view-box;
+  transform-origin: 250px 250px;
+  animation: mobileGlobeOrbit 38s linear infinite;
+  will-change: transform;
+}
+
+.mobile-globe-orbit-inner {
+  transform-box: view-box;
+  transform-origin: 250px 250px;
+  animation: mobileGlobeOrbitInner 48s linear infinite;
+  will-change: transform;
+}
+
+.mobile-dash-flow {
+  animation: mobileDashFlow 3.2s linear infinite;
+}
+
+.mobile-chip-float-1 {
+  animation: mobileChipFloat1 3.6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.mobile-chip-float-2 {
+  animation: mobileChipFloat2 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.mobile-chip-float-3 {
+  animation: mobileChipFloat3 4.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.mobile-chip-float-4 {
+  animation: mobileChipFloat4 5.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.mobile-brief-pulse {
+  animation: mobileBriefPulse 3.5s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-globe-orbit,
+  .mobile-globe-orbit-inner,
+  .mobile-dash-flow,
+  .mobile-chip-float-1,
+  .mobile-chip-float-2,
+  .mobile-chip-float-3,
+  .mobile-chip-float-4,
+  .mobile-brief-pulse {
+    animation: none !important;
+  }
+}
+
 /* Golden Ratio Design Tokens (φ)
    Used for: spacing, font-scales, and vertical rhythm.
 */
+
