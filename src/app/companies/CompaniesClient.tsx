@@ -63,7 +63,7 @@ export default function CompaniesClient() {
           <span className="inline-block text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-4 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
             {c.hero.eyebrow}
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-6 max-w-3xl sm:max-w-4xl mx-auto [text-wrap:balance]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-6 max-w-3xl sm:max-w-4xl lg:max-w-5xl mx-auto [text-wrap:balance] whitespace-pre-line">
             {c.hero.title}
           </h1>
           <div className="text-base sm:text-lg text-slate-300 max-w-2xl sm:max-w-3xl mx-auto space-y-2.5 leading-relaxed [text-wrap:pretty]">
@@ -536,10 +536,10 @@ export default function CompaniesClient() {
             <span className="text-xs font-mono font-semibold uppercase tracking-widest text-blue-400 block">
               {c.demo.eyebrow}
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight [text-wrap:balance] max-w-2xl mx-auto">
               {c.demo.title}
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed [text-wrap:pretty]">
               {c.demo.body}
             </p>
 
@@ -624,10 +624,10 @@ export default function CompaniesClient() {
           <span className="text-xs font-mono font-semibold uppercase tracking-widest text-blue-400 block">
             {c.finalCta.eyebrow}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight max-w-3xl mx-auto [text-wrap:balance] whitespace-pre-line">
             {c.finalCta.title}
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto [text-wrap:pretty]">
             {c.finalCta.subtitle}
           </p>
 

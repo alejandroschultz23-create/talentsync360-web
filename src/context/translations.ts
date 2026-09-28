@@ -2411,9 +2411,9 @@ export const translations: Record<Language, Translations> = {
     companies: {
       hero: {
         eyebrow: "RECLUTAMIENTO TÉCNICO BASADO EN EVIDENCIA",
-        title: "Descubre qué está respaldado por evidencia y qué conviene validar después.",
+        title: "Descubrí qué está respaldado por\u00A0evidencia.\nY qué conviene validar\u00A0después.",
         subtitle1: "Informes de Evidencia con revisión humana conectan la información del candidato con tu rol, visibilizan fortalezas, brechas e incógnitas, y preparan preguntas de entrevista enfocadas.",
-        subtitle2: "Trae tus candidatos o conversemos sobre una búsqueda con sourcing.",
+        subtitle2: "Traé tus candidatos o conversemos sobre una búsqueda con sourcing.",
         ctaTrial: "Solicitar una Prueba de Evidencia Gratuita",
         ctaDemo: "Agendar una Demo",
         ctaViewBrief: "Ver un Informe de Evidencia",
@@ -2453,7 +2453,7 @@ export const translations: Record<Language, Translations> = {
           },
         },
         validationPromptLabel: "PREGUNTA DE VALIDACIÓN PREPARADA PARA EL EQUIPO",
-        validationPromptText: "“Pide al candidato que trace el rollback de una transacción a través de Kafka cuando falló la conciliación contable en su migración de plataforma de 2025.”",
+        validationPromptText: "“Pedile al candidato que trace el rollback de una transacción a través de Kafka cuando falló la conciliación contable en su migración de plataforma de 2025.”",
         openModalCta: "Abrir Vista Previa Interactiva del Dossier",
       },
       howItWorks: {
@@ -2510,9 +2510,9 @@ export const translations: Record<Language, Translations> = {
       pricing: {
         eyebrow: "ESQUEMAS COMERCIALES",
         title: "Precios claros y transparentes para equipos que contratan talento técnico.",
-        subtitle: "Ya sea que tengas candidatos para evaluar o necesites una búsqueda completa basada en evidencia, elige el modelo que se adapte a tu pipeline.",
+        subtitle: "Ya sea que tengas candidatos para evaluar o necesites una búsqueda completa basada en evidencia, elegí el modelo que se adapte a tu pipeline.",
         pilot: {
-          tag: "REVISA CANDIDATOS QUE YA TIENES",
+          tag: "REVISÁ CANDIDATOS QUE YA TENÉS",
           title: "PILOTO DE EVIDENCE REVIEW",
           price: "USD 1.250",
           period: "por proceso",
@@ -2582,8 +2582,8 @@ export const translations: Record<Language, Translations> = {
       },
       demo: {
         eyebrow: "CONVERSACIÓN EXPLORATORIA",
-        title: "¿Prefieres ver el flujo de trabajo primero?",
-        body: "La demo está pensada para equipos que desean entender cómo se integra el Evidence Review en su proceso de contratación actual, ya sea que cuenten con candidatos propios o requieran sourcing.",
+        title: "¿Preferís ver primero cómo funciona el proceso?",
+        body: "Conversamos brevemente sobre tu proceso de contratación y te mostramos cómo se integra Evidence Review. Ideal tanto si ya contás con candidatos como si necesitás abrir una búsqueda.",
         cta: "Agendar una Demo",
       },
       faq: {
@@ -2601,7 +2601,7 @@ export const translations: Record<Language, Translations> = {
           },
           {
             question: "¿Qué necesito proporcionar?",
-            answer: "Para revisión de candidatos, proporciona los requisitos del rol activo, stack objetivo y la documentación del postulante (CV, enlaces, muestras de trabajo). Para sourcing, comparte tu brief técnico y criterios de contratación.",
+            answer: "Para revisión de candidatos, proporcioná los requisitos del rol activo, stack objetivo y la documentación del postulante (CV, enlaces, muestras de trabajo). Para sourcing, compartí tu brief técnico y criterios de contratación.",
           },
           {
             question: "¿Es obligatorio tener GitHub?",
@@ -2651,8 +2651,8 @@ export const translations: Record<Language, Translations> = {
       },
       finalCta: {
         eyebrow: "CONTRATACIÓN LISTA PARA DECIDIR",
-        title: "Empieza con un candidato propio o define una búsqueda con nosotros.",
-        subtitle: "Comprueba cómo el Evidence Review transforma el screening técnico antes de tu próxima entrevista de ingeniería.",
+        title: "Empezá con un candidato propio.\nO definí una búsqueda con nosotros.",
+        subtitle: "Comprobá cómo el Evidence Review mejora el screening técnico antes de la entrevista.",
         ctaTrial: "Solicitar una Prueba de Evidencia Gratuita",
         ctaDemo: "Agendar una Demo",
         footnote: "Sin tarjeta de crédito. Fecha de entrega confirmada antes de iniciar la prueba.",

@@ -89,8 +89,8 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     expect(companies).toBeDefined();
 
     // 1. Hero
-    expect(companies.hero.title).toBe(language === 'es' ? 'Descubre qué está respaldado por evidencia y qué conviene validar después.' : 'Know what the evidence supports and what to ask next.');
-    expect(companies.hero.subtitle2).toBe(language === 'es' ? 'Trae tus candidatos o conversemos sobre una búsqueda con sourcing.' : 'Bring your candidates or discuss a sourcing engagement.');
+    expect(companies.hero.title.replace(/\u00A0/g, ' ')).toBe(language === 'es' ? 'Descubrí qué está respaldado por evidencia.\nY qué conviene validar después.' : 'Know what the evidence supports and what to ask next.');
+    expect(companies.hero.subtitle2).toBe(language === 'es' ? 'Traé tus candidatos o conversemos sobre una búsqueda con sourcing.' : 'Bring your candidates or discuss a sourcing engagement.');
     expect(companies.hero.ctaTrial).toBeTruthy();
     expect(companies.hero.ctaDemo).toBeTruthy();
     expect(companies.hero.ctaViewBrief).toBeTruthy();
@@ -129,7 +129,10 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     expect(companiesJson).not.toMatch(/verified gaps?|brechas? verificadas?|\bternas?\b/i);
     expect(companiesJson).not.toMatch(/fast turnaround|rapid turnaround|quick delivery|3-day delivery|72 hours|72 horas/i);
     if (language === 'es') {
-      expect(companiesJson).not.toMatch(/\b(sabé|descubrí|traé|probalo|elegí|preferís|comprobá|proporcioná|compartí|empezá|definí)\b/i);
+      expect(companies.hero.title).toContain('Descubrí');
+      expect(companies.demo.title).toBe('¿Preferís ver primero cómo funciona el proceso?');
+      expect(companies.finalCta.title).toBe('Empezá con un candidato propio.\nO definí una búsqueda con nosotros.');
+      expect(companies.pricing.pilot.tag).toBe('REVISÁ CANDIDATOS QUE YA TENÉS');
     }
 
     // 6. Payment & Integrity
