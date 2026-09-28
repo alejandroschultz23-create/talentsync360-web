@@ -472,26 +472,19 @@ export default function CompaniesClient() {
               <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase block mb-1">
                 {c.pricing.custom.tag}
               </span>
-              <h3 className="text-lg font-bold text-white mb-2">
+              <h3 className="text-xl font-bold text-white mb-2">
                 {c.pricing.custom.title}
               </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+              <p className="text-sm text-slate-300 leading-relaxed">
                 {c.pricing.custom.copy}
               </p>
-              <div className="flex flex-wrap gap-2">
-                {c.pricing.custom.scopePoints.map((pt) => (
-                  <span key={pt} className="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-slate-400">
-                    {pt}
-                  </span>
-                ))}
-              </div>
             </div>
 
             <div className="shrink-0 w-full md:w-auto">
               <Link
                 href="/contact?intent=ongoing-partner"
                 onClick={() => trackCta(c.pricing.custom.cta, 'pricing_custom_band', '/contact?intent=ongoing-partner')}
-                className="block md:inline-block w-full text-center px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs font-mono border border-slate-700 transition-colors"
+                className="block md:inline-block w-full text-center px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm border border-slate-700 transition-colors"
               >
                 {c.pricing.custom.cta}
               </Link>

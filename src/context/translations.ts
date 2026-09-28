@@ -618,9 +618,7 @@ export interface Translations {
       custom: {
         tag: string;
         title: string;
-        price: string;
         copy: string;
-        scopePoints: string[];
         cta: string;
       };
     };
@@ -865,7 +863,7 @@ export const translations: Record<Language, Translations> = {
         phase4Tag4: "NEEDS VALIDATION",
         phase5Eyebrow: "Phase 5 · Decision Artifact Delivery",
         phase5Title: "Candidate Evidence Brief",
-        phase5Desc: "Delivered in 48-72h. Complete with strengths, validated gaps, surfaced unknowns, and exact technical interview questions.",
+        phase5Desc: "Delivered in 48-72h. Complete with strengths, gaps, surfaced unknowns, and exact technical interview questions.",
         footnote: "Every brief is calibrated against your specific role context, architecture, and team delivery constraints.",
       },
       framework: {
@@ -1542,16 +1540,8 @@ export const translations: Record<Language, Translations> = {
         },
         custom: {
           tag: "RECURRING & PARTNERS",
-          title: "ONGOING / PARTNER REQUIREMENTS",
-          price: "Custom Scope",
-          copy: "Need recurring reviews, partner delivery or a special engagement? We structure custom capacity arrangements for consultancies, agencies, and high-velocity hiring organizations.",
-          scopePoints: [
-            "Ongoing review capacity retainers",
-            "Partner delivery for agencies & consultancies",
-            "Multi-role search batches",
-            "White-label delivery discussions",
-            "Dedicated senior reviewer bandwidth",
-          ],
+          title: "Ongoing or partner requirements?",
+          copy: "Let’s scope an engagement.",
           cta: "Discuss Ongoing Needs",
         },
       },
@@ -2543,7 +2533,7 @@ export const translations: Record<Language, Translations> = {
         },
         shortlist: {
           tag: "BÚSQUEDA INTEGRAL DE PUNTA A PUNTA",
-          title: "SHORTLIST CON EVIDENCIA",
+          title: "SHORTLIST RESPALDADA POR EVIDENCIA",
           price: "USD 4.500",
           period: "búsqueda estándar aceptada",
           footnote: "Si se entregan menos candidatos que cumplan el criterio, el fee final se ajusta en consecuencia.",
@@ -2562,17 +2552,9 @@ export const translations: Record<Language, Translations> = {
         },
         custom: {
           tag: "RECURRENCIA Y PARTNERS",
-          title: "NECESIDADES CONTINUAS O PARA PARTNERS",
-          price: "A Medida",
-          copy: "¿Necesitás revisiones continuas, entrega para partners o un esquema especial? Estructuramos acuerdos de capacidad personalizada para consultoras, agencias y organizaciones con contratación continua.",
-          scopePoints: [
-            "Retainers de capacidad de revisión continua",
-            "Entrega para partners en consultoras y agencias",
-            "Lotes de búsqueda para múltiples roles",
-            "Esquemas de entrega white-label conversables",
-            "Ancho de banda dedicado con revisores senior",
-          ],
-          cta: "Conversar Necesidades Continuas",
+          title: "¿Requerimientos continuos o para partners?",
+          copy: "Definamos un alcance.",
+          cta: "Conversar sobre Necesidades Continuas",
         },
       },
       payment: {
@@ -2643,7 +2625,7 @@ export const translations: Record<Language, Translations> = {
           },
           {
             question: "¿Qué sucede si se encuentran menos de tres candidatos calificados?",
-            answer: "En una búsqueda de Shortlist con Evidencia, nunca presentamos candidatos que no cumplan el estándar para llenar una cuota. Si se entregan menos finalistas calificados, el fee final se ajusta proporcionalmente.",
+            answer: "En una búsqueda de Shortlist respaldada por evidencia, nunca presentamos candidatos que no cumplan el estándar para llenar una cuota. Si se entregan menos finalistas calificados, el fee final se ajusta proporcionalmente.",
           },
           {
             question: "¿La contratación está garantizada?",

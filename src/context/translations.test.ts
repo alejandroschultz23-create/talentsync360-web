@@ -106,6 +106,8 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     expect(companies.howItWorks.steps).toHaveLength(5);
 
     // 4. Free Evidence Trial
+    expect(companies.freeTrial.title).toBe(language === 'es' ? 'Probalo con un candidato real.' : 'Try it with one real candidate.');
+    expect(companies.freeTrial.title).not.toMatch(/audit|audite/i);
     expect(companies.freeTrial.price).toBe(language === 'es' ? 'Gratis' : 'Free');
     expect(companies.freeTrial.deliveryWording).toContain(language === 'es' ? 'Confirmamos tu fecha de entrega antes de iniciar la prueba.' : 'We confirm your delivery date before the trial begins.');
     expect(companies.freeTrial.deliveryWording).not.toMatch(/3 business days|3 days|3 días/i);
@@ -114,9 +116,16 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     // 5. Pricing (Pilot, Shortlist, Custom)
     expect(companies.pricing.pilot.price).toBe(language === 'es' ? 'USD 1.250' : 'USD 1,250');
     expect(companies.pricing.shortlist.price).toBe(language === 'es' ? 'USD 4.500' : 'USD 4,500');
+    expect(companies.pricing.shortlist.title).toBe(language === 'es' ? 'SHORTLIST RESPALDADA POR EVIDENCIA' : 'EVIDENCE-BACKED SHORTLIST');
+    expect(companies.pricing.shortlist.title).not.toMatch(/terna/i);
     expect(companies.pricing.shortlist.footnote).toContain(language === 'es' ? 'fee final se ajusta' : 'final fee adjusts');
-    expect(companies.pricing.custom.title).toBeTruthy();
-    expect(companies.pricing.custom.cta).toBeTruthy();
+    expect(companies.pricing.custom.title).toBe(language === 'es' ? '¿Requerimientos continuos o para partners?' : 'Ongoing or partner requirements?');
+    expect(companies.pricing.custom.copy).toBe(language === 'es' ? 'Definamos un alcance.' : 'Let’s scope an engagement.');
+    expect(companies.pricing.custom.cta).toBe(language === 'es' ? 'Conversar sobre Necesidades Continuas' : 'Discuss Ongoing Needs');
+
+    // Canonical language check: no "verified gap" or "terna" in companies
+    const companiesJson = JSON.stringify(companies);
+    expect(companiesJson).not.toMatch(/verified gaps?|brechas? verificadas?|\bternas?\b/i);
 
     // 6. Payment & Integrity
     expect(companies.payment.copy).toContain('USD');
