@@ -1478,9 +1478,9 @@ export const translations: Record<Language, Translations> = {
       },
       freeTrial: {
         eyebrow: "NO-RISK EVALUATION",
-        title: "Try it with one real candidate.",
-        price: "Free",
-        coreSummary: "One role. One candidate you provide. One complete, human-reviewed Evidence Brief.",
+        title: "Try TalentSync360 with one real candidate.",
+        price: "Zero Cost",
+        coreSummary: "One role. One candidate. One complete, human-reviewed Evidence Brief to evaluate how we work.",
         deliveryWording: "We confirm your delivery date before the trial begins.",
         supportLine: "No card required. Subject to fit and reviewer availability.",
         scopePoints: [
@@ -2411,9 +2411,9 @@ export const translations: Record<Language, Translations> = {
     companies: {
       hero: {
         eyebrow: "RECLUTAMIENTO TÉCNICO BASADO EN EVIDENCIA",
-        title: "Sabé qué respalda la evidencia y qué preguntar a continuación.",
+        title: "Descubre qué está respaldado por evidencia y qué conviene validar después.",
         subtitle1: "Informes de Evidencia con revisión humana conectan la información del candidato con tu rol, visibilizan fortalezas, brechas e incógnitas, y preparan preguntas de entrevista enfocadas.",
-        subtitle2: "Traé tus candidatos o conversemos una búsqueda con sourcing.",
+        subtitle2: "Trae tus candidatos o conversemos sobre una búsqueda con sourcing.",
         ctaTrial: "Solicitar una Prueba de Evidencia Gratuita",
         ctaDemo: "Agendar una Demo",
         ctaViewBrief: "Ver un Informe de Evidencia",
@@ -2453,7 +2453,7 @@ export const translations: Record<Language, Translations> = {
           },
         },
         validationPromptLabel: "PREGUNTA DE VALIDACIÓN PREPARADA PARA EL EQUIPO",
-        validationPromptText: "“Pedile al candidato que trace el rollback de una transacción a través de Kafka cuando falló la conciliación contable en su migración de plataforma de 2025.”",
+        validationPromptText: "“Pide al candidato que trace el rollback de una transacción a través de Kafka cuando falló la conciliación contable en su migración de plataforma de 2025.”",
         openModalCta: "Abrir Vista Previa Interactiva del Dossier",
       },
       howItWorks: {
@@ -2490,16 +2490,16 @@ export const translations: Record<Language, Translations> = {
       },
       freeTrial: {
         eyebrow: "EVALUACIÓN SIN RIESGO",
-        title: "Probalo con un candidato real.",
-        price: "Gratis",
-        coreSummary: "Un rol. Un candidato que vos proporcionás. Un Informe de Evidencia completo y revisado por humanos.",
+        title: "Prueba TalentSync360 con un candidato real.",
+        price: "Sin costo",
+        coreSummary: "Un rol. Un candidato. Un Evidence Brief completo y revisado por humanos para que evalúes cómo trabajamos.",
         deliveryWording: "Confirmamos tu fecha de entrega antes de iniciar la prueba.",
         supportLine: "Sin tarjeta de crédito. Sujeto a adecuación técnica y disponibilidad de revisores.",
         scopePoints: [
           "1 definición de rol técnico activo",
           "1 candidato provisto por tu equipo",
-          "1 Informe de Evidencia completo con revisión humana",
-          "Fortalezas, brechas e incógnitas visibilizadas",
+          "1 Evidence Brief completo con revisión humana",
+          "Contexto de rol, fortalezas, brechas e incógnitas visibilizadas",
           "Preguntas de validación específicas para la entrevista",
           "Dossier exportable a PDF permitido",
           "No incluye sourcing",
@@ -2510,9 +2510,9 @@ export const translations: Record<Language, Translations> = {
       pricing: {
         eyebrow: "ESQUEMAS COMERCIALES",
         title: "Precios claros y transparentes para equipos que contratan talento técnico.",
-        subtitle: "Ya sea que tengas candidatos para evaluar o necesites una búsqueda completa basada en evidencia, elegí el modelo que se adapte a tu pipeline.",
+        subtitle: "Ya sea que tengas candidatos para evaluar o necesites una búsqueda completa basada en evidencia, elige el modelo que se adapte a tu pipeline.",
         pilot: {
-          tag: "REVISÁ CANDIDATOS QUE YA TENÉS",
+          tag: "REVISA CANDIDATOS QUE YA TIENES",
           title: "PILOTO DE EVIDENCE REVIEW",
           price: "USD 1.250",
           period: "por proceso",
@@ -2582,7 +2582,7 @@ export const translations: Record<Language, Translations> = {
       },
       demo: {
         eyebrow: "CONVERSACIÓN EXPLORATORIA",
-        title: "¿Preferís ver el flujo de trabajo primero?",
+        title: "¿Prefieres ver el flujo de trabajo primero?",
         body: "La demo está pensada para equipos que desean entender cómo se integra el Evidence Review en su proceso de contratación actual, ya sea que cuenten con candidatos propios o requieran sourcing.",
         cta: "Agendar una Demo",
       },
@@ -2601,7 +2601,7 @@ export const translations: Record<Language, Translations> = {
           },
           {
             question: "¿Qué necesito proporcionar?",
-            answer: "Para revisión de candidatos, proporcioná los requisitos del rol activo, stack objetivo y la documentación del postulante (CV, enlaces, muestras de trabajo). Para sourcing, compartí tu brief técnico y criterios de contratación.",
+            answer: "Para revisión de candidatos, proporciona los requisitos del rol activo, stack objetivo y la documentación del postulante (CV, enlaces, muestras de trabajo). Para sourcing, comparte tu brief técnico y criterios de contratación.",
           },
           {
             question: "¿Es obligatorio tener GitHub?",
@@ -2651,8 +2651,8 @@ export const translations: Record<Language, Translations> = {
       },
       finalCta: {
         eyebrow: "CONTRATACIÓN LISTA PARA DECIDIR",
-        title: "Empezá con un candidato propio o definí una búsqueda con nosotros.",
-        subtitle: "Comprobá cómo el Evidence Review transforma el screening técnico antes de tu próxima entrevista de ingeniería.",
+        title: "Empieza con un candidato propio o define una búsqueda con nosotros.",
+        subtitle: "Comprueba cómo el Evidence Review transforma el screening técnico antes de tu próxima entrevista de ingeniería.",
         ctaTrial: "Solicitar una Prueba de Evidencia Gratuita",
         ctaDemo: "Agendar una Demo",
         footnote: "Sin tarjeta de crédito. Fecha de entrega confirmada antes de iniciar la prueba.",

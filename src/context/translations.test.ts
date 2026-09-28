@@ -89,7 +89,8 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     expect(companies).toBeDefined();
 
     // 1. Hero
-    expect(companies.hero.title).toBeTruthy();
+    expect(companies.hero.title).toBe(language === 'es' ? 'Descubre qué está respaldado por evidencia y qué conviene validar después.' : 'Know what the evidence supports and what to ask next.');
+    expect(companies.hero.subtitle2).toBe(language === 'es' ? 'Trae tus candidatos o conversemos sobre una búsqueda con sourcing.' : 'Bring your candidates or discuss a sourcing engagement.');
     expect(companies.hero.ctaTrial).toBeTruthy();
     expect(companies.hero.ctaDemo).toBeTruthy();
     expect(companies.hero.ctaViewBrief).toBeTruthy();
@@ -106,9 +107,9 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     expect(companies.howItWorks.steps).toHaveLength(5);
 
     // 4. Free Evidence Trial
-    expect(companies.freeTrial.title).toBe(language === 'es' ? 'Probalo con un candidato real.' : 'Try it with one real candidate.');
+    expect(companies.freeTrial.title).toBe(language === 'es' ? 'Prueba TalentSync360 con un candidato real.' : 'Try TalentSync360 with one real candidate.');
     expect(companies.freeTrial.title).not.toMatch(/audit|audite/i);
-    expect(companies.freeTrial.price).toBe(language === 'es' ? 'Gratis' : 'Free');
+    expect(companies.freeTrial.price).toBe(language === 'es' ? 'Sin costo' : 'Zero Cost');
     expect(companies.freeTrial.deliveryWording).toContain(language === 'es' ? 'Confirmamos tu fecha de entrega antes de iniciar la prueba.' : 'We confirm your delivery date before the trial begins.');
     expect(companies.freeTrial.deliveryWording).not.toMatch(/3 business days|3 days|3 días/i);
     expect(companies.freeTrial.supportLine).toBeTruthy();
@@ -126,6 +127,9 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     // Canonical language check: no "verified gap" or "terna" in companies
     const companiesJson = JSON.stringify(companies);
     expect(companiesJson).not.toMatch(/verified gaps?|brechas? verificadas?|\bternas?\b/i);
+    if (language === 'es') {
+      expect(companiesJson).not.toMatch(/\b(sabé|descubrí|traé|probalo|elegí|preferís|comprobá|proporcioná|compartí|empezá|definí)\b/i);
+    }
 
     // 6. Payment & Integrity
     expect(companies.payment.copy).toContain('USD');

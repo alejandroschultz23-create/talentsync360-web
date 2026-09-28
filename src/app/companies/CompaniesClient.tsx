@@ -63,10 +63,10 @@ export default function CompaniesClient() {
           <span className="inline-block text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-4 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
             {c.hero.eyebrow}
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.15] mb-6 max-w-4xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-6 max-w-3xl sm:max-w-4xl mx-auto [text-wrap:balance]">
             {c.hero.title}
           </h1>
-          <div className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto space-y-2 leading-relaxed">
+          <div className="text-base sm:text-lg text-slate-300 max-w-2xl sm:max-w-3xl mx-auto space-y-2.5 leading-relaxed [text-wrap:pretty]">
             <p>{c.hero.subtitle1}</p>
             <p className="text-slate-400 font-medium">{c.hero.subtitle2}</p>
           </div>
@@ -296,27 +296,28 @@ export default function CompaniesClient() {
             {/* Ambient Radial Highlight */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-8 pb-8 border-b border-slate-800">
-              <div>
-                <span className="inline-block text-xs font-mono font-bold uppercase tracking-widest text-emerald-400 mb-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            {/* Unified Header & Context */}
+            <div className="relative z-10 mb-8 pb-8 border-b border-slate-800">
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <span className="inline-block text-xs font-mono font-bold uppercase tracking-widest text-emerald-400 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                   {c.freeTrial.eyebrow}
                 </span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-2">
-                  {c.freeTrial.title}
-                </h2>
-                <p className="text-base text-slate-300 font-medium">
-                  {c.freeTrial.coreSummary}
-                </p>
-              </div>
-
-              <div className="text-left md:text-right shrink-0">
-                <span className="block text-4xl sm:text-5xl font-mono font-bold text-white">
+                <span className="inline-flex items-center text-xs font-mono font-bold uppercase tracking-wider text-emerald-300 px-3 py-1 rounded-full bg-emerald-950/70 border border-emerald-500/30 shadow-sm shadow-emerald-500/10">
                   {c.freeTrial.price}
                 </span>
-                <span className="text-xs text-slate-400 font-mono mt-1 block">
-                  {c.freeTrial.supportLine}
-                </span>
               </div>
+
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-snug mb-3 max-w-3xl [text-wrap:balance]">
+                {c.freeTrial.title}
+              </h2>
+
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-3xl mb-3 [text-wrap:pretty]">
+                {c.freeTrial.coreSummary}
+              </p>
+
+              <p className="text-xs text-slate-400 font-mono">
+                {c.freeTrial.supportLine}
+              </p>
             </div>
 
             {/* Delivery Commitment Notice */}
