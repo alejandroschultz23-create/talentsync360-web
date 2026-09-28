@@ -2,16 +2,18 @@
 
 import React, { useState } from 'react';
 import { Clock, Shield, Check, Cpu } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function RoleContextPreview() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'sourced' | 'shortlist'>('sourced');
 
   return (
     <div className="w-full rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-100 overflow-hidden text-slate-800">
       {/* Top Banner / Disclaimer */}
       <div className="px-4 py-2 bg-slate-50 border-b border-slate-200 flex items-center justify-between text-[11px] font-mono text-slate-500">
-        <span>[ PRODUCT INTERFACE PREVIEW · NOT AN ACTIVE FORM ]</span>
-        <span className="hidden sm:inline text-blue-600 font-semibold">Step 1: Role Context Definition</span>
+        <span>{t.homepage.roleContextPreview.topNotice}</span>
+        <span className="hidden sm:inline text-blue-600 font-semibold">{t.homepage.roleContextPreview.stepLabel}</span>
       </div>
 
       {/* Simulator Switcher Tabs */}
@@ -24,7 +26,7 @@ export default function RoleContextPreview() {
               : 'border-transparent text-slate-500 hover:text-slate-700'
           }`}
         >
-          Validate Sourced Talent
+          {t.homepage.roleContextPreview.tabSourced}
         </button>
         <button
           onClick={() => setActiveTab('shortlist')}
@@ -34,7 +36,7 @@ export default function RoleContextPreview() {
               : 'border-transparent text-slate-500 hover:text-slate-700'
           }`}
         >
-          Request Evidence Shortlist
+          {t.homepage.roleContextPreview.tabShortlist}
         </button>
       </div>
 
@@ -43,14 +45,14 @@ export default function RoleContextPreview() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Field: Role */}
           <div className="p-3 rounded-lg border border-slate-300/80 bg-slate-50">
-            <label className="block text-[11px] font-mono uppercase text-slate-500 font-semibold">Role Title</label>
-            <span className="text-sm font-bold text-slate-950 block mt-0.5">Staff Backend Engineer</span>
+            <label className="block text-[11px] font-mono uppercase text-slate-500 font-semibold">{t.homepage.roleContextPreview.labelRoleTitle}</label>
+            <span className="text-sm font-bold text-slate-950 block mt-0.5">{t.homepage.roleContextPreview.valRoleTitle}</span>
           </div>
 
           {/* Field: Seniority */}
           <div className="p-3 rounded-lg border border-slate-300/80 bg-slate-50">
-            <label className="block text-[11px] font-mono uppercase text-slate-500 font-semibold">Seniority Level</label>
-            <span className="text-sm font-bold text-slate-950 block mt-0.5">Senior / Staff (6+ Years Prod)</span>
+            <label className="block text-[11px] font-mono uppercase text-slate-500 font-semibold">{t.homepage.roleContextPreview.labelSeniority}</label>
+            <span className="text-sm font-bold text-slate-950 block mt-0.5">{t.homepage.roleContextPreview.valSeniority}</span>
           </div>
         </div>
 
@@ -58,7 +60,7 @@ export default function RoleContextPreview() {
         <div className="p-4 rounded-xl border border-slate-300/80 bg-slate-50/60 space-y-2">
           <label className="block text-[11px] font-mono uppercase text-slate-600 font-semibold flex items-center gap-1.5">
             <Cpu className="w-3.5 h-3.5 text-blue-600" />
-            <span>Target Tech Stack Requirements</span>
+            <span>{t.homepage.roleContextPreview.labelStack}</span>
           </label>
           <div className="flex flex-wrap gap-2 pt-1">
             <span className="px-2.5 py-1 rounded-md bg-blue-50 border border-blue-200 text-blue-700 font-mono text-xs font-semibold">
@@ -80,11 +82,11 @@ export default function RoleContextPreview() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
           <div className="flex items-center gap-2 p-2.5 rounded-lg border border-slate-300/80 bg-white">
             <Clock className="w-4 h-4 text-blue-600 shrink-0" />
-            <span className="text-slate-700">Timezone: <strong>UTC-3 to UTC-5</strong> (4h+ overlap)</span>
+            <span className="text-slate-700">{t.homepage.roleContextPreview.timezone}</span>
           </div>
           <div className="flex items-center gap-2 p-2.5 rounded-lg border border-slate-300/80 bg-white">
             <Shield className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span className="text-slate-700">Screening: <strong>Human Reviewed</strong></span>
+            <span className="text-slate-700">{t.homepage.roleContextPreview.screening}</span>
           </div>
         </div>
 
@@ -92,12 +94,12 @@ export default function RoleContextPreview() {
         <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-xs">
           <span className="text-slate-600 font-medium">
             {activeTab === 'sourced'
-              ? 'Benchmarking your sourced candidates against this criteria'
-              : 'Targeting 3 to 5 human-reviewed LATAM finalists'}
+              ? t.homepage.roleContextPreview.teaserSourced
+              : t.homepage.roleContextPreview.teaserShortlist}
           </span>
           <span className="font-semibold text-blue-600 flex items-center gap-1">
             <Check className="w-3.5 h-3.5" />
-            Ready to Calibrate
+            {t.homepage.roleContextPreview.readyStatus}
           </span>
         </div>
       </div>

@@ -111,7 +111,7 @@ export default function CompaniesClient() {
                 {tiers.map((tier) => (
                     <div key={tier.name} className={`relative p-8 bg-slate-950 border rounded-xl transition-all flex flex-col justify-between ${tier.popular ? 'border-blue-500/50 shadow-[0_0_30px_rgba(37,99,235,0.15)]' : 'border-slate-800 hover:border-slate-700'}`}>
                         {tier.popular && (
-                          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-blue-600 text-white text-xs font-bold uppercase tracking-wider rounded-full">Most Popular</div>
+                          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-blue-600 text-white text-xs font-bold uppercase tracking-wider rounded-full">{isEs ? 'Más elegido' : 'Most Popular'}</div>
                         )}
                         <div>
                           <div className="text-center mb-6">
@@ -154,7 +154,7 @@ export default function CompaniesClient() {
                         <h3 className="text-xl font-bold text-slate-50 mb-3 group-hover:text-blue-400 transition-colors">{role.title}</h3>
                         <p className="text-sm text-slate-400 mb-6">{role.desc}</p>
                         <div className="pt-4 border-t border-white/5 flex flex-col space-y-2">
-                            <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Primary KPIs:</span>
+                            <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">{isEs ? 'KPIs principales:' : 'Primary KPIs:'}</span>
                             <p className="text-xs text-blue-500 font-mono italic">{role.kpis}</p>
                         </div>
                     </div>

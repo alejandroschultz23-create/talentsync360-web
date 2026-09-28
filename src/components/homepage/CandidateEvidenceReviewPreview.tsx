@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import { FileCheck, Edit3, Shield, Eye, Lock, CheckCircle2, GitBranch } from 'lucide-react';
 import EvidenceStateBadge from './EvidenceStateBadge';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function CandidateEvidenceReviewPreview() {
+  const { t } = useLanguage();
   const [optInActive, setOptInActive] = useState<boolean>(false);
   const [clarificationOpen, setClarificationOpen] = useState<boolean>(false);
 
@@ -15,11 +17,11 @@ export default function CandidateEvidenceReviewPreview() {
         <div className="flex items-center gap-2">
           <FileCheck className="w-4 h-4 text-blue-600" />
           <span className="font-mono font-semibold text-slate-700 uppercase tracking-wider text-[11px]">
-            Professional Evidence Profile (Draft)
+            {t.homepage.candidateReviewPreview.title}
           </span>
         </div>
         <span className="px-2.5 py-0.5 rounded bg-blue-50 text-blue-700 font-mono text-[10px] font-medium border border-blue-200">
-          Private to Candidate
+          {t.homepage.candidateReviewPreview.badge}
         </span>
       </div>
 
@@ -27,24 +29,24 @@ export default function CandidateEvidenceReviewPreview() {
         {/* Source-Neutral Evidence Input Inventory */}
         <div className="space-y-2.5">
           <span className="text-[11px] font-mono uppercase text-slate-500 font-semibold block">
-            Submitted Professional Evidence Sources
+            {t.homepage.candidateReviewPreview.sourcesTitle}
           </span>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
             <div className="p-2.5 rounded-lg border border-slate-300/80 bg-slate-50 flex items-center gap-2 text-slate-800">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-              <span>Project Architecture & Data Flow Overview</span>
+              <span>{t.homepage.candidateReviewPreview.src1}</span>
             </div>
             <div className="p-2.5 rounded-lg border border-slate-300/80 bg-slate-50 flex items-center gap-2 text-slate-800">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-              <span>Engineering Production Responsibilities</span>
+              <span>{t.homepage.candidateReviewPreview.src2}</span>
             </div>
             <div className="p-2.5 rounded-lg border border-slate-300/80 bg-slate-50 flex items-center gap-2 text-slate-800">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-              <span>High-Load Concurrency Case Writeup</span>
+              <span>{t.homepage.candidateReviewPreview.src3}</span>
             </div>
             <div className="p-2.5 rounded-lg border border-slate-300/80 bg-slate-50 flex items-center gap-2 text-slate-800">
               <GitBranch className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-              <span>Public Repository (Optional / Attached)</span>
+              <span>{t.homepage.candidateReviewPreview.src4}</span>
             </div>
           </div>
         </div>
@@ -52,25 +54,25 @@ export default function CandidateEvidenceReviewPreview() {
         {/* Structured Interpretation Preview */}
         <div className="p-4 rounded-xl border border-slate-300/80 bg-slate-50/60 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-900">Demonstrated Engineering Signal</span>
+            <span className="text-xs font-bold text-slate-900">{t.homepage.candidateReviewPreview.demonstratedSignal}</span>
             <EvidenceStateBadge state="SUPPORTED" variant="light" size="sm" />
           </div>
           <p className="text-xs text-slate-700 leading-relaxed font-normal">
-            &ldquo;Candidate demonstrably owned the event-streaming consumer pipeline architecture in Go, handling sustained traffic of 12,000 req/sec with documented zero-loss failover.&rdquo;
+            {t.homepage.candidateReviewPreview.signalQuote}
           </p>
 
           {/* Interactive Candidate Clarification Drawer */}
           {clarificationOpen ? (
             <div className="p-3 rounded-lg border border-blue-200 bg-blue-50/50 space-y-2 transition-all">
-              <span className="text-[11px] font-semibold text-blue-900 block">Candidate Context Note Added:</span>
+              <span className="text-[11px] font-semibold text-blue-900 block">{t.homepage.candidateReviewPreview.clarificationHeader}</span>
               <p className="text-xs text-blue-800 italic">
-                &ldquo;Added clarification: The cluster failover was verified under staging load tests; production incident logs are retained by previous employer under NDA.&rdquo;
+                {t.homepage.candidateReviewPreview.clarificationQuote}
               </p>
               <button
                 onClick={() => setClarificationOpen(false)}
                 className="text-[10px] text-blue-600 font-semibold underline hover:text-blue-800"
               >
-                Hide note
+                {t.homepage.candidateReviewPreview.hideNote}
               </button>
             </div>
           ) : (
@@ -79,7 +81,7 @@ export default function CandidateEvidenceReviewPreview() {
               className="text-xs text-blue-600 font-medium hover:text-blue-700 flex items-center gap-1.5 transition-colors"
             >
               <Edit3 className="w-3.5 h-3.5" />
-              <span>Add Candidate Context / Clarification</span>
+              <span>{t.homepage.candidateReviewPreview.addClarification}</span>
             </button>
           )}
         </div>
@@ -89,12 +91,12 @@ export default function CandidateEvidenceReviewPreview() {
           <div className="space-y-0.5">
             <span className="font-semibold text-slate-800 flex items-center gap-1.5">
               <Shield className="w-4 h-4 text-blue-600" />
-              <span>Talent Network Visibility</span>
+              <span>{t.homepage.candidateReviewPreview.networkVisibility}</span>
             </span>
             <p className="text-slate-500 text-[11px]">
               {optInActive
-                ? 'Profile active for matching roles. Zero public indexation.'
-                : 'Private review mode. Profile is not visible to hiring teams.'}
+                ? t.homepage.candidateReviewPreview.optInDescriptionActive
+                : t.homepage.candidateReviewPreview.optInDescriptionPrivate}
             </p>
           </div>
 
@@ -109,12 +111,12 @@ export default function CandidateEvidenceReviewPreview() {
             {optInActive ? (
               <>
                 <Eye className="w-3.5 h-3.5" />
-                <span>Opted-In to Matches</span>
+                <span>{t.homepage.candidateReviewPreview.optInToggleActive}</span>
               </>
             ) : (
               <>
                 <Lock className="w-3.5 h-3.5" />
-                <span>Private Review Only (Toggle)</span>
+                <span>{t.homepage.candidateReviewPreview.optInTogglePrivate}</span>
               </>
             )}
           </button>

@@ -5,14 +5,17 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import PartnerPresentationToggle from './PartnerPresentationToggle';
 import { pushGTMEvent } from '@/lib/analytics';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Section08PartnerDelivery() {
+  const { t, lang } = useLanguage();
+
   const handlePartnerDelivery = () => {
     pushGTMEvent('click_contact', {
       cta_label: 'Explore Partner Delivery',
       cta_location: 'partner_delivery',
       destination: '/contact?intent=partner-delivery',
-      language: 'en',
+      language: lang,
       page_path: '/',
     });
   };
@@ -26,13 +29,13 @@ export default function Section08PartnerDelivery() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-blue-700 font-mono text-[11px] font-semibold tracking-wider uppercase">
-            PARTNER & CONSULTANCY DELIVERY
+            {t.homepage.partnerDelivery.eyebrow}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
-            Built for recruiting partners too.
+            {t.homepage.partnerDelivery.title}
           </h2>
           <p className="text-base text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto">
-            Need to present candidates under your own client relationship? TalentSync360 supports authorized white-label delivery for recruiting agencies, consultancies and staffing partners.
+            {t.homepage.partnerDelivery.subtitle}
           </p>
         </div>
 
@@ -42,9 +45,9 @@ export default function Section08PartnerDelivery() {
             <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100/80 flex items-center justify-center text-blue-600">
               <CheckCircle2 className="w-4 h-4" />
             </div>
-            <h4 className="text-sm font-bold text-slate-950">Authorized White-Label Briefs</h4>
+            <h4 className="text-sm font-bold text-slate-950">{t.homepage.partnerDelivery.point1Title}</h4>
             <p className="text-xs text-slate-600 leading-relaxed font-normal">
-              Present candidate briefs under your brand once candidate data-sharing consent is established.
+              {t.homepage.partnerDelivery.point1Desc}
             </p>
           </div>
 
@@ -52,9 +55,9 @@ export default function Section08PartnerDelivery() {
             <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100/80 flex items-center justify-center text-blue-600">
               <CheckCircle2 className="w-4 h-4" />
             </div>
-            <h4 className="text-sm font-bold text-slate-950">Evidence-Backed Submissions</h4>
+            <h4 className="text-sm font-bold text-slate-950">{t.homepage.partnerDelivery.point2Title}</h4>
             <p className="text-xs text-slate-600 leading-relaxed font-normal">
-              Back your client submissions with structured technical evidence that technical buyers immediately respect.
+              {t.homepage.partnerDelivery.point2Desc}
             </p>
           </div>
 
@@ -62,9 +65,9 @@ export default function Section08PartnerDelivery() {
             <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100/80 flex items-center justify-center text-blue-600">
               <CheckCircle2 className="w-4 h-4" />
             </div>
-            <h4 className="text-sm font-bold text-slate-950">Focused Technical Depth</h4>
+            <h4 className="text-sm font-bold text-slate-950">{t.homepage.partnerDelivery.point3Title}</h4>
             <p className="text-xs text-slate-600 leading-relaxed font-normal">
-              Deliver consistent technical depth without consuming your internal senior engineering capacity.
+              {t.homepage.partnerDelivery.point3Desc}
             </p>
           </div>
         </div>
@@ -81,7 +84,7 @@ export default function Section08PartnerDelivery() {
             onClick={handlePartnerDelivery}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold active:scale-98 transition-all"
           >
-            <span>Explore Partner Delivery</span>
+            <span>{t.homepage.partnerDelivery.ctaPartner}</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

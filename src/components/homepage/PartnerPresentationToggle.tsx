@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import { Check } from 'lucide-react';
 import EvidenceStateBadge from './EvidenceStateBadge';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function PartnerPresentationToggle() {
+  const { t, lang } = useLanguage();
   const [partnerView, setPartnerView] = useState<boolean>(false);
 
   return (
@@ -13,10 +15,10 @@ export default function PartnerPresentationToggle() {
       <div className="p-4 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
           <span className="text-xs font-mono font-semibold uppercase text-slate-500 block">
-            Presentation Layer Switcher
+            {t.homepage.partnerToggle.topLabel}
           </span>
           <span className="text-[11px] text-amber-700 font-mono font-medium">
-            [ ILLUSTRATIVE EXAMPLE · FICTIONAL PARTNER ]
+            {t.homepage.partnerToggle.disclaimer}
           </span>
         </div>
 
@@ -30,7 +32,7 @@ export default function PartnerPresentationToggle() {
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            TalentSync360 Standard
+            {t.homepage.partnerToggle.tabStandard}
           </button>
           <button
             onClick={() => setPartnerView(true)}
@@ -40,7 +42,7 @@ export default function PartnerPresentationToggle() {
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            Authorized Partner View
+            {t.homepage.partnerToggle.tabPartner}
           </button>
         </div>
       </div>
@@ -59,7 +61,7 @@ export default function PartnerPresentationToggle() {
                   Nexus Partners Consulting
                 </span>
                 <span className="text-[11px] font-mono text-emerald-600 font-medium">
-                  Verified Candidate Technical File (Authorized White-Label)
+                  {t.homepage.partnerToggle.partnerSubtitle}
                 </span>
               </div>
             </div>
@@ -74,14 +76,14 @@ export default function PartnerPresentationToggle() {
                   TalentSync360 Verified Brief
                 </span>
                 <span className="text-[11px] font-mono text-blue-600 font-medium">
-                  Direct Evidence Assessment Workspace
+                  {t.homepage.partnerToggle.standardSubtitle}
                 </span>
               </div>
             </div>
           )}
 
           <div className="text-left sm:text-right">
-            <span className="text-[11px] font-mono uppercase text-slate-400 block">Candidate Reference</span>
+            <span className="text-[11px] font-mono uppercase text-slate-400 block">{t.homepage.partnerToggle.candidateRefLabel}</span>
             <span className="text-xs font-mono font-semibold text-slate-700">AR-8821 · LATAM (UTC-3)</span>
           </div>
         </div>
@@ -90,21 +92,21 @@ export default function PartnerPresentationToggle() {
       {/* Constant Underlying Candidate Evidence (100% Unchanged) */}
       <div className="p-6 space-y-4 bg-slate-50/30">
         <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-200/80">
-          <span className="font-semibold text-slate-700">Evaluated Role: Senior Backend Engineer</span>
+          <span className="font-semibold text-slate-700">{t.homepage.partnerToggle.evaluatedRole}</span>
           <EvidenceStateBadge state="SUPPORTED" variant="light" size="sm" />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
           <div className="p-3 rounded-lg border border-slate-200 bg-white">
-            <span className="text-[10px] font-mono uppercase text-slate-400 block mb-1">Observable Strength</span>
+            <span className="text-[10px] font-mono uppercase text-slate-400 block mb-1">{t.homepage.partnerToggle.observableStrengthLabel}</span>
             <p className="text-slate-600">
-              High-concurrency Node.js event architecture with PostgreSQL query tuning reducing read latency by 40%.
+              {t.homepage.partnerToggle.observableStrengthDesc}
             </p>
           </div>
           <div className="p-3 rounded-lg border border-slate-200 bg-white">
-            <span className="text-[10px] font-mono uppercase text-slate-400 block mb-1">Surface Unknown</span>
+            <span className="text-[10px] font-mono uppercase text-slate-400 block mb-1">{t.homepage.partnerToggle.surfaceUnknownLabel}</span>
             <p className="text-slate-600">
-              No direct production samples for AWS Serverless; primary cloud experience is ECS/Docker.
+              {t.homepage.partnerToggle.surfaceUnknownDesc}
             </p>
           </div>
         </div>
@@ -112,7 +114,11 @@ export default function PartnerPresentationToggle() {
         <div className="p-3 rounded-lg bg-blue-50/60 border border-blue-200 text-xs text-blue-900 flex items-center gap-2">
           <Check className="w-4 h-4 text-blue-600 shrink-0" />
           <span>
-            Candidate evidence, evaluations, and interview questions remain <strong>100% identical</strong> under both views.
+            {lang === 'es' ? (
+              <>La evidencia, evaluaciones y preguntas del candidato se mantienen <strong>100% idénticas</strong> en ambas vistas.</>
+            ) : (
+              <>Candidate evidence, evaluations, and interview questions remain <strong>100% identical</strong> under both views.</>
+            )}
           </span>
         </div>
       </div>

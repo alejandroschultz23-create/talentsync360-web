@@ -1,5 +1,276 @@
 export type Language = 'en' | 'es';
 
+export interface HomepageTranslations {
+  hero: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    supportLine: string;
+    ctaBrief: string;
+    ctaValidateRole: string;
+    candidateEyebrow: string;
+    candidateAction: string;
+  };
+  problem: {
+    eyebrow: string;
+    title: string;
+    pillar1Title: string;
+    pillar1Desc: string;
+    pillar1Tag: string;
+    pillar2Title: string;
+    pillar2Desc: string;
+    pillar2Tag: string;
+    pillar3Title: string;
+    pillar3Desc: string;
+    pillar3Tag: string;
+    bannerText: string;
+    bannerSubtext: string;
+  };
+  transformation: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    phase1Eyebrow: string;
+    phase1Title: string;
+    phase2Eyebrow: string;
+    phase2Title: string;
+    phase2Tag1: string;
+    phase2Tag2: string;
+    phase2Tag3: string;
+    phase3Eyebrow: string;
+    phase3Title: string;
+    phase3Badge: string;
+    phase4Eyebrow: string;
+    phase4Title: string;
+    phase4Tag1: string;
+    phase4Tag2: string;
+    phase4Tag3: string;
+    phase4Tag4: string;
+    phase5Eyebrow: string;
+    phase5Title: string;
+    phase5Desc: string;
+    footnote: string;
+  };
+  framework: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    step1Tag: string;
+    step1Title: string;
+    step1Desc: string;
+    step1Footer: string;
+    step2Tag: string;
+    step2Title: string;
+    step2Desc: string;
+    step2Footer: string;
+    step3Tag: string;
+    step3Title: string;
+    step3Desc: string;
+    step3Footer: string;
+    methodologyLink: string;
+  };
+  hiringTeams: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    point1Title: string;
+    point1Desc: string;
+    point2Title: string;
+    point2Desc: string;
+    point3Title: string;
+    point3Desc: string;
+    point4Title: string;
+    point4Desc: string;
+    ctaValidateRole: string;
+  };
+  roleContextPreview: {
+    topNotice: string;
+    stepLabel: string;
+    tabSourced: string;
+    tabShortlist: string;
+    labelRoleTitle: string;
+    valRoleTitle: string;
+    labelSeniority: string;
+    valSeniority: string;
+    labelStack: string;
+    timezone: string;
+    screening: string;
+    teaserSourced: string;
+    teaserShortlist: string;
+    readyStatus: string;
+  };
+  techPros: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    point1Title: string;
+    point1Desc: string;
+    point2Title: string;
+    point2Desc: string;
+    point3Title: string;
+    point3Desc: string;
+    point4Title: string;
+    point4Desc: string;
+    ctaStartReview: string;
+  };
+  candidateReviewPreview: {
+    title: string;
+    badge: string;
+    sourcesTitle: string;
+    src1: string;
+    src2: string;
+    src3: string;
+    src4: string;
+    demonstratedSignal: string;
+    signalQuote: string;
+    clarificationHeader: string;
+    clarificationQuote: string;
+    hideNote: string;
+    addClarification: string;
+    networkVisibility: string;
+    optInDescriptionActive: string;
+    optInDescriptionPrivate: string;
+    optInToggleActive: string;
+    optInTogglePrivate: string;
+  };
+  evidenceStates: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    activeStateLabel: string;
+    labelSemantic: string;
+    labelScenario: string;
+    labelImpact: string;
+    epistemicCallout: string;
+    methodologyLink: string;
+    states: {
+      SUPPORTED: {
+        title: string;
+        definition: string;
+        exampleContext: string;
+        interviewAction: string;
+      };
+      PARTIAL: {
+        title: string;
+        definition: string;
+        exampleContext: string;
+        interviewAction: string;
+      };
+      UNKNOWN: {
+        title: string;
+        definition: string;
+        exampleContext: string;
+        interviewAction: string;
+      };
+      CONFLICT: {
+        title: string;
+        definition: string;
+        exampleContext: string;
+        interviewAction: string;
+      };
+      NEEDS_VALIDATION: {
+        title: string;
+        definition: string;
+        exampleContext: string;
+        interviewAction: string;
+      };
+    };
+  };
+  partnerDelivery: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    point1Title: string;
+    point1Desc: string;
+    point2Title: string;
+    point2Desc: string;
+    point3Title: string;
+    point3Desc: string;
+    ctaPartner: string;
+  };
+  partnerToggle: {
+    topLabel: string;
+    disclaimer: string;
+    tabStandard: string;
+    tabPartner: string;
+    standardSubtitle: string;
+    partnerSubtitle: string;
+    candidateRefLabel: string;
+    evaluatedRole: string;
+    observableStrengthLabel: string;
+    observableStrengthDesc: string;
+    surfaceUnknownLabel: string;
+    surfaceUnknownDesc: string;
+  };
+  deliverable: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    candidateRef: string;
+    humanReviewComplete: string;
+    fullInteractiveView: string;
+    syntheticBanner: string;
+    targetRoleLabel: string;
+    targetRoleValue: string;
+    stackLabel: string;
+    locationLabel: string;
+    availabilityLabel: string;
+    strengthsTitle: string;
+    strengthsDesc: string;
+    gapsTitle: string;
+    gapsDesc: string;
+    unknownsTitle: string;
+    unknownsDesc: string;
+    validationPromptLabel: string;
+    validationPromptText: string;
+    footerNote: string;
+    ctaBrief: string;
+  };
+  finalCta: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    ctaValidateRole: string;
+    ctaBrief: string;
+    footnote: string;
+  };
+  modal: {
+    badge: string;
+    ref: string;
+    closeLabel: string;
+    syntheticDisclaimer: string;
+    syntheticSubtext: string;
+    targetRoleLabel: string;
+    locationZoneLabel: string;
+    locationZoneValue: string;
+    availabilityLabel: string;
+    availabilityValue: string;
+    verificationStatusLabel: string;
+    verificationStatusValue: string;
+    validatedContextTitle: string;
+    coreStackLabel: string;
+    operationalContextLabel: string;
+    operationalContextValue: string;
+    strengthsTitle: string;
+    strengthsItems: string[];
+    gapsTitle: string;
+    gapsItems: string[];
+    unknownsTitle: string;
+    unknownsItems: string[];
+    unknownsNote: string;
+    priorityQuestionsTitle: string;
+    q1Title: string;
+    q1Quote: string;
+    q1Target: string;
+    q2Title: string;
+    q2Quote: string;
+    q2Target: string;
+    footerNote: string;
+    closeButton: string;
+    ctaValidateRole: string;
+  };
+}
+
 export interface Translations {
   nav: {
     companies: string;
@@ -7,7 +278,13 @@ export interface Translations {
     methodology: string;
     contact: string;
     contactShort: string;
+    product: string;
+    forCompanies: string;
+    forTalent: string;
+    partners: string;
+    validateRole: string;
   };
+  homepage: HomepageTranslations;
   footer: {
     tagline: string;
     companiesTitle: string;
@@ -407,6 +684,281 @@ export const translations: Record<Language, Translations> = {
       methodology: 'Methodology',
       contact: 'Contact Us',
       contactShort: 'Contact',
+      product: 'Product',
+      forCompanies: 'For Companies',
+      forTalent: 'For Talent',
+      partners: 'Partners',
+      validateRole: 'Validate a Role',
+    },
+    homepage: {
+      hero: {
+        eyebrow: "EVIDENCE-BACKED TECHNICAL RECRUITING",
+        title: "Know why a technical candidate deserves an interview.",
+        subtitle: "TalentSync360 turns professional experience, projects, work evidence and role context into structured candidate briefs — with strengths, gaps, unknowns and questions worth validating in the interview.",
+        supportLine: "AI-assisted. Human-reviewed. Built for LATAM technical hiring.",
+        ctaBrief: "See an Evidence Brief",
+        ctaValidateRole: "Validate a Role",
+        candidateEyebrow: "I’m a tech professional",
+        candidateAction: "Review my evidence",
+      },
+      problem: {
+        eyebrow: "THE SCREENING BREAKDOWN",
+        title: "The hiring bottleneck is not sourcing. It is trusting what happens before the technical interview.",
+        pillar1Title: "Resumes make claims, not evidence",
+        pillar1Desc: "Keyword-optimized CVs create false-positive shortlists and force senior engineers to spend valuable time acting as first-line screening filters.",
+        pillar1Tag: "High screening tax",
+        pillar2Title: "Recruiting agency black boxes",
+        pillar2Desc: "Standard agencies forward unverified profiles without disclosing where observable evidence stops and candidate self-reporting begins.",
+        pillar2Tag: "Unverified confidence",
+        pillar3Title: "Engineering time lost to baseline mismatches",
+        pillar3Desc: "Interviews are squandered uncovering missing prerequisites that could have been identified, contextualized, and surfaced before scheduling.",
+        pillar3Tag: "Costly engineering drag",
+        bannerText: "TalentSync360 does not replace the technical interview.",
+        bannerSubtext: "We make sure only candidates with clear evidence and contextual fit reach it.",
+      },
+      transformation: {
+        eyebrow: "HOW SCREENING ACTUALLY TRANSFORMS",
+        title: "From keyword search to structured technical evidence",
+        subtitle: "A deliberate, five-step transition from ambiguous candidate claims to calibrated hiring decisions.",
+        phase1Eyebrow: "Phase 1 · Sourcing & Profile Intake",
+        phase1Title: "Experience claims & CV data",
+        phase2Eyebrow: "Phase 2 · Extraction & Parsing",
+        phase2Title: "AI signal extraction",
+        phase2Tag1: "Stack & Architecture Extraction",
+        phase2Tag2: "Code & Production Footprint",
+        phase2Tag3: "Scale & Complexity Signals",
+        phase3Eyebrow: "Phase 3 · Human Engineering Review",
+        phase3Title: "Expert verification & sanity checks",
+        phase3Badge: "Human in the Loop",
+        phase4Eyebrow: "Phase 4 · Evidence State Mapping",
+        phase4Title: "Epistemic calibration",
+        phase4Tag1: "SUPPORTED",
+        phase4Tag2: "PARTIAL",
+        phase4Tag3: "UNKNOWN",
+        phase4Tag4: "NEEDS VALIDATION",
+        phase5Eyebrow: "Phase 5 · Decision Artifact Delivery",
+        phase5Title: "Candidate Evidence Brief",
+        phase5Desc: "Delivered in 48-72h. Complete with strengths, validated gaps, surfaced unknowns, and exact technical interview questions.",
+        footnote: "Every brief is calibrated against your specific role context, architecture, and team delivery constraints.",
+      },
+      framework: {
+        eyebrow: "THE EVALUATION FRAMEWORK",
+        title: "Three steps to interview-ready clarity",
+        subtitle: "A transparent methodology designed to give engineering leaders complete confidence in every candidate submission.",
+        step1Tag: "Step 01",
+        step1Title: "Gather Technical Evidence",
+        step1Desc: "We extract verifiable signals from past projects, architecture decisions, code contributions, and technical delivery context — not just claims on a PDF resume.",
+        step1Footer: "Verifiable artifacts & source-backed signals",
+        step2Tag: "Step 02",
+        step2Title: "Calibrate to Role Context",
+        step2Desc: "Every candidate is evaluated against your specific technical stack, timezone overlap, seniority requirements, and actual delivery expectations.",
+        step2Footer: "Target stack, timezone & seniority alignment",
+        step3Tag: "Step 03",
+        step3Title: "Deliver Decision Artifacts",
+        step3Desc: "You receive a complete Candidate Evidence Brief detailing clear strengths, identified gaps, surfaced unknowns, and recommended interview questions.",
+        step3Footer: "Decision-ready brief with explicit interview actions",
+        methodologyLink: "Explore the full 360° Evaluation Methodology",
+      },
+      hiringTeams: {
+        eyebrow: "FOR HIRING TEAMS & TECH LEADERS",
+        title: "Stop discovering baseline gaps in the technical interview.",
+        subtitle: "Protect engineering bandwidth by evaluating candidates against objective evidence before your team ever gets on a call.",
+        point1Title: "Zero blind interviews",
+        point1Desc: "Know precisely where each candidate has proven depth and where evidence is incomplete before scheduling.",
+        point2Title: "Respect senior engineering time",
+        point2Desc: "Free up senior developers and engineering leaders to focus on deep technical fit rather than resume fact-checking.",
+        point3Title: "Actionable interview questions",
+        point3Desc: "Receive tailored questions specifically targeted to probe surfaced unknowns and calibrated gaps.",
+        point4Title: "Calibrated for LATAM delivery",
+        point4Desc: "Screened for real-world English communication, timezone overlap, and autonomous distributed execution.",
+        ctaValidateRole: "Validate a Role with Our Team",
+      },
+      roleContextPreview: {
+        topNotice: "Live Role Context Alignment Prototype",
+        stepLabel: "STEP 1: DEFINE ROLE CONTEXT",
+        tabSourced: "Direct Sourced Candidate",
+        tabShortlist: "Request TS360 Shortlist",
+        labelRoleTitle: "Target Role:",
+        valRoleTitle: "Senior Backend Engineer (Go / Distributed)",
+        labelSeniority: "Target Seniority:",
+        valSeniority: "Senior (5+ yrs) · High Autonomy",
+        labelStack: "Required Core Stack:",
+        timezone: "Timezone Overlap: US Eastern / Pacific (min 4h)",
+        screening: "Communication Screening: Fluent Technical English Required",
+        teaserSourced: "Submit an existing candidate profile or CV for rigorous evidence validation against this role context.",
+        teaserShortlist: "Request a curated, evidence-backed LATAM shortlist matched to these requirements delivered in 48-72h.",
+        readyStatus: "Decision Ready",
+      },
+      techPros: {
+        eyebrow: "FOR TECHNICAL PROFESSIONALS",
+        title: "Your work is more than keywords on a resume.",
+        subtitle: "Showcase real architecture decisions, production experience, and engineering depth through a private, candidate-controlled evidence review.",
+        point1Title: "Evidence-first presentation",
+        point1Desc: "Let your real projects, architecture decisions, and code speak louder than algorithmic CV keyword filters.",
+        point2Title: "Private & candidate-controlled",
+        point2Desc: "Review and curate your evidence profile privately. You decide when and where your profile is presented to hiring teams.",
+        point3Title: "Fair, transparent evaluation",
+        point3Desc: "Understand exactly how your experience is mapped to role requirements with clear, objective criteria.",
+        point4Title: "High-impact LATAM opportunities",
+        point4Desc: "Connect with top-tier international teams looking for deep technical ability, autonomous ownership, and strong delivery.",
+        ctaStartReview: "Start Candidate Evidence Review",
+      },
+      candidateReviewPreview: {
+        title: "Professional Evidence Profile (Draft)",
+        badge: "Private to Candidate",
+        sourcesTitle: "Submitted Professional Evidence Sources",
+        src1: "Project Architecture & Data Flow Overview",
+        src2: "Engineering Production Responsibilities",
+        src3: "High-Load Concurrency Case Writeup",
+        src4: "Public Repository (Optional / Attached)",
+        demonstratedSignal: "Demonstrated Engineering Signal",
+        signalQuote: "“Candidate demonstrably owned the event-streaming consumer pipeline architecture in Go, handling sustained traffic of 12,000 req/sec with documented zero-loss failover.”",
+        clarificationHeader: "Candidate Context Note Added:",
+        clarificationQuote: "“Added clarification: The cluster failover was verified under staging load tests; production incident logs are retained by previous employer under NDA.”",
+        hideNote: "Hide note",
+        addClarification: "Add Candidate Context / Clarification",
+        networkVisibility: "Talent Network Visibility",
+        optInDescriptionActive: "Profile is actively matched to relevant technical briefs.",
+        optInDescriptionPrivate: "Private review mode. Profile is not visible to hiring teams.",
+        optInToggleActive: "Opted-In to Matches",
+        optInTogglePrivate: "Private Review Only (Toggle)",
+      },
+      evidenceStates: {
+        eyebrow: "EPISTEMIC CALIBRATION",
+        title: "The Five Canonical Evidence States",
+        subtitle: "We classify every claim into explicit evidence states. If something is unknown, we say it is unknown.",
+        activeStateLabel: "ACTIVE STATE",
+        labelSemantic: "Semantic Definition",
+        labelScenario: "Concrete Engineering Scenario",
+        labelImpact: "Interview Validation Impact",
+        epistemicCallout: "Epistemic honesty: We never guess or assume. An unverified claim is marked UNKNOWN or NEEDS VALIDATION, giving your interviewers targeted questions rather than false confidence.",
+        methodologyLink: "Learn more about our five-state contract in the methodology",
+        states: {
+          SUPPORTED: {
+            title: "Supported by Direct Evidence",
+            definition: "The candidate provided verifiable documentation, production artifacts, architecture decisions, or clear delivery context confirming the skill or experience.",
+            exampleContext: "Production Go service handling Kafka streaming pipeline verified via system design documentation and technical delivery walkthrough.",
+            interviewAction: "Validate depth, architecture edge cases, and personal ownership rather than baseline competence.",
+          },
+          PARTIAL: {
+            title: "Partially Supported",
+            definition: "Direct evidence confirms related experience or adjacent tooling, but observable artifacts do not cover the full depth or scale demanded by the role.",
+            exampleContext: "Strong single-node PostgreSQL optimization documented, but multi-region distributed sharding experience is absent from observable artifacts.",
+            interviewAction: "Probe willingness and capability to scale beyond past single-node architecture into distributed patterns.",
+          },
+          UNKNOWN: {
+            title: "Surface Unknown",
+            definition: "No observable evidence exists in the candidate submission to support or dispute this requirement. It has not been observed and must not be assumed.",
+            exampleContext: "Kubernetes Custom Resource Definition (CRD) creation was not mentioned or demonstrated in any submitted materials.",
+            interviewAction: "Directly ask whether the candidate has hands-on production experience with CRDs or if training is required.",
+          },
+          CONFLICT: {
+            title: "Contradictory / Discrepancy Found",
+            definition: "Submitted artifacts or external records present conflicting timelines, incompatible role responsibilities, or contradictory technical claims.",
+            exampleContext: "Resume claims 3 years of Kubernetes cluster administration, but chronological project records show full-time dedication to frontend Vue.js applications during that period.",
+            interviewAction: "Address the specific discrepancy directly with the candidate before proceeding with technical evaluation.",
+          },
+          NEEDS_VALIDATION: {
+            title: "Needs Live Validation",
+            definition: "The candidate claims relevant depth, but verification requires interactive exploration, live code explanation, or real-time problem-solving.",
+            exampleContext: "Candidate claims deep knowledge of zero-downtime database migrations, but artifacts do not reveal the exact locking strategy or rollback scripts.",
+            interviewAction: "Use our tailored interview question prompt to evaluate live handling of locking thresholds and schema rollback plans.",
+          },
+        },
+      },
+      partnerDelivery: {
+        eyebrow: "FOR RECRUITING & DELIVERY PARTNERS",
+        title: "Deliver evidence-backed shortlists to your own clients.",
+        subtitle: "Equip your agency or consultancy with structured candidate evaluation briefs that build instant client trust and accelerate placement velocity.",
+        point1Title: "White-label decision briefs",
+        point1Desc: "Deliver professional Candidate Evidence Briefs under your own brand to position your team as a high-rigor talent partner.",
+        point2Title: "Drastically cut client drop-off",
+        point2Desc: "Hiring managers trust structured evidence. Eliminating resume hype reduces client rejection rates and shortens feedback loops.",
+        point3Title: "Differentiate your delivery model",
+        point3Desc: "Move beyond keyword pitching and unvetted candidate PDFs to offer structured, epistemic decision support.",
+        ctaPartner: "Partner With TalentSync360",
+      },
+      partnerToggle: {
+        topLabel: "INTERACTIVE PRESENTATION PREVIEW",
+        disclaimer: "See how TalentSync360 transforms standard agency submissions into structured client-ready evidence briefs.",
+        tabStandard: "Standard Agency Forward",
+        tabPartner: "TalentSync360 Partner Delivery",
+        standardSubtitle: "Generic resume forwarding with unverified claims and no calibrated decision support.",
+        partnerSubtitle: "Calibrated candidate brief with verified strengths, surfaced gaps, and tailored interview probes.",
+        candidateRefLabel: "Candidate Reference",
+        evaluatedRole: "Senior Distributed Systems Engineer (Go / Kafka)",
+        observableStrengthLabel: "Observable Strengths",
+        observableStrengthDesc: "Verifiable production Go microservices handling Kafka event streaming at scale.",
+        surfaceUnknownLabel: "Calibrated Unknowns",
+        surfaceUnknownDesc: "Multi-region failover not observed in artifacts; flagged for live validation.",
+      },
+      deliverable: {
+        eyebrow: "THE CORE DELIVERABLE",
+        title: "The Candidate Evidence Brief",
+        subtitle: "A structured, transparent evaluation artifact designed to help engineering leaders make immediate, high-confidence interview decisions.",
+        candidateRef: "REF: AR-8821",
+        humanReviewComplete: "Human Technical Review Complete",
+        fullInteractiveView: "Open Full Brief",
+        syntheticBanner: "ILLUSTRATIVE CANDIDATE BRIEF · SYNTHETIC SAMPLE",
+        targetRoleLabel: "Target Role:",
+        targetRoleValue: "Senior Backend Engineer (Go / Distributed Systems)",
+        stackLabel: "Core Stack: Go · Kafka · Kubernetes · PostgreSQL",
+        locationLabel: "LATAM (UTC-3 / Argentina)",
+        availabilityLabel: "Available in 2 Weeks",
+        strengthsTitle: "Strengths",
+        strengthsDesc: "Documented production experience building and maintaining asynchronous messaging pipelines with Go.",
+        gapsTitle: "Calibrated Gaps",
+        gapsDesc: "Limited observable experience with multi-region cluster failover; past architecture focused on single-region deployments.",
+        unknownsTitle: "Surface Unknowns",
+        unknownsDesc: "No observable artifacts demonstrating direct familiarity with Kubernetes CRD development.",
+        validationPromptLabel: "Recommended Interview Validation Question:",
+        validationPromptText: "“What criteria did you use to set partition limits and consumer backpressure thresholds in your message queue implementation?”",
+        footerNote: "Inspect complete evaluation format in interactive modal",
+        ctaBrief: "See an Evidence Brief",
+      },
+      finalCta: {
+        eyebrow: "GET STARTED",
+        title: "Bring a real role. See what the evidence actually supports.",
+        subtitle: "Stop spending valuable interview hours discovering unvetted baseline gaps. Validate candidates you already have or request an evidence-backed LATAM shortlist.",
+        ctaValidateRole: "Validate a Role",
+        ctaBrief: "See an Evidence Brief",
+        footnote: "Human-reviewed technical qualification for distributed LATAM hiring.",
+      },
+      modal: {
+        badge: "CANDIDATE EVIDENCE BRIEF",
+        ref: "REF: AR-8821",
+        closeLabel: "Close Evidence Brief Modal",
+        syntheticDisclaimer: "[ ILLUSTRATIVE SAMPLE — FICTIONAL CANDIDATE DATA ]",
+        syntheticSubtext: "Demonstrates structured decision support format",
+        targetRoleLabel: "Target Role",
+        locationZoneLabel: "Location & Zone",
+        locationZoneValue: "LATAM (UTC-3 / Argentina)",
+        availabilityLabel: "Availability",
+        availabilityValue: "2 Weeks Notice",
+        verificationStatusLabel: "Verification Status",
+        verificationStatusValue: "Human-Reviewed · Validated",
+        validatedContextTitle: "Validated Context & Technical Scope",
+        coreStackLabel: "Core Stack & Frameworks:",
+        operationalContextLabel: "Operational Context:",
+        operationalContextValue: "High-throughput event streaming, microservices architectures, distributed tracing, Kubernetes-orchestrated workloads.",
+        strengthsTitle: "Demonstrated Strengths",
+        strengthsItems: ["Led migration of synchronous HTTP service to event-driven Go microservice architecture handling 12,000 req/sec.", "Documented zero-loss partition failover and consumer backpressure handling in Kafka clusters.", "Direct experience profiling Go goroutine memory leaks and pprof optimization in containerized production."],
+        gapsTitle: "Calibrated Gaps",
+        gapsItems: ["Past infrastructure experience focused on single-region cloud deployments; limited direct exposure to multi-region global failover.", "Limited exposure to custom Kubernetes Operator development using Kubebuilder / Operator SDK."],
+        unknownsTitle: "Surface Unknowns",
+        unknownsItems: ["Level of direct ownership in production incident response / on-call rotation not detailed in submitted documentation.", "Depth of experience with Cassandra / distributed NoSQL storage engines unobserved."],
+        unknownsNote: "Surface unknowns represent unobserved areas, not confirmed weaknesses. They should be addressed during the technical interview.",
+        priorityQuestionsTitle: "Priority Interview Probes",
+        q1Title: "Kafka Partitioning & Backpressure Probing",
+        q1Quote: "“In your high-throughput Go microservice, how did your consumer group handle sudden message lag spikes, and what metric drove your rebalance strategy?”",
+        q1Target: "Target signal: Tests whether candidate understands real-world distributed backpressure vs theoretical architecture.",
+        q2Title: "Operational Resiliency & Failure Modes",
+        q2Quote: "“Walk us through a production incident where a service degraded unexpectedly. How did you triage the issue, and what post-mortem action did you personally lead?”",
+        q2Target: "Target signal: Validates ownership level and maturity during unexpected infrastructure failures.",
+        footerNote: "Sample generated for demonstration purposes. Real candidate briefs are customized to your specific architecture and role requirements.",
+        closeButton: "Close Preview",
+        ctaValidateRole: "Validate a Role with This Format",
+      },
     },
     footer: {
       tagline: 'Curated LATAM technical shortlists with human review, technical evidence, and communication checks when required by the role.',
@@ -920,6 +1472,281 @@ export const translations: Record<Language, Translations> = {
       methodology: 'Metodología',
       contact: 'Contactar',
       contactShort: 'Contacto',
+      product: 'Producto',
+      forCompanies: 'Para Empresas',
+      forTalent: 'Para Talento',
+      partners: 'Partners',
+      validateRole: 'Validar un Rol',
+    },
+    homepage: {
+      hero: {
+        eyebrow: "RECLUTAMIENTO TÉCNICO BASADO EN EVIDENCIA",
+        title: "Descubrí con certeza por qué un candidato técnico merece una entrevista.",
+        subtitle: "TalentSync360 transforma la experiencia profesional, proyectos, evidencia de trabajo y contexto del rol en candidate briefs estructurados — con fortalezas, brechas, incertidumbres y preguntas clave para la entrevista técnica.",
+        supportLine: "Asistido por IA. Revisado por ingenieros. Diseñado para contratación técnica en LATAM.",
+        ctaBrief: "Ver un Evidence Brief",
+        ctaValidateRole: "Validar un Rol",
+        candidateEyebrow: "Soy un profesional de tecnología",
+        candidateAction: "Revisar mi evidencia",
+      },
+      problem: {
+        eyebrow: "LA FALLA EN EL SCREENING TRADICIONAL",
+        title: "El cuello de botella no es encontrar perfiles. Es confiar en lo que sucede antes de la entrevista técnica.",
+        pillar1Title: "Los currículums hacen promesas, no presentan evidencia",
+        pillar1Desc: "Los CVs optimizados para palabras clave saturan de falsos positivos y obligan a los desarrolladores senior a perder tiempo valioso filtrando postulantes.",
+        pillar1Tag: "Alto costo de filtrado",
+        pillar2Title: "La caja negra de las agencias de recruiting",
+        pillar2Desc: "Las agencias convencionales envían perfiles sin verificar, sin transparentar dónde termina la evidencia comprobable y dónde empieza la autodeclaración del candidato.",
+        pillar2Tag: "Confianza no verificada",
+        pillar3Title: "Tiempo técnico desperdiciado en descalificaciones básicas",
+        pillar3Desc: "Se malgastan entrevistas descubriendo requisitos ausentes que podrían haberse identificado, contextualizado y visibilizado antes de agendar la llamada.",
+        pillar3Tag: "Arrastre técnico costoso",
+        bannerText: "TalentSync360 no reemplaza la entrevista técnica.",
+        bannerSubtext: "Aseguramos que solo los candidatos con evidencia comprobada y ajuste real al contexto lleguen a ella.",
+      },
+      transformation: {
+        eyebrow: "CÓMO SE TRANSFORMA EL SCREENING TÉCNICO",
+        title: "De la búsqueda por palabras clave a la evidencia técnica estructurada",
+        subtitle: "Una transición deliberada de 5 etapas: de afirmaciones ambiguas en un PDF a decisiones de contratación calibradas.",
+        phase1Eyebrow: "Etapa 1 · Sourcing e Ingesta de Perfiles",
+        phase1Title: "Declaraciones de experiencia y datos de CV",
+        phase2Eyebrow: "Etapa 2 · Extracción y Procesamiento",
+        phase2Title: "Extracción de señales asistida por IA",
+        phase2Tag1: "Extracción de Stack y Arquitectura",
+        phase2Tag2: "Código y Huella en Producción",
+        phase2Tag3: "Señales de Escala y Complejidad",
+        phase3Eyebrow: "Etapa 3 · Revisión Técnica por Ingenieros",
+        phase3Title: "Verificación experta y control de consistencia",
+        phase3Badge: "Revisión Humana Activa",
+        phase4Eyebrow: "Etapa 4 · Clasificación de Estados de Evidencia",
+        phase4Title: "Calibración epistémica",
+        phase4Tag1: "SUPPORTED",
+        phase4Tag2: "PARTIAL",
+        phase4Tag3: "UNKNOWN",
+        phase4Tag4: "NEEDS VALIDATION",
+        phase5Eyebrow: "Etapa 5 · Entrega del Artefacto de Decisión",
+        phase5Title: "Candidate Evidence Brief",
+        phase5Desc: "Entregado en 48-72h. Completo con fortalezas demostradas, brechas calibradas, aspectos no observados y preguntas técnicas exactas para la entrevista.",
+        footnote: "Cada brief se calibra según el contexto técnico, la arquitectura y las restricciones de entrega de tu equipo.",
+      },
+      framework: {
+        eyebrow: "EL MARCO DE EVALUACIÓN",
+        title: "Tres pasos hacia una total claridad previa a la entrevista",
+        subtitle: "Una metodología transparente diseñada para que los líderes de ingeniería tengan máxima certeza en cada postulación recibida.",
+        step1Tag: "Paso 01",
+        step1Title: "Recolectar Evidencia Técnica",
+        step1Desc: "Extraemos señales verificables de proyectos anteriores, decisiones de arquitectura, contribuciones de código y contexto de entrega — no meras afirmaciones en un PDF.",
+        step1Footer: "Artefactos verificables y señales respaldadas en fuentes",
+        step2Tag: "Paso 02",
+        step2Title: "Calibrar con el Contexto del Rol",
+        step2Desc: "Cada perfil se evalúa contrastándolo con tu stack tecnológico específico, solapamiento de zona horaria, seniority real y expectativas de entrega.",
+        step2Footer: "Alineación de stack objetivo, zona horaria y seniority",
+        step3Tag: "Paso 03",
+        step3Title: "Entregar Artefactos de Decisión",
+        step3Desc: "Recibes un Candidate Evidence Brief exhaustivo con fortalezas claras, brechas identificadas, aspectos desconocidos y preguntas recomendadas para la entrevista.",
+        step3Footer: "Brief listo para decidir con acciones concretas para la entrevista",
+        methodologyLink: "Explora la Metodología de Evaluación 360° completa",
+      },
+      hiringTeams: {
+        eyebrow: "PARA EQUIPOS DE SELECCIÓN Y LÍDERES TÉCNICOS",
+        title: "Dejá de descubrir brechas básicas durante la entrevista técnica.",
+        subtitle: "Protegé el tiempo de tus ingenieros evaluando a los candidatos con evidencia objetiva antes de que tu equipo coordine una llamada.",
+        point1Title: "Cero entrevistas a ciegas",
+        point1Desc: "Sabé exactamente en qué áreas cada candidato tiene solidez demostrada y dónde la evidencia está incompleta antes de agendar.",
+        point2Title: "Respeto por el tiempo de los seniors",
+        point2Desc: "Liberá a tus desarrolladores senior y tech leads para que se enfoquen en el encaje técnico profundo en lugar de chequear datos de un CV.",
+        point3Title: "Preguntas de entrevista accionables",
+        point3Desc: "Recibí preguntas personalizadas formuladas específicamente para indagar en las áreas no observadas y brechas calibradas.",
+        point4Title: "Calibrado para entregas en LATAM",
+        point4Desc: "Filtro riguroso en comunicación en inglés profesional, solapamiento de horario laboral y ejecución autónoma en remoto.",
+        ctaValidateRole: "Validar un Rol con Nuestro Equipo",
+      },
+      roleContextPreview: {
+        topNotice: "Prototipo Interactivo de Contexto de Rol",
+        stepLabel: "PASO 1: DEFINIR CONTEXTO DEL ROL",
+        tabSourced: "Candidato Preseleccionado Directo",
+        tabShortlist: "Solicitar Shortlist TS360",
+        labelRoleTitle: "Rol Objetivo:",
+        valRoleTitle: "Senior Backend Engineer (Go / Distribuido)",
+        labelSeniority: "Seniority Requerido:",
+        valSeniority: "Senior (5+ años) · Alta Autonomía",
+        labelStack: "Stack Principal Requerido:",
+        timezone: "Solapamiento de Horario: EE. UU. Este / Pacífico (mín. 4h)",
+        screening: "Evaluación de Comunicación: Inglés Técnico Fluido Requerido",
+        teaserSourced: "Envía un perfil o CV existente para una rigurosa validación de evidencia frente al contexto de este rol.",
+        teaserShortlist: "Solicita una shortlist curada y respaldada en evidencia en LATAM alineada a estos requisitos, entregada en 48-72h.",
+        readyStatus: "Listo para Decidir",
+      },
+      techPros: {
+        eyebrow: "PARA PROFESIONALES DE TECNOLOGÍA",
+        title: "Tu trabajo es mucho más que palabras clave en un currículum.",
+        subtitle: "Destacá decisiones reales de arquitectura, experiencia en producción y profundidad técnica mediante una revisión de evidencia privada y controlada por vos.",
+        point1Title: "Presentación centrada en evidencia",
+        point1Desc: "Dejá que tus proyectos reales, decisiones técnicas y código hablen con más fuerza que los filtros algorítmicos de CVs.",
+        point2Title: "Privado y controlado por el candidato",
+        point2Desc: "Revisá y gestioná tu perfil de evidencia en privado. Vos decidís cuándo y hacia qué equipos de contratación compartir tu perfil.",
+        point3Title: "Evaluación justa y transparente",
+        point3Desc: "Comprendé con precisión cómo se contrasta tu experiencia frente a los requerimientos de la posición, con criterios objetivos y claros.",
+        point4Title: "Oportunidades de alto impacto en LATAM",
+        point4Desc: "Conectá con equipos internacionales de primer nivel que buscan talento con alta capacidad técnica, autonomía y enfoque de entrega.",
+        ctaStartReview: "Iniciar Revisión de Evidencia",
+      },
+      candidateReviewPreview: {
+        title: "Perfil Profesional de Evidencia (Borrador)",
+        badge: "Privado para el Candidato",
+        sourcesTitle: "Fuentes de Evidencia Profesional Presentadas",
+        src1: "Arquitectura del Proyecto y Flujo de Datos",
+        src2: "Responsabilidades de Ingeniería en Producción",
+        src3: "Caso Técnico de Alta Concurrencia",
+        src4: "Repositorio Público (Opcional / Adjunto)",
+        demonstratedSignal: "Señal de Ingeniería Demostrada",
+        signalQuote: "“El candidato demostró liderazgo en el diseño del pipeline de streaming con Go, gestionando un tráfico continuo de 12.000 req/seg con tolerancia a fallas documentada y sin pérdida de datos.”",
+        clarificationHeader: "Nota de Contexto del Candidato Añadida:",
+        clarificationQuote: "“Aclaración agregada: La tolerancia a fallas del clúster se comprobó en pruebas de carga en staging; los incidentes de producción están bajo NDA con el empleador anterior.”",
+        hideNote: "Ocultar nota",
+        addClarification: "Agregar Contexto / Aclaración del Candidato",
+        networkVisibility: "Visibilidad en la Red de Talento",
+        optInDescriptionActive: "El perfil participa activamente en el emparejamiento con búsquedas técnicas relevantes.",
+        optInDescriptionPrivate: "Modo de revisión privado. El perfil no es visible para equipos de contratación.",
+        optInToggleActive: "Activado para Oportunidades",
+        optInTogglePrivate: "Solo Revisión Privada (Alternar)",
+      },
+      evidenceStates: {
+        eyebrow: "CALIBRACIÓN EPISTÉMICA",
+        title: "Los Cinco Estados Canónicos de Evidencia",
+        subtitle: "Clasificamos cada afirmación en estados explícitos de evidencia. Si algo no se observa, decimos con honestidad que es desconocido.",
+        activeStateLabel: "ESTADO ACTIVO",
+        labelSemantic: "Definición Semántica",
+        labelScenario: "Escenario Técnico Concreto",
+        labelImpact: "Impacto en la Entrevista Técnica",
+        epistemicCallout: "Honestidad epistémica: Nunca adivinamos ni asumimos. Cualquier afirmación no verificada se clasifica como UNKNOWN o NEEDS VALIDATION, brindando preguntas precisas a los entrevistadores en lugar de una falsa certeza.",
+        methodologyLink: "Conocé más sobre nuestro contrato de cinco estados en la metodología",
+        states: {
+          SUPPORTED: {
+            title: "Respaldado por Evidencia Directa",
+            definition: "El candidato aportó documentación verificable, artefactos en producción, decisiones arquitectónicas o contexto operativo claro que acredita la habilidad requerida.",
+            exampleContext: "Servicio en Go en producción conectado a un pipeline de Kafka, validado mediante documentación de arquitectura y recorrido de entrega técnica.",
+            interviewAction: "Validar profundidad técnica, casos borde y nivel de autoría personal en lugar de limitarse a indagar competencias básicas.",
+          },
+          PARTIAL: {
+            title: "Parcialmente Respaldado",
+            definition: "Existe evidencia directa de experiencia afín o herramientas adyacentes, pero los artefactos observables no alcanzan la escala o profundidad exigidas por el rol.",
+            exampleContext: "Optimización comprobada en PostgreSQL mononodo, pero sin evidencia observable de sharding distribuido multirregión.",
+            interviewAction: "Explorar disposición y capacidad para escalar desde patrones de un solo nodo hacia arquitecturas distribuidas.",
+          },
+          UNKNOWN: {
+            title: "Aspecto No Observado",
+            definition: "No existe evidencia observable en la postulación que confirme o refute este requisito. Al no haber sido observado, no se asume bajo ninguna circunstancia.",
+            exampleContext: "No se menciona ni demuestra experiencia en el desarrollo de Custom Resource Definitions (CRDs) en Kubernetes.",
+            interviewAction: "Consultar de forma directa si cuenta con experiencia práctica en producción con CRDs o si requiere capacitación.",
+          },
+          CONFLICT: {
+            title: "Contradicción / Discrepancia Detectada",
+            definition: "Los artefactos o registros cronológicos presentan incongruencias en las fechas, responsabilidades incompatibles o afirmaciones técnicas opuestas.",
+            exampleContext: "El CV declara 3 años administrando clústeres de Kubernetes, pero los repositorios y cronología muestran dedicación exclusiva a frontend en Vue.js durante ese período.",
+            interviewAction: "Esclarecer la inconsistencia directamente con el candidato antes de continuar con la evaluación técnica.",
+          },
+          NEEDS_VALIDATION: {
+            title: "Requiere Validación en Vivo",
+            definition: "El candidato afirma tener la experiencia requerida, pero corroborarla exige una exploración interactiva, explicación de código o resolución técnica en directo.",
+            exampleContext: "Declara dominio de migraciones sin tiempo de inactividad (zero-downtime), pero la documentación no expone la estrategia de bloqueos ni los scripts de rollback.",
+            interviewAction: "Utilizar la pregunta sugerida para evaluar en tiempo real la gestión de bloqueos y el plan de contingencia ante fallos.",
+          },
+        },
+      },
+      partnerDelivery: {
+        eyebrow: "PARA PARTNERS DE RECLUTAMIENTO Y DELIVERY",
+        title: "Entregá shortlists con evidencia técnica a tus propios clientes.",
+        subtitle: "Equipá a tu agencia o consultora con briefs estructurados que generan confianza inmediata y aceleran el cierre de contrataciones.",
+        point1Title: "Decision briefs marca blanca",
+        point1Desc: "Presentá Candidate Evidence Briefs profesionales con tu propia marca para posicionar a tu equipo como un partner de alto estándar técnico.",
+        point2Title: "Reducción drástica del rechazo de perfiles",
+        point2Desc: "Los líderes técnicos confían en la evidencia estructurada. Eliminar las exageraciones del CV reduce los descartes y acorta los tiempos de feedback.",
+        point3Title: "Diferenciá tu modelo de servicio",
+        point3Desc: "Superá el envío tradicional de currículums en PDF sin validar y ofrecé un soporte epistémico basado en hechos observables.",
+        ctaPartner: "Asociate con TalentSync360",
+      },
+      partnerToggle: {
+        topLabel: "VISTA PREVIA DE PRESENTACIÓN INTERACTIVA",
+        disclaimer: "Observá cómo TalentSync360 transforma las postulaciones comunes de agencias en briefs técnicos estructurados listos para el cliente.",
+        tabStandard: "Envío Típico de Agencia",
+        tabPartner: "Entrega Partner TalentSync360",
+        standardSubtitle: "Envío de currículum genérico con afirmaciones no verificadas y sin soporte calibrado para la decisión.",
+        partnerSubtitle: "Candidate brief calibrado con fortalezas confirmadas, brechas identificadas y preguntas sugeridas.",
+        candidateRefLabel: "Referencia del Candidato",
+        evaluatedRole: "Senior Distributed Systems Engineer (Go / Kafka)",
+        observableStrengthLabel: "Fortalezas Observables",
+        observableStrengthDesc: "Microservicios en Go en producción verificados, procesando eventos de Kafka a escala.",
+        surfaceUnknownLabel: "Incertidumbres Calibradas",
+        surfaceUnknownDesc: "Tolerancia a fallas multirregión no observada en artefactos; marcada para validación en vivo.",
+      },
+      deliverable: {
+        eyebrow: "EL ENTREGABLE PRINCIPAL",
+        title: "El Candidate Evidence Brief",
+        subtitle: "Un informe de evaluación estructurado y transparente diseñado para que los líderes de ingeniería tomen decisiones de entrevista con total confianza.",
+        candidateRef: "REF: AR-8821",
+        humanReviewComplete: "Revisión Técnica por Ingenieros Finalizada",
+        fullInteractiveView: "Abrir Brief Completo",
+        syntheticBanner: "CANDIDATE BRIEF ILUSTRATIVO · MUESTRA SINTÉTICA",
+        targetRoleLabel: "Rol Objetivo:",
+        targetRoleValue: "Senior Backend Engineer (Go / Sistemas Distribuidos)",
+        stackLabel: "Stack Principal: Go · Kafka · Kubernetes · PostgreSQL",
+        locationLabel: "LATAM (UTC-3 / Argentina)",
+        availabilityLabel: "Disponible en 2 semanas",
+        strengthsTitle: "Fortalezas",
+        strengthsDesc: "Experiencia documentada en producción construyendo y manteniendo pipelines de mensajería asincrónica en Go.",
+        gapsTitle: "Brechas Calibradas",
+        gapsDesc: "Experiencia observable limitada en tolerancia a fallas en clústeres multirregión; trayectoria previa enfocada en una sola región.",
+        unknownsTitle: "Aspectos No Observados",
+        unknownsDesc: "Sin artefactos observables que acrediten experiencia directa en desarrollo de CRDs en Kubernetes.",
+        validationPromptLabel: "Pregunta de Validación Sugerida para la Entrevista:",
+        validationPromptText: "“¿Qué criterios aplicaste para definir los límites de partición y los umbrales de contrapresión (backpressure) en tu implementación de mensajería?”",
+        footerNote: "Inspecciona el formato de evaluación completo en el modal interactivo",
+        ctaBrief: "Ver un Evidence Brief",
+      },
+      finalCta: {
+        eyebrow: "COMENZAR AHORA",
+        title: "Traé una búsqueda real. Mirá lo que la evidencia respalda concretamente.",
+        subtitle: "Dejá de perder horas de entrevista descubriendo brechas técnicas básicas. Validá los candidatos que ya tenés o solicitá una shortlist en LATAM basada en evidencia.",
+        ctaValidateRole: "Validar un Rol",
+        ctaBrief: "Ver un Evidence Brief",
+        footnote: "Calificación técnica revisada por ingenieros para contrataciones distribuidas en LATAM.",
+      },
+      modal: {
+        badge: "CANDIDATE EVIDENCE BRIEF",
+        ref: "REF: AR-8821",
+        closeLabel: "Cerrar modal de Evidence Brief",
+        syntheticDisclaimer: "[ MUESTRA ILUSTRATIVA — DATOS DE CANDIDATO FICTICIO ]",
+        syntheticSubtext: "Demuestra el formato de soporte estructurado para la toma de decisiones",
+        targetRoleLabel: "Rol Objetivo",
+        locationZoneLabel: "Ubicación y Zona",
+        locationZoneValue: "LATAM (UTC-3 / Argentina)",
+        availabilityLabel: "Disponibilidad",
+        availabilityValue: "Preaviso de 2 semanas",
+        verificationStatusLabel: "Estado de Verificación",
+        verificationStatusValue: "Revisado por Ingenieros · Validado",
+        validatedContextTitle: "Contexto Validado y Alcance Técnico",
+        coreStackLabel: "Stack Principal y Frameworks:",
+        operationalContextLabel: "Contexto Operativo:",
+        operationalContextValue: "Streaming de eventos de alto rendimiento, arquitectura de microservicios, trazabilidad distribuida y cargas de trabajo en Kubernetes.",
+        strengthsTitle: "Fortalezas Demostradas",
+        strengthsItems: ["Lideró la migración de un servicio HTTP sincrónico a una arquitectura de microservicios en Go orientada a eventos manejando 12.000 req/seg.", "Tolerancia a fallas sin pérdida de datos en particiones y control de contrapresión documentados en clústeres de Kafka.", "Experiencia directa en diagnóstico de fugas de memoria en goroutines y optimización con pprof en contenedores de producción."],
+        gapsTitle: "Brechas Calibradas",
+        gapsItems: ["Trayectoria de infraestructura enfocada en despliegues cloud en una sola región; exposición directa limitada a arquitecturas globales multirregión.", "Exposición limitada al desarrollo de Kubernetes Operators personalizados con Kubebuilder / Operator SDK."],
+        unknownsTitle: "Aspectos No Observados",
+        unknownsItems: ["Nivel de participación directa en guardias (on-call) y respuesta ante incidentes en producción no especificado en el material presentado.", "Profundidad de conocimiento en Cassandra o motores de almacenamiento NoSQL distribuidos no observada."],
+        unknownsNote: "Los aspectos no observados reflejan áreas no evaluadas en el material recibido, no debilidades demostradas. Se sugiere indagarlos en la entrevista técnica.",
+        priorityQuestionsTitle: "Preguntas Prioritarias para la Entrevista",
+        q1Title: "Indagación sobre Particionado de Kafka y Contrapresión",
+        q1Quote: "“En tu microservicio de alta demanda en Go, ¿cómo manejaba el grupo de consumidores los picos repentinos de retraso (lag) y qué métrica determinaba la estrategia de rebalanceo?”",
+        q1Target: "Señal buscada: Evalúa si el candidato comprende los desafíos reales de contrapresión distribuida frente a esquemas puramente teóricos.",
+        q2Title: "Resiliencia Operativa y Modos de Falla",
+        q2Quote: "“Relatanos un incidente en producción donde un servicio se degradó de forma inesperada. ¿Cómo diagnosticaste la causa raíz y qué acción correctiva lideraste personalmente en el post-mortem?”",
+        q2Target: "Señal buscada: Valida el nivel de responsabilidad, liderazgo y madurez técnica ante fallas imprevistas de infraestructura.",
+        footerNote: "Muestra generada con fines ilustrativos. Los briefs reales de candidatos se calibran con la arquitectura y requerimientos específicos de tu búsqueda.",
+        closeButton: "Cerrar Vista Previa",
+        ctaValidateRole: "Validar un Rol con Este Formato",
+      },
     },
     footer: {
       tagline: 'Shortlists técnicas curadas de LATAM con revisión humana, evidencia técnica y comunicación evaluada cuando el rol lo requiere.',

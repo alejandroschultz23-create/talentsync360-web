@@ -5,14 +5,17 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import RoleContextPreview from './RoleContextPreview';
 import { pushGTMEvent } from '@/lib/analytics';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Section05HiringTeams() {
+  const { t, lang } = useLanguage();
+
   const handleValidateRole = () => {
     pushGTMEvent('click_contact', {
       cta_label: 'Validate a Role',
       cta_location: 'hiring_teams',
       destination: '/contact?intent=validate-role',
-      language: 'en',
+      language: lang,
       page_path: '/',
     });
   };
@@ -27,15 +30,15 @@ export default function Section05HiringTeams() {
           {/* Left Column: Buyer Copy & Actions */}
           <div className="lg:col-span-6 space-y-6 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-blue-700 font-mono text-[11px] font-semibold tracking-wider uppercase">
-              FOR HIRING TEAMS & RECRUITERS
+              {t.homepage.hiringTeams.eyebrow}
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
-              Bring a real role. Get decision-ready evidence.
+              {t.homepage.hiringTeams.title}
             </h2>
 
             <p className="text-base text-slate-600 font-normal leading-relaxed">
-              Whether qualifying talent already in your applicant pipeline or requesting a fresh LATAM technical shortlist, eliminate guesswork before the interview.
+              {t.homepage.hiringTeams.subtitle}
             </p>
 
             {/* 4 Value Points */}
@@ -45,9 +48,9 @@ export default function Section05HiringTeams() {
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-950">Validate candidates you already sourced</h4>
+                  <h4 className="text-sm font-bold text-slate-950">{t.homepage.hiringTeams.point1Title}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5 leading-relaxed">
-                    Benchmark finalist profiles against role requirements with structured evidence rather than unvetted claims.
+                    {t.homepage.hiringTeams.point1Desc}
                   </p>
                 </div>
               </div>
@@ -57,9 +60,9 @@ export default function Section05HiringTeams() {
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-950">Request an evidence-backed shortlist</h4>
+                  <h4 className="text-sm font-bold text-slate-950">{t.homepage.hiringTeams.point2Title}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5 leading-relaxed">
-                    Receive 3 to 5 human-reviewed LATAM engineers with complete evidence briefs calibrated to your stack and timezone.
+                    {t.homepage.hiringTeams.point2Desc}
                   </p>
                 </div>
               </div>
@@ -69,9 +72,9 @@ export default function Section05HiringTeams() {
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-950">Compare finalists against the same criteria</h4>
+                  <h4 className="text-sm font-bold text-slate-950">{t.homepage.hiringTeams.point3Title}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5 leading-relaxed">
-                    Evaluate candidates side-by-side using structured signals instead of disparate, non-standard CV formats.
+                    {t.homepage.hiringTeams.point3Desc}
                   </p>
                 </div>
               </div>
@@ -81,9 +84,9 @@ export default function Section05HiringTeams() {
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-950">Know what remains UNKNOWN before interviewing</h4>
+                  <h4 className="text-sm font-bold text-slate-950">{t.homepage.hiringTeams.point4Title}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5 leading-relaxed">
-                    Eliminate blind spots. Enter the technical call knowing exactly which topics require live discovery.
+                    {t.homepage.hiringTeams.point4Desc}
                   </p>
                 </div>
               </div>
@@ -96,7 +99,7 @@ export default function Section05HiringTeams() {
                 onClick={handleValidateRole}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold shadow-lg shadow-blue-500/15 active:scale-98 transition-all"
               >
-                <span>Validate a Role</span>
+                <span>{t.homepage.hiringTeams.ctaValidateRole}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

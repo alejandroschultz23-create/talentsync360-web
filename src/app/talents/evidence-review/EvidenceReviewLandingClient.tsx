@@ -94,7 +94,7 @@ function EvidenceReviewLandingContent() {
           <div className="max-w-3xl">
             <p className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-400">
               <FileSearch aria-hidden="true" className="h-5 w-5" />
-              EVIDENCE, NOT ASSUMPTIONS
+              {lang === 'es' ? 'EVIDENCIA, NO SUPOSICIONES' : 'EVIDENCE, NOT ASSUMPTIONS'}
             </p>
             <h2 className="text-3xl font-bold text-white sm:text-5xl">
               {content.landing.notCvTitle}

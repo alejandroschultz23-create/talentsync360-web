@@ -5,14 +5,17 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import CandidateEvidenceReviewPreview from './CandidateEvidenceReviewPreview';
 import { pushGTMEvent } from '@/lib/analytics';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Section06TechnicalProfessionals() {
+  const { t, lang } = useLanguage();
+
   const handleStartReview = () => {
     pushGTMEvent('click_start_evidence_review', {
       cta_label: 'Start Evidence Review',
       cta_location: 'technical_professionals',
       destination: '/talents/evidence-review',
-      language: 'en',
+      language: lang,
       page_path: '/',
     });
   };
@@ -27,15 +30,15 @@ export default function Section06TechnicalProfessionals() {
           {/* Left Column: Candidate Value Proposition */}
           <div className="lg:col-span-6 space-y-6 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-blue-700 font-mono text-[11px] font-semibold tracking-wider uppercase">
-              FOR LATAM DEVELOPERS
+              {t.homepage.techPros.eyebrow}
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
-              Turn your experience into evidence you can review and own.
+              {t.homepage.techPros.title}
             </h2>
 
             <p className="text-base text-slate-600 font-normal leading-relaxed">
-              Your experience is more than a list of keywords. Turn projects, work context and technical signals into evidence you can review and clarify.
+              {t.homepage.techPros.subtitle}
             </p>
 
             {/* 4 Candidate Ownership Points */}
@@ -45,9 +48,9 @@ export default function Section06TechnicalProfessionals() {
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-950">Share your real engineering work</h4>
+                  <h4 className="text-sm font-bold text-slate-950">{t.homepage.techPros.point1Title}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5 leading-relaxed">
-                    Submit public repositories, project overviews, architectural design summaries, and professional context. GitHub is optional.
+                    {t.homepage.techPros.point1Desc}
                   </p>
                 </div>
               </div>
@@ -57,9 +60,9 @@ export default function Section06TechnicalProfessionals() {
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-950">Receive a private Evidence Review</h4>
+                  <h4 className="text-sm font-bold text-slate-950">{t.homepage.techPros.point2Title}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5 leading-relaxed">
-                    Get a structured readout identifying what your work demonstrably supports, what remains partial, and where your strongest signals lie.
+                    {t.homepage.techPros.point2Desc}
                   </p>
                 </div>
               </div>
@@ -69,9 +72,9 @@ export default function Section06TechnicalProfessionals() {
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-950">Add context and clarify misunderstandings</h4>
+                  <h4 className="text-sm font-bold text-slate-950">{t.homepage.techPros.point3Title}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5 leading-relaxed">
-                    You own your interpretation. Review the structured draft, add technical nuances, and approve how your experience is documented.
+                    {t.homepage.techPros.point3Desc}
                   </p>
                 </div>
               </div>
@@ -81,9 +84,9 @@ export default function Section06TechnicalProfessionals() {
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-950">Control your network visibility</h4>
+                  <h4 className="text-sm font-bold text-slate-950">{t.homepage.techPros.point4Title}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 font-normal mt-0.5 leading-relaxed">
-                    Decide privately whether to opt in to the TalentSync360 network for matching opportunities. No public profiles without consent.
+                    {t.homepage.techPros.point4Desc}
                   </p>
                 </div>
               </div>
@@ -96,7 +99,7 @@ export default function Section06TechnicalProfessionals() {
                 onClick={handleStartReview}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold shadow-lg shadow-blue-500/15 active:scale-98 transition-all"
               >
-                <span>Start Evidence Review</span>
+                <span>{t.homepage.techPros.ctaStartReview}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

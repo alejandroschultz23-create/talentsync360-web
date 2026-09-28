@@ -5,12 +5,15 @@ import Link from 'next/link';
 import { ArrowRight, FileText } from 'lucide-react';
 import HeroGlobe from './HeroGlobe';
 import { pushGTMEvent } from '@/lib/analytics';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Section01HeroProps {
   onOpenBriefModal: () => void;
 }
 
 export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) {
+  const { t, lang } = useLanguage();
+
   const handleOpenBrief = () => {
     pushGTMEvent('click_see_evidence_brief', {
       cta_label: 'See an Evidence Brief',
@@ -25,7 +28,7 @@ export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) 
       cta_label: 'Validate a Role',
       cta_location: 'hero',
       destination: '/contact?intent=validate-role',
-      language: 'en',
+      language: lang,
       page_path: '/',
     });
   };
@@ -35,7 +38,7 @@ export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) 
       cta_label: 'Review my evidence',
       cta_location: 'hero',
       destination: '/talents/evidence-review',
-      language: 'en',
+      language: lang,
       page_path: '/',
     });
   };
@@ -52,23 +55,23 @@ export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) 
           <div className="lg:col-span-7 space-y-6 text-left">
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 font-mono text-[11px] sm:text-xs font-semibold tracking-widest uppercase">
-              <span>EVIDENCE-BACKED TECHNICAL RECRUITING</span>
+              <span>{t.homepage.hero.eyebrow}</span>
             </div>
 
             {/* Display H1 */}
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-[1.2]">
-              Know why a technical candidate deserves an interview.
+              {t.homepage.hero.title}
             </h1>
 
             {/* Subheadline */}
             <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
-              TalentSync360 turns professional experience, projects, work evidence, and role context into structured candidate briefs with strengths, gaps, unknowns, and questions worth validating in the interview.
+              {t.homepage.hero.subtitle}
             </p>
 
             {/* Support Line (Neutral Slate Accent Dot) */}
             <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-400 font-normal">
               <span className="w-2 h-2 rounded-full bg-blue-500/80 shrink-0" aria-hidden="true" />
-              <span>AI-assisted. Human-reviewed. Built for LATAM technical hiring.</span>
+              <span>{t.homepage.hero.supportLine}</span>
             </div>
 
             {/* CTA Group */}
@@ -78,7 +81,7 @@ export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) 
                 className="h-11 px-6 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-98 transition-all"
               >
                 <FileText className="w-4 h-4" />
-                <span>See an Evidence Brief</span>
+                <span>{t.homepage.hero.ctaBrief}</span>
               </button>
 
               <Link
@@ -86,7 +89,7 @@ export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) 
                 onClick={handleValidateRole}
                 className="h-11 px-6 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-slate-200 text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5 active:scale-98 transition-all"
               >
-                <span>Validate a Role</span>
+                <span>{t.homepage.hero.ctaValidateRole}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -98,8 +101,8 @@ export default function Section01Hero({ onOpenBriefModal }: Section01HeroProps) 
                 onClick={handleReviewEvidence}
                 className="text-xs sm:text-sm text-slate-400 hover:text-slate-200 font-medium inline-flex items-center gap-1.5 group transition-colors"
               >
-                <span>I’m a tech professional</span>
-                <span className="text-blue-400 group-hover:translate-x-0.5 transition-transform">→ Review my evidence</span>
+                <span>{t.homepage.hero.candidateEyebrow}</span>
+                <span className="text-blue-400 group-hover:translate-x-0.5 transition-transform">→ {t.homepage.hero.candidateAction}</span>
               </Link>
             </div>
           </div>

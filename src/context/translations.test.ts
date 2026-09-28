@@ -34,4 +34,48 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
       /video\/audio|scorecards|resumes|prospective employers|interim policy|April|Gold List|top 1%/i,
     );
   });
+
+  it('provides all required navigation items', () => {
+    const { nav } = translations[language];
+    expect(nav.companies).toBeTruthy();
+    expect(nav.talents).toBeTruthy();
+    expect(nav.methodology).toBeTruthy();
+    expect(nav.contact).toBeTruthy();
+    expect(nav.product).toBeTruthy();
+    expect(nav.forCompanies).toBeTruthy();
+    expect(nav.forTalent).toBeTruthy();
+    expect(nav.partners).toBeTruthy();
+    expect(nav.validateRole).toBeTruthy();
+  });
+
+  it('provides complete homepage sections and preserves canonical evidence state tokens', () => {
+    const { homepage } = translations[language];
+    expect(homepage).toBeDefined();
+    expect(homepage.hero.eyebrow).toBeTruthy();
+    expect(homepage.hero.title).toBeTruthy();
+    expect(homepage.hero.ctaBrief).toBeTruthy();
+    expect(homepage.hero.ctaValidateRole).toBeTruthy();
+    expect(homepage.problem.title).toBeTruthy();
+    expect(homepage.transformation.title).toBeTruthy();
+    expect(homepage.framework.title).toBeTruthy();
+    expect(homepage.hiringTeams.title).toBeTruthy();
+    expect(homepage.roleContextPreview.stepLabel).toBeTruthy();
+    expect(homepage.techPros.title).toBeTruthy();
+    expect(homepage.candidateReviewPreview.title).toBeTruthy();
+    expect(homepage.evidenceStates.title).toBeTruthy();
+    expect(homepage.partnerDelivery.title).toBeTruthy();
+    expect(homepage.partnerToggle.topLabel).toBeTruthy();
+    expect(homepage.deliverable.title).toBeTruthy();
+    expect(homepage.finalCta.title).toBeTruthy();
+    expect(homepage.modal.badge).toBeTruthy();
+
+    // Verify all 5 canonical evidence states exist in the contract
+    const states = homepage.evidenceStates.states;
+    expect(states.SUPPORTED).toBeDefined();
+    expect(states.PARTIAL).toBeDefined();
+    expect(states.UNKNOWN).toBeDefined();
+    expect(states.CONFLICT).toBeDefined();
+    expect(states.NEEDS_VALIDATION).toBeDefined();
+  });
 });
+

@@ -93,14 +93,20 @@ function ContactForm() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-white">Message Sent!</h3>
-              <p className="text-slate-400 max-w-sm mx-auto">We&apos;ve received your inquiry and will get back to you within 24 hours.</p>
+              <h3 className="text-2xl font-bold text-white">
+                {lang === 'es' ? '¡Mensaje Enviado!' : 'Message Sent!'}
+              </h3>
+              <p className="text-slate-400 max-w-sm mx-auto">
+                {lang === 'es'
+                  ? 'Hemos recibido tu consulta y te responderemos dentro de las 24 horas.'
+                  : "We've received your inquiry and will get back to you within 24 hours."}
+              </p>
               <button
                 onClick={() => setIsSuccess(false)}
                 className="text-blue-500 font-semibold hover:text-blue-400 transition-colors"
                 type="button"
               >
-                Send another message
+                {lang === 'es' ? 'Enviar otro mensaje' : 'Send another message'}
               </button>
             </div>
           ) : (
@@ -177,7 +183,7 @@ function ContactForm() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Sending...
+                      {lang === 'es' ? 'Enviando...' : 'Sending...'}
                     </>
                   ) : (
                     t.contact.buttonSubmit

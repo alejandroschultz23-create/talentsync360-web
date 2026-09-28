@@ -2,8 +2,11 @@
 
 import React from 'react';
 import { FileQuestion, Network, Clock } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Section02Problem() {
+  const { t } = useLanguage();
+
   return (
     <section id="problem" className="relative py-20 md:py-28 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/60 border-b border-slate-200/80 text-slate-900 scroll-mt-20 overflow-hidden">
       {/* Subtle ambient lighting for warmth & luminous depth */}
@@ -14,10 +17,10 @@ export default function Section02Problem() {
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/70 text-blue-700 font-mono text-[11px] font-semibold tracking-wider uppercase">
-            THE SCREENING BOTTLENECK
+            {t.homepage.problem.eyebrow}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
-            The bottleneck is not finding profiles. It is turning them into reliable decisions.
+            {t.homepage.problem.title}
           </h2>
         </div>
 
@@ -30,15 +33,15 @@ export default function Section02Problem() {
                 <FileQuestion className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-slate-950 leading-snug">
-                CVs tell you what candidates claim.
+                {t.homepage.problem.pillar1Title}
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                Not what the evidence actually supports. Resumes summarize claims, but rarely reveal the operational context or depth behind them.
+                {t.homepage.problem.pillar1Desc}
               </p>
             </div>
             <div className="pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-mono font-medium text-slate-500">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500/80" />
-              <span>Unverified self-reporting</span>
+              <span>{t.homepage.problem.pillar1Tag}</span>
             </div>
           </div>
 
@@ -49,15 +52,15 @@ export default function Section02Problem() {
                 <Network className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-slate-950 leading-snug">
-                Screening produces fragmented signals.
+                {t.homepage.problem.pillar2Title}
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                CVs, repositories, portfolios and recruiter notes arrive in disjointed formats, making consistent evaluation across candidates difficult.
+                {t.homepage.problem.pillar2Desc}
               </p>
             </div>
             <div className="pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-mono font-medium text-slate-500">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-500/80" />
-              <span>Disparate evaluation criteria</span>
+              <span>{t.homepage.problem.pillar2Tag}</span>
             </div>
           </div>
 
@@ -68,15 +71,15 @@ export default function Section02Problem() {
                 <Clock className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-slate-950 leading-snug">
-                Interviews start with too many unknowns.
+                {t.homepage.problem.pillar3Title}
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                Teams often spend valuable interview time establishing context that could have been structured beforehand.
+                {t.homepage.problem.pillar3Desc}
               </p>
             </div>
             <div className="pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-mono font-medium text-slate-500">
               <span className="w-1.5 h-1.5 rounded-full bg-rose-500/80" />
-              <span>Expensive engineering drain</span>
+              <span>{t.homepage.problem.pillar3Tag}</span>
             </div>
           </div>
         </div>
@@ -85,10 +88,10 @@ export default function Section02Problem() {
         <div className="relative max-w-3xl mx-auto p-7 rounded-2xl bg-slate-950 text-white shadow-xl shadow-slate-950/10 text-center space-y-2 border border-slate-800 overflow-hidden">
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
           <p className="text-base sm:text-lg font-medium text-slate-100">
-            TalentSync360 organizes reviewable evidence before the interview, without pretending to replace it.
+            {t.homepage.problem.bannerText}
           </p>
           <span className="text-xs text-slate-400 font-mono block">
-            Decision support before the call. The client interview remains human.
+            {t.homepage.problem.bannerSubtext}
           </span>
         </div>
       </div>
