@@ -26,7 +26,7 @@ export default function CompaniesClient() {
 
   // Analytics Helpers
   const trackCta = (label: string, location: string, destination: string) => {
-    pushGTMEvent('click_commercial_cta', {
+    pushGTMEvent('companies_cta_click', {
       cta_label: label,
       cta_location: location,
       destination,
