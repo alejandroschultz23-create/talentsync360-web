@@ -1,4 +1,7 @@
-export const REVIEW_CONSENT_VERSION = "evidence-review-v1-2026-09-14";
+export const REVIEW_CONSENT_VERSION = "evidence-review-v2-2026-09-28";
+export const HISTORICAL_REVIEW_CONSENT_VERSIONS = [
+  "evidence-review-v1-2026-09-14",
+] as const;
 
 export const REVIEW_CONSENT_TEXT = {
   es: "Con la presente solicitud, manifiesto expresamente mi voluntad y consentimiento para que la información proporcionada en esta oportunidad sea utilizada exclusivamente con la sola finalidad de la creación de un perfil profesional con el objetivo de que TalentSync360 acceda a los datos brindados.",

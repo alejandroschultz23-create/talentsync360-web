@@ -36,8 +36,26 @@ describe("public Evidence Review request mapping", () => {
     expect(result.data.submission.reviewConsentVersion).toBe(
       REVIEW_CONSENT_VERSION,
     );
+    expect(REVIEW_CONSENT_VERSION).toBe("evidence-review-v2-2026-09-28");
     expect(result.data.submission.reviewConsentText).toBe(REVIEW_CONSENT_TEXT.es);
     expect(result.data.submission.reviewConsentAt).toBe(now.toISOString());
+  });
+
+  it("strictly enforces server-side acceptance timestamp over client input", () => {
+    const serverNow = new Date("2026-09-28T18:30:00.000Z");
+    const clientForgedTimestamp = "2020-01-01T00:00:00.000Z";
+    const result = validatePublicEvidenceReviewPayload(
+      {
+        ...validPayload,
+        review_consent_at: clientForgedTimestamp,
+        consent_profile_creation_at: clientForgedTimestamp,
+      },
+      serverNow,
+    );
+    expect(result.success).toBe(true);
+    if (!result.success) return;
+    expect(result.data.submission.reviewConsentAt).toBe(serverNow.toISOString());
+    expect(result.data.submission.reviewConsentAt).not.toBe(clientForgedTimestamp);
   });
 
   it("rejects missing consent and contradictory intent", () => {
