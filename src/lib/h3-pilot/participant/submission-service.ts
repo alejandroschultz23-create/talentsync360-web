@@ -12,6 +12,7 @@ import {
 import {
   orchestratePilotSubmission,
   type H3PilotCaller,
+  type PilotSubmissionArtifact,
   type PilotSubmissionSource,
 } from "../server/pilot-submission";
 import {
@@ -61,6 +62,7 @@ export type ParticipantSubmissionResult =
       readonly evidenceReviewId: string;
       readonly presentationStatus: "SUBMITTED";
       readonly uploadedFileKeys: readonly string[];
+      readonly artifacts: readonly PilotSubmissionArtifact[];
     }
   | { readonly ok: false; readonly code: string; readonly stage: string };
 
@@ -193,6 +195,7 @@ export async function submitPilotParticipant(
     evidenceReviewId: result.evidenceReviewId,
     presentationStatus: "SUBMITTED",
     uploadedFileKeys: prepared.map((source) => source.fileKey),
+    artifacts: result.artifacts,
   };
 }
 

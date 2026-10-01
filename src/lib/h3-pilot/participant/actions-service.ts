@@ -232,6 +232,8 @@ export async function revokeTalentNetworkOptInAction(
 export interface PilotRemovalActionDependencies {
   readonly progress: PilotProgressStore;
   readonly storage: PilotFileStorage;
+  /** Optional H3 caller seam (tests/synthetic); defaults to the canonical client. */
+  readonly client?: H3PilotCaller;
   readonly callRemoval?: (input: {
     intakeId: string;
     personId: string;
@@ -255,7 +257,11 @@ export async function requestPilotRemovalAction(
 
   const callRemoval =
     dependencies.callRemoval ??
-    ((removalInput) => requestPilotRemoval(removalInput, { storage: dependencies.storage }));
+    ((removalInput) =>
+      requestPilotRemoval(removalInput, {
+        storage: dependencies.storage,
+        ...(dependencies.client !== undefined ? { client: dependencies.client } : {}),
+      }));
 
   const outcome = await callRemoval({
     intakeId: progress.intakeId,

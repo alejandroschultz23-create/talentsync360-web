@@ -1,6 +1,7 @@
 import "server-only";
 
 import { callH3Pilot, type CallH3PilotDependencies } from "./client";
+import type { H3PilotCaller } from "./pilot-submission";
 import type { PilotFileStorage } from "./storage";
 
 /**
@@ -35,6 +36,8 @@ export interface PilotRemovalOutcome {
 
 export interface PilotRemovalDependencies extends CallH3PilotDependencies {
   readonly storage: PilotFileStorage;
+  /** Optional H3 caller seam (tests/synthetic); defaults to callH3Pilot. */
+  readonly client?: H3PilotCaller;
   readonly recordPendingCleanup?: (input: {
     readonly intakeId: string;
     readonly fileKeys: readonly string[];
@@ -45,16 +48,14 @@ export async function requestPilotRemoval(
   input: PilotRemovalInput,
   dependencies: PilotRemovalDependencies,
 ): Promise<PilotRemovalOutcome> {
-  const h3 = await callH3Pilot(
-    "requestRealPersonRemoval",
-    {
-      intakeId: input.intakeId,
-      personId: input.personId,
-      reason: input.reason,
-      operator: input.operator,
-    },
-    dependencies,
-  );
+  const caller: H3PilotCaller =
+    dependencies.client ?? ((operation, payload) => callH3Pilot(operation, payload, dependencies));
+  const h3 = await caller("requestRealPersonRemoval", {
+    intakeId: input.intakeId,
+    personId: input.personId,
+    reason: input.reason,
+    operator: input.operator,
+  });
 
   if (h3.ok === false) {
     // Do NOT delete files or Product mapping; keep traceability.
