@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 
+import { getPilotSession } from "@/lib/h3-pilot/server/pilot-mode";
 import type { EvidenceReviewLanguage } from "@/lib/evidence-review/consent";
 import { privateProfileContent } from "@/lib/evidence-review/private-content";
 import { buildPrivateProfileView } from "@/lib/evidence-review/private-profile";
@@ -10,6 +11,7 @@ import {
 import { EvidenceReviewRepository } from "@/lib/evidence-review/server/repository";
 
 import PrivateProfileActions from "./PrivateProfileActions";
+import PilotStatusPanel from "../submitted/PilotStatusPanel";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -52,6 +54,14 @@ export default async function PrivateEvidenceProfilePage({
   const query = await searchParams;
   const language = languageFrom(query.lang);
   const content = privateProfileContent[language];
+
+  // Invited H3 pilot participants use the pilot draft-review surface; canonical
+  // normal (non-pilot) private access is unchanged.
+  const pilotSession = await getPilotSession();
+  if (pilotSession !== null) {
+    return <PilotStatusPanel language={language} />;
+  }
+
   const token = (await cookies()).get(PRIVATE_ACCESS_COOKIE)?.value;
 
   if (!token) return <PrivateAccessError language={language} />;
