@@ -69,9 +69,19 @@ interface RecordedCall {
   readonly payload: Record<string, unknown>;
 }
 
+const VALID_CONTEXT = {
+  intakeId: "intake-1",
+  personId: "person-1",
+  evidenceReviewId: "er-1",
+  professionalProfileDraftId: "draft-1",
+  talentNetworkOptInPermissionGrantId: null,
+  talentProfileId: null,
+};
+
 function recordingClient(
   statusValue?: unknown,
   failAt?: string,
+  contextValue: unknown = VALID_CONTEXT,
 ): { client: H3PilotCaller; calls: RecordedCall[] } {
   const calls: RecordedCall[] = [];
   const client: H3PilotCaller = async (operation, payload): Promise<H3PilotCallResult> => {
@@ -86,6 +96,8 @@ function recordingClient(
         return { ok: true, code: "OK", value: { evidenceReview: { evidenceReviewId: "er-1" } } };
       case "ingestEvidenceArtifact":
         return { ok: true, code: "OK", value: { evidenceArtifact: { evidenceArtifactId: "ea-1" } } };
+      case "readPilotParticipantContext":
+        return { ok: true, code: "OK", value: contextValue };
       case "readPilotStatus":
         return { ok: true, code: "OK", value: statusValue ?? {} };
       case "getProfessionalProfileDraft":
@@ -524,13 +536,22 @@ describe("V1_187B status + decisions (PARTS G/H/I/J/K/L/M)", () => {
   it("22. opt-in revocation maps to canonical revokeTalentNetworkOptIn", async () => {
     const progress = createInMemoryPilotProgressStore();
     await progress.save(progressRecord());
-    const { client, calls } = recordingClient();
+    const { client, calls } = recordingClient(undefined, undefined, {
+      ...VALID_CONTEXT,
+      talentNetworkOptInPermissionGrantId: "grant-1",
+    });
     const result = await revokeTalentNetworkOptInAction(
       { participantReference: "P-1" },
       { progress, client },
     );
     expect(result.ok).toBe(true);
-    expect(calls.map((call) => call.operation)).toEqual(["revokeTalentNetworkOptIn"]);
+    expect(calls.map((call) => call.operation)).toEqual([
+      "readPilotParticipantContext",
+      "revokeTalentNetworkOptIn",
+    ]);
+    const revoke = calls.find((call) => call.operation === "revokeTalentNetworkOptIn");
+    expect(revoke?.payload.permissionGrantId).toBe("grant-1");
+    expect(revoke?.payload.personId).toBe("person-1");
   });
 
   it("23/25. removal records a safe pending cleanup state when files fail", async () => {

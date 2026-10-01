@@ -37,6 +37,7 @@ export const H3_PILOT_OPERATIONS = [
   "completePilot",
   "requestRealPersonRemoval",
   "readPilotStatus",
+  "readPilotParticipantContext",
 ] as const;
 export type H3PilotOperation = (typeof H3_PILOT_OPERATIONS)[number];
 

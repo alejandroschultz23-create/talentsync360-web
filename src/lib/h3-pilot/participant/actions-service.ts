@@ -11,25 +11,37 @@ import {
   type PilotDraftDecisionUi,
   type PilotOptInAction,
 } from "./decisions";
+import {
+  PILOT_OPT_IN_GRANT_REASON,
+  PILOT_OPT_IN_REVOKE_REASON,
+  PILOT_OPT_IN_SOURCE,
+  PILOT_PARTICIPANT_ACTOR,
+} from "./policy";
 import { PILOT_BFF_OPERATOR } from "./submission-service";
 import { readPilotParticipantState } from "./state-service";
+import { resolvePilotParticipantContext, type ResolvePilotContextResult } from "./context-resolver";
 import { pilotContent, type PilotLanguage } from "./content";
 import type { PilotProgressStore } from "./progress";
 
 /**
- * Participant lifecycle & decision actions (V1_187B).
+ * Participant lifecycle & decision actions (V1_187E).
  *
  * HARD BOUNDARY: participant routes MUST NOT reach H3 operator/review actions.
  * This module only calls the participant operations below and fails closed on
  * anything else. Promotion is NEVER performed here.
+ *
+ * CANONICAL ID INVARIANT: every mutation that requires a canonical id resolves
+ * it fresh from H3 (`readPilotParticipantContext`) immediately before the call.
+ * Product NEVER infers ids and NEVER trusts a stored id for a mutation.
  */
 export const PARTICIPANT_DECISION_OPERATIONS = [
+  "readPilotParticipantContext",
+  "readPilotStatus",
+  "getProfessionalProfileDraft",
   "recordDraftDecision",
   "grantTalentNetworkOptIn",
   "revokeTalentNetworkOptIn",
   "withdrawPilot",
-  "readPilotStatus",
-  "getProfessionalProfileDraft",
 ] as const;
 
 export const PARTICIPANT_FORBIDDEN_OPERATIONS = [
@@ -61,10 +73,18 @@ export interface PilotActionDependencies {
   readonly progress: PilotProgressStore;
   readonly client?: H3PilotCaller;
   readonly now?: number;
+  /** Test seam; defaults to the canonical H3 context resolver. */
+  readonly resolveContext?: (intakeId: string) => Promise<ResolvePilotContextResult>;
 }
 
 function defaultClient(operation: string, payload: Record<string, unknown>): Promise<H3PilotCallResult> {
   return callH3Pilot(operation, payload);
+}
+
+function contextResolver(dependencies: PilotActionDependencies): (intakeId: string) => Promise<ResolvePilotContextResult> {
+  if (dependencies.resolveContext !== undefined) return dependencies.resolveContext;
+  const client = dependencies.client;
+  return (intakeId) => resolvePilotParticipantContext(intakeId, client !== undefined ? { client } : {});
 }
 
 export interface RecordDraftDecisionInput {
@@ -82,18 +102,21 @@ export async function recordPilotDraftDecisionAction(
   if (progress === null) return { ok: false, code: "PILOT_NOT_SUBMITTED" };
 
   const client = dependencies.client ?? defaultClient;
-  const now = dependencies.now ?? Date.now();
-  const mapped = mapPilotDraftDecision(input.decision);
+  const resolveContext = contextResolver(dependencies);
 
+  // Resolve the canonical draft id immediately before the mutation.
+  const contextResult = await resolveContext(progress.intakeId);
+  if (contextResult.ok === false) return { ok: false, code: contextResult.code };
+  const professionalProfileDraftId = contextResult.context.professionalProfileDraftId;
+  if (professionalProfileDraftId === null) return { ok: false, code: "DRAFT_NOT_READY" };
+
+  const mapped = mapPilotDraftDecision(input.decision);
   const result = await participantCall(client, "recordDraftDecision", {
     intakeId: progress.intakeId,
-    evidenceReviewId: progress.evidenceReviewId,
+    professionalProfileDraftId,
     decision: mapped,
-    ...(input.decision === "REQUEST_CORRECTION"
-      ? { correctionMessage: (input.correctionMessage ?? "").slice(0, 2_000) }
-      : {}),
-    changedBy: PILOT_BFF_OPERATOR,
-    decidedAt: new Date(now).toISOString(),
+    changedBy: PILOT_PARTICIPANT_ACTOR,
+    decidedAt: new Date(dependencies.now ?? Date.now()).toISOString(),
   });
   if (result.ok === false) return { ok: false, code: result.code };
 
@@ -115,6 +138,8 @@ export async function decideTalentNetworkOptIn(
   const progress = await dependencies.progress.get(input.participantReference);
   if (progress === null) return { ok: false, code: "PILOT_NOT_SUBMITTED" };
 
+  // Product UI eligibility (confirmed draft) is a Product presentation policy.
+  // Canonical H3 remains the final eligibility authority.
   const state = await readPilotParticipantState(
     { participantReference: input.participantReference, language: input.language ?? "es" },
     {
@@ -130,11 +155,19 @@ export async function decideTalentNetworkOptIn(
     return { ok: true };
   }
 
+  // Resolve canonical ids immediately before the mutation.
+  const contextResult = await contextResolver(dependencies)(progress.intakeId);
+  if (contextResult.ok === false) return { ok: false, code: contextResult.code };
+  const { personId, evidenceReviewId } = contextResult.context;
+  if (personId === null || evidenceReviewId === null) return { ok: false, code: "OPT_IN_NOT_ELIGIBLE" };
+
   const client = dependencies.client ?? defaultClient;
   const result = await participantCall(client, "grantTalentNetworkOptIn", {
-    intakeId: progress.intakeId,
-    grantedBy: PILOT_BFF_OPERATOR,
-    grantedAt: new Date(dependencies.now ?? Date.now()).toISOString(),
+    personId,
+    evidenceReviewId,
+    source: PILOT_OPT_IN_SOURCE,
+    changedBy: PILOT_PARTICIPANT_ACTOR,
+    reason: PILOT_OPT_IN_GRANT_REASON,
   });
   if (result.ok === false) return { ok: false, code: result.code };
   return { ok: true };
@@ -163,20 +196,37 @@ export async function withdrawPilotParticipant(
   return { ok: true };
 }
 
+export type RevokeOptInResult =
+  | { readonly ok: true; readonly revoked: boolean }
+  | PilotActionFailure;
+
 export async function revokeTalentNetworkOptInAction(
   input: { readonly participantReference: string },
   dependencies: PilotActionDependencies,
-): Promise<{ ok: true } | PilotActionFailure> {
+): Promise<RevokeOptInResult> {
   const progress = await dependencies.progress.get(input.participantReference);
   if (progress === null) return { ok: false, code: "PILOT_NOT_SUBMITTED" };
+
+  // Resolve the CURRENT canonical grant id immediately before the mutation.
+  const contextResult = await contextResolver(dependencies)(progress.intakeId);
+  if (contextResult.ok === false) return { ok: false, code: contextResult.code };
+  const { personId, talentNetworkOptInPermissionGrantId } = contextResult.context;
+
+  // No current GRANTED grant -> safe idempotent no-op. Never pick a
+  // historical/revoked permission.
+  if (personId === null || talentNetworkOptInPermissionGrantId === null) {
+    return { ok: true, revoked: false };
+  }
+
   const client = dependencies.client ?? defaultClient;
   const result = await participantCall(client, "revokeTalentNetworkOptIn", {
-    intakeId: progress.intakeId,
-    revokedBy: PILOT_BFF_OPERATOR,
-    revokedAt: new Date(dependencies.now ?? Date.now()).toISOString(),
+    permissionGrantId: talentNetworkOptInPermissionGrantId,
+    personId,
+    changedBy: PILOT_PARTICIPANT_ACTOR,
+    reason: PILOT_OPT_IN_REVOKE_REASON,
   });
   if (result.ok === false) return { ok: false, code: result.code };
-  return { ok: true };
+  return { ok: true, revoked: true };
 }
 
 export interface PilotRemovalActionDependencies {

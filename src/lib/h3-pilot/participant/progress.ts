@@ -1,9 +1,15 @@
 /**
- * Product-side NON-AUTHORITATIVE pilot progress (V1_187B).
+ * Product-side NON-AUTHORITATIVE pilot progress (V1_187B / V1_187E).
  *
  * Product may retain ONLY: invitation/session ids, the H3 intake opaque
- * reference, UI progress, storage object references, and cleanup retry
- * metadata. It NEVER mirrors canonical consent, decision, opt-in or retention
+ * reference, UI progress, storage object references, cleanup retry metadata,
+ * and last-known canonical id hints.
+ *
+ * NON-AUTHORITATIVE INVARIANT: `lastKnownProfessionalProfileDraftId` and
+ * `lastKnownPermissionGrantId` are UX/resume HINTS only. They MUST NEVER be
+ * used as the source for a canonical mutation. Every mutation re-resolves the
+ * canonical ids from H3 (`readPilotParticipantContext`) immediately before the
+ * call. Product NEVER mirrors canonical consent, decision, opt-in or retention
  * truth — those are read live from H3.
  */
 export interface PilotProgressRecord {
@@ -17,6 +23,10 @@ export interface PilotProgressRecord {
   readonly uiStage: string;
   readonly talentNetworkDeclined: boolean;
   readonly cleanupPendingFileKeys: readonly string[];
+  /** Non-authoritative UX hint. Never trusted for a mutation. */
+  readonly lastKnownProfessionalProfileDraftId?: string | null;
+  /** Non-authoritative UX hint. Never trusted for a mutation. */
+  readonly lastKnownPermissionGrantId?: string | null;
 }
 
 export interface PilotProgressStore {

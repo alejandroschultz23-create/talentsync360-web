@@ -69,3 +69,19 @@ export const PILOT_IDENTITY_CONFIRMATION_STATUS = "CONFIRMED";
 
 /** Server-derived pilot mode value; never trusted from the client. */
 export const PILOT_MODE_COOKIE = "h3_pilot_session";
+
+/**
+ * Canonical actor scheme for participant-driven H3 operations. Matches the
+ * actor string the canonical H3 runtime itself uses for participant actions.
+ */
+export const PILOT_PARTICIPANT_ACTOR = "PILOT_PARTICIPANT";
+
+/**
+ * Stable Product provenance source for the participant Talent Network opt-in.
+ * The canonical H3 contract treats `source` as a non-empty provenance string
+ * (max 200); this is the approved Product pilot provenance value, not a new
+ * vocabulary.
+ */
+export const PILOT_OPT_IN_SOURCE = "TALENTSYNC360_PRODUCT_PILOT";
+export const PILOT_OPT_IN_GRANT_REASON = "participant requested Talent Network opt-in";
+export const PILOT_OPT_IN_REVOKE_REASON = "participant requested Talent Network opt-out";

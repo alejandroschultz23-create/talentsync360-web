@@ -41,7 +41,7 @@ export async function POST(request: NextRequest): Promise<Response> {
       { progress: getPilotProgressStore() },
     );
     if (result.ok === false) return pilotJson({ ok: false, code: result.code }, 409);
-    return pilotJson({ ok: true }, 200);
+    return pilotJson({ ok: true, revoked: result.revoked }, 200);
   }
 
   const storage = getPilotFileStorage();

@@ -9,6 +9,10 @@ import {
 } from "../server/pilot-status";
 import { isDraftDecisionOpen, isTalentNetworkOptInEligible } from "./decisions";
 import { pilotStatusLabel, type PilotLanguage } from "./content";
+import {
+  resolvePilotParticipantContext,
+  type PilotParticipantContext,
+} from "./context-resolver";
 import type { PilotProgressStore } from "./progress";
 
 /**
@@ -151,17 +155,52 @@ export async function readPilotParticipantState(
   }
 
   const client = dependencies.client ?? defaultClient;
-  const status = await client("readPilotStatus", { intakeId: progress.intakeId });
+
+  // Canonical ids are ALWAYS re-resolved from H3 immediately before use. The
+  // Product progress record is a non-authoritative hint only.
+  const contextResult = await resolvePilotParticipantContext(progress.intakeId, { client });
+  if (contextResult.ok === false) return { ok: false, code: contextResult.code };
+  const context = contextResult.context;
+
+  // The intake exists but the participant binding is not (yet) present.
+  if (context.personId === null) {
+    return { ok: true, state: safeSubmittedState(input.language, progress.cleanupPendingFileKeys.length > 0) };
+  }
+
+  const statusPayload: Record<string, unknown> = {
+    intakeId: progress.intakeId,
+    personId: context.personId,
+  };
+  if (context.evidenceReviewId !== null) statusPayload.evidenceReviewId = context.evidenceReviewId;
+  if (context.professionalProfileDraftId !== null) {
+    statusPayload.professionalProfileDraftId = context.professionalProfileDraftId;
+  }
+  if (context.talentNetworkOptInPermissionGrantId !== null) {
+    statusPayload.permissionGrantId = context.talentNetworkOptInPermissionGrantId;
+  }
+
+  const status = await client("readPilotStatus", statusPayload);
   if (status.ok === false) return { ok: false, code: status.code };
 
   const view = parsePilotStatusView(status.value);
   if (view === null) return { ok: false, code: "INVALID_STATUS_PAYLOAD" };
 
+  // Draft is read ONLY via the canonical draft id resolved from H3. Product
+  // never guesses the latest draft.
   let draft: unknown | null = null;
-  if (view.evidenceReviewStatus === "REVIEW_COMPLETED") {
-    const draftResult = await client("getProfessionalProfileDraft", { intakeId: progress.intakeId });
-    if (draftResult.ok === true && draftResult.value !== undefined) draft = draftResult.value;
+  if (context.professionalProfileDraftId !== null) {
+    const draftResult = await client("getProfessionalProfileDraft", {
+      professionalProfileDraftId: context.professionalProfileDraftId,
+    });
+    if (draftResult.ok === false) return { ok: false, code: draftResult.code };
+    if (draftResult.value === undefined) return { ok: false, code: "DRAFT_PAYLOAD_MISSING" };
+    const scope = validateDraftScope(draftResult.value, context);
+    if (scope.ok === false) return { ok: false, code: scope.code };
+    draft = draftResult.value;
   }
+
+  const optInStatus =
+    context.talentNetworkOptInPermissionGrantId !== null ? "GRANTED" : parseOptInStatus(status.value);
 
   return {
     ok: true,
@@ -171,10 +210,56 @@ export async function readPilotParticipantState(
       draft,
       cleanupPending: progress.cleanupPendingFileKeys.length > 0,
       talentNetworkDeclined: progress.talentNetworkDeclined,
-      optInStatus: parseOptInStatus(status.value),
+      optInStatus,
       language: input.language,
     }),
   };
+}
+
+function safeSubmittedState(language: PilotLanguage, cleanupPending: boolean): PilotParticipantState {
+  return {
+    stage: "SUBMITTED",
+    hasSubmission: true,
+    presentationStatus: "SUBMITTED",
+    label: pilotStatusLabel(language, "SUBMITTED"),
+    optInEligible: false,
+    canRevokeOptIn: false,
+    draftDecisionOpen: false,
+    draft: null,
+    cleanupPending,
+    canWithdraw: false,
+    canRequestRemoval: true,
+    talentNetworkDeclined: false,
+  };
+}
+
+/**
+ * If the canonical draft payload exposes scope ids, they MUST match the context.
+ * Fail closed on mismatch; otherwise accept the opaque payload.
+ */
+export function validateDraftScope(
+  value: unknown,
+  context: PilotParticipantContext,
+): { ok: true } | { ok: false; code: string } {
+  if (value === null || typeof value !== "object") return { ok: true };
+  const record = value as Record<string, unknown>;
+  const draftRecord =
+    record.draft !== null && typeof record.draft === "object"
+      ? (record.draft as Record<string, unknown>)
+      : record;
+  const personId = draftRecord.personId;
+  if (typeof personId === "string" && context.personId !== null && personId !== context.personId) {
+    return { ok: false, code: "PILOT_DRAFT_SCOPE_MISMATCH" };
+  }
+  const evidenceReviewId = draftRecord.evidenceReviewId;
+  if (
+    typeof evidenceReviewId === "string" &&
+    context.evidenceReviewId !== null &&
+    evidenceReviewId !== context.evidenceReviewId
+  ) {
+    return { ok: false, code: "PILOT_DRAFT_SCOPE_MISMATCH" };
+  }
+  return { ok: true };
 }
 
 const OPT_IN_STATES = ["GRANTED", "REVOKED", "DECLINED"] as const;
@@ -186,6 +271,6 @@ const OPT_IN_STATES = ["GRANTED", "REVOKED", "DECLINED"] as const;
 export function parseOptInStatus(value: unknown): string | null {
   if (value === null || typeof value !== "object") return null;
   const record = value as Record<string, unknown>;
-  const candidate = record.optInStatus ?? record.talentNetworkStatus;
+  const candidate = record.optInStatus ?? record.talentNetworkStatus ?? record.talentNetworkOptInStatus;
   return pick(candidate, OPT_IN_STATES);
 }
