@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
         headers: privateHeaders,
       },
       {
+        source: "/talents/evidence-review/enter",
+        headers: privateHeaders,
+      },
+      {
         source: "/talents/evidence-review/profile",
         headers: privateHeaders,
       },

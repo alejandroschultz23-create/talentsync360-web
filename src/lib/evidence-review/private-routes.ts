@@ -1,5 +1,6 @@
 export const PRIVATE_EVIDENCE_REVIEW_PATH_PREFIXES = [
   "/talents/evidence-review/access/",
+  "/talents/evidence-review/enter",
   "/talents/evidence-review/profile",
 ] as const;
 
