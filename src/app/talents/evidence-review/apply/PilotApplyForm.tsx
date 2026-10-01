@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import {
   PILOT_CONSENT_ITEMS,
   pilotContent,
+  pilotSubmitErrorMessage,
   type PilotLanguage,
 } from "@/lib/h3-pilot/participant/content";
 import {
@@ -50,7 +51,7 @@ export default function PilotApplyForm({ language }: { language: PilotLanguage }
       return;
     }
     if (identity !== true) {
-      setError(content.genericError);
+      setError(content.identityRequired);
       return;
     }
 
@@ -69,7 +70,14 @@ export default function PilotApplyForm({ language }: { language: PilotLanguage }
         body: form,
       });
       if (!response.ok) {
-        setError(content.genericError);
+        let code: string | null = null;
+        try {
+          const body = (await response.json()) as { code?: unknown };
+          if (typeof body.code === "string") code = body.code;
+        } catch {
+          code = null;
+        }
+        setError(pilotSubmitErrorMessage(language, code));
         return;
       }
       router.push("/talents/evidence-review/submitted");

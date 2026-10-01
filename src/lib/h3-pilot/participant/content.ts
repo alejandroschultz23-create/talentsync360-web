@@ -125,9 +125,11 @@ export interface PilotCopy {
   readonly fileFormats: string;
   readonly fileTooLarge: string;
   readonly fileTypeInvalid: string;
+  readonly emptyFile: string;
   readonly cvRequired: string;
   readonly identityTitle: string;
   readonly identityCheckbox: string;
+  readonly identityRequired: string;
   readonly submit: string;
   readonly submitting: string;
   readonly genericError: string;
@@ -187,9 +189,11 @@ export const pilotContent: Record<PilotLanguage, PilotCopy> = {
     fileFormats: "Aceptamos PDF o DOCX, hasta 5 MB.",
     fileTooLarge: "El archivo supera el límite de 5 MB.",
     fileTypeInvalid: "Formato no soportado. Aceptamos PDF o DOCX.",
+    emptyFile: "El archivo está vacío o no se pudo leer. Probá con otro archivo.",
     cvRequired: "El CV es obligatorio para este piloto.",
     identityTitle: "Confirmación de identidad",
     identityCheckbox: "Confirmo que los materiales profesionales que presenté o autoricé se refieren a mí.",
+    identityRequired: "Confirmá que los materiales profesionales que presentaste o autorizaste se refieren a vos.",
     submit: "Enviar al piloto",
     submitting: "Enviando…",
     genericError: "No pudimos completar la acción. Verificá tu acceso e intentá nuevamente.",
@@ -251,9 +255,11 @@ export const pilotContent: Record<PilotLanguage, PilotCopy> = {
     fileFormats: "We accept PDF or DOCX, up to 5 MB.",
     fileTooLarge: "The file exceeds the 5 MB limit.",
     fileTypeInvalid: "Unsupported format. We accept PDF or DOCX.",
+    emptyFile: "The file is empty or could not be read. Please try another file.",
     cvRequired: "The CV is required for this pilot.",
     identityTitle: "Identity confirmation",
     identityCheckbox: "I confirm that the professional materials I submitted or authorised refer to me.",
+    identityRequired: "Confirm that the professional materials you submitted or authorised refer to you.",
     submit: "Submit to the pilot",
     submitting: "Submitting…",
     genericError: "We could not complete the action. Verify your access and try again.",
@@ -287,3 +293,34 @@ export const pilotContent: Record<PilotLanguage, PilotCopy> = {
     refresh: "Refresh",
   },
 };
+
+/**
+ * Safe Product server error codes the participant form can explain specifically.
+ * Any other code (or an absent/unparseable body) is treated as an unexpected
+ * failure and mapped to the generic safe message. Raw codes are NEVER shown.
+ */
+export const PILOT_SUBMIT_ERROR_CODES = [
+  "FILE_TOO_LARGE",
+  "UNSUPPORTED_FILE_TYPE",
+  "CV_REQUIRED",
+  "EMPTY_FILE",
+] as const;
+
+export function pilotSubmitErrorMessage(
+  language: PilotLanguage,
+  code: string | null | undefined,
+): string {
+  const content = pilotContent[language];
+  switch (code) {
+    case "FILE_TOO_LARGE":
+      return content.fileTooLarge;
+    case "UNSUPPORTED_FILE_TYPE":
+      return content.fileTypeInvalid;
+    case "CV_REQUIRED":
+      return content.cvRequired;
+    case "EMPTY_FILE":
+      return content.emptyFile;
+    default:
+      return content.genericError;
+  }
+}
