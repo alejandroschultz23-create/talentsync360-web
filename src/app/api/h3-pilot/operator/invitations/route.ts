@@ -30,15 +30,35 @@ export async function POST(request: NextRequest): Promise<Response> {
   }
   if (body === null || typeof body !== "object") return json({ ok: false, code: "INVALID_REQUEST" }, 400);
   const record = body as Record<string, unknown>;
-  const participantReference = typeof record.participantReference === "string" ? record.participantReference : "";
+  const participantReference =
+    typeof record.participantReference === "string" ? record.participantReference : "";
+  const ownerReference = typeof record.ownerReference === "string" ? record.ownerReference : "";
+  const pilotAuthorizationId =
+    typeof record.pilotAuthorizationId === "string" ? record.pilotAuthorizationId : "";
   const ttlSeconds =
     typeof record.ttlSeconds === "number" && record.ttlSeconds > 0
       ? Math.min(record.ttlSeconds, PILOT_INVITATION_MAX_TTL_SECONDS)
       : undefined;
 
-  const result = await issuePilotInvitation({ participantReference, ttlSeconds });
+  // Real pilot issuance binds each invitation to exactly one H3 authorization.
+  // Both fields are optional together (legacy/local), required together (pilot).
+  const hasBinding = ownerReference.trim().length > 0 || pilotAuthorizationId.trim().length > 0;
+  if (hasBinding && (ownerReference.trim().length === 0 || pilotAuthorizationId.trim().length === 0)) {
+    return json({ ok: false, code: "INVALID_AUTHORIZATION_BINDING" }, 400);
+  }
+
+  const result = await issuePilotInvitation({
+    participantReference: participantReference.trim().length > 0 ? participantReference : ownerReference,
+    ...(hasBinding ? { ownerReference, pilotAuthorizationId } : {}),
+    ...(ttlSeconds !== undefined ? { ttlSeconds } : {}),
+  });
   if (result.ok === false) {
-    const status = result.code === "H3_PILOT_NOT_CONFIGURED" ? 503 : 400;
+    const status =
+      result.code === "H3_PILOT_NOT_CONFIGURED"
+        ? 503
+        : result.code === "INVITATION_CAP_REACHED" || result.code === "AUTHORIZATION_ALREADY_INVITED"
+          ? 409
+          : 400;
     return json({ ok: false, code: result.code }, status);
   }
 
@@ -47,6 +67,8 @@ export async function POST(request: NextRequest): Promise<Response> {
       ok: true,
       invitationId: result.invitation.invitationId,
       participantReference: result.invitation.participantReference,
+      ownerReference: result.invitation.ownerReference,
+      pilotAuthorizationId: result.invitation.pilotAuthorizationId,
       expiresAt: result.invitation.expiresAt,
       token: result.invitation.token,
     },
