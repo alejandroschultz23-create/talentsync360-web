@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import * as THREE from 'three';
 import HeroGlobeFallback from './HeroGlobeFallback';
 
@@ -8,8 +8,14 @@ interface HeroGlobeProps {
   className?: string;
 }
 
+const subscribeToHydration = () => () => {};
+const clientHydrationSnapshot = () => true;
+const serverHydrationSnapshot = () => false;
+
 export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  // SSR and the first client render must share a tree before browser-only selection.
+  const isHydrated = useSyncExternalStore(subscribeToHydration, clientHydrationSnapshot, serverHydrationSnapshot);
   const [isReducedMotion] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
       return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -28,7 +34,7 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
   });
 
   useEffect(() => {
-    if (useFallback) return;
+    if (!isHydrated || useFallback) return;
 
     const container = containerRef.current;
     if (!container) return;
@@ -457,9 +463,9 @@ export default function HeroGlobe({ className = '' }: HeroGlobeProps) {
         container.removeChild(renderer.domElement);
       }
     };
-  }, [useFallback]);
+  }, [isHydrated, useFallback]);
 
-  if (useFallback) {
+  if (isHydrated && useFallback) {
     return <HeroGlobeFallback className={className} isReducedMotion={isReducedMotion} />;
   }
 

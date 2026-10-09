@@ -658,6 +658,7 @@ export default function CompaniesClient() {
       <EvidenceBriefModal
         isOpen={isBriefModalOpen}
         onClose={() => setIsBriefModalOpen(false)}
+        sampleContextNotice={c.productProof.modalContextNotice}
       />
     </div>
   );

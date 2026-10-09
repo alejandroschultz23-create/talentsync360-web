@@ -4,6 +4,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, Suspense } from 'react';
 import { pushGTMEvent } from '@/lib/analytics';
+import { formatContactMessage } from '@/lib/contact-message';
 
 function ContactForm() {
   const { t, lang } = useLanguage();
@@ -50,6 +51,7 @@ function ContactForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...data,
+          message: formatContactMessage(String(data.message ?? ''), searchParams.get('intent'), lang),
           contactType,
           lang: lang,
           pageOrigin: typeof window !== 'undefined' ? window.location.pathname : ''

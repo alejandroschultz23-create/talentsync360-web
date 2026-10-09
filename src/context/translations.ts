@@ -124,6 +124,8 @@ export interface HomepageTranslations {
   candidateReviewPreview: {
     title: string;
     badge: string;
+    demoNotice: string;
+    sharingBoundary: string;
     sourcesTitle: string;
     src1: string;
     src2: string;
@@ -539,6 +541,7 @@ export interface Translations {
       title: string;
       subtitle: string;
       sampleBanner: string;
+      modalContextNotice: string;
       candidateRef: string;
       humanReviewVerified: string;
       fullInteractiveView: string;
@@ -899,12 +902,12 @@ export const translations: Record<Language, Translations> = {
         ctaValidateRole: "Validate a Role with Our Team",
       },
       roleContextPreview: {
-        topNotice: "Live Role Context Alignment Prototype",
+        topNotice: "Role Context Simulation · Fictional Example",
         stepLabel: "STEP 1: DEFINE ROLE CONTEXT",
         tabSourced: "Direct Sourced Candidate",
         tabShortlist: "Request TS360 Shortlist",
         labelRoleTitle: "Target Role:",
-        valRoleTitle: "Senior Backend Engineer (Go / Distributed)",
+        valRoleTitle: "Senior Backend Engineer (Node.js / Distributed)",
         labelSeniority: "Target Seniority:",
         valSeniority: "Senior (5+ yrs) · High Autonomy",
         labelStack: "Required Core Stack:",
@@ -921,7 +924,7 @@ export const translations: Record<Language, Translations> = {
         point1Title: "Evidence-first presentation",
         point1Desc: "Let your real projects, architecture decisions, and code speak louder than algorithmic CV keyword filters.",
         point2Title: "Private & candidate-controlled",
-        point2Desc: "Review and curate your evidence profile privately. You decide when and where your profile is presented to hiring teams.",
+        point2Desc: "Review your evidence profile privately. Joining Talent Network does not authorize presenting or sharing it with employers.",
         point3Title: "Fair, transparent evaluation",
         point3Desc: "Understand exactly how your experience is mapped to role requirements with clear, objective criteria.",
         point4Title: "High-impact LATAM opportunities",
@@ -931,6 +934,8 @@ export const translations: Record<Language, Translations> = {
       candidateReviewPreview: {
         title: "Professional Evidence Profile (Draft)",
         badge: "Private to Candidate",
+        demoNotice: "Simulation with fictional data. These controls only change this example; they do not save a decision or share a profile.",
+        sharingBoundary: "Joining Talent Network does not authorize presenting or sharing your profile with employers. Any presentation requires separate authorization.",
         sourcesTitle: "Submitted Professional Evidence Sources",
         src1: "Project Architecture & Data Flow Overview",
         src2: "Engineering Production Responsibilities",
@@ -942,11 +947,11 @@ export const translations: Record<Language, Translations> = {
         clarificationQuote: "“Added clarification: The cluster failover was verified under staging load tests; production incident logs are retained by previous employer under NDA.”",
         hideNote: "Hide note",
         addClarification: "Add Candidate Context / Clarification",
-        networkVisibility: "Talent Network Visibility",
-        optInDescriptionActive: "Profile is actively matched to relevant technical briefs.",
-        optInDescriptionPrivate: "Private review mode. Profile is not visible to hiring teams.",
-        optInToggleActive: "Opted-In to Matches",
-        optInTogglePrivate: "Private Review Only (Toggle)",
+        networkVisibility: "Talent Network Choice · Simulation",
+        optInDescriptionActive: "Simulated membership choice: retention and opportunity contact. The profile remains private.",
+        optInDescriptionPrivate: "Simulated private review choice. The profile remains private.",
+        optInToggleActive: "Membership Selected · Simulation",
+        optInTogglePrivate: "Private Review · Simulation",
       },
       evidenceStates: {
         eyebrow: "EPISTEMIC CALIBRATION",
@@ -1004,14 +1009,14 @@ export const translations: Record<Language, Translations> = {
         ctaPartner: "Partner With TalentSync360",
       },
       partnerToggle: {
-        topLabel: "INTERACTIVE PRESENTATION PREVIEW",
-        disclaimer: "See how TalentSync360 transforms standard agency submissions into structured client-ready evidence briefs.",
-        tabStandard: "Standard Agency Forward",
-        tabPartner: "TalentSync360 Partner Delivery",
-        standardSubtitle: "Generic resume forwarding with unverified claims and no calibrated decision support.",
-        partnerSubtitle: "Calibrated candidate brief with verified strengths, surfaced gaps, and tailored interview probes.",
+        topLabel: "PRESENTATION SIMULATION · FICTIONAL SAMPLE",
+        disclaimer: "This toggle only changes the example's branding. It does not authorize or deliver a profile. Talent Network membership does not authorize employer presentation; separate authorization is required.",
+        tabStandard: "TalentSync360 Brand · Simulation",
+        tabPartner: "Partner Brand · Simulation",
+        standardSubtitle: "Fictional Evidence Brief shown under the TalentSync360 brand.",
+        partnerSubtitle: "The same fictional Evidence Brief shown under an example partner brand.",
         candidateRefLabel: "Candidate Reference",
-        evaluatedRole: "Senior Distributed Systems Engineer (Go / Kafka)",
+        evaluatedRole: "Senior Backend Engineer (Go / Distributed Systems)",
         observableStrengthLabel: "Observable Strengths",
         observableStrengthDesc: "Verifiable production Go microservices handling Kafka event streaming at scale.",
         surfaceUnknownLabel: "Calibrated Unknowns",
@@ -1411,9 +1416,10 @@ export const translations: Record<Language, Translations> = {
         title: "What an Evidence Brief actually looks like.",
         subtitle: "A structured, human-reviewed technical dossier built for hiring decision-makers before the engineering interview.",
         sampleBanner: "Illustrative Sample · Fictional Candidate Data",
+        modalContextNotice: "AR-8821 is a separate fictional Backend Go sample. It is not the full version of the TS-BRIEF-2026-084 Full-Stack Go / Node.js example shown on the companies page.",
         candidateRef: "TS-BRIEF-2026-084",
         humanReviewVerified: "Human Review Complete",
-        fullInteractiveView: "Full Interactive View",
+        fullInteractiveView: "View Separate AR-8821 Sample",
         targetRoleLabel: "Target Role Context",
         targetRoleValue: "Senior Full-Stack Engineer (LATAM Remote) · High-Throughput Event Architecture",
         sourcesLabel: "Sources Reviewed",
@@ -1442,7 +1448,7 @@ export const translations: Record<Language, Translations> = {
         },
         validationPromptLabel: "PREPARED INTERVIEW QUESTION FOR HIRING TEAM",
         validationPromptText: "“Ask the candidate to trace a single transaction rollback across the Kafka boundary when the ledger reconciliation failed in their 2025 platform migration.”",
-        openModalCta: "Open Interactive Dossier Preview",
+        openModalCta: "Open Separate AR-8821 Preview",
       },
       howItWorks: {
         eyebrow: "OPERATIONAL METHODOLOGY",
@@ -1911,12 +1917,12 @@ export const translations: Record<Language, Translations> = {
         ctaValidateRole: "Validar un Rol con Nuestro Equipo",
       },
       roleContextPreview: {
-        topNotice: "Prototipo Interactivo de Contexto de Rol",
+        topNotice: "Simulación de Contexto de Rol · Ejemplo Ficticio",
         stepLabel: "PASO 1: DEFINIR CONTEXTO DEL ROL",
         tabSourced: "Candidato Preseleccionado Directo",
         tabShortlist: "Solicitar Shortlist TS360",
         labelRoleTitle: "Rol Objetivo:",
-        valRoleTitle: "Senior Backend Engineer (Go / Distribuido)",
+        valRoleTitle: "Senior Backend Engineer (Node.js / Distribuido)",
         labelSeniority: "Seniority Requerido:",
         valSeniority: "Senior (5+ años) · Alta Autonomía",
         labelStack: "Stack Principal Requerido:",
@@ -1933,7 +1939,7 @@ export const translations: Record<Language, Translations> = {
         point1Title: "Presentación centrada en evidencia",
         point1Desc: "Dejá que tus proyectos reales, decisiones técnicas y código hablen con más fuerza que los filtros algorítmicos de CVs.",
         point2Title: "Privado y controlado por el candidato",
-        point2Desc: "Revisá y gestioná tu perfil de evidencia en privado. Vos decidís cuándo y hacia qué equipos de contratación compartir tu perfil.",
+        point2Desc: "Revisá tu perfil de evidencia en privado. Incorporarte a Talent Network no autoriza presentarlo ni compartirlo con empleadores.",
         point3Title: "Evaluación justa y transparente",
         point3Desc: "Comprendé con precisión cómo se contrasta tu experiencia frente a los requerimientos de la posición, con criterios objetivos y claros.",
         point4Title: "Oportunidades de alto impacto en LATAM",
@@ -1943,6 +1949,8 @@ export const translations: Record<Language, Translations> = {
       candidateReviewPreview: {
         title: "Perfil Profesional de Evidencia (Borrador)",
         badge: "Privado para el Candidato",
+        demoNotice: "Simulación con datos ficticios. Estos controles solo cambian el ejemplo; no guardan una decisión ni comparten un perfil.",
+        sharingBoundary: "Incorporarte a Talent Network no autoriza presentar ni compartir tu perfil con empleadores. Cualquier presentación requiere una autorización separada.",
         sourcesTitle: "Fuentes de Evidencia Profesional Presentadas",
         src1: "Arquitectura del Proyecto y Flujo de Datos",
         src2: "Responsabilidades de Ingeniería en Producción",
@@ -1954,11 +1962,11 @@ export const translations: Record<Language, Translations> = {
         clarificationQuote: "“Aclaración agregada: La tolerancia a fallas del clúster se comprobó en pruebas de carga en staging; los incidentes de producción están bajo NDA con el empleador anterior.”",
         hideNote: "Ocultar nota",
         addClarification: "Agregar Contexto / Aclaración del Candidato",
-        networkVisibility: "Visibilidad en la Red de Talento",
-        optInDescriptionActive: "El perfil participa activamente en el emparejamiento con búsquedas técnicas relevantes.",
-        optInDescriptionPrivate: "Modo de revisión privado. El perfil no es visible para equipos de contratación.",
-        optInToggleActive: "Activado para Oportunidades",
-        optInTogglePrivate: "Solo Revisión Privada (Alternar)",
+        networkVisibility: "Decisión sobre Talent Network · Simulación",
+        optInDescriptionActive: "Decisión de membresía simulada: conservación y contacto por oportunidades. El perfil sigue privado.",
+        optInDescriptionPrivate: "Decisión de revisión privada simulada. El perfil sigue privado.",
+        optInToggleActive: "Membresía Seleccionada · Simulación",
+        optInTogglePrivate: "Revisión Privada · Simulación",
       },
       evidenceStates: {
         eyebrow: "CALIBRACIÓN EPISTÉMICA",
@@ -2016,14 +2024,14 @@ export const translations: Record<Language, Translations> = {
         ctaPartner: "Asociate con TalentSync360",
       },
       partnerToggle: {
-        topLabel: "VISTA PREVIA DE PRESENTACIÓN INTERACTIVA",
-        disclaimer: "Observá cómo TalentSync360 transforma las postulaciones comunes de agencias en briefs técnicos estructurados listos para el cliente.",
-        tabStandard: "Envío Típico de Agencia",
-        tabPartner: "Entrega Partner TalentSync360",
-        standardSubtitle: "Envío de currículum genérico con afirmaciones no verificadas y sin soporte calibrado para la decisión.",
-        partnerSubtitle: "Candidate brief calibrado con fortalezas confirmadas, brechas identificadas y preguntas sugeridas.",
+        topLabel: "SIMULACIÓN DE PRESENTACIÓN · MUESTRA FICTICIA",
+        disclaimer: "Este control solo cambia la marca del ejemplo. No autoriza ni entrega un perfil. La membresía en Talent Network no autoriza presentaciones a empleadores; se requiere una autorización separada.",
+        tabStandard: "Marca TalentSync360 · Simulación",
+        tabPartner: "Marca Partner · Simulación",
+        standardSubtitle: "Evidence Brief ficticio mostrado bajo la marca TalentSync360.",
+        partnerSubtitle: "El mismo Evidence Brief ficticio mostrado bajo la marca de un partner de ejemplo.",
         candidateRefLabel: "Referencia del Candidato",
-        evaluatedRole: "Senior Distributed Systems Engineer (Go / Kafka)",
+        evaluatedRole: "Senior Backend Engineer (Go / Sistemas Distribuidos)",
         observableStrengthLabel: "Fortalezas Observables",
         observableStrengthDesc: "Microservicios en Go en producción verificados, procesando eventos de Kafka a escala.",
         surfaceUnknownLabel: "Incertidumbres Calibradas",
@@ -2423,9 +2431,10 @@ export const translations: Record<Language, Translations> = {
         title: "Cómo se ve realmente un Informe de Evidencia.",
         subtitle: "Un dossier técnico estructurado y revisado por humanos, diseñado para quienes deciden antes de la entrevista de ingeniería.",
         sampleBanner: "Muestra Ilustrativa · Datos de Candidato Ficticios",
+        modalContextNotice: "AR-8821 es una muestra ficticia independiente de Backend Go. No es la versión completa del ejemplo Full-Stack Go / Node.js TS-BRIEF-2026-084 mostrado en la página de empresas.",
         candidateRef: "TS-BRIEF-2026-084",
         humanReviewVerified: "Revisión Humana Completada",
-        fullInteractiveView: "Vista Interactiva Completa",
+        fullInteractiveView: "Ver Muestra Independiente AR-8821",
         targetRoleLabel: "Contexto del Rol Objetivo",
         targetRoleValue: "Ingeniero Full-Stack Senior (Remoto LATAM) · Arquitectura de Eventos de Alto Tráfico",
         sourcesLabel: "Fuentes Revisadas",
@@ -2454,7 +2463,7 @@ export const translations: Record<Language, Translations> = {
         },
         validationPromptLabel: "PREGUNTA DE VALIDACIÓN PREPARADA PARA EL EQUIPO",
         validationPromptText: "“Pedile al candidato que trace el rollback de una transacción a través de Kafka cuando falló la conciliación contable en su migración de plataforma de 2025.”",
-        openModalCta: "Abrir Vista Previa Interactiva del Dossier",
+        openModalCta: "Abrir Vista Previa Independiente AR-8821",
       },
       howItWorks: {
         eyebrow: "METODOLOGÍA OPERATIVA",
