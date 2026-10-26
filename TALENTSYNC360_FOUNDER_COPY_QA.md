@@ -2,9 +2,29 @@
 
 ## STATUS
 
-`READY_FOR_FINAL_FOUNDER_REVIEW`
+`READY_TO_MERGE`
 
 La limpieza se limita a copy, SEO, metadata pública y consistencia del producto. No se modificó la implementación de GA4, GTM, Vercel Analytics, UTM/intent sanitization, `/api/send`, `/apply`, redirects, pricing nuevo ni arquitectura.
+
+## FINAL MICRO-FIX QA
+
+- Home: se eliminó el claim absoluto sobre qué candidatos llegan a entrevista y se reemplazó por evidencia disponible, incertidumbre y validación en entrevista.
+- Home: se eliminó `complete confidence` y se reemplazó por evidencia más clara e incertidumbre explícita.
+- Home EN/ES: Talent Network quedó descrita como participación opcional; no promete presentación, entrevista ni trabajo, y cualquier sharing requiere autorización separada.
+- Home/Companies: los agrupamientos públicos usan evidencia parcial, desconocidos, conflictos y preguntas de validación; `UNKNOWN` no se presenta como gap.
+- Companies: se eliminó el copy de ajuste de fees por search shortlists, se neutralizó el demo y se reformuló la FAQ para revisar menos de tres candidatos provistos por el cliente.
+- Methodology: `AI Signal Over Noise` aparece una sola vez; el badge ahora es `EVIDENCE BOUNDARIES`.
+- Contact: no se aplicó el polish opcional de `Message / Role Requirements`; no era necesario para el release.
+
+### 48–72h verification
+
+No se encontró una fuente canónica vigente que respalde `48-72h` como SLA actual de Evidence Brief/Evidence Review. Las demás referencias encontradas corresponden a traducciones/componentes legacy de Shortlist/Sprint o documentación histórica. El texto visible de Home fue neutralizado a: `Delivery timing is confirmed before the review begins.` / `El plazo de entrega se confirma antes de iniciar la revisión.` No se inventó un nuevo SLA.
+
+### Final QA evidence
+
+- Home, Companies y Methodology cargaron en el Preview final sin rutas rotas ni errores visibles.
+- `/contact?intent=pilot&utm_source=linkedin&utm_medium=social` cargó sin submit; el intent siguió funcional y el selector conservó sus opciones internas.
+- Smoke de analytics: sólo se modificaron copy, metadata y tests; los archivos de implementación analytics permanecen sin cambios. La regresión runtime previamente validada para GA4/Vercel sigue aplicando al mismo código de tracking.
 
 ## HOME
 
@@ -162,12 +182,12 @@ GA4, GTM, Vercel Analytics sanitization, `/api/send`, `/apply`, tracking, UTM/in
 
 ## PREVIEW URL
 
-https://talentsync360-e900juxw7-aleopents360.vercel.app/
+https://talentsync360-frdnyndwx-aleopents360.vercel.app/
 
-Deployment: `dpl_HKJhCv52rtxjFq6DvieMcZL2s9au`
+Deployment: `dpl_8BBHwdw5tot3XbcroHcKAk3yrLq8`
 
 ## COMMIT
 
-Code commit: `4ceca2d96ab750606285a0d5017c314fa992eeb7`
+Implementation commits: `85a5bfc`, `dcfa243`
 
 Final documentation commit: recorded after this report is added.
