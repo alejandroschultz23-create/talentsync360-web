@@ -2,9 +2,9 @@
 
 ## STATUS
 
-`BLOCKED`
+`BLOCKED — REAL BUG`
 
-The implementation, automated tests, local build, and protected Vercel Preview runtime checks are complete. This report remains blocked because S3 did not produce the expected GA4 `page_view` for the internal `/companies` → `/contact?intent=validate-role` transition, Vercel Insights emitted no observable `/_vercel/insights/view` request in the QA browser, and Tag Assistant was not connected. No production, GTM, GA4, CRM, email, database, webhook, or form-submission mutation was performed.
+The implementation, automated tests, local build, and protected Vercel Preview runtime checks are complete. S3 was a previous capture-method false negative: the GA4 `page_view` was present in the POST body. The remaining blocker is a reproducible Vercel Analytics intent leak in the `/view` payload (`o`). No production, GTM, GA4, CRM, email, database, webhook, or form-submission mutation was performed.
 
 ## BASELINE
 
@@ -156,18 +156,18 @@ Analytics is now excluded for `/talents/evidence-review/apply`.
 
 ## VERCEL ANALYTICS A6.4
 
-Preview was accessed with Vercel's official automation protection-bypass mechanism. Deployment Protection remained enabled. The browser used a temporary isolated Chrome profile and did not submit any form.
+The initial headless capture was superseded by the normal-browser capture in `FINAL RUNTIME DIAGNOSIS` below. Preview was accessed with Vercel's official automation protection-bypass mechanism. Deployment Protection remained enabled. No form was submitted.
 
 | SCENARIO | EXPECTED | OBSERVED | RESULT | GA4 PAGE_VIEW COUNT | PAGE_LOCATION | PAGE_REFERRER | VERCEL `o`, `r`, `dp` | INTENT LEAK | UTM PRESERVED |
 |---|---|---|---|---|---|---|---|---|---|
 | 1. Direct `/contact?intent=pilot&utm_source=linkedin&utm_medium=social` | Analytics loads; no `intent`; approved UTMs preserved; exactly 1 page view | One `virtual_page_view`; sanitized location `/contact?utm_source=linkedin&utm_medium=social`; one real GA4 request with `en=page_view`, sanitized `dp`/`dl`; no Vercel view request | PASS for GA4/dataLayer; Vercel evidence unavailable | 1 | `/contact?utm_source=linkedin&utm_medium=social` | Not emitted in dataLayer; no `intent` in GA4 `dp`/`dl` | No `o/r/dp` request observed | NO in page location/referrer | YES |
 | 2. `/contact` with intent → `/companies` | `/companies`; no intent leak; exactly 1 page view for route change | Internal click reached `/companies`; one sanitized `virtual_page_view`; one real GA4 `en=page_view` with `dp=/companies`; referrer was sanitized `/contact?utm_source=linkedin` | PASS | 1 | `/companies` | `https://.../contact?utm_source=linkedin` | No `/_vercel/insights/view`; `o/r/dp` unavailable | NO | YES |
-| 3. Internal navigation → `/contact?intent=validate-role` | Intent functional; no intent in page location/referrer; exactly 1 page view | URL retained `intent=validate-role`; contact page loaded; dataLayer emitted `/contact` with referrer `/companies`; click event retained functional destination `/contact?intent=validate-role`; no GA4 page_view for the contact destination was observed in the 15-second capture window | FAIL / BLOCKER | 0 for destination (captured request was the prior `/companies` page view) | `/contact` | `/companies` | No `/_vercel/insights/view`; `o/r/dp` unavailable | NO in page location/referrer; YES in functional `click_contact.destination` | N/A |
+| 3. Internal navigation → `/contact?intent=validate-role` | Intent functional; no intent in page location/referrer; exactly 1 page view | Previous headless capture missed the POST body. Normal-browser capture found one batched GA4 `page_view` with `dp=/contact`, `dl=/contact` | PREVIOUS FALSE NEGATIVE — TEST METHOD | 1 | `/contact` | `/companies` | Final capture observed `/view`; see final diagnosis | NO in page location/referrer; YES in functional `click_contact.destination` | N/A |
 | 4. Query-only `history.pushState` to `/companies?utm_source=x` | Confirm observed behavior; no duplicate page view beyond the explicit route/query change | One new sanitized `virtual_page_view` and one GA4 `en=page_view`; no duplicate beyond that one change | PASS | 1 | `/companies?utm_source=x` | `/companies` | No `/_vercel/insights/view`; `o/r/dp` unavailable | NO | YES |
 
 The raw Next server payload and functional `click_contact.destination` may contain the selected intent; this is distinct from `page_location`/`page_referrer`. The S3 functional intent remained available, but its GA4 page-view delivery is not reliable enough to approve.
 
-Vercel Analytics script loaded, but no `/_vercel/insights/view` request was observed in these protected headless runs, so `o`, `r`, and `dp` are `NOT OBSERVED`, not inferred as empty. Tag Assistant was not connected in this run. No `gtm_debug` exception was added; if Tag Assistant requires it, stop and report that requirement rather than altering production policy.
+The initial headless run did not observe Vercel `/view`; the normal-browser run did. The authoritative Vercel result, including the `o` leak, is recorded in `FINAL RUNTIME DIAGNOSIS`. Tag Assistant was not connected and no `gtm_debug` exception was added.
 
 ## AUTOMATED TESTS
 
@@ -175,6 +175,67 @@ Vercel Analytics script loaded, but no `/_vercel/insights/view` request was obse
 - Full suite: 51 files, 399 tests passed.
 - Added URL allowlist, sanitization, internal referrer, intent separation, and copy-hygiene coverage.
 - Updated two pre-existing expectations that contradicted the explicitly approved copy/private `/apply` behavior.
+
+## FINAL RUNTIME DIAGNOSIS
+
+Diagnostic date: 2026-10-26. The Preview was accessed in a normal, non-headless Chrome profile with `navigator.webdriver=false`, an official Vercel automation protection bypass, no extensions, and no submissions.
+
+### S3
+
+- Navigation type: SPA. No new `Document` request occurred after clicking `/contact?intent=validate-role` from `/companies`.
+- Baseline `/companies`: GTM loaded; one `virtual_page_view`; one GA4 `page_view`.
+- Destination dataLayer event:
+
+  ```json
+  {
+    "event": "virtual_page_view",
+    "page_path": "/contact",
+    "page_location": "https://talentsync360-4wnib7cat-aleopents360.vercel.app/contact",
+    "page_referrer": "https://talentsync360-4wnib7cat-aleopents360.vercel.app/companies",
+    "language": "en"
+  }
+  ```
+
+- Tag 20: direct Tag Assistant firing state was unavailable because Tag Assistant did not connect with debug signal OFF. The Live trigger is an exact `event=virtual_page_view` custom event with no URL filter, and the observed GA4 hit proves the event was processed into a `page_view`.
+- Hits sent: one GA4 `POST` to `https://analytics.google.com/g/collect`.
+- GA4 request body contained both events in one request:
+  - `en=click_contact` with the functional `destination=/contact?intent=validate-role`;
+  - `en=page_view` with `dp=/contact` and `dl=https://talentsync360-4wnib7cat-aleopents360.vercel.app/contact`.
+- GA4 page_view count for the destination: exactly 1.
+- `page_location`: sanitized `/contact`; no `intent`.
+- `page_referrer`: sanitized `/companies`; no `intent`. The current Live v2 tag does not yet send an explicit `dr`/`page_referrer` parameter; that is the documented GTM diff, not an S3/app failure.
+- Consent/runtime: `analytics_storage` was not directly readable from the non-Tag-Assistant page; no consent error or console error was observed. The Google tag runtime was present.
+- Root cause: previous run filtered only query-string GET-style collection URLs and did not inspect POST bodies. The hit was batched in a POST body after the SPA event.
+- Classification: `PREVIOUS FALSE NEGATIVE — TEST METHOD`. No code fix is recommended for S3.
+
+### TAG ASSISTANT
+
+- Connected: No.
+- Debug signal OFF: Yes; the checkbox was explicitly disabled before connecting.
+- Result: Tag Assistant showed `No conectado`, `0 Etiquetas de Google encontradas`, and `No se ha evaluado ninguna etiqueta en este contenedor`.
+- Status: `TAG ASSISTANT BLOCKED — DEBUG SIGNAL OFF DID NOT CONNECT`. No `gtm_debug` exception was added. The run stopped there as required.
+
+### VERCEL ANALYTICS
+
+- `/_vercel/analytics/script.js`: HTTP 200, `application/javascript; charset=utf-8`, loaded successfully.
+- `window.va`: `function`.
+- `navigator.webdriver`: `false`.
+- `localStorage.getItem('va-disable')`: `null`.
+- `/view`: observed as `POST`; HTTP 200; initiator `script`; request body:
+
+  ```json
+  {"o":"https://talentsync360-4wnib7cat-aleopents360.vercel.app/contact?intent=pilot&utm_source=linkedin&utm_medium=social","sv":"0.1.3","sdkn":"@vercel/analytics/react","sdkv":"2.0.1"}
+  ```
+
+- Fields: `o` contains `intent=pilot`; `r` and `dp` were absent in this request.
+- Classification: `FAIL / REQUIRES CHANGE` under the supplied protocol. The script works, the environment is not webdriver/adblock/disable-flag blocked, `/view` is emitted with HTTP 200, and `o` contains `intent`.
+- No Vercel code was modified. This requires a separate minimal Vercel Analytics sanitization decision.
+
+### DECISION
+
+`BLOCKED — REAL BUG`
+
+S3 does not require a code change. The remaining blocker is the reproducible Vercel Analytics leak in `o`; Tag Assistant remains unavailable without debug signaling, and no `gtm_debug` exception was introduced.
 
 ## BUILD
 
@@ -195,8 +256,8 @@ Vercel Analytics script loaded, but no `/_vercel/insights/view` request was obse
 
 ## RISKS
 
-- S3 internal route page_view delivery remains unresolved.
-- Vercel Insights request/field evidence is absent from the runtime capture.
+- S3 internal route page_view delivery is confirmed; the previous result was a POST-body capture false negative.
+- Vercel Analytics `/view` emits HTTP 200 but exposes the raw contact URL, including `intent`, in field `o`.
 - GTM exact tag configuration is now verified from the supplied v2 export; the proposed v3 diff remains unapplied.
 - `/api/send` production has real email side effects and has no isolated Preview sender configured.
 - Existing metadata and visible commercial copy still contain older sourcing/shortlist language by scope; this phase intentionally did not perform a broad positioning/SEO rewrite.
@@ -205,8 +266,7 @@ Vercel Analytics script loaded, but no `/_vercel/insights/view` request was obse
 ## UNKNOWN
 
 - Tag Assistant connection state with debug signal OFF.
-- Why the internal S3 contact transition emitted the sanitized dataLayer event but did not deliver a GA4 page_view in the observed window.
-- Vercel Analytics `o`, `r`, and `dp` values because no Insights view request was emitted.
+- Tag Assistant firing/variables/consent timeline because the no-debug connection did not attach.
 - Reliable H3 candidate submission aggregate/count mechanism.
 
 ## DO NOT TOUCH
