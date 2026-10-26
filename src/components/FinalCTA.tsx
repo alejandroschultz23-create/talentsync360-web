@@ -10,9 +10,9 @@ export default function FinalCTA() {
 
   const handleClick = () => {
     pushGTMEvent('click_request_shortlist', {
-      cta_label: typeof cta.cta === 'string' ? cta.cta : 'Request a Shortlist Sprint',
+      cta_label: typeof cta.cta === 'string' ? cta.cta : 'Review an Existing Candidate',
       cta_location: 'final_cta_section',
-      destination: '/contact?intent=shortlist-sprint',
+      destination: '/contact?intent=validate-role',
       language: lang,
       page_path: typeof window !== 'undefined' ? window.location.pathname : '',
     });
@@ -36,7 +36,7 @@ export default function FinalCTA() {
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <Link
-              href="/contact?intent=shortlist-sprint"
+              href="/contact?intent=validate-role"
               onClick={handleClick}
               className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-all duration-200 shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 active:scale-98"
             >

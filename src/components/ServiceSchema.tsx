@@ -4,13 +4,13 @@ export default function ServiceSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Shortlist Sprint",
-    "serviceType": "Technical Staffing",
+    "name": "Evidence Review",
+    "serviceType": "Technical Candidate Evidence Review",
     "provider": {
       "@type": "Organization",
       "name": "TalentSync360"
     },
-    "description": "Human-reviewed technical shortlists of nearshore LATAM talent with role-specific evidence and opportunity-specific communication requirements."
+    "description": "Human-reviewed candidate evidence organized around role context, strengths, partial evidence, unknowns, conflicts, and questions to validate before a technical interview."
   };
 
   return (

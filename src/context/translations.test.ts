@@ -116,10 +116,8 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
 
     // 5. Pricing (Pilot, Shortlist, Custom)
     expect(companies.pricing.pilot.price).toBe(language === 'es' ? 'USD 1.250' : 'USD 1,250');
-    expect(companies.pricing.shortlist.price).toBe(language === 'es' ? 'USD 4.500' : 'USD 4,500');
-    expect(companies.pricing.shortlist.title).toBe(language === 'es' ? 'SHORTLIST RESPALDADA POR EVIDENCIA' : 'EVIDENCE-BACKED SHORTLIST');
-    expect(companies.pricing.shortlist.title).not.toMatch(/terna/i);
-    expect(companies.pricing.shortlist.footnote).toContain(language === 'es' ? 'fee final se ajusta' : 'final fee adjusts');
+    expect(companies.pricing).toBeDefined();
+    expect(JSON.stringify(companies.pricing)).not.toMatch(/USD 4[,.]500|sourcing integral|end-to-end search/i);
     expect(companies.pricing.custom.title).toBe(language === 'es' ? '¿Requerimientos continuos o para partners?' : 'Ongoing or partner requirements?');
     expect(companies.pricing.custom.copy).toBe(language === 'es' ? 'Definamos un alcance.' : 'Let’s scope an engagement.');
     expect(companies.pricing.custom.cta).toBe(language === 'es' ? 'Conversar sobre Necesidades Continuas' : 'Discuss Ongoing Needs');
@@ -131,7 +129,7 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
     if (language === 'es') {
       expect(companies.hero.title).toContain('Descubrí');
       expect(companies.demo.title).toBe('¿Preferís ver primero cómo funciona el proceso?');
-      expect(companies.finalCta.title).toBe('Empezá con un candidato propio.\nO definí una búsqueda con nosotros.');
+      expect(companies.finalCta.title).toBe('Empezá con un candidato propio.\nO iniciá una conversación exploratoria.');
       expect(companies.pricing.pilot.tag).toBe('REVISÁ CANDIDATOS QUE YA TENÉS');
     }
 

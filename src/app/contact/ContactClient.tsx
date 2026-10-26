@@ -155,13 +155,13 @@ function ContactForm() {
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
                       <span className="font-bold">
-                        {lang === 'es' ? 'Shortlist con Evidencia (USD 4.500)' : 'Evidence-backed Shortlist (USD 4,500)'}
+                        {lang === 'es' ? 'Revisión de evidencia de candidatos' : 'Candidate Evidence Review'}
                       </span>
                     </div>
                     <p className="text-xs text-slate-300 font-light mt-1 leading-relaxed">
                       {lang === 'es'
-                        ? 'Búsqueda técnica estándar de punta a punta: 1 rol, sourcing, objetivo de hasta 3 finalistas calificados con Informe de Evidencia completo. Si se entregan menos candidatos que cumplan el criterio, el fee final se ajusta en consecuencia.'
-                        : 'Standard end-to-end technical search: 1 role, sourcing, target of up to 3 qualifying finalists with complete Evidence Briefs. If fewer qualifying candidates are delivered, the final fee adjusts accordingly.'}
+                          ? 'Contanos qué candidatos y qué contexto de rol querés revisar. Acordamos el alcance antes de comenzar.'
+                          : 'Tell us which candidates and role context you want to review. We agree the scope before starting.'}
                     </p>
                   </div>
                 )}
@@ -190,8 +190,8 @@ function ContactForm() {
                     </div>
                     <p className="text-xs text-slate-300 font-light mt-1 leading-relaxed">
                       {lang === 'es'
-                        ? 'Conocé cómo se integra el Evidence Review en tu flujo de contratación actual, ya sea que cuentes con candidatos propios o requieras sourcing.'
-                        : 'Explore how Evidence Review integrates into your hiring workflow, whether you bring your own candidates or need sourcing.'}
+                          ? 'Conocé cómo se integra Evidence Review en tu flujo de contratación actual y qué otras necesidades podemos conversar.'
+                          : 'Explore how Evidence Review fits your current hiring workflow and what other hiring needs we can discuss.'}
                     </p>
                   </div>
                 )}
@@ -202,13 +202,13 @@ function ContactForm() {
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l5-5z" clipRule="evenodd" />
                       </svg>
                       <span className="font-bold">
-                        {lang === 'es' ? 'Intake de Shortlist Sprint' : 'Shortlist Sprint intake'}
+                        {lang === 'es' ? 'Consulta sobre evaluación de candidatos' : 'Candidate evaluation inquiry'}
                       </span>
                     </div>
                     <p className="text-xs text-slate-300 font-light mt-1 leading-relaxed">
                       {lang === 'es'
-                        ? 'Estás solicitando la evaluación de un brief técnico activo. Compartí el rol, stack, seniority, contexto de entrega y plazo esperado para que podamos validar la viabilidad de la shortlist.'
-                        : 'You are requesting an evaluation for an active technical brief. Share the role, stack, seniority, delivery context and expected timeline so we can validate shortlist feasibility.'}
+                          ? 'Compartí el rol, el contexto y los candidatos disponibles para conversar sobre la revisión y las próximas preguntas de validación.'
+                          : 'Share the role context and available candidates so we can discuss the review scope and next validation questions.'}
                     </p>
                   </div>
                 )}
@@ -231,8 +231,10 @@ function ContactForm() {
                       <label htmlFor="role" className="text-sm font-semibold text-slate-300">{t.contact.labelRole}</label>
                       <select name="role" id="role" required className="w-full bg-slate-950 border border-slate-800 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 rounded-lg p-4 text-slate-50 transition-all outline-none appearance-none cursor-pointer">
                           <option value="">{t.contact.labelRole}</option>
-                          <option>{t.contact.optionB2B}</option>
-                          <option>{t.contact.optionGeneral}</option>
+                           <option>{t.contact.optionB2B}</option>
+                           <option>{lang === 'es' ? 'Consulta sobre un proceso de contratación' : 'Hiring process consultation'}</option>
+                           <option>Partnership</option>
+                           <option>{t.contact.optionGeneral}</option>
                       </select>
                   </div>
 

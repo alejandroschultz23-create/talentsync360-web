@@ -369,8 +369,8 @@ export default function CompaniesClient() {
             </p>
           </div>
 
-          {/* Two Primary Paid Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          {/* Current paid Evidence Review Pilot */}
+          <div className="grid grid-cols-1 gap-8 mb-12">
             {/* CARD 1: EVIDENCE REVIEW PILOT */}
             <div className="p-8 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-colors">
               <div>
@@ -417,54 +417,6 @@ export default function CompaniesClient() {
               </div>
             </div>
 
-            {/* CARD 2: EVIDENCE-BACKED SHORTLIST */}
-            <div className="p-8 rounded-2xl bg-slate-950 border border-blue-500/40 flex flex-col justify-between shadow-xl shadow-blue-500/5">
-              <div>
-                <span className="text-[11px] font-mono font-bold tracking-wider text-blue-400 uppercase block mb-2">
-                  {c.pricing.shortlist.tag}
-                </span>
-                <h3 className="text-xl font-bold text-white mb-2">
-                  {c.pricing.shortlist.title}
-                </h3>
-                <p className="text-xs text-slate-400 mb-6">
-                  {c.pricing.shortlist.audience}
-                </p>
-
-                <div className="mb-6 pb-6 border-b border-slate-800">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl sm:text-4xl font-mono font-bold text-white">
-                      {c.pricing.shortlist.price}
-                    </span>
-                    <span className="text-xs font-mono text-slate-400">
-                      {c.pricing.shortlist.period}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-slate-400 mt-2 italic font-sans">
-                    {c.pricing.shortlist.footnote}
-                  </p>
-                </div>
-
-                {/* Scope points */}
-                <ul className="space-y-3 mb-8">
-                  {c.pricing.shortlist.scopePoints.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                      <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <Link
-                  href="/contact?intent=shortlist"
-                  onClick={() => trackCta(c.pricing.shortlist.cta, 'pricing_shortlist_card', '/contact?intent=shortlist')}
-                  className="block w-full text-center px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-all shadow-lg shadow-blue-600/20 active:scale-[0.98]"
-                >
-                  {c.pricing.shortlist.cta}
-                </Link>
-              </div>
-            </div>
           </div>
 
           {/* CUSTOM BAND */}

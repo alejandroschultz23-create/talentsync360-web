@@ -7,6 +7,9 @@ const nearshore = readFileSync(
   "utf8",
 );
 const footer = readFileSync("src/components/Footer.tsx", "utf8");
+const contact = readFileSync("src/app/contact/ContactClient.tsx", "utf8");
+const companiesPage = readFileSync("src/app/companies/page.tsx", "utf8");
+const serviceSchema = readFileSync("src/components/ServiceSchema.tsx", "utf8");
 
 describe("approved copy hygiene", () => {
   it("uses the approved bilingual WhatsApp copy", () => {
@@ -41,7 +44,7 @@ describe("approved copy hygiene", () => {
 
   it("adds the exact nearshore sourcing boundary without changing its URL", () => {
     expect(nearshore).toContain("No sourcing.");
-    expect(nearshore).toContain('href="/contact?intent=shortlist-sprint"');
+    expect(nearshore).toContain('href="/contact?intent=validate-role"');
   });
 
   it("uses the approved footer descriptive second idea", () => {
@@ -51,5 +54,23 @@ describe("approved copy hygiene", () => {
     expect(translations).toContain(
       "Revisión de candidatos según el alcance acordado. Contacto y partnerships mediante consulta.",
     );
+  });
+
+  it("does not publish the retired shortlist/staffing offer in public surfaces", () => {
+    expect(companiesPage).not.toContain("B2B Technical Staffing");
+    expect(contact).not.toContain("USD 4.500");
+    expect(contact).not.toContain("USD 4,500");
+    expect(serviceSchema).not.toContain("Shortlist Sprint");
+    expect(serviceSchema).not.toContain("Technical Staffing");
+  });
+
+  it("keeps the canonical evidence states and neutral contact choices", () => {
+    expect(translations).toContain("SUPPORTED");
+    expect(translations).toContain("PARTIAL");
+    expect(translations).toContain("UNKNOWN");
+    expect(translations).toContain("CONFLICT");
+    expect(translations).toContain("NEEDS_VALIDATION");
+    expect(contact).toContain("Hiring process consultation");
+    expect(contact).toContain("Partnership");
   });
 });

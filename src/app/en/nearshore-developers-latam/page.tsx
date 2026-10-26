@@ -5,14 +5,14 @@ import ServiceSchema from '@/components/ServiceSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Hire Nearshore Developers in LATAM | Vetted Tech Talent",
-  description: "Access LATAM developers through human-reviewed nearshore shortlists with role-specific technical evidence and opportunity-specific communication requirements.",
+  title: "Evaluate Nearshore Developers in LATAM | Candidate Evidence Review",
+  description: "Evaluate nearshore developer evidence, role context, and interview questions for technical hiring decisions across LATAM.",
   alternates: {
     canonical: "https://www.talentsync360.com/en/nearshore-developers-latam",
   },
   openGraph: {
-    title: "Hire Nearshore Developers in LATAM | Vetted Tech Talent | TalentSync360",
-    description: "Access LATAM developers through human-reviewed nearshore shortlists with role-specific technical evidence and opportunity-specific communication requirements.",
+    title: "Evaluate Nearshore Developers in LATAM | Candidate Evidence Review | TalentSync360",
+    description: "Evaluate nearshore developer evidence, role context, and interview questions for technical hiring decisions across LATAM.",
     url: "https://www.talentsync360.com/en/nearshore-developers-latam",
     siteName: "TalentSync360",
     images: [
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hire Nearshore Developers in LATAM | Vetted Tech Talent | TalentSync360",
-    description: "Access LATAM developers through human-reviewed nearshore shortlists with role-specific technical evidence and opportunity-specific communication requirements.",
+    title: "Evaluate Nearshore Developers in LATAM | Candidate Evidence Review | TalentSync360",
+    description: "Evaluate nearshore developer evidence, role context, and interview questions for technical hiring decisions across LATAM.",
     images: ["https://www.talentsync360.com/logo_oficial.png"],
   }
 };
