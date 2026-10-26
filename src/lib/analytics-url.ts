@@ -33,6 +33,11 @@ export type AnalyticsPageContext = {
   page_referrer?: string;
 };
 
+export type VercelAnalyticsEvent = {
+  type: "pageview" | "event";
+  url: string;
+};
+
 function parseUrl(value: string, baseOrigin: string): URL | null {
   try {
     return new URL(value, baseOrigin);
@@ -110,6 +115,20 @@ export function sanitizeAnalyticsReferrer(
   }
 
   return value;
+}
+
+/**
+ * Applies the canonical page URL policy to Vercel Web Analytics events without
+ * mutating the SDK-owned event object. Non-contact URLs retain their current
+ * behavior; invalid contact URLs are cancelled fail-closed.
+ */
+export function sanitizeVercelAnalyticsEvent<T extends VercelAnalyticsEvent>(
+  event: T,
+): T | null {
+  const url = sanitizeAnalyticsPage(event.url);
+  if (url === null) return null;
+
+  return { ...event, url };
 }
 
 export function getAnalyticsPageContext(

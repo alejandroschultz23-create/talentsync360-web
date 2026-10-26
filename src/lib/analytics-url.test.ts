@@ -4,6 +4,7 @@ import {
   getAnalyticsPageContext,
   sanitizeAnalyticsPage,
   sanitizeAnalyticsReferrer,
+  sanitizeVercelAnalyticsEvent,
 } from "./analytics-url";
 
 describe("contact analytics URL policy", () => {
@@ -43,6 +44,53 @@ describe("contact analytics URL policy", () => {
 
   it("does not widen the policy to other routes", () => {
     expect(sanitizeAnalyticsPage("/companies?foo=bar")).toBe("/companies?foo=bar");
+  });
+
+  it("sanitizes a Vercel pageview event without mutating the original", () => {
+    const original = {
+      type: "pageview" as const,
+      url: "https://www.talentsync360.com/contact?intent=pilot&utm_source=linkedin&utm_medium=social",
+    };
+
+    expect(sanitizeVercelAnalyticsEvent(original)).toEqual({
+      type: "pageview",
+      url: "https://www.talentsync360.com/contact?utm_source=linkedin&utm_medium=social",
+    });
+    expect(original.url).toBe(
+      "https://www.talentsync360.com/contact?intent=pilot&utm_source=linkedin&utm_medium=social",
+    );
+  });
+
+  it("removes a valid contact intent when no UTM is present", () => {
+    expect(
+      sanitizeVercelAnalyticsEvent({
+        type: "pageview",
+        url: "/contact?intent=validate-role",
+      }),
+    ).toEqual({ type: "pageview", url: "/contact" });
+  });
+
+  it("preserves approved UTM parameters for Vercel Analytics", () => {
+    expect(
+      sanitizeVercelAnalyticsEvent({
+        type: "pageview",
+        url: "/contact?utm_source=x",
+      }),
+    ).toEqual({ type: "pageview", url: "/contact?utm_source=x" });
+  });
+
+  it("does not modify non-contact Vercel Analytics URLs", () => {
+    const original = { type: "pageview" as const, url: "/companies?foo=bar" };
+    expect(sanitizeVercelAnalyticsEvent(original)).toEqual(original);
+    expect(sanitizeVercelAnalyticsEvent(original)).not.toBe(original);
+  });
+
+  it.each([
+    "/contact?intent=INVALID",
+    "/contact?foo=bar",
+    "/contact?intent=pilot&intent=demo",
+  ])("cancels invalid Vercel contact URL %s", (url) => {
+    expect(sanitizeVercelAnalyticsEvent({ type: "pageview", url })).toBeNull();
   });
 
   it("sanitizes an internal contact referrer and preserves external referrers", () => {
