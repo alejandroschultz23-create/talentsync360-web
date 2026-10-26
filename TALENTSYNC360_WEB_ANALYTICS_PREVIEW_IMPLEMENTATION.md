@@ -240,8 +240,8 @@ S3 did not require a code change. The Vercel Analytics leak was addressed withou
 
 ## POST-FIX VERCEL ANALYTICS AND GA4 QA
 
-Preview: `https://talentsync360-h5cqa95j2-aleopents360.vercel.app/`  
-Deployment: `dpl_EFk11E6jejMnw84V9ZDMGpVXHJxB`  
+Preview: `https://talentsync360-h5cqa95j2-aleopents360.vercel.app/`
+Deployment: `dpl_EFk11E6jejMnw84V9ZDMGpVXHJxB`
 Commit under test: `40b9f846225aba558685478011abbdb7666864be`
 
 ### Vercel Analytics
