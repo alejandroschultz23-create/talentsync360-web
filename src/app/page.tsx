@@ -5,20 +5,20 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Evidence-Backed LATAM Technical Hiring | TalentSync360",
-  description: "Evaluate LATAM technical talent with role-specific evidence, human review, strengths, gaps, unknowns and interview-ready insights.",
+  description: "Evaluate LATAM technical talent with role-specific evidence, human review, partial evidence, unknowns, conflicts and interview-ready questions.",
   alternates: {
     canonical: "https://www.talentsync360.com/",
   },
   openGraph: {
     title: "Evidence-Backed LATAM Technical Hiring | TalentSync360",
-    description: "Evaluate LATAM technical talent with role-specific evidence, human review, strengths, gaps, unknowns and interview-ready insights.",
+    description: "Evaluate LATAM technical talent with role-specific evidence, human review, partial evidence, unknowns, conflicts and interview-ready questions.",
     url: "https://www.talentsync360.com/",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Evidence-Backed LATAM Technical Hiring | TalentSync360",
-    description: "Evaluate LATAM technical talent with role-specific evidence, human review, strengths, gaps, unknowns and interview-ready insights.",
+    description: "Evaluate LATAM technical talent with role-specific evidence, human review, partial evidence, unknowns, conflicts and interview-ready questions.",
   }
 };
 
