@@ -6,6 +6,16 @@ import {
   normalizeCampaign,
 } from '@/lib/evidence-review/attribution';
 import { isPrivateEvidenceReviewPath } from '@/lib/evidence-review/private-routes';
+import {
+  getAnalyticsPageContext,
+  sanitizeAnalyticsReferrer,
+} from '@/lib/analytics-url';
+
+export {
+  getAnalyticsPageContext,
+  sanitizeAnalyticsPage,
+  sanitizeAnalyticsReferrer,
+} from '@/lib/analytics-url';
 
 // Prohibited PII keys that must never be sent to dataLayer/GA4
 const PROHIBITED_PII_KEYS = new Set([
@@ -27,6 +37,7 @@ const PROHIBITED_PII_KEYS = new Set([
 export interface GTMEventParams {
   page_path?: string;
   page_location?: string;
+  page_referrer?: string;
   cta_label?: string;
   cta_location?: string;
   destination?: string;
@@ -100,11 +111,21 @@ export function pushGTMEvent(eventName: string, params?: GTMEventParams): void {
   if (typeof window === 'undefined') return;
   if (isPrivateEvidenceReviewPath(window.location.pathname)) return;
 
+  const pageContext = getAnalyticsPageContext();
+  if (!pageContext) return;
+
   const safeParams = sanitizeParams(params);
+  const explicitReferrer =
+    typeof params?.page_referrer === 'string'
+      ? sanitizeAnalyticsReferrer(params.page_referrer, window.location.origin)
+      : pageContext.page_referrer;
 
   sendGTMEvent({
     event: eventName,
     ...safeParams,
+    page_path: pageContext.page_path,
+    page_location: pageContext.page_location,
+    ...(explicitReferrer ? { page_referrer: explicitReferrer } : {}),
   });
 }
 
@@ -115,8 +136,16 @@ export function pushEvidenceReviewEvent(
   if (typeof window === 'undefined') return;
   if (isPrivateEvidenceReviewPath(window.location.pathname)) return;
 
+  const pageContext = getAnalyticsPageContext();
+  if (!pageContext) return;
+
   sendGTMEvent({
     event: eventName,
     ...sanitizeEvidenceReviewAnalyticsParams(params),
+    page_path: pageContext.page_path,
+    page_location: pageContext.page_location,
+    ...(pageContext.page_referrer
+      ? { page_referrer: pageContext.page_referrer }
+      : {}),
   });
 }

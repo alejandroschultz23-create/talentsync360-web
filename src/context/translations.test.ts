@@ -90,7 +90,7 @@ describe.each<Language>(['en', 'es'])('%s public legal copy', (language) => {
 
     // 1. Hero
     expect(companies.hero.title.replace(/\u00A0/g, ' ')).toBe(language === 'es' ? 'Descubrí qué está respaldado por evidencia.\nY qué conviene validar después.' : 'Know what the evidence supports and what to ask next.');
-    expect(companies.hero.subtitle2).toBe(language === 'es' ? 'Traé tus candidatos o conversemos sobre una búsqueda con sourcing.' : 'Bring your candidates or discuss a sourcing engagement.');
+    expect(companies.hero.subtitle2).toBe(language === 'es' ? 'Traé candidatos que ya tengas. Para otras necesidades de contratación, empezá con una conversación exploratoria.' : 'Bring candidates you already have. For other hiring needs, start with an exploratory conversation.');
     expect(companies.hero.ctaTrial).toBeTruthy();
     expect(companies.hero.ctaDemo).toBeTruthy();
     expect(companies.hero.ctaViewBrief).toBeTruthy();

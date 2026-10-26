@@ -12,9 +12,9 @@ describe("V1_192 pilot invitation delivery preparation", () => {
   it("classifies the pilot entry wrapper as a private route", () => {
     expect(isPrivateEvidenceReviewPath("/talents/evidence-review/enter")).toBe(true);
     expect(isPrivateEvidenceReviewPath("/talents/evidence-review/enter/")).toBe(true);
-    // Public acquisition routes stay non-private.
+    // The candidate application flow is private; only the landing route is public.
     expect(isPrivateEvidenceReviewPath("/talents/evidence-review")).toBe(false);
-    expect(isPrivateEvidenceReviewPath("/talents/evidence-review/apply")).toBe(false);
+    expect(isPrivateEvidenceReviewPath("/talents/evidence-review/apply")).toBe(true);
   });
 
   it("sends private no-store/no-referrer/noindex headers for the entry wrapper", async () => {

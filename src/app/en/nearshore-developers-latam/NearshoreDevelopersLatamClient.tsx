@@ -164,6 +164,9 @@ export default function NearshoreDevelopersLatamClient() {
             <p className="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl leading-relaxed">
               Access LATAM software engineers through structured Shortlist Sprints. Every candidate is reviewed through a role-specific technical challenge and up to 30-minute technical defense, delivered with evidence profiles that separate supported capabilities, known constraints, and remaining client validation points.
             </p>
+            <p className="mb-8 text-sm font-mono font-semibold uppercase tracking-widest text-indigo-300">
+              No sourcing.
+            </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <Link 
