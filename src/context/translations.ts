@@ -1314,7 +1314,7 @@ export const translations: Record<Language, Translations> = {
         { q: "How is technical evidence reviewed?", a: "No automated ranking determines the result. Work samples are reviewed by a human against the criteria relevant to the role and opportunity." },
         { q: "Does AI automatically reject or select candidates?", a: "No. AI is used as decision support for signal extraction and rubric mapping. All final selection and rejection decisions remain strictly human-reviewed and operator-controlled." },
         { q: "What happens if candidate evidence does not match the role?", a: "If initial candidate evidence does not match your role requirements, we review your structured feedback and recalibrate our evidence search parameters immediately." },
-        { q: "How are candidate strengths, gaps, and unknowns categorized?", a: "TalentSync360 categorizes signals into five canonical states: SUPPORTED, PARTIAL, UNKNOWN, CONFLICT, and NEEDS VALIDATION. Missing evidence is non-punitive and identifies what still needs to be explored in the interview." }
+        { q: "How are candidate evidence states categorized?", a: "TalentSync360 categorizes signals into five canonical states: SUPPORTED, PARTIAL, UNKNOWN, CONFLICT, and NEEDS VALIDATION. Missing evidence is non-punitive and identifies what still needs to be explored in the interview." }
       ],
 
       faqTalents: [
@@ -1407,7 +1407,7 @@ export const translations: Record<Language, Translations> = {
       hero: {
         eyebrow: "EVIDENCE-BACKED TECHNICAL RECRUITING",
         title: "Know what the evidence supports and what to ask next.",
-        subtitle1: "Human-reviewed Evidence Briefs connect candidate information to your role, surface strengths, gaps and unknowns, and prepare focused interview questions.",
+        subtitle1: "Human-reviewed Evidence Briefs connect candidate information to your role, surface strengths, partial evidence, unknowns and validation questions, and prepare focused interviews.",
         subtitle2: "Bring candidates you already have. For other hiring needs, start with an exploratory conversation.",
         ctaTrial: "Request a Free Evidence Trial",
         ctaDemo: "Book a Demo",
@@ -1495,7 +1495,7 @@ export const translations: Record<Language, Translations> = {
           "1 active technical role definition",
           "1 candidate provided by your team",
           "1 complete human-reviewed Evidence Brief",
-          "Role Context, strengths, gaps & unknowns surfaced",
+          "Role Context, strengths, partial evidence & unknowns surfaced",
           "Specific interview validation questions included",
           "Exportable PDF dossier allowed",
           "No sourcing included",
@@ -1517,7 +1517,7 @@ export const translations: Record<Language, Translations> = {
             "1 role context definition",
             "Up to 3 candidates provided by the client",
             "Up to 3 complete Evidence Briefs",
-            "Role Context, strengths, gaps & unknowns surfaced",
+          "Role Context, strengths, partial evidence & unknowns surfaced",
             "Conflicts highlighted where genuinely present",
             "Specific interview validation questions for your team",
             "Human engineering review on all dossiers",
@@ -2322,7 +2322,7 @@ export const translations: Record<Language, Translations> = {
         { q: "¿Cómo se revisa la evidencia técnica?", a: "Ningún ranking automático determina el resultado. Las muestras de trabajo son revisadas por una persona según los criterios relevantes para el rol y la oportunidad." },
         { q: "¿La IA rechaza o selecciona candidatos automáticamente?", a: "No. La IA se utiliza como soporte de decisiones para la extracción de señales y el mapeo de rúbricas. Todas las decisiones finales de selección y rechazo permanecen estrictamente revisadas por humanos y controladas por un operador." },
         { q: "¿Qué pasa si la evidencia del candidato no coincide con el rol?", a: "Si la evidencia inicial no coincide con los requisitos del puesto, revisamos tu feedback estructurado y recalibramos los parámetros de búsqueda de inmediato." },
-        { q: "¿Cómo se categorizan las fortalezas, brechas y aspectos desconocidos?", a: "TalentSync360 categoriza las señales en cinco estados canónicos: SUPPORTED, PARTIAL, UNKNOWN, CONFLICT y NEEDS VALIDATION. La falta de evidencia no es punitiva e identifica lo que aún debe explorarse en la entrevista." }
+        { q: "¿Cómo se categorizan los estados de evidencia del candidato?", a: "TalentSync360 categoriza las señales en cinco estados canónicos: SUPPORTED, PARTIAL, UNKNOWN, CONFLICT y NEEDS VALIDATION. La falta de evidencia no es punitiva e identifica lo que aún debe explorarse en la entrevista." }
       ],
 
       faqTalents: [
@@ -2415,7 +2415,7 @@ export const translations: Record<Language, Translations> = {
       hero: {
         eyebrow: "RECLUTAMIENTO TÉCNICO BASADO EN EVIDENCIA",
         title: "Descubrí qué está respaldado por\u00A0evidencia.\nY qué conviene validar\u00A0después.",
-        subtitle1: "Informes de Evidencia con revisión humana conectan la información del candidato con tu rol, visibilizan fortalezas, brechas e incógnitas, y preparan preguntas de entrevista enfocadas.",
+        subtitle1: "Informes de Evidencia con revisión humana conectan la información del candidato con tu rol, visibilizan fortalezas, evidencia parcial, aspectos desconocidos y preguntas de validación, y preparan entrevistas enfocadas.",
         subtitle2: "Traé candidatos que ya tengas. Para otras necesidades de contratación, empezá con una conversación exploratoria.",
         ctaTrial: "Solicitar una Prueba de Evidencia Gratuita",
         ctaDemo: "Agendar una Demo",
@@ -2483,7 +2483,7 @@ export const translations: Record<Language, Translations> = {
           {
             number: "04",
             title: "Generar el Informe de Evidencia",
-            desc: "Un dossier técnico estructurado y conciso sintetiza fortalezas reales, brechas claras, áreas no verificadas y preguntas enfocadas para la entrevista.",
+            desc: "Un dossier técnico estructurado y conciso sintetiza fortalezas observables, evidencia parcial, áreas no verificadas y preguntas enfocadas para la entrevista.",
           },
           {
             number: "05",
@@ -2503,7 +2503,7 @@ export const translations: Record<Language, Translations> = {
           "1 definición de rol técnico activo",
           "1 candidato provisto por tu equipo",
           "1 Evidence Brief completo con revisión humana",
-          "Contexto de rol, fortalezas, brechas e incógnitas visibilizadas",
+          "Contexto de rol, fortalezas, evidencia parcial y aspectos desconocidos visibilizados",
           "Preguntas de validación específicas para la entrevista",
           "Dossier exportable a PDF permitido",
           "No incluye sourcing",
@@ -2525,7 +2525,7 @@ export const translations: Record<Language, Translations> = {
             "1 definición de contexto de rol",
             "Hasta 3 candidatos provistos por el cliente",
             "Hasta 3 Informes de Evidencia completos",
-            "Contexto de rol, fortalezas, brechas e incógnitas visibilizadas",
+          "Contexto de rol, fortalezas, evidencia parcial y aspectos desconocidos visibilizados",
             "Conflictos señalados donde estén genuinamente presentes",
             "Preguntas de validación específicas para tu equipo",
             "Revisión por ingenieros humanos en todos los dossiers",
