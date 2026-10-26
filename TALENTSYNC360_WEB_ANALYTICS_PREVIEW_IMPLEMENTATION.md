@@ -2,9 +2,9 @@
 
 ## STATUS
 
-`BLOCKED — REAL BUG`
+`READY_FOR_FOUNDER_REVIEW`
 
-The implementation, automated tests, local build, and protected Vercel Preview runtime checks are complete. S3 was a previous capture-method false negative: the GA4 `page_view` was present in the POST body. The remaining blocker is a reproducible Vercel Analytics intent leak in the `/view` payload (`o`). No production, GTM, GA4, CRM, email, database, webhook, or form-submission mutation was performed.
+The implementation, automated tests, local build, protected Vercel Preview runtime checks, Vercel Analytics sanitization, and GA4 smoke regression are complete. S3 was a previous capture-method false negative; the Vercel `/view` intent leak was fixed with the minimum `beforeSend` change. No production, GTM, GA4, CRM, email, database, webhook, or form-submission mutation was performed.
 
 ## BASELINE
 
@@ -19,6 +19,7 @@ The implementation, automated tests, local build, and protected Vercel Preview r
 
 - `src/lib/analytics-url.ts`
 - `src/lib/analytics-url.test.ts`
+- `src/components/VercelAnalytics.tsx`
 - `src/lib/analytics.ts`
 - `src/components/GTMRouteTracker.tsx`
 - `src/lib/evidence-review/private-routes.ts`
@@ -176,7 +177,7 @@ The initial headless run did not observe Vercel `/view`; the normal-browser run 
 - Added URL allowlist, sanitization, internal referrer, intent separation, and copy-hygiene coverage.
 - Updated two pre-existing expectations that contradicted the explicitly approved copy/private `/apply` behavior.
 
-## FINAL RUNTIME DIAGNOSIS
+## RUNTIME DIAGNOSIS — ROOT CAUSE
 
 Diagnostic date: 2026-10-26. The Preview was accessed in a normal, non-headless Chrome profile with `navigator.webdriver=false`, an official Vercel automation protection bypass, no extensions, and no submissions.
 
@@ -228,14 +229,46 @@ Diagnostic date: 2026-10-26. The Preview was accessed in a normal, non-headless 
   ```
 
 - Fields: `o` contains `intent=pilot`; `r` and `dp` were absent in this request.
-- Classification: `FAIL / REQUIRES CHANGE` under the supplied protocol. The script works, the environment is not webdriver/adblock/disable-flag blocked, `/view` is emitted with HTTP 200, and `o` contains `intent`.
-- No Vercel code was modified. This requires a separate minimal Vercel Analytics sanitization decision.
+- Classification before this patch: `FAIL / REQUIRES CHANGE`. The script worked, the environment was not webdriver/adblock/disable-flag blocked, `/view` was emitted with HTTP 200, and `o` contained `intent`.
+- Root cause: the existing `beforeSend` callback only cancelled private Evidence Review URLs and returned contact events unchanged.
 
-### DECISION
+### PRE-FIX DECISION
 
-`BLOCKED — REAL BUG`
+`BLOCKED — REAL BUG (resolved by the current patch)`
 
-S3 does not require a code change. The remaining blocker is the reproducible Vercel Analytics leak in `o`; Tag Assistant remains unavailable without debug signaling, and no `gtm_debug` exception was introduced.
+S3 did not require a code change. The Vercel Analytics leak was addressed without changing navigation, GA4/GTM, or functional `intent`. Tag Assistant remains unavailable without debug signaling, and no `gtm_debug` exception was introduced.
+
+## POST-FIX VERCEL ANALYTICS AND GA4 QA
+
+Preview: `https://talentsync360-h5cqa95j2-aleopents360.vercel.app/`  
+Deployment: `dpl_EFk11E6jejMnw84V9ZDMGpVXHJxB`  
+Commit under test: `40b9f846225aba558685478011abbdb7666864be`
+
+### Vercel Analytics
+
+| SCENARIO | OBSERVED `/view` BODY | RESULT |
+|---|---|---|
+| V1 `/contact?intent=pilot&utm_source=linkedin&utm_medium=social` | HTTP 200; `o=https://talentsync360-h5cqa95j2-aleopents360.vercel.app/contact?utm_source=linkedin&utm_medium=social`; no `intent` | PASS |
+| V2 `/contact?intent=validate-role` | `o=https://talentsync360-h5cqa95j2-aleopents360.vercel.app/contact`; no `intent` | PASS |
+| V3 `/companies` | `o=https://talentsync360-h5cqa95j2-aleopents360.vercel.app/companies`; unchanged behavior | PASS |
+| V4 internal `/companies` → `/contact?intent=validate-role` | `o=https://talentsync360-h5cqa95j2-aleopents360.vercel.app/contact`; no `intent` | PASS |
+
+`window.va` remained a function, `navigator.webdriver=false`, and `va-disable=null`. The real URL and functional query intent remained available to the page; only the Vercel Analytics event URL changed.
+
+### GA4 smoke regression
+
+- S1 direct contact URL: exactly 1 GA4 `page_view`; `dp/dl` retained approved UTMs and omitted `intent`.
+- S3 internal companies → contact: exactly 1 batched GA4 `page_view`; `dp=/contact`, `dl=/contact`, and dataLayer `page_referrer=/companies` remained sanitized.
+- Functional `intent=validate-role` remained present in the destination URL and functional `click_contact.destination`.
+- No GA4/GTM code or configuration was changed by this fix.
+
+### Tag Assistant
+
+The no-debug connection remains unavailable: `No conectado`, zero tags evaluated. `gtm_debug` was not enabled. Per protocol, this is recorded but is not blocking this Vercel fix review.
+
+### Final decision
+
+`READY_FOR_FOUNDER_REVIEW`
 
 ## BUILD
 
@@ -247,9 +280,9 @@ S3 does not require a code change. The remaining blocker is the reproducible Ver
 ## PREVIEW URL
 
 - Branch: `codex/analytics-preview-phase`
-- Commit: final branch commit containing this report; see the handoff below for its hash.
-- Preview: `https://talentsync360-4wnib7cat-aleopents360.vercel.app`
-- Deployment ID: `dpl_B85LYijr1ofcZ6RHx98t8Gc7JJ1z`
+- Commit under runtime test: `40b9f846225aba558685478011abbdb7666864be`.
+- Preview: `https://talentsync360-h5cqa95j2-aleopents360.vercel.app`
+- Deployment ID: `dpl_EFk11E6jejMnw84V9ZDMGpVXHJxB`
 - Target: Preview; not promoted.
 - Status: Ready.
 - Protection: enabled; official automation bypass used for browser QA; no protection setting changed.
@@ -257,7 +290,7 @@ S3 does not require a code change. The remaining blocker is the reproducible Ver
 ## RISKS
 
 - S3 internal route page_view delivery is confirmed; the previous result was a POST-body capture false negative.
-- Vercel Analytics `/view` emits HTTP 200 but exposes the raw contact URL, including `intent`, in field `o`.
+- Vercel Analytics `/view` is now sanitized for contact URLs by `beforeSend`.
 - GTM exact tag configuration is now verified from the supplied v2 export; the proposed v3 diff remains unapplied.
 - `/api/send` production has real email side effects and has no isolated Preview sender configured.
 - Existing metadata and visible commercial copy still contain older sourcing/shortlist language by scope; this phase intentionally did not perform a broad positioning/SEO rewrite.
@@ -266,7 +299,7 @@ S3 does not require a code change. The remaining blocker is the reproducible Ver
 ## UNKNOWN
 
 - Tag Assistant connection state with debug signal OFF.
-- Tag Assistant firing/variables/consent timeline because the no-debug connection did not attach.
+- Tag Assistant firing/variables/consent timeline because the no-debug connection did not attach; this is non-blocking for this fix.
 - Reliable H3 candidate submission aggregate/count mechanism.
 
 ## DO NOT TOUCH
@@ -275,9 +308,6 @@ Production deployment, promotion, merge, GTM publish, GA4 configuration, real co
 
 ## EXACT NEXT STEPS FOR FOUNDER
 
-1. Review the verified GTM v2 audit and apply the documented diff manually only after confirming the Event Settings variable type/assignment in GTM UI; keep the exact v2 export as rollback.
-2. Re-run S3 with Tag Assistant/GA4 diagnostics and determine why the sanitized contact `virtual_page_view` does not deliver a `page_view` after the internal transition.
-3. Run Tag Assistant with `Include debug signal in URL = OFF`; if it requires `gtm_debug`, stop and report that requirement without adding an exception.
-4. Investigate why the Preview Vercel Analytics script emits no `/_vercel/insights/view` request and capture `o/r/dp` before Founder review.
-5. Keep `/api/send` unsubmitted; if successful-path coverage is desired, use only a local Resend mock test. Do not add a Preview key for this QA.
-6. Decide separately whether to merge and whether to apply/publish the GTM change.
+1. Review the branch and Preview evidence.
+2. Keep the GTM v2 export as rollback; apply/publish the documented GTM diff only through the separate approved GTM workflow.
+3. Decide separately whether to merge. No production deployment or publication was performed.
