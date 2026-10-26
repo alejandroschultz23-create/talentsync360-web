@@ -182,9 +182,9 @@ GA4, GTM, Vercel Analytics sanitization, `/api/send`, `/apply`, tracking, UTM/in
 
 ## PREVIEW URL
 
-https://talentsync360-frdnyndwx-aleopents360.vercel.app/
+https://talentsync360-crrzkhhc3-aleopents360.vercel.app/
 
-Deployment: `dpl_8BBHwdw5tot3XbcroHcKAk3yrLq8`
+Deployment: `dpl_5aX2DFGJPeYzgsesuXmQmQgCfLFi`
 
 ## COMMIT
 
