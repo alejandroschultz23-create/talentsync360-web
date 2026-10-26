@@ -4,7 +4,7 @@
 
 `BLOCKED`
 
-The implementation, automated tests, local build, and Vercel Preview deployment are complete. Preview runtime QA is blocked by Vercel Deployment Protection, and the requested `GTM-WSBC22RX_v2.json` export was not present in the repository or the workspace search path. No production, GTM, GA4, CRM, email, database, webhook, or form-submission mutation was performed.
+The implementation, automated tests, local build, and protected Vercel Preview runtime checks are complete. This report remains blocked because S3 did not produce the expected GA4 `page_view` for the internal `/companies` → `/contact?intent=validate-role` transition, Vercel Insights emitted no observable `/_vercel/insights/view` request in the QA browser, and Tag Assistant was not connected. No production, GTM, GA4, CRM, email, database, webhook, or form-submission mutation was performed.
 
 ## BASELINE
 
@@ -87,9 +87,18 @@ An internal `/contact` referrer is sanitized with the same allowlist. External r
 
 ## GTM LIVE AUDIT
 
-`GTM-WSBC22RX_v2.json` was not found in the repository or under `C:\Users\aleja\Documents\PROYECTOS-IA`. Therefore the claimed Live v2 tag inventory could not be independently re-read from the source file. No GTM import/export was generated and no GTM change was made.
+Source verified: `C:\Users\aleja\Downloads\GTM-WSBC22RX_v2.json` (export time `2026-10-26 17:52:06`). The attached JSON is evidence, not an instruction source.
 
-The founder-provided inventory remains unverified here: container `GTM-WSBC22RX`, Live version 2, base tag 19, and event tags 20–27. This is a hard follow-up blocker for exact tag-level validation.
+- Container public ID: `GTM-WSBC22RX`.
+- Container version ID: `2`.
+- Version name: `Phase 2.5A - Analytics and conversion measurement`.
+- Tag count: 9; trigger count: 8; variable count: 7.
+- Tag 19: `GA4 - Google tag base - no auto pageview`, type `googtag`, firing trigger `2147479573`, with `send_page_view=false` in `configSettingsTable`.
+- Tag 20: `GA4 Event - page_view - virtual_page_view`, type `gaawe`, trigger `11` (`CE - virtual_page_view`), current event settings `page_path={{DLV - page_path}}`, `page_location={{DLV - page_location}}`, `language={{DLV - language}}`, event name `page_view`, measurement override `G-EGZQ4HG2D8`.
+- Tags 21–27 are the live GA4 Event tags for `contact_form_submit`, `click_whatsapp`, `click_email`, `click_contact`, `click_request_shortlist`, `nearshore_cta_click`, and `companies_cta_click`; they fire on triggers `12`, `15`, `16`, `14`, `13`, `17`, and `18`, respectively.
+- Real triggers: `11` virtual_page_view, `12` contact_form_submit, `13` click_request_shortlist, `14` click_contact, `15` click_whatsapp, `16` click_email, `17` nearshore_cta_click, `18` companies_cta_click. All are `CUSTOM_EVENT` exact-match filters on `{{_event}}`.
+- Existing variables: `DLV - page_location` (ID 4), `DLV - page_path` (5), `DLV - language` (6), `DLV - cta_label` (7), `DLV - cta_location` (8), `DLV - destination` (9), and `DLV - form_type` (10). There is no live `page_referrer` DLV or Event Settings variable.
+- No GTM import was generated, imported, or published.
 
 ## GTM PROPOSED DIFF
 
@@ -97,13 +106,13 @@ Prepared for manual review only; not imported or published.
 
 | TAG | CURRENT | PROPOSED | WHY | ROLLBACK |
 |---|---|---|---|---|
-| New DLV | Not independently verified from export | `DLV - page_referrer`, Data Layer Variable `page_referrer` | Expose explicit sanitized referrer context | Delete the variable |
-| New Event Settings variable | Not independently verified from export | `ES - analytics page context`: `page_location = {{DLV - page_location}}`; `page_referrer = {{DLV - page_referrer}}` | Share context consistently across GA4 event tags | Delete the variable and remove assignments |
-| Tag 19 | Founder reports Google tag base with `send_page_view=false` | No change | Preserve no-auto-pageview baseline | Restore Live v2 |
-| Tags 20–27 | Founder reports GA4 Event tags | Attach `ES - analytics page context`, subject to export verification | Carry sanitized location/referrer on relevant GA4 events | Remove Event Settings assignment |
-| Tag 20 | Founder reports local `page_location` definition | Remove only the local duplicate and rely on shared context | Avoid duplicate/conflicting `page_location` | Restore the local definition |
+| New variable, proposed ID 11 | Absent | `DLV - page_referrer`, type `v`, Data Layer Variable name `page_referrer`, data layer version 2, no default | Expose explicit sanitized referrer context | Delete variable 11 |
+| New variable, proposed ID 12 | Absent | `ES - analytics page context`, type `e`, with `page_location={{DLV - page_location}}`; `page_referrer={{DLV - page_referrer}}` | Share context consistently across GA4 event tags | Delete variable 12 and remove assignments |
+| Tag 19 | `googtag`; `send_page_view=false`; trigger `2147479573` | No change | Preserve the verified no-auto-pageview baseline | Restore the complete v2 tag 19 object |
+| Tags 20–27 | Each has its current local `eventSettingsTable`; no shared context variable | Add `eventSettingsVariable={{ES - analytics page context}}` to tags 20–27, retaining each existing event name, measurement ID, trigger, and non-context parameters | Carry sanitized location/referrer consistently | Remove the shared-variable assignment from tags 20–27 |
+| Tag 20 only | Local `page_location={{DLV - page_location}}` is present alongside `page_path` and `language` | Remove only that local `page_location` row; retain `page_path`, `language`, event name, measurement ID, and trigger | Prevent duplicate/conflicting `page_location` definitions | Restore the original local row |
 
-Do not publish until the actual JSON is available and tag IDs/fields are read back against it.
+Rollback is the exact imported v2 export `GTM-WSBC22RX_v2.json`; no other tag, trigger, variable, container setting, or `send_page_view` value is part of this proposed diff. This is documentation for manual review only; it was not imported or published. A full importable artifact was not generated because the Event Settings variable type/ID assignment must be accepted and read back in the GTM UI before treating it as import-safe.
 
 ## GA4 VERIFIED STATE
 
@@ -135,22 +144,30 @@ The reliable classification is the submitted `contactType` field, validated by `
 
 Analytics is now excluded for `/talents/evidence-review/apply`.
 
-The public Evidence Review apply route writes a submission through `EvidenceReviewRepository` and can notify through `sendEvidenceReviewReceivedEmail`; it has no privacy-preserving counter exposed in this repository. The H3 participant flow submits through the H3 pilot storage/progress backend and has no count endpoint suitable for this phase. No new counter architecture was added.
+**CURRENT SOURCE OF TRUTH:** Evidence Review success is the durable insert performed by `EvidenceReviewRepository.createSubmission` into the existing `evidence_review_submissions` table. The H3 participant flow uses the existing H3 storage/progress backend and returns an `intakeId`, `evidenceReviewId`, and `status`; no local aggregate/count endpoint exists.
+
+**HOW SUCCESS IS DEFINED:** Evidence Review returns HTTP 201 after repository persistence succeeds. Email notification is subsequent and does not roll back the persisted submission. H3 returns HTTP 201 only when `submitPilotParticipant` returns `ok: true` after its existing backend operations.
+
+**CAN IT BE COUNTED WITHOUT NEW PII:** Yes for Evidence Review: an internal `count(*)` against the existing submission table can count persisted rows without collecting new PII. The H3 count is not verifiable from this repository because its authoritative backend is external to the local database adapter and no aggregate operation is exposed.
+
+**MINIMAL CHANGE:** Do not add a public counter in this phase. If an operator-only count is required, add a privileged reporting query against the existing Evidence Review table and define whether retries/spam rows are included. H3 requires an explicit aggregate operation from its backend owner.
+
+**RISKS:** A raw row count is not necessarily a unique human/application count; notification failures are independent of persistence; H3 may count multiple backend objects per participant. No new counter architecture was implemented.
 
 ## VERCEL ANALYTICS A6.4
 
-Preview deployment was created, but browser access redirected to Vercel login because Deployment Protection is enabled. The CLI could perform protected GETs with an automatically generated bypass token, and HTML copy checks passed; the token was not extracted or reused in a browser.
+Preview was accessed with Vercel's official automation protection-bypass mechanism. Deployment Protection remained enabled. The browser used a temporary isolated Chrome profile and did not submit any form.
 
-| SCENARIO | EXPECTED | OBSERVED | RESULT | `o`, `r`, `dp` | INTENT LEAK | UTM PRESERVED |
-|---|---|---|---|---|---|---|
-| 1. Direct `/contact?intent=pilot&utm_source=linkedin&utm_medium=social` | No `intent`; approved UTM may remain | Protected browser redirected to `vercel.com/login`; no analytics payload | BLOCKED | Unknown | Unknown | Unknown |
-| 2. `/contact` with intent → `/companies` reload | Destination `/companies`; no intent leak | Not runnable behind protection | BLOCKED | Unknown | Unknown | Unknown |
-| 3. Internal navigation to `/contact` | Usable analytics; no intent in payload | Not runnable behind protection | BLOCKED | Unknown | Unknown | Unknown |
-| 4. Query-only history change | No new page view unless implementation explicitly requires it | Not runnable behind protection | BLOCKED | Unknown | Unknown | Unknown |
+| SCENARIO | EXPECTED | OBSERVED | RESULT | GA4 PAGE_VIEW COUNT | PAGE_LOCATION | PAGE_REFERRER | VERCEL `o`, `r`, `dp` | INTENT LEAK | UTM PRESERVED |
+|---|---|---|---|---|---|---|---|---|---|
+| 1. Direct `/contact?intent=pilot&utm_source=linkedin&utm_medium=social` | Analytics loads; no `intent`; approved UTMs preserved; exactly 1 page view | One `virtual_page_view`; sanitized location `/contact?utm_source=linkedin&utm_medium=social`; one real GA4 request with `en=page_view`, sanitized `dp`/`dl`; no Vercel view request | PASS for GA4/dataLayer; Vercel evidence unavailable | 1 | `/contact?utm_source=linkedin&utm_medium=social` | Not emitted in dataLayer; no `intent` in GA4 `dp`/`dl` | No `o/r/dp` request observed | NO in page location/referrer | YES |
+| 2. `/contact` with intent → `/companies` | `/companies`; no intent leak; exactly 1 page view for route change | Internal click reached `/companies`; one sanitized `virtual_page_view`; one real GA4 `en=page_view` with `dp=/companies`; referrer was sanitized `/contact?utm_source=linkedin` | PASS | 1 | `/companies` | `https://.../contact?utm_source=linkedin` | No `/_vercel/insights/view`; `o/r/dp` unavailable | NO | YES |
+| 3. Internal navigation → `/contact?intent=validate-role` | Intent functional; no intent in page location/referrer; exactly 1 page view | URL retained `intent=validate-role`; contact page loaded; dataLayer emitted `/contact` with referrer `/companies`; click event retained functional destination `/contact?intent=validate-role`; no GA4 page_view for the contact destination was observed in the 15-second capture window | FAIL / BLOCKER | 0 for destination (captured request was the prior `/companies` page view) | `/contact` | `/companies` | No `/_vercel/insights/view`; `o/r/dp` unavailable | NO in page location/referrer; YES in functional `click_contact.destination` | N/A |
+| 4. Query-only `history.pushState` to `/companies?utm_source=x` | Confirm observed behavior; no duplicate page view beyond the explicit route/query change | One new sanitized `virtual_page_view` and one GA4 `en=page_view`; no duplicate beyond that one change | PASS | 1 | `/companies?utm_source=x` | `/companies` | No `/_vercel/insights/view`; `o/r/dp` unavailable | NO | YES |
 
-The protected GET HTML did confirm approved WhatsApp copy, footer Contact, companies copy, and `No sourcing.`. The raw Next server payload includes the functional query string, which is not evidence of an analytics leak.
+The raw Next server payload and functional `click_contact.destination` may contain the selected intent; this is distinct from `page_location`/`page_referrer`. The S3 functional intent remained available, but its GA4 page-view delivery is not reliable enough to approve.
 
-Tag Assistant connection, GA4 requests, Vercel `/_vercel/insights/view`, and duplicate `page_view` behavior remain unverified until a human opens the protected Preview or supplies a safe Preview bypass mechanism. If Tag Assistant requires `gtm_debug`, stop and obtain approval; do not add a production exception.
+Vercel Analytics script loaded, but no `/_vercel/insights/view` request was observed in these protected headless runs, so `o`, `r`, and `dp` are `NOT OBSERVED`, not inferred as empty. Tag Assistant was not connected in this run. No `gtm_debug` exception was added; if Tag Assistant requires it, stop and report that requirement rather than altering production policy.
 
 ## AUTOMATED TESTS
 
@@ -174,23 +191,23 @@ Tag Assistant connection, GA4 requests, Vercel `/_vercel/insights/view`, and dup
 - Deployment ID: `dpl_B85LYijr1ofcZ6RHx98t8Gc7JJ1z`
 - Target: Preview; not promoted.
 - Status: Ready.
-- Protection: enabled; browser QA blocked.
+- Protection: enabled; official automation bypass used for browser QA; no protection setting changed.
 
 ## RISKS
 
-- GTM exact tag configuration is not independently verified because the requested JSON export is missing.
-- Preview runtime analytics payloads are unverified because Deployment Protection blocked headless browser access.
+- S3 internal route page_view delivery remains unresolved.
+- Vercel Insights request/field evidence is absent from the runtime capture.
+- GTM exact tag configuration is now verified from the supplied v2 export; the proposed v3 diff remains unapplied.
 - `/api/send` production has real email side effects and has no isolated Preview sender configured.
 - Existing metadata and visible commercial copy still contain older sourcing/shortlist language by scope; this phase intentionally did not perform a broad positioning/SEO rewrite.
 - npm reports 16 dependency vulnerabilities; unrelated to this implementation and not changed.
 
 ## UNKNOWN
 
-- Tag Assistant connection state and whether it can run with debug signal OFF.
-- Actual GA4 request count and `page_view` duplication in Preview.
-- Actual Vercel Analytics `o`, `r`, and `dp` values in Preview.
-- Exact Live v2 GTM tag/trigger/variable fields.
-- Reliable candidate submission count mechanism.
+- Tag Assistant connection state with debug signal OFF.
+- Why the internal S3 contact transition emitted the sanitized dataLayer event but did not deliver a GA4 page_view in the observed window.
+- Vercel Analytics `o`, `r`, and `dp` values because no Insights view request was emitted.
+- Reliable H3 candidate submission aggregate/count mechanism.
 
 ## DO NOT TOUCH
 
@@ -198,8 +215,9 @@ Production deployment, promotion, merge, GTM publish, GA4 configuration, real co
 
 ## EXACT NEXT STEPS FOR FOUNDER
 
-1. Provide `GTM-WSBC22RX_v2.json` in the repository/workspace and verify the proposed variable/tag assignments against the real export.
-2. Open the Preview URL in an authenticated browser, or provide an approved Preview-only protection bypass secret through a secure environment mechanism.
-3. Run A6.4 scenarios 1–4 with Tag Assistant debug signal OFF and capture `dataLayer`, GA4 requests, `/_vercel/insights/view`, `o`, `r`, `dp`, and page-view counts.
-4. Confirm Preview has no Resend key or configure a separately isolated test sender before any successful-submit test.
-5. Review this branch and decide separately whether to merge and whether to apply the GTM change manually.
+1. Review the verified GTM v2 audit and apply the documented diff manually only after confirming the Event Settings variable type/assignment in GTM UI; keep the exact v2 export as rollback.
+2. Re-run S3 with Tag Assistant/GA4 diagnostics and determine why the sanitized contact `virtual_page_view` does not deliver a `page_view` after the internal transition.
+3. Run Tag Assistant with `Include debug signal in URL = OFF`; if it requires `gtm_debug`, stop and report that requirement without adding an exception.
+4. Investigate why the Preview Vercel Analytics script emits no `/_vercel/insights/view` request and capture `o/r/dp` before Founder review.
+5. Keep `/api/send` unsubmitted; if successful-path coverage is desired, use only a local Resend mock test. Do not add a Preview key for this QA.
+6. Decide separately whether to merge and whether to apply/publish the GTM change.
