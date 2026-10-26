@@ -25,6 +25,8 @@ export default function PartnerPresentationToggle() {
         {/* Toggle Pills */}
         <div className="flex rounded-lg bg-slate-200/80 p-1 border border-slate-300">
           <button
+            type="button"
+            aria-pressed={!partnerView}
             onClick={() => setPartnerView(false)}
             className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
               !partnerView
@@ -35,6 +37,8 @@ export default function PartnerPresentationToggle() {
             {t.homepage.partnerToggle.tabStandard}
           </button>
           <button
+            type="button"
+            aria-pressed={partnerView}
             onClick={() => setPartnerView(true)}
             className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
               partnerView
@@ -51,7 +55,7 @@ export default function PartnerPresentationToggle() {
       <div className="p-6 border-b border-slate-100 transition-colors duration-200">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           {partnerView ? (
-            /* Authorized Partner Presentation Header */
+            /* Simulated Partner Branding Header */
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center text-sm tracking-wider">
                 NP
@@ -73,7 +77,7 @@ export default function PartnerPresentationToggle() {
               </div>
               <div>
                 <span className="text-sm font-bold text-slate-900 uppercase tracking-wide block">
-                  TalentSync360 Verified Brief
+                  TalentSync360 Evidence Brief
                 </span>
                 <span className="text-[11px] font-mono text-blue-600 font-medium">
                   {t.homepage.partnerToggle.standardSubtitle}
@@ -92,7 +96,7 @@ export default function PartnerPresentationToggle() {
       {/* Constant Underlying Candidate Evidence (100% Unchanged) */}
       <div className="p-6 space-y-4 bg-slate-50/30">
         <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-200/80">
-          <span className="font-semibold text-slate-700">{t.homepage.partnerToggle.evaluatedRole}</span>
+          <span className="font-semibold text-slate-700">{t.homepage.deliverable.targetRoleValue}</span>
           <EvidenceStateBadge state="SUPPORTED" variant="light" size="sm" />
         </div>
 

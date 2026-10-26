@@ -47,7 +47,7 @@ export default function TalentsClient() {
               href="/companies"
               className="px-8 py-4 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white rounded-lg font-medium text-base transition-all flex items-center justify-center gap-2"
             >
-              {lang === 'es' ? '¿Buscás contratar talento LATAM? Ver Sprints B2B →' : 'Looking to hire LATAM tech talent? Explore B2B Sourcing Sprints →'}
+              {lang === 'es' ? '¿Evaluás candidatos para un rol técnico? Ver opciones para empresas →' : 'Evaluating candidates for a technical role? See options for companies →'}
             </Link>
           </div>
         </div>

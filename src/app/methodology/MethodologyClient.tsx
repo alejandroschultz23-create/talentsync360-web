@@ -67,6 +67,22 @@ export default function MethodologyClient() {
           </div>
       </section>
 
+      <section className="bg-slate-950 py-24 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-50 mb-4">{t.methodology.evidenceStatesTitle}</h2>
+            <p className="text-slate-400">{t.methodology.evidenceStatesSubtitle}</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {['SUPPORTED', 'PARTIAL', 'UNKNOWN', 'CONFLICT', 'NEEDS_VALIDATION'].map((state) => (
+              <div key={state} className="rounded-xl border border-slate-800 bg-slate-900/40 p-5 text-center">
+                <span className="text-xs font-mono font-bold tracking-wider text-blue-400">{state}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-slate-950 py-32 text-center border-b border-slate-800">
           <div className="max-w-4xl mx-auto px-4">
               <div className="inline-block px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-8">

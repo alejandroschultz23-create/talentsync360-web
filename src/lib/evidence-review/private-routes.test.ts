@@ -38,6 +38,7 @@ describe("Private route classification and analytics exclusion", () => {
     expect(
       isPrivateEvidenceReviewPath("/talents/evidence-review/profile?lang=es"),
     ).toBe(true);
+    expect(isPrivateEvidenceReviewPath("/talents/evidence-review/apply")).toBe(true);
   });
 
   it("classifies full URLs with private paths as private", () => {
@@ -71,11 +72,9 @@ describe("Private route classification and analytics exclusion", () => {
     ).toBe(false);
   });
 
-  it("ensures public Phase B routes remain non-private for acquisition analytics", () => {
+  it("keeps only public Phase B routes available for acquisition analytics", () => {
     expect(isPrivateEvidenceReviewPath("/talents/evidence-review")).toBe(false);
-    expect(isPrivateEvidenceReviewPath("/talents/evidence-review/apply")).toBe(
-      false,
-    );
+    expect(isPrivateEvidenceReviewPath("/talents/evidence-review/apply")).toBe(true);
     expect(isPrivateEvidenceReviewPath("/talents/evidence-review/submitted")).toBe(
       false,
     );
@@ -90,7 +89,7 @@ describe("Private route classification and analytics exclusion", () => {
       isPrivateEvidenceReviewUrl(
         "https://www.talentsync360.com/talents/evidence-review/apply",
       ),
-    ).toBe(false);
+    ).toBe(true);
   });
 
   it("handles malformed URLs safely without throwing", () => {

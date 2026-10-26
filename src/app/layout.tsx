@@ -23,11 +23,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.talentsync360.com"),
   title: {
-    default: "TalentSync360 | Decision-Ready LATAM Technical Shortlists",
+    default: "TalentSync360 | Technical Candidate Evidence Review",
     template: "%s | TalentSync360"
   },
-  description: "Get decision-ready LATAM technical shortlists. Our sourcing sprints combine human review, role-specific evidence, and opportunity-specific communication requirements.",
-  keywords: ["LATAM developers", "Nearshore sourcing", "Technical vetting", "Sourcing sprints", "Professional Evidence Review", "Role-specific validation"],
+  description: "Review LATAM candidate evidence and role context before technical interviews and hiring decisions.",
+  keywords: ["LATAM developers", "nearshore developers", "technical hiring", "candidate evaluation", "technical interviews", "Evidence Review"],
   alternates: {
     canonical: "/",
   },
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     apple: '/apple-icon.png',
   },
   openGraph: {
-    title: "TalentSync360 | Decision-Ready LATAM Technical Shortlists",
-    description: "Get decision-ready LATAM technical shortlists. Our sourcing sprints combine human review, role-specific evidence, and opportunity-specific communication requirements.",
+    title: "TalentSync360 | Technical Candidate Evidence Review",
+    description: "Review LATAM candidate evidence and role context before technical interviews and hiring decisions.",
     url: "https://www.talentsync360.com",
     siteName: "TalentSync360",
     images: [
@@ -54,8 +54,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TalentSync360 | Decision-Ready LATAM Technical Shortlists",
-    description: "Get decision-ready LATAM technical shortlists. Our sourcing sprints combine human review, role-specific evidence, and opportunity-specific communication requirements.",
+    title: "TalentSync360 | Technical Candidate Evidence Review",
+    description: "Review LATAM candidate evidence and role context before technical interviews and hiring decisions.",
     images: ["https://www.talentsync360.com/logo_oficial.png"],
   }
 };

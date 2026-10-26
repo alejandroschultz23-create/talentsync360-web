@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FileCheck, Edit3, Shield, Eye, Lock, CheckCircle2, GitBranch } from 'lucide-react';
+import { FileCheck, Edit3, Shield, Lock, CheckCircle2, GitBranch } from 'lucide-react';
 import EvidenceStateBadge from './EvidenceStateBadge';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -24,6 +24,10 @@ export default function CandidateEvidenceReviewPreview() {
           {t.homepage.candidateReviewPreview.badge}
         </span>
       </div>
+
+      <p className="px-5 py-3 bg-amber-50 border-b border-amber-200 text-xs text-amber-800">
+        {t.homepage.candidateReviewPreview.demoNotice}
+      </p>
 
       <div className="p-6 space-y-6">
         {/* Source-Neutral Evidence Input Inventory */}
@@ -98,10 +102,16 @@ export default function CandidateEvidenceReviewPreview() {
                 ? t.homepage.candidateReviewPreview.optInDescriptionActive
                 : t.homepage.candidateReviewPreview.optInDescriptionPrivate}
             </p>
+            <p id="candidate-demo-sharing-boundary" className="text-slate-600 text-xs max-w-md">
+              {t.homepage.candidateReviewPreview.sharingBoundary}
+            </p>
           </div>
 
           <button
-            onClick={() => setOptInActive(!optInActive)}
+            type="button"
+            aria-pressed={optInActive}
+            aria-describedby="candidate-demo-sharing-boundary"
+            onClick={() => setOptInActive((active) => !active)}
             className={`px-4 py-2 rounded-lg font-medium text-xs flex items-center gap-1.5 transition-all ${
               optInActive
                 ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
@@ -110,7 +120,7 @@ export default function CandidateEvidenceReviewPreview() {
           >
             {optInActive ? (
               <>
-                <Eye className="w-3.5 h-3.5" />
+                <Shield className="w-3.5 h-3.5" />
                 <span>{t.homepage.candidateReviewPreview.optInToggleActive}</span>
               </>
             ) : (

@@ -6,14 +6,14 @@ import { redirect } from 'next/navigation';
 import { getContactRedirect } from '@/lib/contact-routing';
 
 export const metadata: Metadata = {
-  title: "Contact | Start Your Sourcing Sprint",
-  description: "Contact TalentSync360 about nearshore technical sourcing, Shortlist Sprints, or a general inquiry.",
+  title: "Contact TalentSync360 | Technical Hiring & Evidence Review",
+  description: "Contact TalentSync360 about candidate evidence review, technical hiring decisions, partnerships, or a general inquiry.",
   alternates: {
     canonical: "https://www.talentsync360.com/contact",
   },
   openGraph: {
-    title: "Contact TalentSync360 | Start Your Sourcing Sprint",
-    description: "Contact TalentSync360 about nearshore technical sourcing, Shortlist Sprints, or a general inquiry.",
+    title: "Contact TalentSync360 | Technical Hiring & Evidence Review",
+    description: "Contact TalentSync360 about candidate evidence review, technical hiring decisions, partnerships, or a general inquiry.",
     url: "https://www.talentsync360.com/contact",
   }
 };

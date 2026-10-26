@@ -9,9 +9,10 @@ import { useLanguage } from '@/context/LanguageContext';
 interface EvidenceBriefModalProps {
   isOpen: boolean;
   onClose: () => void;
+  sampleContextNotice?: string;
 }
 
-export default function EvidenceBriefModal({ isOpen, onClose }: EvidenceBriefModalProps) {
+export default function EvidenceBriefModal({ isOpen, onClose, sampleContextNotice }: EvidenceBriefModalProps) {
   const { t, lang } = useLanguage();
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -89,11 +90,11 @@ export default function EvidenceBriefModal({ isOpen, onClose }: EvidenceBriefMod
       >
         {/* Header Bar */}
         <div className="px-6 py-4 border-b border-slate-800 bg-slate-950/60 flex items-center justify-between shrink-0">
-          <div className="flex items-center gap-3">
-            <span className="px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-[11px] font-semibold tracking-wider uppercase">
+          <div className="flex flex-wrap items-center gap-3">
+            <span id="brief-modal-title" className="px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-[11px] font-semibold tracking-wider uppercase">
               {t.homepage.modal.badge}
             </span>
-            <span className="hidden sm:inline-block px-2.5 py-1 rounded bg-slate-800/80 text-slate-400 font-mono text-[11px]">
+            <span className="inline-block px-2.5 py-1 rounded bg-slate-800/80 text-slate-400 font-mono text-[11px]">
               {t.homepage.modal.ref}
             </span>
           </div>
@@ -122,11 +123,16 @@ export default function EvidenceBriefModal({ isOpen, onClose }: EvidenceBriefMod
 
         {/* Scrollable Content Body */}
         <div className="p-6 overflow-y-auto space-y-6 text-sm leading-relaxed">
+          {sampleContextNotice && (
+            <p className="rounded-lg border border-amber-500/20 bg-amber-500/10 p-3 text-xs text-amber-300">
+              {sampleContextNotice}
+            </p>
+          )}
           {/* Metadata Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 rounded-xl bg-slate-950/50 border border-slate-800/80">
             <div>
               <span className="text-[11px] uppercase tracking-wider text-slate-400 font-mono block">{t.homepage.modal.targetRoleLabel}</span>
-              <span className="font-semibold text-slate-100 text-sm">Sr. Distributed Systems Engineer</span>
+              <span className="font-semibold text-slate-100 text-sm">{t.homepage.deliverable.targetRoleValue}</span>
             </div>
             <div>
               <span className="text-[11px] uppercase tracking-wider text-slate-400 font-mono block">{t.homepage.modal.locationZoneLabel}</span>

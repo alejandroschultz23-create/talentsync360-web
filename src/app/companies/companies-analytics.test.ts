@@ -30,9 +30,7 @@ describe('Companies analytics event alignment', () => {
     expect(fileContent).toContain("'/contact?intent=demo'");
     // 3. Pilot
     expect(fileContent).toContain("'/contact?intent=pilot'");
-    // 4. Shortlist
-    expect(fileContent).toContain("'/contact?intent=shortlist'");
-    // 5. Ongoing / Partner
+    // 4. Ongoing / Partner
     expect(fileContent).toContain("'/contact?intent=ongoing-partner'");
   });
 });

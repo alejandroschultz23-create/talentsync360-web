@@ -7,6 +7,7 @@ import {
   isPrivateEvidenceReviewPath,
   isPrivateEvidenceReviewUrl,
 } from "@/lib/evidence-review/private-routes";
+import { sanitizeVercelAnalyticsEvent } from "@/lib/analytics-url";
 
 export default function VercelAnalytics() {
   const pathname = usePathname();
@@ -14,9 +15,10 @@ export default function VercelAnalytics() {
 
   return (
     <Analytics
-      beforeSend={(event) =>
-        isPrivateEvidenceReviewUrl(event.url) ? null : event
-      }
+      beforeSend={(event) => {
+        if (isPrivateEvidenceReviewUrl(event.url)) return null;
+        return sanitizeVercelAnalyticsEvent(event);
+      }}
     />
   );
 }

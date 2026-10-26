@@ -21,7 +21,7 @@ const Hero = () => {
     pushGTMEvent('click_request_shortlist', {
       cta_label: typeof t.home.ctaShortlist === 'string' ? t.home.ctaShortlist : 'Request a shortlist',
       cta_location: 'hero_primary',
-      destination: '/contact?intent=shortlist-sprint',
+      destination: '/contact?intent=validate-role',
       language: lang,
       page_path: typeof window !== 'undefined' ? window.location.pathname : '',
     });
@@ -64,7 +64,7 @@ const Hero = () => {
 
           <div className="flex flex-wrap items-center gap-3">
             <Link
-              href="/contact?intent=shortlist-sprint"
+              href="/contact?intent=validate-role"
               onClick={handleShortlistClick}
               className="h-11 px-5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-1.5 group shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 active:scale-98"
             >
